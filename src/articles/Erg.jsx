@@ -138,6 +138,28 @@ export default function Erg() {
         </Callout>
       )}
 
+      <h2 id="bang-tom-tat">{t('summary.title')}</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>{t('summary.period')}</th>
+            <th>{t('summary.perBlock')}</th>
+            <th>{t('summary.miner')}</th>
+            <th>{t('summary.note')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {['r1', 'r2', 'r3', 'r4'].map((r) => (
+            <tr key={r}>
+              <td className="whitespace-nowrap">{t(`summary.${r}.period`)}</td>
+              <td>{t(`summary.${r}.perBlock`)}</td>
+              <td>{t(`summary.${r}.miner`)}</td>
+              <td>{T(`summary.${r}.note`, { rent: <Link to="/learn/storage-rent" /> })}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
       <h2 id="nanoerg">{t('nano.title')}</h2>
       <p>{T('nano.p1')}</p>
       <table>

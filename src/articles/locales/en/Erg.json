@@ -31,6 +31,37 @@
     "now": "At the current block, of the {{emission}} ERG created, the miner receives <b>{{reward}} ERG</b> immediately; the rest is locked for the re-emission period.",
     "nowEnded": "The emission box is now empty, so the whole <b>3 ERG</b> block reward is paid from the re-emission contract."
   },
+  "summary": {
+    "title": "Summary table",
+    "period": "Period",
+    "perBlock": "New ERG per block",
+    "miner": "Miner gets",
+    "note": "What happens",
+    "r1": {
+      "period": "2019 – 2021",
+      "perBlock": "75 ERG",
+      "miner": "67.5 ERG",
+      "note": "The first 2 years. 7.5 ERG per block goes to the development fund."
+    },
+    "r2": {
+      "period": "2021 – mid 2027",
+      "perBlock": "Drops 3 ERG every ~3 months",
+      "miner": "Shrinks to 3 ERG (reached in 2026)",
+      "note": "Since 2022 (EIP-27), part of each reward is saved for later."
+    },
+    "r3": {
+      "period": "mid 2027 – ~2044",
+      "perBlock": "0 (the emission box is empty)",
+      "miner": "3 ERG",
+      "note": "Miners are paid from the ERG saved by EIP-27."
+    },
+    "r4": {
+      "period": "After ~2044",
+      "perBlock": "0",
+      "miner": "Fees only",
+      "note": "Miners earn transaction fees and <rent>storage rent</rent>."
+    }
+  },
   "nano": {
     "title": "The smallest unit: nanoERG",
     "p1": "The blockchain doesn't store decimals. Every value is stored as a whole number of <b>nanoERG</b>:",

@@ -31,6 +31,37 @@
     "now": "Ở block hiện tại, trong {{emission}} ERG được tạo ra, thợ đào nhận ngay <b>{{reward}} ERG</b>, phần còn lại được khoá cho giai đoạn tái phát hành.",
     "nowEnded": "Emission box giờ đã cạn, nên toàn bộ phần thưởng <b>3 ERG</b> mỗi block được trả từ hợp đồng tái phát hành."
   },
+  "summary": {
+    "title": "Bảng tóm tắt",
+    "period": "Giai đoạn",
+    "perBlock": "ERG mới mỗi block",
+    "miner": "Thợ đào nhận",
+    "note": "Chuyện gì xảy ra",
+    "r1": {
+      "period": "2019 – 2021",
+      "perBlock": "75 ERG",
+      "miner": "67.5 ERG",
+      "note": "2 năm đầu. 7.5 ERG mỗi block vào quỹ phát triển."
+    },
+    "r2": {
+      "period": "2021 – giữa 2027",
+      "perBlock": "Giảm 3 ERG mỗi ~3 tháng",
+      "miner": "Giảm dần còn 3 ERG (từ năm 2026)",
+      "note": "Từ 2022 (EIP-27), một phần phần thưởng được để dành cho sau này."
+    },
+    "r3": {
+      "period": "giữa 2027 – ~2044",
+      "perBlock": "0 (emission box đã cạn)",
+      "miner": "3 ERG",
+      "note": "Thợ đào được trả từ số ERG đã để dành nhờ EIP-27."
+    },
+    "r4": {
+      "period": "Sau ~2044",
+      "perBlock": "0",
+      "miner": "Chỉ có phí",
+      "note": "Thợ đào sống nhờ phí giao dịch và <rent>phí lưu trữ (storage rent)</rent>."
+    }
+  },
   "nano": {
     "title": "Đơn vị nhỏ nhất: nanoERG",
     "p1": "Blockchain không lưu số thập phân. Mọi giá trị được lưu dưới dạng số nguyên <b>nanoERG</b>:",
