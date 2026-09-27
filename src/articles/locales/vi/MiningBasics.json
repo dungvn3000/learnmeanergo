@@ -1,0 +1,55 @@
+{
+  "chart": {
+    "title": "Hashrate toàn mạng, 90 ngày gần nhất",
+    "label": "Hashrate mạng Ergo theo ngày",
+    "empty": "Chưa có dữ liệu."
+  },
+  "pools": {
+    "title": "Ai đã đào {{total}} block trong 24 giờ qua?"
+  },
+  "stats": {
+    "hashrate": "Hashrate",
+    "change": "{{pct}}% so với 7 ngày trước",
+    "blockTime": "Thời gian block TB",
+    "seconds": "{{n}} giây",
+    "target": "mục tiêu: 120 giây",
+    "difficulty": "Độ khó"
+  },
+  "intro": "Không có ngân hàng trung ương nào quyết định giao dịch nào hợp lệ trên Ergo. Công việc đó thuộc về <b>thợ đào</b> (miner) — những người dùng máy tính để bảo vệ mạng lưới, và được trả công bằng ERG.",
+  "what": {
+    "title": "Thợ đào làm gì?",
+    "p1": "Mỗi thợ đào liên tục làm ba việc:",
+    "s1": "Lấy các giao dịch đang chờ trong mempool và kiểm tra chúng hợp lệ.",
+    "s2": "Ghép chúng thành một block ứng viên, trỏ về block mới nhất của chuỗi.",
+    "s3": "Đổi một con số phụ trong block (gọi là <b>nonce</b>), tính lại dấu vân tay của block (mã băm), rồi xem nó đã đủ nhỏ chưa. Lặp lại hàng tỉ lần.",
+    "p2": "Bước 3 giống như tung xúc xắc hàng tỉ lần để ra một con số cực hiếm. Không có mẹo nào — chỉ có thử thật nhiều và thật nhanh. Tốc độ thử của cả mạng gọi là <b>hashrate</b>."
+  },
+  "reward": {
+    "title": "Phần thưởng",
+    "p1": "Thợ đào tìm ra block nhận được hai thứ:",
+    "block": "<b>Phần thưởng block</b>: ERG mới được tạo ra theo <erg>lịch phát hành</erg>.",
+    "current": "Ở độ cao hiện tại, thợ đào nhận ngay <b>{{reward}} ERG</b> mỗi block.",
+    "fees": "<b>Phí giao dịch</b>: tổng phí của mọi giao dịch trong block.",
+    "p2": "Khi phần thưởng block dần giảm, phí giao dịch và cơ chế tái phát hành (EIP-27) sẽ ngày càng quan trọng để giữ cho thợ đào tiếp tục bảo vệ mạng."
+  },
+  "difficulty": {
+    "title": "Độ khó tự điều chỉnh",
+    "p1": "Nếu thêm nhiều thợ đào tham gia, block sẽ được tìm ra nhanh hơn. Để giữ nhịp khoảng <b>2 phút một block</b>, mạng tự động tăng <b>độ khó</b> (difficulty) — tức là yêu cầu mã băm phải nhỏ hơn nữa. Khi thợ đào rời đi, độ khó giảm xuống.",
+    "p2": "Có một mối liên hệ đơn giản: <em>hashrate ≈ độ khó ÷ 120 giây</em>. Đó chính là cách explorer ước tính hashrate của cả mạng mà không cần hỏi từng thợ đào. Chi tiết trong bài <difficulty>Độ khó & nBits</difficulty>."
+  },
+  "gpu": {
+    "title": "Vì sao GPU vẫn đào được Ergo?",
+    "p1": "Bitcoin ngày nay chỉ đào được bằng máy ASIC chuyên dụng, đắt tiền, tập trung trong tay một số ít công ty. Ergo chọn hướng khác: thuật toán <b>Autolykos v2</b> là thuật toán <em>memory-hard</em> — mỗi lần thử cần đọc dữ liệu từ một bảng lớn trong bộ nhớ. Card đồ hoạ (GPU) phổ thông có bộ nhớ nhanh nên làm việc này rất tốt, còn chế tạo ASIC để vượt trội thì khó và kém hiệu quả hơn nhiều.",
+    "p2": "Kết quả: bất kỳ ai có một dàn GPU đều có thể tham gia bảo vệ mạng.",
+    "note": "Tìm hiểu cách Autolykos hoạt động và ý nghĩa của các trường <code>pk</code>, <code>w</code>, <code>n</code>, <code>d</code> trong mỗi block tại bài <autolykos>Autolykos v2</autolykos>."
+  },
+  "pool": {
+    "title": "Đào một mình hay vào pool?",
+    "p1": "Với hàng nghìn thợ đào, xác suất một dàn máy nhỏ tự tìm được block là rất thấp — có thể phải chờ hàng tháng. Vì vậy phần lớn thợ đào tham gia <b>pool</b>: góp sức với nhau và chia phần thưởng theo đóng góp. Thu nhập ít hơn mỗi lần nhưng đều đặn hơn.",
+    "p2": "Sự phân bổ giữa các pool rất đáng theo dõi: nếu một pool chiếm quá nửa hashrate, về lý thuyết nó có thể gây rối mạng. Thợ đào có thể chuyển pool bất cứ lúc nào — một cách “bỏ phiếu bằng chân” giữ cho mạng phi tập trung."
+  },
+  "next": {
+    "title": "Tiếp theo",
+    "p1": "Bạn đã hoàn thành phần cho người mới! Sẵn sàng đi sâu hơn? Bắt đầu với <block>Block & header</block> trong phần <technical>Kỹ thuật</technical>, hoặc xem các block vừa được đào trong <explorer>explorer</explorer>."
+  }
+}

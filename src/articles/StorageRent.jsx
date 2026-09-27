@@ -1,14 +1,24 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Trans } from 'react-i18next'
 import { api } from '../lib/api'
 import { useApi } from '../lib/useApi'
 import { BLOCK_TIME_SEC, MIN_VALUE_PER_BYTE, STORAGE_FEE_FACTOR, STORAGE_PERIOD } from '../lib/ergo'
 import { erg, num } from '../lib/format'
+import { articleNs } from '../lib/i18n'
 import { Callout, Card, Field } from '../components/ui'
+import en from './locales/en/StorageRent.json'
+import vi from './locales/vi/StorageRent.json'
+
+const useT = articleNs('StorageRent', { en, vi })
+
+// Tag → element map shared by every <Trans> in this article; links are added per call.
+const TAGS = { b: <strong />, em: <em />, code: <code /> }
 
 const years = (blocks) => (blocks * BLOCK_TIME_SEC) / (365.25 * 86400)
 
 function RentCalculator() {
+  const { t } = useT()
   const [size, setSize] = useState(100)
   const [value, setValue] = useState(1)
   const [created, setCreated] = useState('')
@@ -26,19 +36,19 @@ function RentCalculator() {
 
   return (
     <Card className="not-prose my-6 p-5">
-      <div className="mb-4 text-xs font-semibold tracking-wide text-stone-500 uppercase">Máy tính phí lưu trữ</div>
+      <div className="mb-4 text-xs font-semibold tracking-wide text-stone-500 uppercase">{t('calc.title')}</div>
       <div className="grid gap-4 sm:grid-cols-3">
         <label className="grid gap-1 text-sm">
-          <span className="font-semibold">Kích thước box (byte)</span>
+          <span className="font-semibold">{t('calc.size')}</span>
           <input type="range" min="40" max="4096" value={size} onChange={(e) => setSize(Number(e.target.value))} className="accent-ergo-500" />
-          <span className="font-mono text-xs text-stone-500">{num(size)} byte</span>
+          <span className="font-mono text-xs text-stone-500">{t('calc.bytes', { n: num(size) })}</span>
         </label>
         <label className="grid gap-1 text-sm">
-          <span className="font-semibold">Giá trị box (ERG)</span>
+          <span className="font-semibold">{t('calc.value')}</span>
           <input type="number" min="0" step="0.01" value={value} onChange={(e) => setValue(Math.max(0, Number(e.target.value) || 0))} className={input} />
         </label>
         <label className="grid gap-1 text-sm">
-          <span className="font-semibold">Tạo ở độ cao</span>
+          <span className="font-semibold">{t('calc.created')}</span>
           <input
             type="number"
             min="0"
@@ -50,35 +60,33 @@ function RentCalculator() {
         </label>
       </div>
       <div className="mt-4">
-        <Field name="Phí mỗi chu kỳ" value={<span className="font-mono">{num(size)} × {num(STORAGE_FEE_FACTOR)} = {erg(fee)} ERG</span>}>
-          Thợ đào được lấy tối đa chừng này mỗi lần box “quá hạn”.
+        <Field name={t('calc.fee')} value={<span className="font-mono">{num(size)} × {num(STORAGE_FEE_FACTOR)} = {erg(fee)} ERG</span>}>
+          {t('calc.feeHint')}
         </Field>
-        <Field name="Giá trị tối thiểu" value={<span className="font-mono">{num(size)} × {MIN_VALUE_PER_BYTE} = {erg(minValue)} ERG</span>}>
-          Box nhỏ hơn mức này không được phép tạo ra ngay từ đầu.
+        <Field name={t('calc.min')} value={<span className="font-mono">{num(size)} × {MIN_VALUE_PER_BYTE} = {erg(minValue)} ERG</span>}>
+          {t('calc.minHint')}
         </Field>
         <Field
-          name="Box sống được"
+          name={t('calc.survives')}
           value={
             valueNano < fee ? (
-              <span className="font-semibold text-amber-600">Chưa tới 1 chu kỳ — thợ đào có thể lấy toàn bộ box khi quá hạn.</span>
+              <span className="font-semibold text-amber-600">{t('calc.tooShort')}</span>
             ) : (
-              <span>
-                {num(periodsLeft)} chu kỳ ≈ {num(periodsLeft * years(STORAGE_PERIOD), 0)} năm nếu không bao giờ được động tới
-              </span>
+              <span>{t('calc.lives', { periods: num(periodsLeft), years: num(periodsLeft * years(STORAGE_PERIOD), 0) })}</span>
             )
           }
         />
         {height && (
           <Field
-            name="Quá hạn từ block"
+            name={t('calc.overdue')}
             value={
               <span className="font-mono">
                 {num(claimableAt)}{' '}
                 <span className="font-sans text-xs">
                   {claimableAt <= height ? (
-                    <span className="font-semibold text-amber-600">— đã có thể bị thu phí (hiện tại: {num(height)})</span>
+                    <span className="font-semibold text-amber-600">{t('calc.already', { height: num(height) })}</span>
                   ) : (
-                    <span className="text-stone-500">— còn {num(claimableAt - height)} block (≈ {years(claimableAt - height).toFixed(1)} năm)</span>
+                    <span className="text-stone-500">{t('calc.toGo', { blocks: num(claimableAt - height), years: years(claimableAt - height).toFixed(1) })}</span>
                   )}
                 </span>
               </span>
@@ -91,112 +99,61 @@ function RentCalculator() {
 }
 
 export default function StorageRent() {
+  const { t } = useT()
+  const T = (k, values, extra) => <Trans t={t} i18nKey={k} values={values} components={{ ...TAGS, ...extra }} />
   return (
     <>
-      <p>
-        Mỗi node Ergo phải giữ toàn bộ tập box chưa tiêu (UTXO set) để xác thực giao dịch mới. Tập này chỉ có thể lớn dần: người ta tạo box mới liên tục, còn
-        những box bị bỏ quên — ví mất seed, bụi token, thí nghiệm của lập trình viên — thì nằm đó mãi mãi. Trong Bitcoin, người dùng trả phí <em>một lần</em> khi
-        tạo output, rồi được lưu trữ miễn phí vĩnh viễn trên máy của mọi node. Ergo trả lời câu hỏi “ai trả tiền cho việc lưu trữ vĩnh viễn?” bằng{' '}
-        <strong>storage rent</strong> (phí lưu trữ, còn gọi là demurrage).
-      </p>
+      <p>{T('intro')}</p>
 
-      <h2 id="quy-tac">Quy tắc</h2>
-      <p>
-        Nếu một box nằm yên — không bị tiêu, không được “làm mới” — trong <strong>{num(STORAGE_PERIOD)} block</strong> (≈ {years(STORAGE_PERIOD).toFixed(0)}{' '}
-        năm), thợ đào được phép động vào nó dù không có khoá:
-      </p>
+      <h2 id="quy-tac">{t('rule.title')}</h2>
+      <p>{T('rule.p1', { period: num(STORAGE_PERIOD), years: years(STORAGE_PERIOD).toFixed(0) })}</p>
       <ul>
-        <li>
-          Nếu giá trị box <strong>lớn hơn</strong> phí: thợ đào lấy đúng phần phí, và phải tạo lại một box y hệt (cùng script, token, register) với giá trị đã
-          trừ phí và độ cao tạo mới. Đồng hồ 4 năm bắt đầu lại.
-        </li>
-        <li>
-          Nếu giá trị box <strong>nhỏ hơn</strong> phí: thợ đào lấy <strong>tất cả</strong> — cả ERG lẫn mọi token hay NFT bên trong — và box biến mất
-          khỏi UTXO set.
-        </li>
+        <li>{T('rule.li1')}</li>
+        <li>{T('rule.li2')}</li>
       </ul>
-      <Callout type="warn" title="Token và NFT không được miễn">
-        Phí trả bằng ERG, nhưng khi box không còn đủ ERG để trả thì thợ đào nhận cả box, kể cả token. Một box giữ NFT quý kèm lượng ERG tối thiểu chính là loại
-        bị “dọn” đầu tiên nếu bị bỏ quên nhiều năm.
+      <Callout type="warn" title={t('warn.title')}>
+        {t('warn.text')}
       </Callout>
-      <p>Phí được tính theo kích thước box:</p>
+      <p>{t('rule.p2')}</p>
       <pre>
-        <code>{`fee = boxSizeInBytes × storageFeeFactor
-storageFeeFactor = ${num(STORAGE_FEE_FACTOR)} nanoERG / byte  (= ${erg(STORAGE_FEE_FACTOR)} ERG / byte, giá trị mặc định)`}</code>
+        <code>{t('rule.code', { factor: num(STORAGE_FEE_FACTOR), factorErg: erg(STORAGE_FEE_FACTOR) })}</code>
       </pre>
-      <Callout type="note" title="Tham số có thể bỏ phiếu">
-        <code>storageFeeFactor</code> và <code>minValuePerByte</code> là tham số của mạng. Thợ đào bỏ phiếu thay đổi chúng qua trường <code>votes</code> trong
-        header, nên con số thực tế có thể khác giá trị mặc định ở trên. Riêng chu kỳ 4 năm thì khác: muốn đổi nó cần một hard fork — điều cộng đồng thường
-        tránh.
+      <Callout type="note" title={t('params.title')}>
+        {T('params.text')}
       </Callout>
 
-      <h2 id="vi-du">Ví dụ tính toán</h2>
-      <p>
-        Một box ví thông thường (P2PK, không có token) có kích thước cỡ 100 byte. Phí mỗi chu kỳ là 100 × {num(STORAGE_FEE_FACTOR)} ={' '}
-        {num(100 * STORAGE_FEE_FACTOR)} nanoERG = <strong>{erg(100 * STORAGE_FEE_FACTOR)} ERG mỗi 4 năm</strong>. Với box chứa 10 ERG, phí này là 1.25% sau
-        mỗi 4 năm — và chỉ phát sinh nếu bạn không đụng tới ví trong suốt 4 năm. Chỉ cần gửi tiền cho chính mình một lần là đồng hồ đặt lại.
-      </p>
-      <p>
-        Bài giải thích chính thức của Ergo ước tính mức thu điển hình là <strong>khoảng 0.14 ERG cộng phí giao dịch</strong> cho mỗi box — cao hơn chút so với
-        con số 100 byte ở trên vì box ví thực tế thường lớn hơn một ít. Cũng theo bài đó, một box chứa <strong>1 ERG</strong> phải nằm im hoàn toàn khoảng{' '}
-        <strong>32 năm</strong> thì thợ đào mới lấy hết được — với box 100 byte, đó đúng là 8 chu kỳ × 0.125 ERG. Máy tính bên dưới bắt đầu đúng từ trường hợp
-        đó.
-      </p>
+      <h2 id="vi-du">{t('example.title')}</h2>
+      <p>{T('example.p1', { factor: num(STORAGE_FEE_FACTOR), fee: num(100 * STORAGE_FEE_FACTOR), feeErg: erg(100 * STORAGE_FEE_FACTOR) })}</p>
+      <p>{T('example.p2')}</p>
       <RentCalculator />
 
-      <h2 id="gia-tri-toi-thieu">Giá trị tối thiểu của box</h2>
-      <p>
-        Mặt kia của storage rent là quy tắc <strong>giá trị tối thiểu</strong>: mỗi box phải chứa ít nhất <code>{MIN_VALUE_PER_BYTE} nanoERG × kích thước</code>{' '}
-        (mặc định). Nhờ vậy không ai tạo được hàng triệu box “bụi” gần như miễn phí để làm phình UTXO set. Đó là lý do một output tối thiểu trong ví thường vào
-        khoảng 0.001 ERG — dư sức trên mức tối thiểu cho những box lớn hơn, có token.
-      </p>
+      <h2 id="gia-tri-toi-thieu">{t('min.title')}</h2>
+      <p>{T('min.p1', { min: MIN_VALUE_PER_BYTE })}</p>
 
-      <h2 id="vi-sao-tot">Vì sao đây là điều tốt</h2>
+      <h2 id="vi-sao-tot">{t('good.title')}</h2>
       <ul>
-        <li>
-          <strong>Chặn phình trạng thái</strong>: dữ liệu bị bỏ quên dần dần được dọn khỏi UTXO set, nên chi phí chạy node không tăng mãi mãi.
-        </li>
-        <li>
-          <strong>Dọn “bụi”</strong>: những lượng coin lặt vặt rải rác trong hàng nghìn box bị quên là thứ bị dọn đầu tiên, vì chúng không đủ trả dù chỉ một
-          chu kỳ phí.
-        </li>
-        <li>
-          <strong>Thu nhập ổn định cho thợ đào</strong>: sau khi phát hành kết thúc, storage rent là nguồn thu không phụ thuộc vào việc mạng đông hay vắng — bổ
-          sung cho phí giao dịch và <Link to="/learn/emission">tái phát hành EIP-27</Link>.
-        </li>
-        <li>
-          <strong>Coin bị mất quay về lưu thông</strong>: ERG trong ví mất seed không bị “khoá chết” vĩnh viễn như với Bitcoin, mà chậm rãi chảy về cho thợ đào. Nhờ vậy coin tiếp tục lưu thông, làm dịu hiệu ứng giảm phát mà mọi đồng coin có nguồn cung cố định đều gặp khi
-          người dùng mất khoá.
-        </li>
-        <li>
-          <strong>Công bằng</strong>: người chiếm nhiều chỗ lưu trữ (box lớn) trả nhiều hơn người chiếm ít.
-        </li>
+        <li>{T('good.bloat')}</li>
+        <li>{T('good.dust')}</li>
+        <li>{T('good.income', undefined, { emission: <Link to="/learn/emission" /> })}</li>
+        <li>{T('good.lost')}</li>
+        <li>{T('good.fair')}</li>
       </ul>
-      <Callout type="tip" title="Đã xảy ra thật">
-        Mainnet Ergo ra mắt tháng 7/2019, nên những box đầu tiên chạm mốc {num(STORAGE_PERIOD)} block vào khoảng giữa năm 2023 — từ đó, phí lưu trữ không còn là lý thuyết
-        mà là một phần có thật của kinh tế mạng chính.
+      <Callout type="tip" title={t('real.title')}>
+        {t('real.text', { period: num(STORAGE_PERIOD) })}
       </Callout>
 
-      <h2 id="lam-sao-tranh">Làm sao để không bị thu phí?</h2>
-      <p>
-        Rất đơn giản: thỉnh thoảng (ít hơn 4 năm một lần) hãy tiêu box — ví dụ gửi toàn bộ số dư cho chính mình. Box mới được tạo ra với độ cao mới, và đồng hồ
-        bắt đầu lại.
-      </p>
-      <p>
-        Phí tính <em>theo từng box</em>, nên <strong>gom box</strong> cũng có ích: gửi toàn bộ số dư về một địa chỉ trong một giao dịch sẽ gộp nhiều box nhỏ
-        thành vài box lớn — ít box có thể bị thu phí hơn, và box nào cũng còn rất xa ngưỡng nguy hiểm.
-      </p>
-      <p>
-        Muốn hiểu kích thước một box đến từ đâu? Xem <Link to="/learn/box">Box &amp; registers</Link>.
-      </p>
+      <h2 id="lam-sao-tranh">{t('avoid.title')}</h2>
+      <p>{t('avoid.p1')}</p>
+      <p>{T('avoid.p2')}</p>
+      <p>{T('avoid.p3', undefined, { box: <Link to="/learn/box" /> })}</p>
 
-      <h2 id="doc-them">Đọc thêm</h2>
+      <h2 id="doc-them">{t('reading.title')}</h2>
       <ul>
         <li>
           <a href="https://ergoplatform.org/en/blog/2022-02-18-ergo-explainer-storage-rent/" target="_blank" rel="noreferrer">
             Ergo Explainer: Storage Rent
           </a>{' '}
-          — blog Ergo Platform, 18/02/2022 (tiếng Anh).
+          {t('reading.meta')}
         </li>
       </ul>
     </>

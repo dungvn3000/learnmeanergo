@@ -1,0 +1,99 @@
+{
+  "changed": "Changed since 2019",
+  "genesis": {
+    "noPremine": "An unspendable box holding Guardian, Vedomosti and Xinhua headlines plus the latest Bitcoin and Ethereum block ids at launch — proof that nobody mined early.",
+    "treasury": "The development fund, locked by a 2-of-3 signature and released gradually: 7.5 → 4.5 → 1.5 ERG/block over the first ~2.5 years.",
+    "miners": "The emission contract: each block pays the miner’s reward (locked for 720 blocks) and keeps the rest inside itself.",
+    "total": "Total: <b>{{total}} ERG</b> — every ERG that will ever exist, already sitting in these three boxes since the genesis block.",
+    "issued": "{{issued}} ERG ({{pct}}%) has been released so far."
+  },
+  "intro": "<b>Ergo: A Resilient Platform For Contractual Money</b> is Ergo’s official whitepaper (version 1.0, 14 May 2019, by “Ergo Developers”), published just before mainnet launched. This page walks through each part of it in our own words, points out what has <b>changed</b> since 2019, and links to the detailed explanation elsewhere on this site.",
+  "webVersion": "Web version on docs.ergoplatform.com",
+  "abstract": {
+    "title": "Abstract",
+    "p1": "Ergo is a flexible blockchain for secure financial contracts. Every coin is protected by an ErgoScript program built on <sigma>sigma protocols</sigma>, letting developers state exactly when it may be spent. The platform supports light nodes on commodity hardware, relies only on proven cryptography, and can amend its own protocol to adapt over time."
+  },
+  "problem": {
+    "title": "The problem",
+    "p1": "The whitepaper points to two weaknesses of the blockchains of the day. The first is <b>resources</b>: every user has to download and check every transaction, and fees stay high even while block rewards subsidize them. The second is the <b>data model</b>: Ethereum’s account model is flexible but makes contracts easy to get wrong — the whitepaper mentions roughly $150 million lost to contract bugs in 2017. Ergo’s argument: most financial applications don’t need Turing-completeness, so a UTXO model extended with contract capabilities is the safer choice."
+  },
+  "vision": {
+    "title": "Vision",
+    "p1": "Five guiding principles — the same ones later restated in the Ergo Manifesto:",
+    "decentralization": "<b>Decentralization first</b> — minimize dependence on any single party: developers, miners, hardware manufacturers.",
+    "regular": "<b>Created for regular people</b> — anyone can mine and run a node; mining centralization is actively resisted.",
+    "contractual": "<b>A platform for contractual money</b> — focus on efficient, secure financial contracts.",
+    "longTerm": "<b>Long-term focus</b> — designed to last for centuries, without relying on hard forks or specific hardware.",
+    "open": "<b>Permissionless and open</b> — no discrimination, blacklists or bailouts at the protocol level.",
+    "seeAlso": "See also: <manifesto>The Ergo Manifesto</manifesto>."
+  },
+  "autolykos": {
+    "title": "Autolykos consensus",
+    "p1": "Ergo uses the <b>Autolykos</b> Proof-of-Work, presented as the first protocol that is both <em>memory-hard</em> and <em>pool-resistant</em>. Instead of hashing one nonce at a time, a miner has to pick 32 numbers out of a huge table so that they add up “just right”. Formally, miners solve a “one-list k-sum” problem: find <b>k = 32</b> elements of a fixed list of <b>N = 2<sup>26</sup></b> elements (about 2 GB) whose sum satisfies a condition against the target <code>b</code>. The list has to live in memory, because recomputing elements on every attempt is far too slow.",
+    "p2": "To resist pools, the original version required the miner’s <b>private key</b> during mining — you couldn’t hand the work to a pool without also handing over the right to spend the reward. Difficulty was adjusted by linear least-squares regression over the last <b>8 epochs × 1024 blocks</b>, targeting ~2-minute blocks.",
+    "changed": "From block <b>417,792</b> (February 2021), Ergo switched to <b>Autolykos v2</b>: pool resistance was dropped so mining pools work normally, and the list size is no longer fixed but grows with height. The difficulty adjustment was later revised by EIP-37 as well. See <autolykos>Autolykos v2</autolykos> and <difficulty>Difficulty &amp; nBits</difficulty>."
+  },
+  "state": {
+    "title": "Ergo state",
+    "p1": "Instead of accounts, Ergo uses an <b>extended UTXO</b> model built around immutable <em>boxes</em>. Each box has 10 registers: R0 the ERG value, R1 the guard script, R2 tokens, R3 creation info (height, transaction id, output index), and R4–R9 for arbitrary data.",
+    "p2": "The whitepaper lists the advantages over the account model:",
+    "replay": "Simpler protection against replay and reordering attacks.",
+    "parallel": "Parallel transaction processing, since transactions don’t modify shared state.",
+    "atomic": "Atomic transactions: all or nothing — no “out of gas” halfway through.",
+    "stateless": "A foundation for stateless clients.",
+    "p3": "Think of the state as a fingerprint that can also prove what is inside it. The set of unspent boxes is kept in an <b>authenticated AVL+ tree</b>, summarized by a <b>33-byte</b> digest — the <code>stateRoot</code> field in the header. The tree can prove that a box is (or isn’t) in the set, and prove every change to it. That lets light nodes check blocks using the attached proofs alone, with the same security as a full node. According to the whitepaper, AVL+ proofs are about 3× smaller than Ethereum’s Merkle Patricia trie. See <box>Boxes &amp; registers</box> and <block>Blocks &amp; headers</block>."
+  },
+  "resilience": {
+    "title": "Resiliency and survivability",
+    "p1": "To last, the whitepaper sets out four directions:",
+    "adHoc": "<b>No ad-hoc solutions</b>: only peer-reviewed, well-tested cryptography. The cautionary example given is IOTA, whose home-made hash function led to serious vulnerabilities and a hard fork.",
+    "light": "<b>Light client support</b>: thanks to the authenticated AVL+ state, mobile devices and slow connections can still verify the chain.",
+    "rent": "<b>Storage rent</b>: boxes left untouched for 4 years are charged per byte — preventing dust and state bloat, reducing DoS risk like the 2016 Ethereum attacks, giving miners stable income after emission ends, and returning lost coins to circulation. See <rent>Storage rent</rent>.",
+    "amend": "<b>Self-amending protocol</b>: “soft” parameters such as block size or storage fee are voted on by miners every 1024-block epoch (at most two parameters per epoch). Bigger changes — such as new ErgoScript instructions — need <b>90%</b> approval over <b>32,768</b> blocks, then another 32,768 blocks before activation. Old nodes skip the new rules but keep checking every rule they know."
+  },
+  "erg": {
+    "title": "The Erg token",
+    "p1": "The native currency is the <b>Erg</b>, divisible down to 10<sup>9</sup> nanoErgs. It rewards miners (securing the network against 51% attacks), pays for computation and storage, and pays storage rent. The entire supply was created up front in <b>three genesis boxes</b>:",
+    "p2": "The emission schedule in the whitepaper:",
+    "thBlocks": "Blocks",
+    "thMiners": "Miners",
+    "row1": "1 – 525,599 (~2 years)",
+    "row2": "525,600 – 590,399 (~3 months)",
+    "row3": "590,400 – 655,199 (~3 months)",
+    "row5": "from 720,000",
+    "row5Miners": "down 3 ERG every 64,800 blocks",
+    "row6Miners": "0 — emission ends",
+    "changed": "<b>EIP-27</b> (activated at block 777,217) keeps the total supply the same but locks part of each block reward into a re-emission contract, then pays it back to miners at 3 ERG/block <em>after</em> block 2,080,800 — stretching miner income over many more years. See <emission>Emission schedule &amp; EIP-27</emission>."
+  },
+  "contracts": {
+    "title": "Contractual money",
+    "p1": "Each box is protected by a logical formula that combines ordinary conditions with cryptographic statements provable via sigma protocols, joined by AND, OR and <em>k-out-of-n</em>. The whitepaper distinguishes two kinds of ERG (and tokens):",
+    "free": "<b>Free</b> — the owner can send them anywhere, like a normal wallet.",
+    "bounded": "<b>Bounded</b> — the contract requires the spending transaction to create outputs with specific properties (script, amount…). This is how multi-step contracts are built.",
+    "p2": "The building blocks for contracts:",
+    "ergoscript": "<b>ErgoScript</b> — a typed high-level language; for example “prove knowledge of key pk1 <em>or</em> pk2” is written <code>pk1 || pk2</code>. See <ergotree>ErgoTree &amp; ErgoScript</ergotree>.",
+    "dataInputs": "<b>Data inputs</b> — read a box without destroying it; ideal for oracles. See <tx>Transactions</tx>.",
+    "tokens": "<b>Custom tokens</b> — each transaction can issue one new token, whose id is the id of the first input box, in an amount from 1 to 9,223,372,036,854,775,807. Tokens may be burned (outputs ≤ inputs), while ERG is strictly preserved (inputs = outputs). See <tokens>Tokens (EIP-4)</tokens>."
+  },
+  "examples": {
+    "title": "Two examples from the whitepaper",
+    "oracle": "<b>A temperature bet with an oracle</b>: the oracle issues a single token and puts it in a box holding the temperature (R4) and a timestamp (R5). Alice and Bob’s bet contract only checks that its first data input carries that token — the token’s presence is the oracle’s signature.",
+    "mixing": "<b>Non-interactive mixing</b>: Bob spends Alice’s box together with one of his own to create two outputs with identical scripts; each of them can spend only one, but outsiders can’t tell which belongs to whom.",
+    "p1": "The whitepaper also mentions atomic swaps, crowdfunding, local exchange trading systems and ICOs as further applications."
+  },
+  "today": {
+    "title": "2019 vs today",
+    "thTopic": "Topic",
+    "thNow": "Today",
+    "blockTime": { "topic": "Block time", "then": "~2 minutes", "now": "Unchanged" },
+    "pow": { "then": "Autolykos v1, pool-resistant, fixed N = 2^26", "now": "Autolykos v2 since block 417,792; pools allowed, N grows" },
+    "difficulty": { "topic": "Difficulty adjustment", "then": "Regression over 8 × 1024 blocks", "now": "Revised by EIP-37" },
+    "emission": { "topic": "Emission", "then": "Ends at block 2,080,800", "now": "Same, plus EIP-27 re-emission afterwards" },
+    "rent": { "then": "4 years, charged per byte", "now": "Unchanged; collected for real since 2023" }
+  },
+  "reading": {
+    "title": "Further reading",
+    "pdf": "<link>Ergo: A Resilient Platform For Contractual Money</link> — whitepaper v1.0, 14 May 2019 (PDF).",
+    "web": "<link>Web version of the whitepaper</link> on docs.ergoplatform.com."
+  }
+}

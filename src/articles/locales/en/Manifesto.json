@@ -1,0 +1,85 @@
+{
+  "intro": "In April 2021 the Ergo Platform blog published <b>The Ergo Manifesto</b> — a statement of <em>why</em> Ergo exists, not just how it works. The other pages on this site are about boxes, scripts and algorithms; this one is about the values behind those design choices.",
+  "about": {
+    "title": "About this page",
+    "text": "This is our own summary and interpretation, not a copy. We recommend reading <source>the original</source>."
+  },
+  "roots": {
+    "title": "Back to the cypherpunk roots",
+    "p1": "The manifesto starts with Bitcoin: born right after the financial crisis and the bank bailouts of 2009, it showed that people could hold and exchange value directly with each other, with no intermediary. A whole industry grew out of that idea.",
+    "p2": "But after the 2017 boom, the manifesto argues, the original spirit was watered down: hype and price speculation crowded out building useful tools, and many projects survived by feeding on newcomers. Corporations, meanwhile, mostly used blockchain to cut costs. Ergo wants to go the other way: blockchain as a tool for <b>horizontal cooperation and mutual aid</b>, serving ordinary people, cooperatives and small businesses."
+  },
+  "why": {
+    "title": "Why is this important?",
+    "p1": "When an economy collapses, the wealthy, big companies — and criminals — all have ways to protect their assets; ordinary people don’t. The manifesto points to the currency devaluation in Turkey: when a centralized financial system fails, those with no way out suffer the most. Blockchain can be that way out — <em>if</em> it is truly decentralized, non-custodial (you hold your own keys) and open to everyone."
+  },
+  "weapon": {
+    "title": "The weaponization of money",
+    "p1": "The manifesto warns that central bank digital currencies (CBDCs) could be used to control citizens in at least three ways:",
+    "expiring": { "title": "Money that expires", "text": "Balances can be forced to expire or be burned — a form of confiscation." },
+    "conditional": { "title": "Conditional spending", "text": "The right to spend is tied to “compliance”, becoming a tool to silence dissent." },
+    "censored": { "title": "Censored markets", "text": "Access to markets can be blocked, destroying individual monetary sovereignty." }
+  },
+  "privacy": {
+    "title": "Privacy",
+    "p1": "For the manifesto, privacy is the foundation of a free society: it lets people make their own decisions without surveillance or coercion, and protects their assets from authoritarian regimes. But Ergo doesn’t <em>force</em> privacy — it provides the tools, and using them is each person’s choice."
+  },
+  "ergonomic": {
+    "p1": "A play on the name: <b>ergonomic</b> money — designed around people — serves its users’ well-being instead of being used to extract from them. The goal is private, resilient, censorship-resistant tools that ordinary people can actually use, especially those most vulnerable when a crisis hits."
+  },
+  "principles": {
+    "title": "The five basic principles",
+    "p1": "The core of the manifesto is five principles. Under each one we’ve added <em>where you can see it in the protocol</em> — that part is our own connection, not part of the original.",
+    "inProtocol": "In the protocol: ",
+    "learnMore": "Learn more →",
+    "decentralization": {
+      "title": "Decentralization first",
+      "text": "No central points of failure in development, mining or governance. Decentralization grows through education, open documentation and community participation — not through enforcement.",
+      "how": "Autolykos v2 is a memory-hard, GPU-friendly PoW, so mining doesn’t end up in the hands of a few ASIC farms."
+    },
+    "open": {
+      "title": "Open, permissionless and secure",
+      "text": "The protocol does not restrict what it can be used for. The code is open source and auditable. Anyone can join; no bailouts, no blacklists, no discrimination at the protocol level. Privacy is optional.",
+      "how": "Sigma protocols build privacy tools right into the language — for example signing as “one of a group” without revealing who (a ring signature) — there if you want them."
+    },
+    "people": {
+      "title": "Created for regular people",
+      "text": "Ordinary users must be able to run a full node and mine. Peer-to-peer exchange is preferred over intermediaries, backed by education and accessible tools.",
+      "how": "Consumer GPUs can still mine Ergo, and nodes can verify the chain without keeping its full history."
+    },
+    "contractual": {
+      "title": "A platform for contractual money",
+      "text": "Ergo is a base layer for financial contracts, with low fees and an efficient implementation so everyday transactions never become a burden.",
+      "how": "The eUTXO box model and ErgoScript: a contract always behaves the same way, and you know the fee before you send."
+    },
+    "longTerm": {
+      "title": "Long-term focus",
+      "text": "Principles over market cycles. Ergo was born in the middle of a “crypto winter” and must keep adapting and surviving as genuinely valuable infrastructure.",
+      "how": "Storage rent keeps the chain lean and pays miners long after emission ends."
+    }
+  },
+  "fair": {
+    "title": "A fair launch",
+    "p1": "The manifesto stresses that Ergo had a fair launch: <b>no ICO and no pre-mine</b> for the founders. Every ERG is mined according to a fixed emission schedule, hard-coded into the consensus rules from the very first block.",
+    "treasury": "The only part that doesn’t go to miners is the development treasury during roughly the first 2.5 years: 7.5 ERG/block, then 4.5 and 1.5 ERG/block. The genesis treasury box held <b>{{treasury}} ERG</b> — about <b>{{pct}}%</b> of the {{max}} ERG total supply, and although it sat in a box from the genesis block, that box's contract only let it be released block by block.",
+    "link": "See the emission schedule →"
+  },
+  "table": {
+    "title": "What Ergo wants to be — and what it doesn’t",
+    "yes": "Should be",
+    "no": "Should not be",
+    "r1": { "yes": "Tools for ordinary people, cooperatives and small businesses", "no": "A cost-cutting tool for corporations" },
+    "r2": { "yes": "Grassroots, peer-to-peer, self-custodial finance", "no": "A custodial system that depends on intermediaries" },
+    "r3": { "yes": "Private (optionally), censorship-resistant infrastructure", "no": "A tool for surveillance and control" },
+    "r4": { "yes": "Affordable smart contracts", "no": "A platform with bailouts, blacklists or discrimination" },
+    "r5": { "yes": "Widely distributed mining and development", "no": "Mining or development power concentrated in a few hands" }
+  },
+  "next": {
+    "title": "From philosophy to engineering",
+    "text": "The rest of this site shows how these principles turn into code. Start with <boxes>Boxes: where the money lives</boxes>."
+  },
+  "reading": {
+    "title": "Further reading",
+    "meta": "— Ergo Platform blog, 26 April 2021."
+  }
+}

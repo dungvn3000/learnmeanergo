@@ -1,0 +1,68 @@
+{
+  "now": "Hiện tại",
+  "tip": {
+    "miner": "Thợ đào nhận: {{v}} ERG",
+    "treasury": "Quỹ phát triển: {{v}} ERG",
+    "lock": "Khoá EIP-27: {{v}} ERG"
+  },
+  "intro": "Không có ICO nào cho ERG. Mọi đồng ERG đều được tạo ra theo một lịch trình cố định, viết sẵn trong giao thức từ ngày đầu tiên: mỗi block mới “in” thêm một lượng ERG nhất định, và lượng đó giảm dần theo thời gian cho tới khi bằng 0. Tổng cộng sẽ chỉ có <b>{{max}} ERG</b>.",
+  "pctOfMax": "{{pct}}% tổng cung",
+  "stats": {
+    "issued": "Đã phát hành",
+    "circulating": "Đang lưu hành",
+    "circulatingSub": "Đã phát hành − phần khoá EIP-27",
+    "locked": "Khoá tái phát hành",
+    "lockedSub": "Sẽ trả dần cho thợ đào",
+    "max": "Tổng cung tối đa"
+  },
+  "schedule": {
+    "title": "Lịch trình phát hành",
+    "p1": "Quy tắc rất đơn giản:",
+    "rule1": "<b>{{rate}} ERG mỗi block</b> trong {{period}} block đầu tiên (~2 năm với block 2 phút).",
+    "rule2": "Sau đó, cứ mỗi <b>{{epoch}} block</b> (~3 tháng) lượng phát hành giảm <b>{{drop}} ERG</b>.",
+    "rule3": "Khi xuống tới 0 — ở block <b>{{end}}</b> — việc phát hành mới chấm dứt.",
+    "chartTitle": "ERG được tạo ra mỗi block, theo độ cao",
+    "chartLabel": "Lượng ERG phát hành mỗi block theo độ cao",
+    "p2": "Khác với Bitcoin “giảm một nửa” đột ngột mỗi 4 năm, đường cong của Ergo đi xuống theo những bậc thang nhỏ và đều. Và thay vì kéo dài hơn một thế kỷ, toàn bộ ERG được phát hành chỉ trong khoảng 8 năm — sau đó an ninh mạng dựa vào phí giao dịch (và tái phát hành, xem bên dưới)."
+  },
+  "treasury": {
+    "title": "Phần dành cho quỹ phát triển",
+    "p1": "Trong giai đoạn đầu, một phần nhỏ của mỗi block được chuyển vào quỹ (treasury) để tài trợ phát triển: {{t1}} ERG/block trong {{period}} block đầu, rồi {{t2}} và {{t3}} ERG trong hai epoch tiếp theo. Thợ đào nhận phần còn lại ({{miner}} ERG/block). Từ block {{from}}, toàn bộ lượng phát hành thuộc về thợ đào."
+  },
+  "eip27": {
+    "title": "EIP-27: tái phát hành",
+    "p1": "Lịch phát hành gốc có một vấn đề: phát hành kết thúc khá sớm, trong khi phí giao dịch chưa chắc đủ để giữ chân thợ đào. <b>EIP-27</b>, kích hoạt tại block <b>{{height}}</b> (năm 2022) bằng soft fork, “cất” bớt một phần phần thưởng hiện tại để trả dần trong tương lai:",
+    "li1": "Nếu lượng phát hành của block ≥ 15 ERG: <b>12 ERG</b> bị khoá vào hợp đồng tái phát hành.",
+    "li2": "Nếu nhỏ hơn 15 ERG: khoá <em>(lượng phát hành − 3)</em> ERG, để thợ đào luôn nhận ít nhất 3 ERG.",
+    "li3": "Sau khi phát hành kết thúc (block {{start}}), hợp đồng trả lại <b>{{per}} ERG mỗi block</b> cho thợ đào, cho tới khi cạn.",
+    "p2": "Cộng lại, EIP-27 khoá khoảng <b>{{total}} ERG</b>. Trả {{per}} ERG mỗi block, số đó đủ dùng thêm khoảng {{blocks}} block — tới quanh block {{end}} (≈ năm {{year}}). Tổng cung không đổi; chỉ thời điểm ERG tới tay thợ đào bị kéo dài ra."
+  },
+  "miner": {
+    "title": "Thợ đào thực nhận bao nhiêu?",
+    "text": "Ví dụ ở block {{h}}: phát hành {{e}} ERG, khoá {{l}} ERG, thợ đào nhận {{m}} ERG + phí giao dịch. Mở một <explorer>block bất kỳ</explorer> để thấy các trường <code>emission</code>, <code>reemitted</code> và <code>reward</code>."
+  },
+  "table": {
+    "title": "Bảng tóm tắt",
+    "from": "Từ block",
+    "date": "≈ Thời điểm",
+    "emission": "Phát hành",
+    "miner": "Thợ đào nhận",
+    "note": "Ghi chú",
+    "notes": {
+      "launch": "Mainnet ra mắt, 75 ERG/block",
+      "decline": "Bắt đầu giảm 3 ERG mỗi 64,800 block",
+      "treasuryEnds": "Hết phần quỹ phát triển",
+      "eip27": "Kích hoạt EIP-27",
+      "below15": "Phát hành xuống dưới 15 ERG",
+      "lastEmission": "Block phát hành cuối cùng",
+      "reemissionOnly": "Chỉ còn tái phát hành 3 ERG/block",
+      "dry": "Hợp đồng tái phát hành cạn (ước tính)"
+    }
+  },
+  "supply": {
+    "title": "Tổng cung theo thời gian",
+    "chartTitle": "Tổng ERG đã phát hành theo độ cao",
+    "chartLabel": "Tổng ERG đã phát hành theo độ cao"
+  },
+  "outro": "Muốn biết con số ở một độ cao cụ thể? Dùng <calc>máy tính phát hành</calc>. Các ngày tháng ở trên là ước tính với block 2 phút — thời gian thật có thể lệch vài tuần."
+}

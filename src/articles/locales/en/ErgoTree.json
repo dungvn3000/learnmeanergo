@@ -1,0 +1,172 @@
+{
+  "p2pk": {
+    "error": "Couldn’t fetch the miner address of the latest block.",
+    "live": "Here is the ErgoTree of the address that mined block <block>#{{height}}</block> ({{miner}}):",
+    "miner": "miner",
+    "bytes": {
+      "header": "Header: version 0, no constant segregation, no size field",
+      "type": "SigmaProp type code — the body is a single constant of type SigmaProp",
+      "op": "ProveDlog: “prove you know the secret key of the following pubkey”",
+      "data": "33-byte compressed public key (a GroupElement on secp256k1)"
+    },
+    "title": "Anatomy of a P2PK tree: 0008cd…",
+    "p1": "The most common contract on Ergo is “only the owner of this public key can spend” — the ErgoScript equivalent of <code>{ pk }</code>. Every ordinary wallet address (starting with <code>9</code>) represents this tree. It always has the form <code>{{prefix}}</code> + a 33-byte public key:",
+    "p2": "Just 36 bytes. That is why a <address>P2PK address</address> doesn’t store the whole tree, only the 33-byte public key — wallets and nodes always know how to rebuild the tree by prepending <code>0008cd</code>."
+  },
+  "kinds": {
+    "fee": {
+      "label": "Fee contract",
+      "note": "P2S — collected by the block’s miner; the reward box it goes into is locked for 720 blocks"
+    },
+    "p2pk": {
+      "label": "P2PK",
+      "note": "sigmaProp(pk) — needs the key holder’s signature"
+    },
+    "p2sh": {
+      "label": "P2SH",
+      "note": "hash of a script — revealed when spent"
+    },
+    "p2s": {
+      "label": "P2S",
+      "note": "custom script — a real contract"
+    },
+    "title": "Common kinds of guard script",
+    "p1": "Written in ErgoScript, compiled to an <ergotree>ErgoTree</ergotree> and placed in R1:",
+    "pk": {
+      "title": "1. Public key — an ordinary wallet (P2PK)",
+      "code": "sigmaProp(pk)   // pk is your public key",
+      "p": "Only the holder of the matching private key can sign. Every address starting with <code>9</code> is this script with a different key — see <address>Addresses</address>."
+    },
+    "time": {
+      "title": "2. Time lock",
+      "p": "The key holder still has to sign, but the transaction is only valid once the chain has passed block 1,200,000. Used for vesting and time-limited escrow."
+    },
+    "multi": {
+      "title": "3. Multiple signatures / threshold",
+      "code": "atLeast(2, Coll(pk1, pk2, pk3))   // any 2 of 3\npk1 && pk2                          // both must sign\npk1 || pk2                          // either one — a ring signature"
+    },
+    "outputs": {
+      "title": "4. Conditions on the outputs — multi-step contracts",
+      "p": "Anyone can spend this box, as long as the first output keeps at least the old ERG <em>and</em> carries this same script. Such “self-replicating” boxes are how Ergo builds stateful contracts: the emission contract, oracle pools and DEXes are all variations of this pattern. See the block reward transaction in <tx>Transactions</tx>."
+    },
+    "hash": {
+      "title": "5. Hash lock (HTLC)",
+      "p": "The spender must reveal a secret with a given hash (passed in through the context variable <code>getVar</code>). Combined with a time lock, this is the basis of cross-chain atomic swaps."
+    }
+  },
+  "guards": {
+    "title": "Locks on boxes just created on mainnet",
+    "caption": "Most boxes are P2PK — ordinary wallets. Every transaction also creates a fee box (P2S). Now and then you'll see a long P2S box: those are DeFi contracts, oracles or token mints."
+  },
+  "intro": {
+    "p1": "Every <box>box</box> on Ergo carries a piece of code that decides <em>who</em> (or <em>under what conditions</em>) may spend it. That code is stored on the blockchain as an <b>ErgoTree</b> — a syntax tree serialized into bytes. What developers actually write is <b>ErgoScript</b>, a Scala-like language that compiles down to ErgoTree.",
+    "p2": "In other words: ErgoScript is for humans, ErgoTree is for nodes. A node never sees ErgoScript — it only reads bytes and evaluates the tree."
+  },
+  "script": {
+    "title": "ErgoScript: what does a contract look like?",
+    "p1": "An ErgoScript contract is an expression that returns a <code>SigmaProp</code> — a “statement that must be proven”. A simple example:",
+    "code": "{\n  // Only Alice can spend this box, and only after block 1,000,000\n  sigmaProp(HEIGHT > 1000000) && alicePk\n}",
+    "p2": "This expression has two parts:",
+    "cond": "<code>sigmaProp(HEIGHT &gt; 1000000)</code> — an ordinary boolean condition that the node checks by itself from the context (the current block height).",
+    "pk": "<code>alicePk</code> — a <sigma>sigma proposition</sigma>: the spender must produce a cryptographic proof that they know Alice’s secret key.",
+    "p3": "A script can read a lot from the transaction context: <code>SELF</code> (the box being spent), <code>INPUTS</code>, <code>OUTPUTS</code>, <code>CONTEXT.dataInputs</code>, <code>HEIGHT</code>, the registers <code>R4</code>–<code>R9</code> of any box… This lets a box set rules for the transaction that spends it — for example “the first output must pay at least 100 ERG back to this address”. That is exactly the “extended” in <b>eUTXO</b>."
+  },
+  "loops": {
+    "title": "No infinite loops",
+    "text": "ErgoScript has no unbounded loops or recursion. The execution cost of every script is estimated and capped, so a contract can never make a node “hang”. For multi-step logic, you chain several transactions together."
+  },
+  "guard": {
+    "title": "Guard scripts: what an ErgoScript contract actually does",
+    "p1": "An ErgoScript program placed in a box's register R1 is called a <b>guard script</b>: it decides <em>who</em> may spend the box and <em>under what conditions</em>. On Ergo there is nothing but boxes and guard scripts, so before looking at bytes, here is what a guard script is for."
+  },
+  "validator": {
+    "title": "A guard script is a validator, not a program",
+    "p1": "On Ethereum a contract is a program with its own state, and you “call its functions”. On Ergo a guard script <b>does not run when you send money to a box</b> — it runs exactly once, when someone tries to <em>spend</em> the box. At that moment the node executes the script against the full context of the transaction being checked:",
+    "var": "ErgoScript variable",
+    "meaning": "Meaning",
+    "self": "The box being spent — its value, tokens and registers.",
+    "io": "Every box going into and out of the transaction. A script can demand that outputs have a particular shape.",
+    "data": "Read-only boxes (oracles, parameters) — see <tx>Transactions</tx>.",
+    "height": "The current block height — used for time locks.",
+    "miner": "The key of the miner of this block — the fee contract uses it.",
+    "p2": "The script must return <b>true</b> for the box to be spent; if it returns false, the <em>whole transaction</em> is rejected and nothing changes. That is why the Ergo and Cardano communities call guard scripts <em>validators</em>: they only approve or reject a transaction you have already built — they never do anything on their own."
+  },
+  "sigma": {
+    "title": "True/false … plus a signature",
+    "p1": "More precisely, a guard script doesn't return a bare true/false bit but a <b>sigma proposition</b> (<code>SigmaProp</code>). The node reduces the script against the context: ordinary conditions (height, output values…) are evaluated to true/false right away, while the “prove you know the secret key” parts are kept as a tree of cryptographic conditions. Whoever spends the box must supply a signature satisfying that tree — that signature is the <em>spending proof</em> attached to the input. The whole mechanism is explained in <sigma>sigma protocols</sigma>.",
+    "ok": {
+      "title": "The box is spent when",
+      "c1": "every ordinary condition in the script holds, and",
+      "c2": "the signature (proof) satisfies the remaining cryptographic part, and",
+      "c3": "the script's execution cost is within the limit."
+    },
+    "bad": {
+      "title": "The transaction is rejected when",
+      "c1": "any input's script evaluates to false,",
+      "c2": "a signature for an input is missing or wrong,",
+      "c3": "or the script reduces to an absolute <code>false</code> (the box is “burned” forever — nobody can spend it)."
+    }
+  },
+  "address": {
+    "title": "The script determines the address",
+    "p1": "An Ergo address is just a readable encoding of the ErgoTree, so <b>two boxes with identical guard scripts have the same address</b>. That is why every fee box on the network sits at a single P2S address (starting with <code>2iHkR7…</code>), and why a “contract's balance” is simply the sum of the boxes carrying that script. You can split any address back into its script with the <decoder>address decoder</decoder>."
+  },
+  "layout": {
+    "title": "The byte layout of an ErgoTree",
+    "p1": "This section is for readers who want to read a tree byte by byte, as the address decoder does. If you only care about what contracts <em>do</em>, skip to the fee-contract example below. A serialized ErgoTree consists of four parts, in this order:",
+    "header": "<b>Header</b> (1 byte): the low 3 bits are the version; bit <code>0x08</code> signals that a size field follows; bit <code>0x10</code> signals that the tree uses <em>constant segregation</em>.",
+    "size": "<b>Size</b> (optional) — the length of the rest of the tree, written as a VLQ (a compact variable-length integer). Mandatory from ErgoTree version 1 onwards, so a node can skip a tree without fully understanding it.",
+    "consts": "<b>Constants list</b> (with constant segregation): a count, then each constant as <code>type ‖ value</code>.",
+    "body": "<b>Tree body</b>: the expression itself, written as opcodes followed by their operands — each operation comes first, then the things it operates on (pre-order traversal).",
+    "h00": {
+      "value": "Version 0, no constant segregation",
+      "text": "The most compact form. Constants sit inline in the tree body. Most P2PK wallet addresses use this header."
+    },
+    "h10": {
+      "value": "Version 0 + constant segregation",
+      "text": "Constants are pulled out to the front of the tree; the body only holds “placeholders” (<code>ConstantPlaceholder</code>, opcode <code>0x73</code>)."
+    },
+    "h18": {
+      "value": "With size field, version ≥ 0/1",
+      "text": "Adds bit <code>0x08</code> (the size flag). Version 1 and above always include the size."
+    }
+  },
+  "seg": {
+    "title": "Constant segregation: separating constants from logic",
+    "p1": "Imagine a thousand people using the same time-lock contract, differing only in their public key and unlock height. If constants were mixed into the tree, every box would be a completely different byte string. With <b>constant segregation</b>, all constants are lifted to the front of the tree, and the body only contains references <code>7300</code>, <code>7301</code>… (placeholder 0, placeholder 1…). The benefits:",
+    "template": "<b>Template recognition</b>: two boxes using the same contract share the same body even if their constants differ. Explorers and dApps can recognize the contract type just by comparing tree bodies.",
+    "cache": "<b>Caching</b>: a node can parse and cost-estimate the body once and reuse it.",
+    "subst": "<b>Constant substitution</b>: a script can use <code>substConstants</code> to build a new tree from a template by swapping a constant — the fee contract below uses exactly this trick."
+  },
+  "fee": {
+    "title": "A real example: the miner fee contract",
+    "p1": "On Ergo, the transaction fee is not “the leftover difference” as in Bitcoin. The sender creates an explicit <b>fee output</b>, locked by a fixed ErgoTree that every wallet uses. Here is that tree (105 bytes):",
+    "bytes": {
+      "header": "Header 0x10: version 0, with constant segregation",
+      "count": "5 constants follow",
+      "c0": "Constant #0: Int 0",
+      "c1": "Constant #1: Int 0",
+      "c2": "Constant #2: a 54-byte Coll[Byte] — itself an ErgoTree (the “miner reward” template)",
+      "c3": "Constant #3: Coll[Int](1) — the index substConstants replaces; constant #4: Int 1 — for the OUTPUTS.size == 1 check",
+      "body": "Tree body: opcodes referring to constants via 73xx"
+    },
+    "p2": "Rewritten in ErgoScript, its meaning is roughly:",
+    "code": "{\n  val out = OUTPUTS(0)\n  // 54-byte template: sigmaProp(HEIGHT >= creationHeight + 720) && <placeholder pk>\n  // Replace the placeholder pk with the public key of the miner mining this block\n  val rewardScript = substConstants(template, Coll(1), Coll(proveDlog(decodePoint(minerPubKey))))\n  sigmaProp(\n    HEIGHT == out.creationInfo._1 &&        // the output is created in this very block\n    out.propositionBytes == rewardScript && // ...and locked to the miner, with a 720-block wait\n    OUTPUTS.size == 1                       // ...and there are no other outputs\n  )\n}",
+    "p3": "Nobody needs to sign to spend a fee box. Anyone can “spend” it — but the contract forces the coins into a box locked to <code>minerPubKey</code> (the key of the current block’s miner, taken from the header), and that box only unlocks after 720 blocks (~1 day). In practice, miners add the fee-collecting transaction to their own block.",
+    "g": {
+      "title": "Why the key of point G?",
+      "text": "Inside the 54-byte template there is a public key starting with <code>0279be667e…</code> — that is the generator point <em>G</em> of the secp256k1 curve, used as a “placeholder” value that <code>substConstants</code> replaces with the miner’s key. You’ll meet point G again in the <code>w</code> field of an <autolykos>Autolykos v2 solution</autolykos>."
+    }
+  },
+  "cost": {
+    "title": "Execution cost",
+    "p1": "Every operation in an ErgoTree has a cost. When validating a transaction, a node adds up the cost of all input scripts; if it exceeds the block limit (a parameter miners can vote to change), the transaction is rejected. This is how Ergo allows powerful contracts without Ethereum-style “gas”: there are no unbounded loops, so cost is always bounded, and the node stops a script as soon as its accumulated cost exceeds the limit (since v5.0, cost is counted during execution rather than estimated up front)."
+  },
+  "seeAlso": {
+    "title": "See also",
+    "sigma": "<sigma>Sigma protocols</sigma> — what actually sits at the “leaves” of every tree.",
+    "address": "<address>Addresses</address> — how an ErgoTree gets packaged into an address.",
+    "decoder": "<decoder>Address decoder tool</decoder> — paste any address to see its ErgoTree.",
+    "deco": "<deco>DECO Education — Registers, Guard Scripts, ErgoScript</deco>."
+  }
+}

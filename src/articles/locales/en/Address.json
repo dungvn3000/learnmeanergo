@@ -1,0 +1,68 @@
+{
+  "typeDesc": {
+    "1": "The content is a 33-byte compressed public key (secp256k1).",
+    "2": "The first 24 bytes of blake2b256(script).",
+    "3": "The content is the full serialized ErgoTree."
+  },
+  "decoded": {
+    "error": "Couldn’t decode the address: {{message}}",
+    "unknownNetwork": "Unknown",
+    "afterBase58": "After Base58 decoding ({{n}} bytes):",
+    "prefixDesc": "The high 4 bits are the network, the low 4 bits are the address type.",
+    "content": "Content",
+    "contentBytes": "{{n}} bytes",
+    "match": "matches blake2b256(prefix ‖ content)[0..4] = {{checksum}}",
+    "mismatch": "mismatch ({{checksum}})",
+    "checksumDesc": "Recomputed right here in your browser.",
+    "treeP2pk": "P2PK: just prepend 0008cd to the public key.",
+    "treeP2s": "P2S: the content is the ErgoTree itself."
+  },
+  "live": {
+    "label": "Address that mined block #{{height}} ({{miner}})",
+    "miner": "miner",
+    "error": "Couldn’t fetch the latest block."
+  },
+  "intro": "On the blockchain, a box doesn’t store an “address” — it stores an <ergotree>ErgoTree</ergotree>. An address is just a way of writing an ErgoTree (or part of one) so that humans can copy it, paste it and read it over the phone without fear of typos. An Ergo address has three parts, encoded in Base58:",
+  "prefix": {
+    "title": "The prefix byte: network + type",
+    "p1": "The first byte packs two pieces of information: the <b>network</b> (high 4 bits) and the <b>address type</b> (low 4 bits). Add them together and you get the prefix:",
+    "thType": "Type",
+    "thContent": "Content",
+    "p2pkStart": "<code>0x01</code> → starts with <code>9</code>",
+    "p2pkTestStart": "<code>0x11</code> → starts with <code>3</code>",
+    "p2pkContent": "Compressed public key, 33 bytes",
+    "p2shStart": "<code>0x02</code> → starts with <code>6</code>, <code>7</code> or <code>8</code>",
+    "p2shContent": "First 24 bytes of blake2b256(script)",
+    "p2sContent": "The entire ErgoTree",
+    "p2": "Because Base58 represents the whole byte string as one big number, the first byte largely determines the first character. That’s why every mainnet Ergo wallet address starts with a <code>9</code>."
+  },
+  "p2pk": {
+    "title": "P2PK: the everyday wallet address",
+    "p1": "Pay-to-Public-Key is the kind you use every day. The content is just the 33-byte public key; the full ErgoTree is always <code>0008cd</code> + the public key, so it doesn’t need to be stored. Below is the address of the miner who just found the latest block, split into bytes right in your browser:"
+  },
+  "p2s": {
+    "title": "P2S: the address of a contract",
+    "p1": "Pay-to-Script contains the <em>entire</em> ErgoTree. The result is a long address — sometimes hundreds of characters — but anyone can read the contract from the address alone. Example: the address of the miner fee contract, which appears in almost every transaction:",
+    "feeLabel": "Miner fee contract (P2S)"
+  },
+  "p2sh": {
+    "title": "P2SH: storing only a hash",
+    "p1": "Pay-to-Script-Hash stores only the first 24 bytes (192 bits) of the script’s <code>blake2b256</code>. The address is short, but the spender must supply the original script when spending the box, and the script is only revealed at that moment. In practice P2SH is rarely used; most dApps use P2S so the contract is transparent from the start."
+  },
+  "checksum": {
+    "title": "Checksum: catching typos",
+    "p1": "The last 4 bytes are the checksum: take the <code>blake2b256</code> of (prefix ‖ content) and keep the first 4 bytes. Wallets verify the checksum before sending; if you mistype a character, the chance that the checksum still matches is only about 1 in 4 billion.",
+    "base58Title": "Why Base58?",
+    "base58Text": "Base58 is Base64 without the easily confused characters: the digit <code>0</code> and the letter <code>O</code>, uppercase <code>I</code> and lowercase <code>l</code>, plus the <code>+</code> and <code>/</code> symbols. Ergo uses the same alphabet as Bitcoin."
+  },
+  "many": {
+    "title": "One wallet, many addresses",
+    "p1": "Modern wallets (following BIP-32/BIP-44, with the path <code>m/44'/429'/0'/0/i</code>) derive a whole sequence of keys from one seed phrase — each key is a P2PK address. And since an address is just a way of writing an ErgoTree, the “address” of a complex contract is just as valid as a wallet address: you can send funds to it as usual."
+  },
+  "try": {
+    "title": "Try it yourself",
+    "decoder": "<link>Address decoder</link> — paste any address to split it byte by byte.",
+    "pubkey": "<link>Public key → Address</link> — build a P2PK address yourself.",
+    "blake": "<link>Blake2b-256</link> — compute the checksum yourself."
+  }
+}

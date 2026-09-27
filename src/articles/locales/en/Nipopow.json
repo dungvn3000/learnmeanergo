@@ -1,0 +1,99 @@
+{
+  "live": {
+    "title": "A real NiPoPoW proof — <code>GET /nipopow/proof/{{m}}/{{k}}</code>",
+    "chain": "Actual chain",
+    "chainSub": "block headers",
+    "inProof": "In the proof",
+    "inProofSub": "headers · ≈ {{size}}",
+    "compression": "Compression",
+    "levels": "Superblock levels",
+    "caption": "Each orange tick is a header included in the proof. The early chain needs only a few scattered superblocks; towards the tip the sampling gets denser, and the last {{k}} blocks are included in full. Data from node <node>{{node}}</node>."
+  },
+  "intro": "To check for yourself that a transaction is in the Ergo chain, the “proper” way is to download every block header — over 1.8 million of them, ~250 bytes each — and verify each one's proof-of-work. For a phone, or for a smart contract on <em>another</em> blockchain, that is far too much. <b>NiPoPoWs</b> (Non-Interactive Proofs of Proof-of-Work) shrink that header chain down to a few hundred headers while keeping equivalent confidence.",
+  "superblock": {
+    "title": "Superblocks: some blocks are “luckier” than others",
+    "p1": "A miner has to find a PoW solution below the target <code>T</code> (see <difficulty>Difficulty & nBits</difficulty>). But solutions are often <em>much</em> smaller than required: on average one block in 2 has a solution below <code>T/2</code>, one in 4 is below <code>T/4</code>, and one in 2<sup>μ</sup> is below <code>T/2<sup>μ</sup></code>. Such a block is called a <b>level-μ superblock</b>.",
+    "level0": "Level 0: every block.",
+    "level1": "Level 1: about half of all blocks.",
+    "levelMu": "Level μ: about 1/2<sup>μ</sup> of all blocks — the highest level in a chain of n blocks is roughly log<sub>2</sub>(n).",
+    "p2": "The key idea: a level-μ superblock “contains” an expected 2<sup>μ</sup> ordinary blocks' worth of work. So instead of presenting the whole chain, a prover can present just the <em>chain of superblocks</em> at a high level — far fewer blocks, representing an equivalent amount of proof-of-work. Nobody can fake superblocks: producing a level-20 block requires being a million times luckier than for an ordinary block."
+  },
+  "interlink": {
+    "title": "Interlinks: back-pointers to every level",
+    "p1": "A normal header has a single back-pointer: <code>parentId</code>. To jump from one superblock to the previous one <em>at the same level</em> without walking every block in between, each Ergo block also carries an <b>interlink</b> vector: entry μ is the id of the most recent level-μ superblock before it. The vector lives in the block's <em>extension</em> section (the header commits to it through <code>extensionHash</code>), together with a Merkle proof so anyone can verify it without the whole extension. Today the vector has about 21 entries — exactly the number of superblock levels a ~1.9-million-block chain can have.",
+    "noteTitle": "Why Ergo has had it since block 1",
+    "note": "Bitcoin could add interlinks with a “velvet fork” (miners add extra data; old nodes ignore it), but hasn't. Ergo was designed by researchers closely connected to the NiPoPoW work, so interlinks have been in every block since genesis — no fork required."
+  },
+  "proof": {
+    "title": "What is in a proof?",
+    "p1": "A NiPoPoW proof has two security parameters and three parts:",
+    "component": "Component",
+    "meaning": "Meaning",
+    "m": "The minimum number of superblocks required at each level used — larger means harder to cheat, and a longer proof.",
+    "k": "How many blocks at the tip are always included in full (like a “confirmation count”), because the tail is not yet settled.",
+    "prefix": "The superblock chain from genesis to near the tip, taken at the highest level that still has m blocks, then descending to lower levels near the tip.",
+    "suffix": "The last k headers, with the interlinks of the first of them to connect to the prefix.",
+    "p2": "The proof at the top of this page uses <code>m = {{m}}, k = {{k}}</code>. An Ergo node serves it through the API <code>/nipopow/proof/{m}/{k}</code> — and you can ask for a proof up to a specific block with <code>/nipopow/proof/{m}/{k}/{headerId}</code>."
+  },
+  "verify": {
+    "title": "Whom does the verifier trust?",
+    "p1": "The verifier doesn't need to trust any node. It asks <b>several</b> nodes for proofs and keeps the best one. To compare two proofs:",
+    "step1": "Find the last block both proofs have in common — everything before it is agreed on.",
+    "step2": "After that point, look at the highest superblock level where both proofs still have at least m blocks.",
+    "step3": "Count the blocks at that level on each side. A level-μ block stands for 2<sup>μ</sup> ordinary blocks of work, so the side with more of them represents more proof-of-work — and wins.",
+    "p2": "As long as <em>at least one</em> of the nodes asked is honest, the result is correct — the same “honest majority of hash power” assumption the blockchain itself rests on.",
+    "warnTitle": "Not magic",
+    "warn": "A NiPoPoW proves “this chain has the most proof-of-work”, not that every transaction is valid — that still takes a full node. An application that accepts a single proof (say, a contract on another chain) must set a minimum-work threshold and wait for enough confirmations."
+  },
+  "spv": {
+    "title": "Compared with Bitcoin SPV (Electrum)",
+    "p1": "Bitcoin light wallets such as <b>Electrum</b> use the <em>SPV</em> model (Simplified Payment Verification) Satoshi described in the whitepaper: download <b>every</b> block header (80 bytes each), verify the proof-of-work of the whole chain, then ask Electrum servers for a Merkle proof of each transaction you care about. NiPoPoWs keep that idea but replace “every header” with “a few hundred superblocks”:",
+    "rows": {
+      "headers": {
+        "label": "Headers to download",
+        "btc": "All of them — roughly 950 thousand headers × 80 bytes ≈ 75 MB (2026), growing linearly forever",
+        "ergo": "A few hundred — the proof at the top of this page is ~40 KB, growing with the log of the chain length"
+      },
+      "inclusion": {
+        "label": "Proving a transaction is in the chain",
+        "btc": "Merkle branch to the block header",
+        "ergo": "Merkle branch to the header, plus a NiPoPoW proof that the header is on the heaviest chain"
+      },
+      "balance": {
+        "label": "Checking a balance / UTXOs",
+        "btc": "You must trust the server: it can hide some of your transactions",
+        "ergo": "Verifiable yourself with an AVL+ proof against the header's <code>stateRoot</code> — the server cannot hide anything"
+      },
+      "trust": {
+        "label": "Trust model",
+        "btc": "Honest majority of hashrate; server honest about address history",
+        "ergo": "Honest majority of hashrate; at least one honest node among those asked"
+      },
+      "contract": {
+        "label": "Verification inside a contract on another chain",
+        "btc": "Practically impossible — 75 MB of headers won't fit in a contract",
+        "ergo": "Feasible — tens of KB, enough for sidechains and bridges"
+      },
+      "phone": {
+        "label": "On a phone",
+        "btc": "Electrum ships hard-coded “checkpoints” to skip old headers — i.e. you trust the developers",
+        "ergo": "No checkpoints needed: the proof stands on its own from genesis"
+      }
+    },
+    "p2": "Neither model checks that individual transactions are <em>valid</em> — that is still a full node's job. The difference is that NiPoPoWs make “verify the chain” cheap enough for even a smart contract to do, and Ergo's <code>stateRoot</code> closes the biggest hole in SPV: the server cannot lie about the UTXO set. Bitcoin could get NiPoPoWs through a velvet fork, but hasn't deployed them so far."
+  },
+  "uses": {
+    "title": "What does Ergo use NiPoPoWs for?",
+    "bootstrap": "<b>Fast node bootstrapping</b>: an Ergo node can start from a NiPoPoW proof (requested from several peers, keeping the best one) and then download a UTXO-set snapshot, instead of syncing from block 1. Enable it with <code>ergo.node.nipopow.nipopowBootstrap = true</code>. The Ergo docs estimate a proof for several years of chain at only 30–40 KB, versus a UTXO snapshot of a few hundred MB.",
+    "light": "<b>Light clients</b>: a phone wallet verifies the chain with a few hundred headers instead of nearly two million, combined with the <block>stateRoot</block> to verify boxes.",
+    "mining": "<b>Logarithmic-space mining</b>: miners keep only the important superblocks instead of the whole history.",
+    "bridges": "<b>Sidechains and bridges</b>: a contract on another chain can verify that “event X happened on Ergo” from a proof — the basis for two-way pegs and cross-chain atomic swaps without a trusted intermediary.",
+    "p1": "Node 6.0.5 tightened three checks: the m/k parameters of a requested proof are validated, each header's proof-of-work is verified before it is used for bootstrapping, and invalid m/k parameters from peers are rejected."
+  },
+  "reading": {
+    "title": "Further reading",
+    "docs": "<doc>NiPoPoWs — Ergo docs</doc>, with sub-pages on light clients, light miners and sidechains.",
+    "paper": "<paper>Non-Interactive Proofs of Proof-of-Work</paper> — Kiayias, Miller, Zindros (2017), the original paper.",
+    "storage": "<storage>Compact Storage of Superblocks for NIPoPoW Applications</storage> — how Ergo stores interlinks compactly in the extension."
+  }
+}

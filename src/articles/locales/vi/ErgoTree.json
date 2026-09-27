@@ -1,0 +1,172 @@
+{
+  "p2pk": {
+    "error": "Không lấy được địa chỉ thợ đào của block mới nhất.",
+    "live": "Đây là ErgoTree của địa chỉ đã đào block <block>#{{height}}</block> ({{miner}}):",
+    "miner": "thợ đào",
+    "bytes": {
+      "header": "Header: version 0, không tách hằng số, không kèm kích thước",
+      "type": "Mã kiểu SigmaProp — phần thân là một hằng số kiểu SigmaProp",
+      "op": "ProveDlog: “chứng minh bạn biết khoá bí mật của pubkey sau”",
+      "data": "Khoá công khai nén 33 byte (GroupElement trên secp256k1)"
+    },
+    "title": "Giải phẫu một cây P2PK: 0008cd…",
+    "p1": "Hợp đồng phổ biến nhất trên Ergo là “chỉ chủ của khoá công khai này được tiêu” — tương đương ErgoScript <code>{ pk }</code>. Mọi địa chỉ ví thông thường (bắt đầu bằng chữ <code>9</code>) đều biểu diễn cây này. Nó luôn có dạng <code>{{prefix}}</code> + 33 byte khoá công khai:",
+    "p2": "Chỉ 36 byte. Đó là lý do <address>địa chỉ P2PK</address> không lưu cả cây mà chỉ lưu 33 byte khoá công khai — ví và node luôn biết cách dựng lại cây bằng cách thêm <code>0008cd</code> vào trước."
+  },
+  "kinds": {
+    "fee": {
+      "label": "Hợp đồng phí",
+      "note": "P2S — chỉ thợ đào gom được; box thưởng nhận về bị khoá 720 block"
+    },
+    "p2pk": {
+      "label": "P2PK",
+      "note": "sigmaProp(pk) — cần chữ ký của chủ khoá"
+    },
+    "p2sh": {
+      "label": "P2SH",
+      "note": "hash của script — script lộ ra khi tiêu"
+    },
+    "p2s": {
+      "label": "P2S",
+      "note": "script tuỳ biến — một hợp đồng thật"
+    },
+    "title": "Những dạng guard script thường gặp",
+    "p1": "Viết bằng ErgoScript, biên dịch thành <ergotree>ErgoTree</ergotree> (cấu trúc byte ở phần dưới) rồi đặt vào R1:",
+    "pk": {
+      "title": "1. Khoá công khai — ví thông thường (P2PK)",
+      "code": "sigmaProp(pk)   // pk là khoá công khai của bạn",
+      "p": "Chỉ người có khoá bí mật tương ứng mới ký được. Mọi địa chỉ bắt đầu bằng <code>9</code> đều là script này với khoá khác nhau — xem <address>Địa chỉ</address>."
+    },
+    "time": {
+      "title": "2. Khoá thời gian",
+      "p": "Chủ khoá vẫn phải ký, nhưng giao dịch chỉ hợp lệ khi chuỗi đã vượt block 1,200,000. Dùng cho vesting, ký quỹ có hạn."
+    },
+    "multi": {
+      "title": "3. Nhiều chữ ký / ngưỡng",
+      "code": "atLeast(2, Coll(pk1, pk2, pk3))   // 2 trong 3 người\npk1 && pk2                          // cả hai cùng ký\npk1 || pk2                          // một trong hai — chữ ký vòng"
+    },
+    "outputs": {
+      "title": "4. Điều kiện về output — hợp đồng nhiều bước",
+      "p": "Ai cũng tiêu được box này, miễn là output đầu tiên giữ ít nhất số ERG cũ <em>và</em> mang đúng script này. Box “tự tái sinh” như vậy là cách Ergo xây các hợp đồng có trạng thái: emission contract, oracle pool, DEX đều là biến thể của mẫu này. Xem giao dịch thưởng block trong <tx>Giao dịch</tx>."
+    },
+    "hash": {
+      "title": "5. Khoá bằng hash (HTLC)",
+      "p": "Người tiêu phải tiết lộ một bí mật có hash cho trước (đưa qua biến ngữ cảnh <code>getVar</code>). Kết hợp với khoá thời gian, đây là nền của atomic swap xuyên chuỗi."
+    }
+  },
+  "guards": {
+    "title": "Ổ khoá của các box vừa được tạo trên mainnet",
+    "caption": "Phần lớn box là P2PK — ví thông thường. Mỗi giao dịch còn tạo một box phí (P2S). Thỉnh thoảng bạn sẽ thấy box P2S dài ngoằng: đó là các hợp đồng DeFi, oracle hay đúc token."
+  },
+  "intro": {
+    "p1": "Mỗi <box>box</box> trên Ergo đều mang theo một đoạn mã quyết định <em>ai</em> (hoặc <em>điều kiện gì</em>) được phép tiêu nó. Đoạn mã đó được lưu trên blockchain dưới dạng <b>ErgoTree</b> — một cây cú pháp đã được tuần tự hoá thành byte. Còn thứ mà lập trình viên viết ra là <b>ErgoScript</b>, một ngôn ngữ có cú pháp giống Scala, được biên dịch xuống ErgoTree.",
+    "p2": "Nói cách khác: ErgoScript dành cho con người, ErgoTree dành cho node. Node không bao giờ nhìn thấy ErgoScript — nó chỉ đọc byte và thực thi cây."
+  },
+  "script": {
+    "title": "ErgoScript: hợp đồng trông như thế nào?",
+    "p1": "Một hợp đồng ErgoScript là một biểu thức trả về <code>SigmaProp</code> — một “mệnh đề cần được chứng minh”. Ví dụ đơn giản:",
+    "code": "{\n  // Chỉ Alice mới tiêu được box này, và chỉ sau block 1,000,000\n  sigmaProp(HEIGHT > 1000000) && alicePk\n}",
+    "p2": "Biểu thức này có hai phần:",
+    "cond": "<code>sigmaProp(HEIGHT &gt; 1000000)</code> — một điều kiện boolean thông thường, được node tự kiểm tra từ ngữ cảnh (độ cao block hiện tại).",
+    "pk": "<code>alicePk</code> — một <sigma>sigma proposition</sigma>: người tiêu phải tạo ra bằng chứng mật mã rằng họ biết khoá bí mật của Alice.",
+    "p3": "Script có thể đọc rất nhiều thứ trong ngữ cảnh giao dịch: <code>SELF</code> (chính box đang bị tiêu), <code>INPUTS</code>, <code>OUTPUTS</code>, <code>CONTEXT.dataInputs</code>, <code>HEIGHT</code>, các register <code>R4</code>–<code>R9</code> của bất kỳ box nào… Nhờ vậy một box có thể tự đặt luật cho giao dịch tiêu nó — ví dụ “output đầu tiên phải trả ít nhất 100 ERG về địa chỉ này”. Đây chính là chữ “extended” trong <b>eUTXO</b>."
+  },
+  "loops": {
+    "title": "Không có vòng lặp vô hạn",
+    "text": "ErgoScript không có vòng lặp tự do hay đệ quy. Chi phí thực thi của mỗi script được ước lượng và giới hạn, nên một hợp đồng không bao giờ có thể làm node “treo”. Muốn làm logic nhiều bước, bạn chuỗi nhiều giao dịch lại với nhau."
+  },
+  "guard": {
+    "title": "Guard script: chương trình ErgoScript thật sự làm gì",
+    "p1": "Một chương trình ErgoScript đặt vào register R1 của box được gọi là <b>guard script</b>: nó quyết định <em>ai</em> và <em>trong điều kiện nào</em> được tiêu box. Trên Ergo không có gì khác ngoài box và guard script, nên trước khi nhìn vào từng byte, hãy xem guard script dùng để làm gì."
+  },
+  "validator": {
+    "title": "Guard script là một validator, không phải một chương trình",
+    "p1": "Trên Ethereum, hợp đồng là một chương trình có trạng thái riêng, và bạn “gọi hàm” của nó. Trên Ergo, guard script <b>không chạy khi bạn gửi tiền vào box</b> — nó chỉ chạy đúng một lần, khi có ai đó cố <em>tiêu</em> box. Khi đó node thực thi script với toàn bộ ngữ cảnh của giao dịch đang xét:",
+    "var": "Biến trong ErgoScript",
+    "meaning": "Nghĩa",
+    "self": "Chính box đang được tiêu — giá trị, token, registers của nó.",
+    "io": "Mọi box đi vào và đi ra của giao dịch. Script có thể đòi hỏi output phải có hình dạng nhất định.",
+    "data": "Các box chỉ đọc (oracle, tham số) — xem <tx>Giao dịch</tx>.",
+    "height": "Độ cao block hiện tại — dùng cho khoá thời gian.",
+    "miner": "Khoá của thợ đào block này — hợp đồng phí dùng nó.",
+    "p2": "Script phải trả về <b>đúng</b> thì box mới được tiêu; sai thì <em>cả giao dịch</em> bị từ chối và không có gì thay đổi. Vì thế cộng đồng Ergo và Cardano hay gọi guard script là <em>validator</em>: nó chỉ xác nhận hoặc bác bỏ một giao dịch mà bạn đã tự dựng sẵn, chứ không tự làm gì cả."
+  },
+  "sigma": {
+    "title": "Đúng/sai … cộng thêm chữ ký",
+    "p1": "Chính xác hơn, một guard script không trả về một bit đúng/sai đơn thuần mà trả về một <b>mệnh đề sigma</b> (<code>SigmaProp</code>). Node rút gọn script theo ngữ cảnh: các điều kiện thường (độ cao, giá trị output…) được tính ngay thành đúng/sai, còn phần “chứng minh bạn biết khoá bí mật” được giữ lại thành một cây điều kiện mật mã. Người tiêu box phải cung cấp chữ ký thoả cây đó — chữ ký ấy chính là <em>spending proof</em> đi kèm input. Toàn bộ cơ chế nằm trong <sigma>Sigma protocols</sigma>.",
+    "ok": {
+      "title": "Box được tiêu khi",
+      "c1": "mọi điều kiện thường trong script đều đúng, và",
+      "c2": "chữ ký (proof) thoả phần mật mã còn lại, và",
+      "c3": "chi phí chạy script nằm trong giới hạn."
+    },
+    "bad": {
+      "title": "Giao dịch bị từ chối khi",
+      "c1": "bất kỳ input nào có script trả về sai,",
+      "c2": "thiếu hoặc sai chữ ký cho một input,",
+      "c3": "hoặc script rút gọn thành <code>false</code> tuyệt đối (box “bị đốt” vĩnh viễn — không ai tiêu được)."
+    }
+  },
+  "address": {
+    "title": "Script quyết định địa chỉ",
+    "p1": "Địa chỉ Ergo chỉ là cách mã hoá ErgoTree cho dễ đọc, nên <b>hai box có guard script giống hệt nhau thì có cùng địa chỉ</b>. Đó là lý do mọi box phí trên mạng đều nằm ở một địa chỉ P2S duy nhất (bắt đầu bằng <code>2iHkR7…</code>), và vì sao “số dư của một hợp đồng” chỉ là tổng các box mang script đó. Bạn có thể tự tách một địa chỉ ra script bằng <decoder>công cụ giải mã địa chỉ</decoder>."
+  },
+  "layout": {
+    "title": "Cấu trúc byte của ErgoTree",
+    "p1": "Mục này dành cho ai muốn đọc một cây từng byte một, như công cụ giải mã địa chỉ vẫn làm. Nếu bạn chỉ quan tâm hợp đồng <em>làm gì</em>, có thể nhảy xuống ví dụ hợp đồng phí bên dưới. Một ErgoTree tuần tự hoá gồm bốn phần, theo đúng thứ tự:",
+    "header": "<b>Header</b> (1 byte): 3 bit thấp là version; bit <code>0x08</code> báo có trường kích thước đi kèm; bit <code>0x10</code> báo cây dùng <em>constant segregation</em>.",
+    "size": "<b>Kích thước</b> (tuỳ chọn) — độ dài phần còn lại của cây, ghi dạng VLQ (một kiểu số nguyên nén, dài ngắn tuỳ giá trị). Bắt buộc từ ErgoTree version 1 trở đi, để node có thể bỏ qua cây mà không cần hiểu hết nó.",
+    "consts": "<b>Danh sách hằng số</b> (nếu có constant segregation): số lượng, rồi từng hằng số dạng <code>kiểu ‖ giá trị</code>.",
+    "body": "<b>Thân cây</b>: chính biểu thức, ghi dưới dạng opcode rồi tới các toán hạng — phép toán đi trước, rồi tới những thứ nó tác động (duyệt theo thứ tự tiền tố).",
+    "h00": {
+      "value": "Version 0, không tách hằng số",
+      "text": "Dạng gọn nhất. Hằng số nằm ngay trong thân cây. Hầu hết địa chỉ ví P2PK dùng header này."
+    },
+    "h10": {
+      "value": "Version 0 + constant segregation",
+      "text": "Hằng số được tách ra đầu cây, thân cây chỉ còn các “chỗ giữ” (<code>ConstantPlaceholder</code>, opcode <code>0x73</code>)."
+    },
+    "h18": {
+      "value": "Có kèm kích thước, version ≥ 0/1",
+      "text": "Thêm bit <code>0x08</code> (size flag). Version 1 trở lên luôn có kích thước."
+    }
+  },
+  "seg": {
+    "title": "Constant segregation: tách hằng số ra khỏi logic",
+    "p1": "Hãy tưởng tượng một nghìn người cùng dùng một hợp đồng khoá thời gian, chỉ khác nhau ở khoá công khai và độ cao mở khoá. Nếu hằng số nằm lẫn trong cây, mỗi box là một chuỗi byte khác nhau hoàn toàn. Với <b>constant segregation</b>, mọi hằng số được kéo lên đầu cây, thân cây chỉ chứa tham chiếu <code>7300</code>, <code>7301</code>… (placeholder số 0, số 1…). Lợi ích:",
+    "template": "<b>Nhận diện template</b>: hai box dùng cùng một hợp đồng có cùng phần thân, dù hằng số khác nhau. Explorer và dApp nhận ra loại hợp đồng chỉ bằng cách so thân cây.",
+    "cache": "<b>Cache</b>: node có thể phân tích/ước lượng chi phí phần thân một lần rồi dùng lại.",
+    "subst": "<b>Thay hằng số</b>: script có thể dùng <code>substConstants</code> để tạo ra một cây mới từ template bằng cách thay một hằng số — hợp đồng phí dưới đây dùng đúng mẹo này."
+  },
+  "fee": {
+    "title": "Ví dụ thật: hợp đồng phí cho thợ đào",
+    "p1": "Trên Ergo, phí giao dịch không phải là “phần chênh lệch” như Bitcoin. Người gửi tạo hẳn một <b>output phí</b>, khoá bởi một ErgoTree cố định mà mọi ví đều dùng. Đây là cây đó (105 byte):",
+    "bytes": {
+      "header": "Header 0x10: version 0, có constant segregation",
+      "count": "Có 5 hằng số",
+      "c0": "Hằng số #0: Int 0",
+      "c1": "Hằng số #1: Int 0",
+      "c2": "Hằng số #2: Coll[Byte] 54 byte — bản thân nó là một ErgoTree (template “phần thưởng thợ đào”)",
+      "c3": "Hằng số #3: Coll[Int](1) — vị trí hằng số cần thay trong substConstants; hằng số #4: Int 1 — cho điều kiện OUTPUTS.size == 1",
+      "body": "Thân cây: các opcode tham chiếu tới hằng số qua 73xx"
+    },
+    "p2": "Viết lại bằng ErgoScript, ý nghĩa của nó xấp xỉ:",
+    "code": "{\n  val out = OUTPUTS(0)\n  // Template 54 byte: sigmaProp(HEIGHT >= creationHeight + 720) && <pk giữ chỗ>\n  // Thay pk giữ chỗ bằng khoá công khai của thợ đào đang đào block này\n  val rewardScript = substConstants(template, Coll(1), Coll(proveDlog(decodePoint(minerPubKey))))\n  sigmaProp(\n    HEIGHT == out.creationInfo._1 &&        // output được tạo ngay trong block này\n    out.propositionBytes == rewardScript && // ...và khoá cho thợ đào, chờ 720 block\n    OUTPUTS.size == 1                       // ...và không có output nào khác\n  )\n}",
+    "p3": "Không ai cần ký để tiêu box phí. Bất kỳ ai cũng có thể “tiêu” nó — nhưng hợp đồng ép buộc tiền chỉ được chuyển vào một box khoá cho <code>minerPubKey</code> (khoá của thợ đào block hiện tại, lấy từ header), và box đó chỉ mở được sau 720 block (~1 ngày). Thực tế thợ đào tự đưa giao dịch gom phí này vào block của mình.",
+    "g": {
+      "title": "Vì sao lại là khoá của điểm G?",
+      "text": "Bên trong template 54 byte có một khoá công khai bắt đầu bằng <code>0279be667e…</code> — đó là điểm sinh <em>G</em> của đường cong secp256k1, dùng làm giá trị “giữ chỗ” để <code>substConstants</code> thay bằng khoá của thợ đào. Bạn sẽ gặp lại điểm G trong trường <code>w</code> của <autolykos>lời giải Autolykos v2</autolykos>."
+    }
+  },
+  "cost": {
+    "title": "Chi phí thực thi",
+    "p1": "Mỗi phép toán trong ErgoTree có một chi phí (cost). Khi xác thực giao dịch, node cộng dồn chi phí của mọi script đầu vào; nếu vượt giới hạn của block (một tham số mà thợ đào có thể bỏ phiếu thay đổi), giao dịch bị từ chối. Đây là cách Ergo cho phép hợp đồng mạnh mẽ mà không cần “gas” như Ethereum: không có vòng lặp không giới hạn nên chi phí luôn bị chặn, và node dừng script ngay khi chi phí cộng dồn vượt giới hạn (từ bản 5.0, chi phí được tính trong lúc chạy thay vì ước lượng trước)."
+  },
+  "seeAlso": {
+    "title": "Xem thêm",
+    "sigma": "<sigma>Sigma protocols</sigma> — thứ thật sự nằm ở “lá” của mỗi cây.",
+    "address": "<address>Địa chỉ</address> — ErgoTree được đóng gói thành địa chỉ ra sao.",
+    "decoder": "<decoder>Công cụ giải mã địa chỉ</decoder> — dán một địa chỉ bất kỳ để xem ErgoTree của nó.",
+    "deco": "<deco>DECO Education — Registers, Guard Scripts, ErgoScript</deco> (tiếng Anh)."
+  }
+}

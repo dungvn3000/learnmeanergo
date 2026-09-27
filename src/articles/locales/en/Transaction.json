@@ -1,0 +1,67 @@
+{
+  "emissionTx": {
+    "label": "transaction #0 of block <block>{{height}}</block>",
+    "main": "The input is the emission box. The first output is that same box recreated with <b>{{emission}} ERG</b> less; the second is the miner's reward box holding {{emission}} ERG",
+    "reemitted": ", of which {{reemitted}} ERG is tagged with “Reemission Token” and must be paid into the re-emission contract when spent (EIP-27) — the miner effectively keeps <b>{{reward}} ERG</b>",
+    "end": ". Total ERG in equals total ERG out."
+  },
+  "balance": {
+    "inputs": "Total inputs",
+    "outputs": "Total outputs (excluding fee)",
+    "fee": "Miner fee box",
+    "diff": "Difference",
+    "in": "In",
+    "out": "Out",
+    "note": "Note",
+    "conserved": "conserved",
+    "issued": "newly issued (id = first input)",
+    "increased": "increased?",
+    "burned": "burned"
+  },
+  "example": {
+    "size": "{{size}} bytes"
+  },
+  "intro": "A <b>transaction</b> on Ergo does exactly one thing: it <em>spends</em> some existing boxes and <em>creates</em> new ones. There is no “subtract from account A, add to account B” — only boxes being destroyed and boxes being born. If the idea of a box is new to you, read <box>Boxes & registers</box> first.",
+  "real": {
+    "title": "A real transaction",
+    "p1": "Here is a transaction that was just confirmed on mainnet (reload the page for another example). On the left are the boxes being spent, on the right the boxes being created. Each box has a colored square as a “fingerprint”, so you can recognize it if it shows up on another page.",
+    "notFound": "Couldn't find an example transaction."
+  },
+  "parts": {
+    "title": "Three kinds of inputs and outputs",
+    "inputs": "An input says “spend this box”. It names the box by its <code>boxId</code> and attaches a <b>spending proof</b> — the evidence that you are allowed to open the box's lock (its script). For a box in an ordinary wallet, that proof is simply a Schnorr signature; for more complex contracts, it is a more general <sigma>sigma protocol</sigma>. An input can also carry a <em>context extension</em>: extra variables the script reads when it runs.",
+    "dataInputs": "This is where Ergo differs from Bitcoin. A data input references a box <b>for reading only</b>: the transaction's scripts can look at its value and registers, but the box isn't spent and needs no proof. As a result, hundreds of transactions in the same block can all read the same oracle price box without competing for it.",
+    "outputs": "The new boxes, each with an ERG value, a locking script, and optionally tokens and registers R4–R9. An unspent output sits in the UTXO set until another transaction uses it as an input."
+  },
+  "rules": {
+    "title": "Conservation rules",
+    "p1": "Every node checks the following rules before accepting a transaction:",
+    "erg": "<b>ERG is conserved:</b> the total value of the inputs must exactly equal the total value of the outputs. There's no “implicit” fee as in Bitcoin — the fee is an output too.",
+    "tokens": "<b>Tokens don't appear out of nowhere:</b> for each token id, the amount out ≤ the amount in. Anything missing is <em>burned</em>. The only exception: you may issue a new token whose id equals the <code>boxId</code> of the first input (see <tokens>Tokens (EIP-4)</tokens>).",
+    "scripts": "<b>Every input's script is satisfied</b> by its corresponding spending proof.",
+    "minValue": "<b>Every output holds enough value</b> for its size (to prevent spamming the UTXO set).",
+    "p2": "Checking it on the example transaction above:"
+  },
+  "fee": {
+    "title": "Transaction fees",
+    "p1": "You pay a fee by creating an output locked by a special script — the <b>fee contract</b>. Only a miner can open that lock. In practice the block's miner collects it right away: the last transaction of the block sweeps every fee box into one box locked to the miner's public key, and that box unlocks after 720 blocks. In the diagram above, the fee box has a yellow border. Wallets usually set a fee of around <code>0.001</code> ERG or more.",
+    "tipTitle": "Fee = a box",
+    "tip": "Because the fee is an ordinary output, you can see exactly how much fee was paid just by looking at the transaction — no need to subtract total outputs from total inputs.",
+    "example": "The example transaction pays {{fee}} ERG in fees and sits at position #{{index}} in block {{height}}."
+  },
+  "txId": {
+    "p1": "A transaction's id is the Blake2b-256 hash of the serialized transaction <b>without the spending proofs</b>:",
+    "p2": "Leaving the proofs out matters for two reasons. First, a signature has to sign exactly these bytes — and a signature can't sign itself. Second, nobody can change a transaction's id by tweaking a signature (the “transaction malleability” problem Bitcoin once had).",
+    "p3": "Each output's <code>boxId</code> also depends on the txId and the output's position (R3 holds the <code>txId</code> + <code>index</code>), so box ids are unique across the whole network."
+  },
+  "coinbase": {
+    "title": "No “coinbase” like Bitcoin",
+    "p1": "In Bitcoin, the first transaction of every block is the <em>coinbase</em>: a special transaction with <b>no inputs</b> that creates new coins out of thin air and pays them to the miner. Ergo has no such exception. Every ERG that will ever exist was created <b>once</b>, in the genesis block. The miners' share (~93.4 million ERG) was placed in a box called the <b>emission box</b>, locked by the <em>emission contract</em>; the rest (~4.33 million ERG) sits in a separate treasury box.",
+    "p2": "From then on, the block reward is just an ordinary transaction: the miner <b>spends the emission box</b> as an input and creates two outputs —",
+    "newBox": "A <b>new emission box</b>: same script, holding what is left (minus exactly this height's emission).",
+    "rewardBox": "A <b>reward box</b> for the miner, locked to the miner's public key and spendable only after 720 blocks.",
+    "p3": "So the ERG conservation rule holds even for the reward transaction: inputs equal outputs. No signature is needed — the emission contract's own script checks that the first output is still an emission box and that the amount withdrawn matches the <emission>emission schedule</emission> for the current height. The explorer labels this transaction “Block reward” so it is easy to spot, but to the protocol there is nothing special about it.",
+    "noteTitle": "What does EIP-27 do here?",
+    "note": "Since block 777,217 the reward box also carries <em>Reemission Tokens</em>. When the miner spends the reward box, the ERG matching those tokens must be sent to the re-emission contract; it is paid back to miners at 3 ERG/block once the main emission schedule ends."
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "chain": {
+    "parent": "cha",
+    "txOne": "{{n}} giao dịch",
+    "txMany": "{{n}} giao dịch",
+    "caption": "5 block mới nhất trên mainnet (tự cập nhật). Để ý: <mono>cha</mono> của mỗi block chính là <mono>id</mono> của block đứng trước nó."
+  },
+  "steps": {
+    "create": { "title": "1. Bạn tạo giao dịch", "text": "Ví của bạn chọn vài box để tiêu, ký bằng khoá bí mật và gửi đến một node." },
+    "mempool": { "title": "2. Vào mempool", "text": "Node kiểm tra giao dịch hợp lệ, rồi lan truyền nó tới các node khác. Giao dịch chờ trong “phòng chờ” gọi là mempool." },
+    "mine": { "title": "3. Thợ đào gom vào block", "text": "Thợ đào chọn các giao dịch từ mempool, ghép thành block và thi nhau giải bài toán Proof-of-Work." },
+    "update": { "title": "4. Mọi node cập nhật", "text": "Block thắng cuộc được phát đi. Mỗi node tự kiểm tra lại toàn bộ rồi nối nó vào chuỗi của mình." }
+  },
+  "intro": "Ergo là một mạng lưới gồm rất nhiều máy tính trên khắp thế giới, cùng giữ một bản sao của một cuốn sổ cái. Không có máy chủ trung tâm. Vậy làm sao chúng đồng ý với nhau về việc ai có bao nhiêu tiền? Bài này trả lời câu hỏi đó.",
+  "node": {
+    "title": "Node: những người giữ sổ",
+    "p1": "Một <b>node</b> là máy tính chạy phần mềm Ergo. Nó tải về toàn bộ lịch sử blockchain, kiểm tra từng block, từng giao dịch theo đúng luật, và nói chuyện với các node khác (gọi là <em>peer</em>).",
+    "p2": "Điều quan trọng: mỗi node <b>tự kiểm tra mọi thứ</b>. Nếu ai đó gửi một block gian lận — ví dụ tự in thêm ERG — mọi node trung thực sẽ từ chối nó. Không cần “tin” ai cả.",
+    "live": "Node đang cung cấp dữ liệu cho trang này là <code>{{name}}</code>, hiện kết nối với {{peers}} peer."
+  },
+  "journey": {
+    "title": "Hành trình của một giao dịch",
+    "mempool": "Ngay lúc này có <b>{{n}}</b> giao dịch đang chờ trong mempool của node, đợi được đưa vào block tiếp theo."
+  },
+  "blocks": {
+    "title": "Block và chuỗi",
+    "p1": "Giao dịch không được ghi từng cái một, mà được gom thành <b>block</b>. Trên Ergo, trung bình cứ khoảng <b>2 phút</b> lại có một block mới. Mỗi block có một <b>dấu vân tay</b>: một đoạn mã ngắn (gọi là mã băm, hay hash) sẽ đổi hoàn toàn nếu chỉ một ký tự trong block thay đổi. Dấu vân tay đó là <em>id</em> của block, và mỗi block còn lưu id của block trước nó — gọi là <em>parent id</em>. Nhờ vậy các block nối với nhau thành một <b>chuỗi</b>:",
+    "p2": "Nếu ai đó muốn sửa một giao dịch cũ, id của block chứa nó sẽ thay đổi, kéo theo parent id của block sau cũng sai, rồi block sau nữa… Kẻ gian sẽ phải đào lại toàn bộ các block từ đó đến hiện tại, nhanh hơn cả phần còn lại của mạng cộng lại. Trên thực tế, điều đó gần như không thể."
+  },
+  "miners": {
+    "title": "Thợ đào và Proof-of-Work",
+    "p1": "Ai được quyền viết block tiếp theo? Câu trả lời là cuộc thi <b>Proof-of-Work</b> — một trò xổ số mà ai đoán nhanh hơn thì thắng. Thợ đào liên tục đổi một con số phụ trong block của mình (gọi là <em>nonce</em>) rồi tính lại dấu vân tay của block, hàng tỉ lần, cho đến khi dấu vân tay đủ nhỏ để được tính là thắng (nhỏ hơn một ngưỡng gọi là <em>target</em>). Thợ đào đầu tiên làm được sẽ phát block đi và nhận phần thưởng bằng ERG mới.",
+    "p2": "Việc tìm lời giải rất tốn công, nhưng kiểm tra lời giải thì cực nhanh. Đó là lý do một chiếc laptop chạy node có thể xác minh công sức của cả mạng lưới đào. Chi tiết xem ở <mining>Đào Ergo</mining>."
+  },
+  "confirm": {
+    "title": "Xác nhận (confirmations)",
+    "p1": "Khi giao dịch của bạn vào một block, nó có <b>1 xác nhận</b>. Mỗi block mới đào thêm phía sau lại cộng thêm một. Càng nhiều xác nhận, giao dịch càng khó bị đảo ngược. Với thanh toán thường ngày, vài xác nhận (vài phút) là đủ; với số tiền lớn, sàn giao dịch thường chờ lâu hơn."
+  },
+  "try": {
+    "title": "Thử xem",
+    "text": "Mở một <explorer>block mới nhất</explorer> trong explorer, rồi quay lại sau vài phút — bạn sẽ thấy số xác nhận của nó tăng lên."
+  },
+  "next": {
+    "title": "Tiếp theo",
+    "p1": "Bạn đã biết giao dịch đi đâu. Nhưng bên trong giao dịch có gì? Trên Ergo, câu trả lời là những chiếc hộp — <boxes>box</boxes>."
+  }
+}

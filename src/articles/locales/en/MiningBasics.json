@@ -1,0 +1,55 @@
+{
+  "chart": {
+    "title": "Network hashrate, last 90 days",
+    "label": "Ergo network hashrate by day",
+    "empty": "No data yet."
+  },
+  "pools": {
+    "title": "Who mined the {{total}} blocks of the last 24 hours?"
+  },
+  "stats": {
+    "hashrate": "Hashrate",
+    "change": "{{pct}}% vs 7 days ago",
+    "blockTime": "Avg block time",
+    "seconds": "{{n}} seconds",
+    "target": "target: 120 seconds",
+    "difficulty": "Difficulty"
+  },
+  "intro": "No central bank decides which transactions are valid on Ergo. That job belongs to <b>miners</b> — people who use their computers to secure the network, and get paid in ERG for it.",
+  "what": {
+    "title": "What do miners do?",
+    "p1": "Every miner does three things, over and over:",
+    "s1": "Take the transactions waiting in the mempool and check they're valid.",
+    "s2": "Assemble them into a candidate block that points to the latest block in the chain.",
+    "s3": "Change one spare number in the block (the <b>nonce</b>), recompute the block's fingerprint (its hash), and check whether it's small enough. Repeat billions of times.",
+    "p2": "Step 3 is like rolling dice billions of times hoping for an extremely rare number. There's no shortcut — you just try lots of times, very fast. The combined guessing speed of the whole network is called the <b>hashrate</b>."
+  },
+  "reward": {
+    "title": "The reward",
+    "p1": "The miner who finds a block receives two things:",
+    "block": "<b>The block reward</b>: newly created ERG according to the <erg>emission schedule</erg>.",
+    "current": "At the current height, the miner receives <b>{{reward}} ERG</b> per block straight away.",
+    "fees": "<b>Transaction fees</b>: the total fees of every transaction in the block.",
+    "p2": "As the block reward shrinks, transaction fees and the re-emission mechanism (EIP-27) become more and more important for keeping miners securing the network."
+  },
+  "difficulty": {
+    "title": "Self-adjusting difficulty",
+    "p1": "If more miners join, blocks get found faster. To keep the pace at roughly <b>one block every 2 minutes</b>, the network automatically raises the <b>difficulty</b> — meaning the hash has to be even smaller. When miners leave, the difficulty comes back down.",
+    "p2": "There's a simple relationship: <em>hashrate ≈ difficulty ÷ 120 seconds</em>. That's how the explorer estimates the whole network's hashrate without asking any miner. Details in <difficulty>Difficulty & nBits</difficulty>."
+  },
+  "gpu": {
+    "title": "Why can GPUs still mine Ergo?",
+    "p1": "Today Bitcoin can only be mined with expensive, specialized ASIC machines, concentrated in the hands of a few companies. Ergo took a different path: its <b>Autolykos v2</b> algorithm is <em>memory-hard</em> — every attempt needs to read data from a large table in memory. Ordinary graphics cards (GPUs) have fast memory and do this very well, while building an ASIC that dramatically outperforms them is much harder and less worthwhile.",
+    "p2": "The result: anyone with a GPU rig can help secure the network.",
+    "note": "Learn how Autolykos works and what the <code>pk</code>, <code>w</code>, <code>n</code> and <code>d</code> fields in every block mean in <autolykos>Autolykos v2</autolykos>."
+  },
+  "pool": {
+    "title": "Solo mining or a pool?",
+    "p1": "With thousands of miners, the chance of a small rig finding a block on its own is very low — you might wait months. So most miners join a <b>pool</b>: they combine their power and split the rewards according to their contribution. Smaller payouts, but far more regular.",
+    "p2": "The spread across pools is worth watching: if one pool controlled more than half the hashrate, it could in theory disrupt the network. Miners can switch pools at any time — a way of “voting with their feet” that keeps the network decentralized."
+  },
+  "next": {
+    "title": "What's next",
+    "p1": "You've finished the beginner section! Ready to go deeper? Start with <block>Blocks & headers</block> in the <technical>Technical</technical> section, or watch freshly mined blocks in the <explorer>explorer</explorer>."
+  }
+}

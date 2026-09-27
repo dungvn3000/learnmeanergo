@@ -1,0 +1,46 @@
+{
+  "intro": "<b>ERG</b> là đồng tiền gốc của Ergo. Bạn dùng nó để gửi cho người khác, trả phí giao dịch, và thợ đào nhận nó làm phần thưởng khi bảo vệ mạng lưới.",
+  "supply": {
+    "title": "Tổng cung có giới hạn",
+    "p1": "Sẽ chỉ có tối đa <b>97,739,925 ERG</b> được tạo ra — không hơn một đồng. Con số này không phải lời hứa của ai, mà được viết vào bộ luật mà mọi node đều thực thi. Block nào định tạo ra nhiều ERG hơn lịch cho phép thì mọi node đơn giản là vứt bỏ nó.",
+    "issued": "Đã phát hành {{pct}} tổng cung",
+    "asOf": "cập nhật tại block {{height}}",
+    "circulating": "Đang lưu hành",
+    "locked": "Khoá chờ tái phát hành",
+    "unmined": "Chưa được đào"
+  },
+  "chart": {
+    "now": "Hiện tại",
+    "title": "ERG mới được tạo ra mỗi block",
+    "label": "Lượng ERG phát hành mỗi block theo độ cao",
+    "caption": "Trục ngang: độ cao block. Mỗi bậc thang giảm 3 ERG, kéo dài 64,800 block (~3 tháng)."
+  },
+  "origin": {
+    "title": "ERG từ đâu ra?",
+    "p1": "Mỗi block mới được đào sẽ tạo ra một lượng ERG mới. Đây là cách <b>duy nhất</b> ERG được sinh ra — không có ICO, không có pre-mine. Tất cả số ERG tương lai đang nằm sẵn trong một box đặc biệt gọi là <em>emission box</em>, được khoá bởi một hợp đồng chỉ cho phép rút ra đúng số lượng quy định ở mỗi block.",
+    "p2": "Lịch phát hành có hai giai đoạn:",
+    "phase1": "<b>2 năm đầu</b> (525,600 block): mỗi block tạo ra <b>75 ERG</b>, trong đó 7.5 ERG vào quỹ phát triển (treasury).",
+    "phase2": "<b>Sau đó</b>: cứ mỗi 64,800 block (~3 tháng), lượng ERG mỗi block giảm <b>3 ERG</b>, cho đến khi về 0.",
+    "now": "Hiện tại (block {{height}}) mỗi block tạo ra <b>{{emission}} ERG</b>. Việc phát hành từ emission box sẽ kết thúc ở khoảng block <b>{{end}}</b> — ước tính vào khoảng <b>{{date}}</b>."
+  },
+  "reemission": {
+    "title": "Tái phát hành (EIP-27)",
+    "p1": "Khi phần thưởng giảm dần về 0, lấy gì trả công cho thợ đào? Năm 2022, cộng đồng đã thông qua một thay đổi luật gọi là <b>EIP-27</b> (“Ergo Improvement Proposal” — cách mọi thay đổi luật của Ergo được đề xuất và thống nhất). Từ block 777,217, một phần phần thưởng mỗi block (tối đa 12 ERG) được <b>khoá lại</b> trong một hợp đồng “tiết kiệm” — hợp đồng tái phát hành — thay vì trả ngay cho thợ đào.",
+    "p2": "Sau khi emission box cạn, hợp đồng này sẽ tiếp tục nhả ra <b>3 ERG mỗi block</b> cho thợ đào, kéo dài thời gian họ được trả thưởng thêm nhiều năm. Tổng cung không đổi — chỉ là ERG được “để dành” cho tương lai.",
+    "now": "Ở block hiện tại, trong {{emission}} ERG được tạo ra, thợ đào nhận ngay <b>{{reward}} ERG</b>, phần còn lại được khoá cho giai đoạn tái phát hành."
+  },
+  "nano": {
+    "title": "Đơn vị nhỏ nhất: nanoERG",
+    "p1": "Blockchain không lưu số thập phân. Mọi giá trị được lưu dưới dạng số nguyên <b>nanoERG</b>:",
+    "fee": "0.001 (phí giao dịch phổ biến)",
+    "p2": "Thử đổi qua lại bằng công cụ <units>Đổi đơn vị ERG</units>, hoặc tính phần thưởng ở bất kỳ độ cao nào với <calc>Máy tính phát hành</calc>."
+  },
+  "more": {
+    "title": "Muốn chi tiết hơn?",
+    "text": "Bài kỹ thuật <emission>Lịch phát hành &amp; EIP-27</emission> đi vào công thức chính xác và cách chia phần thưởng giữa thợ đào, treasury và hợp đồng tái phát hành."
+  },
+  "next": {
+    "title": "Tiếp theo",
+    "p1": "Bạn đã biết ERG đến từ đâu. Giờ là lúc tìm hiểu cách giữ chúng an toàn: <wallets>ví, khoá và địa chỉ</wallets>."
+  }
+}

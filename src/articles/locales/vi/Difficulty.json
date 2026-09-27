@@ -1,0 +1,61 @@
+{
+  "live": {
+    "error": "Không lấy được block mới nhất.",
+    "nBits": "4 byte trong header: 1 byte số mũ + 3 byte phần định trị.",
+    "exponent": {
+      "name": "Số mũ",
+      "desc": "Tổng số byte của con số đầy đủ."
+    },
+    "mantissa": {
+      "name": "Phần định trị",
+      "desc": "3 byte có nghĩa đầu tiên của con số."
+    },
+    "decoded": "Giải nén",
+    "matches": "Đúng bằng trường difficulty của block ({{difficulty}}).",
+    "compare": "So sánh với difficulty mà API trả về: {{difficulty}}.",
+    "target": "Giá trị băm của lời giải PoW phải nhỏ hơn số này. Để ý các số 0 ở đầu."
+  },
+  "hashrate": {
+    "title": "Từ độ khó ra hashrate",
+    "p1": "Mỗi lần thử có xác suất thành công xấp xỉ <em>target / 2²⁵⁶ ≈ 1 / difficulty</em>. Vậy trung bình cả mạng cần khoảng <em>difficulty</em> lần thử cho mỗi block, và nếu mỗi block mất ~120 giây:",
+    "change7d": "7 ngày: {{change}}%",
+    "difficulty": "Độ khó",
+    "avgBlockTime": "Thời gian block TB",
+    "target": "Mục tiêu: 120 s"
+  },
+  "chart": {
+    "title": "Độ khó theo ngày, 180 ngày gần nhất",
+    "label": "Độ khó mạng Ergo 180 ngày",
+    "empty": "Chưa có dữ liệu biểu đồ."
+  },
+  "intro": "Nếu bỗng dưng có gấp đôi số GPU tham gia đào, block sẽ ra nhanh gấp đôi — trừ khi bài toán khó lên gấp đôi. <b>Độ khó (difficulty)</b> là núm vặn giúp Ergo giữ nhịp trung bình <b>một block mỗi 2 phút</b>, bất kể có bao nhiêu thợ đào.",
+  "target": {
+    "title": "Target và difficulty",
+    "p1": "Trong <autolykos>Autolykos</autolykos>, lời giải hợp lệ khi giá trị băm cuối cùng — hiểu như một số nguyên 256 bit — nhỏ hơn một ngưỡng gọi là <b>target</b>. Target càng nhỏ thì càng khó. Ergo định nghĩa:",
+    "code": "target = q / difficulty\nq = bậc của nhóm secp256k1\n  = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141",
+    "p2": "Ở đây <code>q</code> chỉ là một hằng số cố định và khổng lồ — khoảng 1.16 × 10<sup>77</sup>, xấp xỉ 2<sup>256</sup>. Chia nó cho difficulty ta được target: với difficulty hiện nay cỡ 6 × 10<sup>13</sup>, chỉ khoảng một giá trị băm trong 60 nghìn tỷ lần thử rơi xuống dưới ngưỡng đó.",
+    "p3": "Vì vậy difficulty là con số “dễ hiểu” hơn: difficulty tăng gấp đôi nghĩa là trung bình cần gấp đôi số lần thử. Và khác với Bitcoin (header lưu target), header Ergo lưu trực tiếp <em>difficulty</em> dưới dạng nén."
+  },
+  "nbits": {
+    "title": "nBits: nén một số khổng lồ vào 4 byte",
+    "p1": "Difficulty có thể là một số rất lớn, nhưng header chỉ dành 4 byte cho nó. Ergo dùng lại định dạng “compact” của Bitcoin: byte đầu là <b>số mũ</b> (số byte của con số), 3 byte sau là <b>phần định trị</b> (3 byte có nghĩa đầu tiên). Giải nén:",
+    "p2": "Hãy giải nén nBits của block mới nhất và so với difficulty mà explorer báo:",
+    "estimateTitle": "Chỉ là ước lượng",
+    "estimateText": "Không ai đếm được hashrate thật. Explorer suy ngược nó từ độ khó và thời gian giữa các block, nên con số dao động theo vận may của thợ đào trong ngắn hạn."
+  },
+  "adjust": {
+    "title": "Điều chỉnh độ khó",
+    "p1": "Ban đầu Ergo tính lại độ khó sau mỗi <b>epoch 1024 block</b> bằng hồi quy tuyến tính (linear least squares) trên dữ liệu của 8 epoch gần nhất — tức là dự đoán xu hướng hashrate thay vì chỉ nhìn epoch vừa qua như Bitcoin.",
+    "p2": "Epoch dài khiến mạng phản ứng chậm khi hashrate biến động mạnh (ví dụ khi thợ đào ồ ạt chuyển sang coin khác). Vì vậy <b>EIP-37</b> — kích hoạt tháng 10/2022 tại block 844,673 — thay đổi thuật toán:",
+    "epoch": "Epoch rút ngắn còn <b>128 block</b> (~4 giờ 16 phút), nên độ khó được cập nhật thường xuyên hơn nhiều.",
+    "average": "Độ khó mới là trung bình của dự đoán hồi quy tuyến tính và cách tính “kiểu Bitcoin” dựa trên epoch vừa qua.",
+    "cap": "Mức thay đổi mỗi lần bị giới hạn (khoảng ±50%), tránh những cú nhảy quá lớn.",
+    "p3": "Chi tiết chính xác (hệ số, cách làm tròn) nằm trong đặc tả EIP-37 và mã nguồn node tham chiếu. Điều quan trọng cần nhớ: thời gian block trung bình luôn được kéo về quanh 120 giây."
+  },
+  "seeAlso": {
+    "title": "Xem thêm",
+    "autolykos": "<link>Autolykos v2</link> — giá trị băm nào được đem so với target.",
+    "block": "<link>Block & header</link> — nBits nằm ở đâu trong header.",
+    "emission": "<link>Lịch phát hành</link> — phần thưởng mà thợ đào nhận được khi thắng."
+  }
+}

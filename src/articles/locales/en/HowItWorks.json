@@ -1,0 +1,47 @@
+{
+  "chain": {
+    "parent": "parent",
+    "txOne": "{{n}} transaction",
+    "txMany": "{{n}} transactions",
+    "caption": "The 5 latest blocks on mainnet (updates automatically). Notice: each block's <mono>parent</mono> is exactly the <mono>id</mono> of the block before it."
+  },
+  "steps": {
+    "create": { "title": "1. You create a transaction", "text": "Your wallet picks a few boxes to spend, signs with your secret key and sends it to a node." },
+    "mempool": { "title": "2. Into the mempool", "text": "The node checks the transaction is valid, then relays it to other nodes. It waits in a “waiting room” called the mempool." },
+    "mine": { "title": "3. Miners pack it into a block", "text": "Miners pick transactions from the mempool, assemble a block and race to solve the Proof-of-Work puzzle." },
+    "update": { "title": "4. Every node updates", "text": "The winning block is broadcast. Every node re-checks all of it independently, then appends it to its own chain." }
+  },
+  "intro": "Ergo is a network of many computers around the world, all keeping a copy of the same ledger. There is no central server. So how do they agree on who owns how much? This article answers that question.",
+  "node": {
+    "title": "Nodes: the record keepers",
+    "p1": "A <b>node</b> is a computer running the Ergo software. It downloads the entire blockchain history, checks every block and every transaction against the rules, and talks to other nodes (called <em>peers</em>).",
+    "p2": "The key point: every node <b>checks everything for itself</b>. If someone sends a fraudulent block — say, one that prints extra ERG — every honest node rejects it. Nobody needs to be “trusted”.",
+    "live": "The node serving data for this page is <code>{{name}}</code>, currently connected to {{peers}} peers."
+  },
+  "journey": {
+    "title": "The journey of a transaction",
+    "mempool": "Right now there are <b>{{n}}</b> transactions waiting in the node's mempool to be included in the next block."
+  },
+  "blocks": {
+    "title": "Blocks and the chain",
+    "p1": "Transactions aren't recorded one by one; they're grouped into <b>blocks</b>. On Ergo a new block appears roughly every <b>2 minutes</b> on average. Every block has a <b>fingerprint</b>: a short code (called a hash) that changes completely if even one character in the block changes. That fingerprint is the block's <em>id</em>, and each block also stores the id of the block before it — its <em>parent id</em>. That's how blocks link together into a <b>chain</b>:",
+    "p2": "If someone wanted to change an old transaction, the id of the block containing it would change, which makes the next block's parent id wrong, and the one after that… The attacker would have to re-mine every block from that point up to today, faster than the rest of the network combined. In practice, that's all but impossible."
+  },
+  "miners": {
+    "title": "Miners and Proof-of-Work",
+    "p1": "Who gets to write the next block? The answer is a <b>Proof-of-Work</b> contest — a lottery you win by guessing fast. Miners keep changing one spare number inside their block (the <em>nonce</em>) and recomputing the block's fingerprint, billions of times, until the fingerprint comes out small enough to count as a win (below a limit called the <em>target</em>). The first miner to get there broadcasts the block and collects a reward in newly created ERG.",
+    "p2": "Finding a solution takes a lot of work, but checking one is extremely fast. That's why a laptop running a node can verify the effort of the entire mining network. See <mining>Mining Ergo</mining> for details."
+  },
+  "confirm": {
+    "title": "Confirmations",
+    "p1": "When your transaction lands in a block, it has <b>1 confirmation</b>. Every new block mined on top adds one more. The more confirmations, the harder the transaction is to reverse. For everyday payments a few confirmations (a few minutes) is plenty; for large amounts, exchanges usually wait longer."
+  },
+  "try": {
+    "title": "Try it",
+    "text": "Open the <explorer>latest block</explorer> in the explorer, then come back a few minutes later — you'll see its confirmation count go up."
+  },
+  "next": {
+    "title": "What's next",
+    "p1": "You now know where a transaction goes. But what's inside one? On Ergo, the answer is boxes — read <boxes>Boxes: where the money lives</boxes>."
+  }
+}

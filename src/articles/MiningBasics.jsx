@@ -1,28 +1,38 @@
 import { Link } from 'react-router-dom'
+import { Trans } from 'react-i18next'
 import { Clock, Cpu, Gauge, Pickaxe } from 'lucide-react'
 import { api } from '../lib/api'
 import { useApi } from '../lib/useApi'
 import { compact, num } from '../lib/format'
 import { minerRewardAt } from '../lib/ergo'
+import { articleNs, getLang, locale } from '../lib/i18n'
 import { Async, Callout, Card, Stat } from '../components/ui'
 import LineChart from '../components/LineChart'
+import en from './locales/en/MiningBasics.json'
+import vi from './locales/vi/MiningBasics.json'
+
+const useT = articleNs('MiningBasics', { en, vi })
+
+// Tag → element map shared by every <Trans> in this article; links are added per call.
+const TAGS = { b: <strong />, em: <em />, code: <code /> }
 
 function HashrateChart() {
+  const { t } = useT()
   const state = useApi(() => api.chart('hashrate', 90), [])
   return (
     <Card className="not-prose my-6 p-4">
-      <div className="mb-2 text-sm font-semibold text-stone-900 dark:text-white">Hashrate toàn mạng, 90 ngày gần nhất</div>
+      <div className="mb-2 text-sm font-semibold text-stone-900 dark:text-white">{t('chart.title')}</div>
       <Async state={state}>
         {(c) =>
           c.points?.length > 1 ? (
             <LineChart
               points={c.points.map((p) => ({ x: p.t, y: p.v }))}
-              label="Hashrate mạng Ergo theo ngày"
-              xFormat={(x) => new Date(x).toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit' })}
+              label={t('chart.label')}
+              xFormat={(x) => new Date(x).toLocaleDateString(locale(), { day: '2-digit', month: getLang() === 'vi' ? '2-digit' : 'short' })}
               yFormat={(y) => `${+y.toFixed(2)} ${c.unit}`}
             />
           ) : (
-            <div className="py-6 text-center text-sm text-stone-500">Chưa có dữ liệu.</div>
+            <div className="py-6 text-center text-sm text-stone-500">{t('chart.empty')}</div>
           )
         }
       </Async>
@@ -31,10 +41,11 @@ function HashrateChart() {
 }
 
 function PoolShare({ pools }) {
+  const { t } = useT()
   const total = pools.reduce((s, p) => s + p.blocks, 0)
   return (
     <Card className="not-prose my-6 p-5">
-      <div className="mb-3 text-sm font-semibold text-stone-900 dark:text-white">Ai đã đào {total} block trong 24 giờ qua?</div>
+      <div className="mb-3 text-sm font-semibold text-stone-900 dark:text-white">{t('pools.title', { total })}</div>
       <div className="grid gap-2">
         {pools.map((p) => {
           const pct = (p.blocks / total) * 100
@@ -58,100 +69,68 @@ function PoolShare({ pools }) {
 }
 
 export default function MiningBasics() {
+  const { t } = useT()
+  const T = (k, extra, values) => <Trans t={t} i18nKey={k} values={values} components={{ ...TAGS, ...extra }} />
   const ns = useApi(() => api.networkState(), [], 60000)
   const d = ns.data
   return (
     <>
-      <p>
-        Không có ngân hàng trung ương nào quyết định giao dịch nào hợp lệ trên Ergo. Công việc đó thuộc về <strong>thợ đào</strong>{' '}
-        (miner) — những người dùng máy tính để bảo vệ mạng lưới, và được trả công bằng ERG.
-      </p>
+      <p>{T('intro')}</p>
 
       {d && (
         <div className="not-prose my-6 grid gap-3 sm:grid-cols-3">
-          <Stat icon={Cpu} label="Hashrate" value={`${d.hashrate} TH/s`} sub={`${d.hashrateChange7d > 0 ? '+' : ''}${d.hashrateChange7d}% so với 7 ngày trước`} />
-          <Stat icon={Clock} label="Thời gian block TB" value={`${Math.round(d.avgBlockTimeSec)} giây`} sub="mục tiêu: 120 giây" />
-          <Stat icon={Gauge} label="Độ khó" value={compact(d.difficulty)} sub={`block #${num(d.height)}`} />
+          <Stat icon={Cpu} label={t('stats.hashrate')} value={`${d.hashrate} TH/s`} sub={t('stats.change', { pct: `${d.hashrateChange7d > 0 ? '+' : ''}${d.hashrateChange7d}` })} />
+          <Stat icon={Clock} label={t('stats.blockTime')} value={t('stats.seconds', { n: Math.round(d.avgBlockTimeSec) })} sub={t('stats.target')} />
+          <Stat icon={Gauge} label={t('stats.difficulty')} value={compact(d.difficulty)} sub={`block #${num(d.height)}`} />
         </div>
       )}
 
-      <h2 id="tho-dao-lam-gi">Thợ đào làm gì?</h2>
-      <p>Mỗi thợ đào liên tục làm ba việc:</p>
+      <h2 id="tho-dao-lam-gi">{t('what.title')}</h2>
+      <p>{t('what.p1')}</p>
       <ol>
-        <li>Lấy các giao dịch đang chờ trong mempool và kiểm tra chúng hợp lệ.</li>
-        <li>Ghép chúng thành một block ứng viên, trỏ về block mới nhất của chuỗi.</li>
-        <li>
-          Đổi một con số phụ trong block (gọi là <strong>nonce</strong>), tính lại dấu vân tay của block (mã băm), rồi xem nó đã đủ
-          nhỏ chưa. Lặp lại hàng tỉ lần.
-        </li>
+        <li>{t('what.s1')}</li>
+        <li>{t('what.s2')}</li>
+        <li>{T('what.s3')}</li>
       </ol>
-      <p>
-        Bước 3 giống như tung xúc xắc hàng tỉ lần để ra một con số cực hiếm. Không có mẹo nào — chỉ có thử thật nhiều và thật nhanh. Tốc
-        độ thử của cả mạng gọi là <strong>hashrate</strong>.
-      </p>
+      <p>{T('what.p2')}</p>
       <HashrateChart />
 
-      <h2 id="phan-thuong">Phần thưởng</h2>
-      <p>Thợ đào tìm ra block nhận được hai thứ:</p>
+      <h2 id="phan-thuong">{t('reward.title')}</h2>
+      <p>{t('reward.p1')}</p>
       <ul>
         <li>
-          <strong>Phần thưởng block</strong>: ERG mới được tạo ra theo <Link to="/learn/erg">lịch phát hành</Link>.
+          {T('reward.block', { erg: <Link to="/learn/erg" /> })}
           {d && (
             <>
               {' '}
-              Ở độ cao hiện tại, thợ đào nhận ngay <strong>{minerRewardAt(d.height)} ERG</strong> mỗi block.
+              {T('reward.current', null, { reward: minerRewardAt(d.height) })}
             </>
           )}
         </li>
-        <li>
-          <strong>Phí giao dịch</strong>: tổng phí của mọi giao dịch trong block.
-        </li>
+        <li>{T('reward.fees')}</li>
       </ul>
-      <p>
-        Khi phần thưởng block dần giảm, phí giao dịch và cơ chế tái phát hành (EIP-27) sẽ ngày càng quan trọng để giữ cho thợ đào tiếp
-        tục bảo vệ mạng.
-      </p>
+      <p>{t('reward.p2')}</p>
 
-      <h2 id="do-kho">Độ khó tự điều chỉnh</h2>
-      <p>
-        Nếu thêm nhiều thợ đào tham gia, block sẽ được tìm ra nhanh hơn. Để giữ nhịp khoảng <strong>2 phút một block</strong>, mạng tự
-        động tăng <strong>độ khó</strong> (difficulty) — tức là yêu cầu mã băm phải nhỏ hơn nữa. Khi thợ đào rời đi, độ khó giảm xuống.
-      </p>
-      <p>
-        Có một mối liên hệ đơn giản: <em>hashrate ≈ độ khó ÷ 120 giây</em>. Đó chính là cách explorer ước tính hashrate của cả mạng mà
-        không cần hỏi từng thợ đào. Chi tiết trong bài <Link to="/learn/difficulty">Độ khó &amp; nBits</Link>.
-      </p>
+      <h2 id="do-kho">{t('difficulty.title')}</h2>
+      <p>{T('difficulty.p1')}</p>
+      <p>{T('difficulty.p2', { difficulty: <Link to="/learn/difficulty" /> })}</p>
 
-      <h2 id="gpu">Vì sao GPU vẫn đào được Ergo?</h2>
-      <p>
-        Bitcoin ngày nay chỉ đào được bằng máy ASIC chuyên dụng, đắt tiền, tập trung trong tay một số ít công ty. Ergo chọn hướng
-        khác: thuật toán <strong>Autolykos v2</strong> là thuật toán <em>memory-hard</em> — mỗi lần thử cần đọc dữ liệu từ một bảng
-        lớn trong bộ nhớ. Card đồ hoạ (GPU) phổ thông có bộ nhớ nhanh nên làm việc này rất tốt, còn chế tạo ASIC để vượt trội thì khó và
-        kém hiệu quả hơn nhiều.
-      </p>
-      <p>Kết quả: bất kỳ ai có một dàn GPU đều có thể tham gia bảo vệ mạng.</p>
+      <h2 id="gpu">{t('gpu.title')}</h2>
+      <p>{T('gpu.p1')}</p>
+      <p>{t('gpu.p2')}</p>
       <Callout type="note">
-        Tìm hiểu cách Autolykos hoạt động và ý nghĩa của các trường <code>pk</code>, <code>w</code>, <code>n</code>, <code>d</code>{' '}
-        trong mỗi block tại bài <Link to="/learn/autolykos">Autolykos v2</Link>.
+        {T('gpu.note', { autolykos: <Link to="/learn/autolykos" /> })}
       </Callout>
 
-      <h2 id="pool">Đào một mình hay vào pool?</h2>
-      <p>
-        Với hàng nghìn thợ đào, xác suất một dàn máy nhỏ tự tìm được block là rất thấp — có thể phải chờ hàng tháng. Vì vậy phần lớn
-        thợ đào tham gia <strong>pool</strong>: góp sức với nhau và chia phần thưởng theo đóng góp. Thu nhập ít hơn mỗi lần nhưng đều
-        đặn hơn.
-      </p>
+      <h2 id="pool">{t('pool.title')}</h2>
+      <p>{T('pool.p1')}</p>
       {d?.poolShare24h?.length > 0 && <PoolShare pools={d.poolShare24h} />}
-      <p>
-        Sự phân bổ giữa các pool rất đáng theo dõi: nếu một pool chiếm quá nửa hashrate, về lý thuyết nó có thể gây rối mạng. Thợ đào
-        có thể chuyển pool bất cứ lúc nào — một cách “bỏ phiếu bằng chân” giữ cho mạng phi tập trung.
-      </p>
+      <p>{t('pool.p2')}</p>
 
-      <h2 id="tiep-theo">Tiếp theo</h2>
+      <h2 id="tiep-theo">{t('next.title')}</h2>
       <p>
         <Pickaxe className="mr-1 inline size-4 text-ergo-500" />
-        Bạn đã hoàn thành phần cho người mới! Sẵn sàng đi sâu hơn? Bắt đầu với <Link to="/learn/block">Block &amp; header</Link> trong
-        phần <Link to="/technical">Kỹ thuật</Link>, hoặc xem các block vừa được đào trong <Link to="/explorer">explorer</Link>.
+        {T('next.p1', { block: <Link to="/learn/block" />, technical: <Link to="/technical" />, explorer: <Link to="/explorer" /> })}
       </p>
     </>
   )

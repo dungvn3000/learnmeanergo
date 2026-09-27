@@ -1,0 +1,68 @@
+{
+  "diagram": {
+    "spent": "Spent (destroyed)",
+    "created": "Newly created",
+    "aliceKey": "Alice's key",
+    "bobKey": "Bob's key",
+    "change": "Alice's key (change)",
+    "fee": "miner fee",
+    "caption": "Alice sends Bob 10 ERG: 7 + 5 = 10 + 1.999 + 0.001"
+  },
+  "realTx": {
+    "summary": "Transaction <tx>{{id}}…</tx> in block {{height}}: {{spent}}, {{created}}",
+    "spentOne": "{{n}} box spent",
+    "spentMany": "{{n}} boxes spent",
+    "createdOne": "{{n}} new box created",
+    "createdMany": "{{n}} new boxes created",
+    "fee": ", including a <fee/> box that is the miner's fee"
+  },
+  "intro": {
+    "p1": "When you open your banking app, you see one number: your <em>balance</em>. The bank keeps a spreadsheet where each row is an account, and moving money means subtracting from one row and adding to another.",
+    "p2": "Ergo <b>doesn't work like that</b>. There are no “accounts” on Ergo at all. Instead, money lives inside <b>boxes</b>."
+  },
+  "what": {
+    "title": "What is a box?",
+    "p1": "Imagine each box as a small glass case:",
+    "inside": "Inside is some amount of <b>ERG</b> (and possibly other <tokens>tokens</tokens> too).",
+    "lock": "On the outside is a <b>lock</b>. The lock is a piece of logic (a script) that says who may open the box.",
+    "visible": "Anyone can see what's inside, but only someone who satisfies the lock can take it.",
+    "p2": "The “balance” your wallet shows you is really just <b>the total value of all the boxes your keys can open</b>. The wallet adds them up for your convenience."
+  },
+  "spend": {
+    "title": "Spending = breaking old boxes, sealing new ones",
+    "p1": "Boxes have one important property: <b>they can't be partially opened</b>. You can't take 3 ERG out of a 7 ERG box and leave the other 4 ERG inside. Instead, a transaction:",
+    "inputs": "Opens (and destroys) one or more old boxes — the <b>inputs</b>.",
+    "outputs": "Creates new boxes with new locks — the <b>outputs</b>.",
+    "p2": "The total going in must equal the total coming out. Whatever is left over is returned to you in a new box, called <em>change</em> — just like paying for a $3 coffee with a $20 bill and getting the difference back.",
+    "p3": "Look closely: the transaction fee is a box too! On Ergo, the fee is sent to a special box that only a miner can open. The block's miner collects every fee box in that block into a single reward box of their own — and that reward box stays locked for 720 blocks (about a day)."
+  },
+  "real": {
+    "title": "A real transaction, right now",
+    "p1": "Here's a transaction mined recently on mainnet. On the left are the boxes being spent, on the right the new boxes:",
+    "p2": "Every box has its own <b>box id</b> — a unique fingerprint. Click any box id to see what that box contains and whether it has been spent yet."
+  },
+  "utxo": {
+    "title": "UTXO and eUTXO",
+    "p1": "Boxes that haven't been spent yet are called <b>UTXOs</b> (Unspent Transaction Outputs). Bitcoin uses this model too. The set of all UTXOs is the current “state” of the blockchain: who owns what.",
+    "p2": "Ergo extends it, hence the name <b>eUTXO</b> (extended UTXO): an Ergo box can hold tokens, can store arbitrary data in “compartments” called <em>registers</em>, and its lock can be an entire smart contract rather than just a signature."
+  },
+  "good": {
+    "title": "Why is this design good?",
+    "predictable": "<b>Predictable:</b> before you send, you know exactly which boxes are spent and which are created. No surprises.",
+    "parallel": "<b>Parallel:</b> transactions that touch different boxes don't affect each other.",
+    "safe": "<b>Safe:</b> a box can be spent exactly once. Spending it twice (a double-spend) is rejected by the network immediately.",
+    "p1": "Developer David Przybilla sums this view up neatly in <article>Learning Ergo 101: eUTXO explained for human beings</article>: to an app builder, Ergo is just a dataset of boxes, the only operation is a transaction, and you simply describe “what the world should look like afterwards” — the script in each box decides whether that is allowed."
+  },
+  "deeper": {
+    "title": "Want to go deeper?",
+    "text": "The technical article <box>Boxes & registers</box> explains every field from R0 to R9, and <ergotree>ErgoTree & ErgoScript</ergotree> covers how the “locks” are written."
+  },
+  "reading": {
+    "title": "Further reading",
+    "meta": "— David Przybilla, December 2021. A programmer's view of the same idea: the blockchain as a dataset of boxes, the transaction as the only operation, and scripts as simple true/false validators — a great read right after this page."
+  },
+  "next": {
+    "title": "What's next",
+    "p1": "Where did the ERG in those boxes come from in the first place? Read on: <erg>ERG and its supply</erg>."
+  }
+}

@@ -12,6 +12,19 @@ export const pick = (o) => (o && typeof o === 'object' && 'en' in o ? o[getLang(
 /** BCP-47 locale for Intl/toLocale* calls. */
 export const locale = () => (getLang() === 'vi' ? 'vi-VN' : 'en-US')
 
+/**
+ * Register a lazily loaded namespace (e.g. one article's strings) and return a
+ * hook for it. Call once at module level in the file that owns the strings:
+ *   const useT = articleNs('wallets', { en, vi })
+ *   ... const { t } = useT()
+ */
+export function articleNs(ns, bundles) {
+  for (const [lng, res] of Object.entries(bundles)) {
+    if (!i18n.hasResourceBundle(lng, ns)) i18n.addResourceBundle(lng, ns, res)
+  }
+  return () => useTranslation(ns)
+}
+
 /** Current language + a setter that also persists the choice. */
 export function useLang() {
   const { i18n: inst } = useTranslation()

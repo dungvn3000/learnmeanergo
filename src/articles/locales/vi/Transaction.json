@@ -1,0 +1,67 @@
+{
+  "emissionTx": {
+    "label": "giao dịch #0 của block <block>{{height}}</block>",
+    "main": "Input là box phát hành. Output đầu tiên là chính box đó tạo lại, ít đi <b>{{emission}} ERG</b>; output thứ hai là box thưởng của thợ đào với {{emission}} ERG",
+    "reemitted": ", trong đó {{reemitted}} ERG mang theo “Reemission Token” và phải nộp về hợp đồng tái phát hành khi tiêu (EIP-27) — thợ đào thực nhận <b>{{reward}} ERG</b>",
+    "end": ". Tổng ERG vào bằng tổng ERG ra."
+  },
+  "balance": {
+    "inputs": "Tổng inputs",
+    "outputs": "Tổng outputs (không tính phí)",
+    "fee": "Box phí cho thợ đào",
+    "diff": "Chênh lệch",
+    "in": "Vào",
+    "out": "Ra",
+    "note": "Ghi chú",
+    "conserved": "bảo toàn",
+    "issued": "phát hành mới (id = input đầu tiên)",
+    "increased": "tăng?",
+    "burned": "bị đốt (burn)"
+  },
+  "example": {
+    "size": "{{size}} byte"
+  },
+  "intro": "Một <b>giao dịch</b> trên Ergo làm đúng một việc: <em>tiêu</em> một số box đang tồn tại và <em>tạo</em> ra các box mới. Không có “trừ số dư tài khoản A, cộng số dư tài khoản B” — chỉ có box bị phá huỷ và box được sinh ra. Nếu chưa quen khái niệm box, hãy đọc <box>Box & registers</box> trước.",
+  "real": {
+    "title": "Một giao dịch thật",
+    "p1": "Đây là một giao dịch vừa được xác nhận trên mainnet (tải lại trang để lấy ví dụ khác). Bên trái là các box bị tiêu, bên phải là các box được tạo ra. Mỗi box có một ô màu làm “dấu vân tay” để bạn dễ nhận ra nếu nó xuất hiện ở trang khác.",
+    "notFound": "Không tìm được giao dịch mẫu."
+  },
+  "parts": {
+    "title": "Ba loại đầu vào/đầu ra",
+    "inputs": "Một input nói “hãy tiêu box này”. Nó gọi tên box bằng <code>boxId</code> và đính kèm một <b>spending proof</b> — bằng chứng rằng bạn được phép mở ổ khoá (script) của box đó. Với box của một ví thông thường, proof chỉ là một chữ ký Schnorr; với hợp đồng phức tạp, proof là một <sigma>sigma protocol</sigma> tổng quát hơn. Input còn có thể mang <em>context extension</em>: các biến bổ sung mà script đọc khi chạy.",
+    "dataInputs": "Đây là điểm Ergo khác biệt so với Bitcoin. Data input tham chiếu một box <b>chỉ để đọc</b>: script của giao dịch có thể xem giá trị và registers của nó, nhưng box không bị tiêu và không cần proof. Nhờ vậy, hàng trăm giao dịch trong cùng một block có thể cùng đọc một box giá oracle mà không tranh chấp nhau.",
+    "outputs": "Các box mới, mỗi box có giá trị ERG, script khoá, tuỳ chọn token và registers R4–R9. Output chưa bị tiêu nằm trong UTXO set cho tới khi một giao dịch khác dùng nó làm input."
+  },
+  "rules": {
+    "title": "Quy tắc bảo toàn",
+    "p1": "Mọi node kiểm tra các quy tắc sau trước khi chấp nhận giao dịch:",
+    "erg": "<b>ERG được bảo toàn:</b> tổng giá trị inputs phải bằng đúng tổng giá trị outputs. Không có phí “ngầm” như Bitcoin — phí cũng là một output.",
+    "tokens": "<b>Token không tự sinh ra:</b> với mỗi token id, lượng ra ≤ lượng vào. Phần thiếu bị <em>đốt</em>. Ngoại lệ duy nhất: được phát hành token mới có id bằng <code>boxId</code> của input đầu tiên (xem <tokens>Token (EIP-4)</tokens>).",
+    "scripts": "<b>Mọi script của inputs đều được thoả mãn</b> bởi spending proof tương ứng.",
+    "minValue": "<b>Mỗi output có đủ giá trị tối thiểu</b> theo kích thước của nó (chống spam UTXO set).",
+    "p2": "Kiểm chứng trên giao dịch mẫu ở trên:"
+  },
+  "fee": {
+    "title": "Phí giao dịch",
+    "p1": "Bạn trả phí bằng cách tạo một output khoá bởi một script đặc biệt — <b>fee contract</b>. Chỉ thợ đào mới mở được ổ khoá này. Trên thực tế, thợ đào của block gom nó ngay: giao dịch cuối của block gom mọi box phí lại thành một box khoá cho khoá công khai của thợ đào, và box đó mở khoá sau 720 block. Trong sơ đồ ở trên, box phí có viền vàng. Các ví thường đặt phí từ khoảng <code>0.001</code> ERG trở lên.",
+    "tipTitle": "Phí = một box",
+    "tip": "Vì phí là một output bình thường, bạn thấy chính xác bao nhiêu phí được trả chỉ bằng cách nhìn giao dịch — không cần trừ tổng input cho tổng output.",
+    "example": "Giao dịch mẫu trả {{fee}} ERG phí và nằm ở vị trí #{{index}} trong block {{height}}."
+  },
+  "txId": {
+    "p1": "Id của giao dịch là hash Blake2b-256 của giao dịch đã tuần tự hoá <b>không kèm spending proofs</b>:",
+    "p2": "Bỏ proof ra ngoài quan trọng vì hai lý do. Thứ nhất, chữ ký phải ký lên chính các byte này — mà chữ ký không thể tự ký chính nó. Thứ hai, không ai đổi được id của một giao dịch bằng cách sửa chữ ký (vấn đề “transaction malleability” Bitcoin từng gặp).",
+    "p3": "<code>boxId</code> của mỗi output cũng phụ thuộc vào txId và vị trí của output (R3 chứa <code>txId</code> + <code>index</code>), nên box id là duy nhất toàn mạng."
+  },
+  "coinbase": {
+    "title": "Không có “coinbase” như Bitcoin",
+    "p1": "Trong Bitcoin, giao dịch đầu tiên của mỗi block là <em>coinbase</em>: một giao dịch đặc biệt <b>không có input</b>, tạo ra coin mới từ hư không và trả cho thợ đào. Ergo không có ngoại lệ như vậy. Toàn bộ ERG sẽ từng tồn tại đã được tạo ra <b>một lần duy nhất</b> ở block genesis. Phần dành cho thợ đào (~93.4 triệu ERG) nằm trong một box gọi là <b>emission box</b>, khoá bởi <em>emission contract</em>; phần còn lại (~4.33 triệu ERG) nằm trong box treasury riêng.",
+    "p2": "Từ đó, phần thưởng block chỉ là một giao dịch bình thường: thợ đào <b>tiêu emission box</b> làm input và tạo hai output —",
+    "newBox": "<b>Emission box mới</b>: cùng script, giữ số ERG còn lại (bớt đi đúng lượng phát hành của độ cao này).",
+    "rewardBox": "<b>Box thưởng</b> cho thợ đào, khoá cho khoá công khai của thợ đào và chỉ tiêu được sau 720 block.",
+    "p3": "Vì thế quy tắc bảo toàn ERG vẫn đúng ở cả giao dịch thưởng: tổng input bằng tổng output. Không cần chữ ký nào — chính script của emission contract kiểm tra output đầu tiên vẫn là emission box, và số ERG rút ra đúng theo <emission>lịch phát hành</emission> cho độ cao hiện tại. Explorer gắn nhãn giao dịch này là “Block reward” để dễ nhận ra, nhưng với giao thức nó không có gì đặc biệt.",
+    "noteTitle": "EIP-27 làm gì ở đây?",
+    "note": "Từ block 777,217, box thưởng còn mang theo <em>Reemission Token</em>. Khi tiêu box thưởng, thợ đào phải chuyển số ERG tương ứng với token đó vào hợp đồng tái phát hành; phần này sẽ được trả lại cho thợ đào với tốc độ 3 ERG/block sau khi lịch phát hành chính kết thúc."
+  }
+}

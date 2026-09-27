@@ -45,8 +45,8 @@ For deployment, every path must be rewritten to `index.html` for React Router. `
 
 ```
 src/
-  articles/     Vietnamese articles (manifest.js = list + reading order, index.js attaches icons/components)
-  articles/en/  English articles (same file names)
+  articles/     one JSX file per article (manifest.js = list + reading order, index.js attaches icons/components)
+  articles/locales/{en,vi}/  article text, one JSON per article
   tools/        interactive tools (manifest.js = list, index.js attaches icons/components)
   pages/        home, section indexes, tools, explorer (block/tx/address/box/token)
   components/   shared UI, TxFlow (input → output diagram), LineChart
@@ -58,9 +58,9 @@ src/
 - The **VI | EN** switch is saved in `localStorage` and can be forced with `?lang=en` / `?lang=vi`. English is the default.
 - UI strings use [react-i18next](https://react.i18next.com/). `src/i18n.js` initialises i18next; the strings live in `src/locales/en.json` and `src/locales/vi.json`, grouped by the file that uses them (`common` for shared ones). In a component: `const { t } = useTranslation()` then `t('blockPage.header')`; outside React (formatters, validators) use `i18n.t(...)` from `src/i18n.js`. Rich text with tags uses `<Trans i18nKey="…" components={{ em: <em /> }} />`.
 - `src/lib/i18n.js`: `pick({ vi, en })` for registry data (article/tool manifests), `locale()` for date/number formatting, `useLang()` for the switch.
-- Articles: the Vietnamese version lives in `src/articles/X.jsx` and the English one in `src/articles/en/X.jsx` (loaded by file name; falls back to Vietnamese if the English file is missing).
+- Articles: one component per article in `src/articles/X.jsx`; its text lives in `src/articles/locales/en/X.json` and `src/articles/locales/vi/X.json`. The file registers its own namespace with `const useT = articleNs('X', { en, vi })`, so the strings load lazily with the article. Plain text uses `t('key')`; text with markup or links uses `<Trans t={t} i18nKey="key" components={{ b: <strong />, boxes: <Link to="/learn/boxes" /> }} />` with named tags in the JSON. `node scripts/check-article-i18n.mjs` verifies that both languages have the same keys, tags and variables.
 
-**Adding an article:** create `src/articles/X.jsx` and `src/articles/en/X.jsx`, then add an entry to `src/articles/manifest.js` with `slug`, `section`, `icon`, `file: 'X'` and `title`/`summary` as `{ vi, en }`. If the icon is new, also import it in `src/articles/index.js`.
+**Adding an article:** create `src/articles/X.jsx` plus `src/articles/locales/{en,vi}/X.json` (see `Wallets.jsx` as a template), then add an entry to `src/articles/manifest.js` with `slug`, `section`, `icon`, `file: 'X'` and `title`/`summary` as `{ vi, en }`. If the icon is new, also import it in `src/articles/index.js`.
 
 **Adding a tool:** create `src/tools/X.jsx` and add an entry to `src/tools/manifest.js` (and its icon to `src/tools/index.js`).
 

@@ -1,0 +1,120 @@
+{
+  "box": {
+    "spent": "đã tiêu",
+    "unspent": "chưa tiêu (UTXO)",
+    "r0": "Số ERG trong box, lưu bằng nanoERG ({{nano}}). Bắt buộc.",
+    "r1": "ErgoTree — điều kiện để tiêu box. Địa chỉ <address>{{address}}</address> chỉ là cách viết gọn của script này. Xem <ergotree>ErgoTree</ergotree>.",
+    "empty": "(trống)",
+    "r2": "Danh sách cặp (token id, số lượng). Có thể trống.",
+    "r3": "(creationHeight, id giao dịch tạo ra box, vị trí output). Height khai báo lúc tạo box — dùng cho <rent>phí lưu trữ</rent>.",
+    "raw": "Bytes thô: <raw>{{raw}}</raw>",
+    "numeric": "— byte đầu <code>0x{{type}}</code> là mã kiểu, phần còn lại là VLQ = <code>{{zigzag}}</code>, giải ZigZag → <code>{{value}}</code>."
+  },
+  "intro": "Trên Ergo, tiền không nằm trong “tài khoản”. Nó nằm trong những <b>box</b> — mỗi box giống một chiếc hộp có khoá, có số ERG bên trong, có thể đựng token và dán thêm tối đa sáu “nhãn” dữ liệu. Toàn bộ trạng thái của blockchain chính là tập hợp mọi box chưa bị tiêu (UTXO set).",
+  "eutxo": {
+    "title": "Mô hình eUTXO",
+    "p1": "Bitcoin dùng UTXO: mỗi output chỉ có giá trị và một script khoá. Ergo <em>mở rộng</em> (extended UTXO) theo hai hướng:",
+    "li1": "Box mang <b>dữ liệu tuỳ ý</b> trong registers và <b>token</b> gốc của giao thức.",
+    "li2": "Script khoá được thấy <b>toàn bộ giao dịch</b> đang tiêu nó: các output khác, data inputs, height hiện tại… Nhờ vậy hợp đồng có thể ra lệnh “chỉ được tiêu box này nếu output #0 trả lại cho tôi ít nhất 10 ERG”.",
+    "p2": "Box là <b>bất biến</b>: không có lệnh “sửa” box. Muốn thay đổi trạng thái, giao dịch tiêu box cũ và tạo box mới. Hợp đồng cần “nhớ” trạng thái giữa các lần dùng (một oracle, một DEX pool) chỉ đơn giản là một chuỗi các box nối tiếp nhau, thường được nhận diện bằng một NFT đi theo."
+  },
+  "regs": {
+    "title": "Mười registers: R0 – R9",
+    "p1": "Mỗi box có tối đa 10 registers. Bốn register đầu là bắt buộc và có ý nghĩa cố định:",
+    "thContents": "Nội dung",
+    "r0": "Giá trị ERG (nanoERG, kiểu Long)",
+    "r1": "Script khoá, dạng ErgoTree đã tuần tự hoá",
+    "r2": "Token: danh sách (token id, số lượng)",
+    "r49": "Tuỳ chọn, do người tạo box đặt. Mỗi register có kiểu rõ ràng. Phải được dùng liên tiếp (có R6 thì phải có R4, R5)."
+  },
+  "example": {
+    "title": "Một box thật",
+    "p1": "Đây là một output vừa được tạo trên mainnet có dùng registers tuỳ chọn. Các box kiểu này thường là của hợp đồng — oracle giá, DEX, sàn NFT… — lưu trạng thái vào R4–R9.",
+    "notFound": "Không tìm được box mẫu."
+  },
+  "encoding": {
+    "title": "Registers được mã hoá thế nào?",
+    "p1": "Mỗi register được lưu dưới dạng một <em>hằng số có kiểu</em>: byte đầu tiên cho biết kiểu dữ liệu, sau đó là giá trị. Số nguyên dùng mã hoá ZigZag + VLQ: VLQ ghi một số bằng đúng số byte nó cần, còn ZigZag đưa số âm về các số dương nhỏ để chúng cũng ngắn.",
+    "thCode": "Mã kiểu",
+    "thType": "Kiểu",
+    "types": {
+      "group": "GroupElement (điểm trên secp256k1)",
+      "bytes": "Coll[Byte] (mảng byte)"
+    },
+    "example": "Ví dụ: <code>04e8d403</code> → kiểu <code>0x04</code> (Int), VLQ <code>e8 d4 03</code> = 60008, ZigZag giải ra <code>30004</code>."
+  },
+  "boxId": {
+    "title": "Box id",
+    "p1": "<code>boxId = blake2b256(bytes của box)</code>, trong đó bytes gồm tất cả các register R0–R9. Vì R3 chứa id giao dịch và vị trí output, hai box không bao giờ trùng id — kể cả khi có cùng số tiền và cùng chủ.",
+    "tipTitle": "Tự kiểm tra",
+    "tipText": "Mỗi input của một giao dịch chỉ là một <code>boxId</code> 32 byte. Node tra id đó trong UTXO set; nếu không thấy (đã tiêu hoặc không tồn tại) thì giao dịch bị từ chối — đó là cách chống tiêu hai lần."
+  },
+  "minimum": {
+    "title": "Giá trị tối thiểu",
+    "p1": "Mỗi box chiếm chỗ trong UTXO set mà mọi node phải lưu. Để không ai có thể lấp đầy nó bằng hàng triệu box rỗng, mỗi box phải chứa ít nhất <b>360 nanoERG cho mỗi byte</b> kích thước của nó (giá trị mặc định; thợ đào có thể bỏ phiếu thay đổi). Một box ví thông thường cỡ vài chục đến vài trăm byte, nên mức tối thiểu chỉ khoảng {{min}}–{{max}} ERG. Trên thực tế các ví thường dùng <code>0.001</code> ERG cho mỗi box chứa token.",
+    "p2": "Box nằm yên quá 4 năm còn phải trả <rent>phí lưu trữ</rent> — một cơ chế độc đáo khác của Ergo."
+  },
+  "limits": {
+    "title": "Giới hạn của box và registers",
+    "p1": "Vài con số cứng mà mọi giao dịch phải tôn trọng — biết trước sẽ tránh được nhiều lỗi khi tự tạo box:",
+    "thLimit": "Giới hạn",
+    "thValue": "Giá trị",
+    "thMeaning": "Ý nghĩa",
+    "size": {
+      "name": "Kích thước box",
+      "value": "<b>4,096 byte</b> (4 KB)",
+      "text": "Toàn bộ box — giá trị, script, token và registers — sau khi tuần tự hoá phải gọn trong 4 KB."
+    },
+    "tokens": {
+      "name": "Số loại token",
+      "text": "Mỗi box mang tối đa 255 token id khác nhau (số lượng mỗi token thì tới 2<sup>63</sup> − 1)."
+    },
+    "registers": {
+      "text": "R0–R3 luôn có. R4–R9 tuỳ chọn nhưng phải dùng <em>liền nhau</em>: muốn có R5 thì phải có R4, không được bỏ trống ở giữa."
+    },
+    "minValue": {
+      "name": "Giá trị tối thiểu",
+      "value": "360 nanoERG × kích thước",
+      "text": "Box lớn nhất có thể (4,096 byte) cần {{nano}} nanoERG ≈ {{erg}} ERG — vẫn rất nhỏ."
+    }
+  },
+  "habit": {
+    "title": "0.001 ERG chỉ là thói quen của ví",
+    "text": "Con số 1,000,000 nanoERG (0.001 ERG) mà nhiều ví dùng làm “giá trị tối thiểu” là mặc định của phần mềm ví, không phải luật đồng thuận. Luật thật là 360 nanoERG mỗi byte, nên một box nhỏ chỉ cần vài chục nghìn nanoERG — nhưng dùng 0.001 ERG thì không bao giờ sai."
+  },
+  "guard": {
+    "title": "Guard script: ổ khoá của box",
+    "p1": "Đoạn script trong register R1 được gọi là <b>guard script</b> (script bảo vệ). Nó không “chạy chương trình” theo nghĩa thông thường. Nó chỉ chạy khi một giao dịch muốn tiêu box: node đưa cho script toàn bộ ngữ cảnh — giao dịch đang xét, các input, output, data input và độ cao hiện tại — và script phải trả lời <b>đúng</b>. Trả lời sai, hay chứng minh (chữ ký) không hợp lệ, thì toàn bộ giao dịch bị từ chối. Vì thế cộng đồng Cardano và Ergo hay gọi các script này là <em>validator</em> hơn là “hợp đồng thông minh”.",
+    "p2": "Guard script được lưu dưới dạng byte đã biên dịch (<ergotree>ErgoTree</ergotree>), còn ngôn ngữ để viết nó là ErgoScript. Mục <section>Guard script</section> trong bài ErgoScript đi sâu hơn. Vì địa chỉ được suy ra từ script, hai box có script giống hệt nhau sẽ có cùng địa chỉ. Một số ổ khoá phổ biến:",
+    "thKind": "Dạng",
+    "thWho": "Ai mở được",
+    "p2pk": {
+      "name": "Khoá công khai (P2PK)",
+      "text": "Người giữ khoá bí mật của <code>pk</code> — chính là ví thông thường."
+    },
+    "time": {
+      "name": "Khoá thời gian",
+      "text": "Chủ khoá, nhưng chỉ sau khi chuỗi vượt block 1,200,000."
+    },
+    "multisig": {
+      "name": "Multisig / ngưỡng",
+      "text": "Bất kỳ 2 trong 3 người cùng ký."
+    },
+    "cond": {
+      "name": "Điều kiện về giao dịch",
+      "text": "Ai cũng tiêu được, miễn output đầu tiên giữ ít nhất số ERG của box này — nền tảng của hợp đồng nhiều bước."
+    }
+  },
+  "turing": {
+    "title": "ErgoScript cố ý không Turing-complete",
+    "text": "Một số tài liệu gọi ErgoScript là ngôn ngữ Turing-complete; thực ra thì ngược lại: nó không có vòng lặp không giới hạn hay đệ quy, nhờ vậy node tính được chi phí chạy script <em>trước</em> khi chạy và phí giao dịch mới ổn định. “Turing-complete” ở Ergo đạt được ở cấp blockchain — bằng cách nối nhiều giao dịch tiêu box này tạo box kia — chứ không phải trong một script. Xem <ergotree>ErgoTree &amp; ErgoScript</ergotree>."
+  },
+  "next": {
+    "title": "Tiếp theo",
+    "tx": "<link>Giao dịch</link> — box được tiêu và tạo ra thế nào.",
+    "tokens": "<link>Token (EIP-4)</link> — R2 và các registers metadata.",
+    "ergotree": "<link>ErgoTree &amp; ErgoScript</link> — bên trong R1.",
+    "dav": "<link>Learning Ergo 101: eUTXO explained for human beings</link> — bài viết ngoài (tiếng Anh) giải thích mô hình eUTXO dưới góc nhìn người xây ứng dụng.",
+    "deco": "<link>DECO Education — Registers, Guard Scripts, ErgoScript</link> — bài học trong khoá “Into the Woods” (tiếng Anh) về registers, giới hạn của box và các dạng guard script."
+  }
+}

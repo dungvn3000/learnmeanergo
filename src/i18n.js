@@ -22,7 +22,8 @@ i18n
     // localStorage here — only an explicit switch persists (see lib/i18n.js).
     detection: { order: ['querystring', 'localStorage'], lookupQuerystring: 'lang', lookupLocalStorage: 'lang', caches: [] },
     interpolation: { escapeValue: false }, // React already escapes
-    react: { useSuspense: false },
+    // Let <Trans> strings use &lt; &gt; &amp; for literal characters next to real tags.
+    react: { useSuspense: false, transDefaultProps: { shouldUnescape: true } },
   })
 
 const syncHtmlLang = (l) => {

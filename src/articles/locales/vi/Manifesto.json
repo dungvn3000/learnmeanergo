@@ -1,0 +1,85 @@
+{
+  "intro": "Tháng 4/2021, blog của Ergo Platform đăng <b>The Ergo Manifesto</b> — bản tuyên ngôn giải thích <em>vì sao</em> Ergo tồn tại, chứ không chỉ nó hoạt động thế nào. Nếu các bài khác trên trang này nói về box, script và thuật toán, thì bài này nói về những giá trị đứng sau các lựa chọn thiết kế đó.",
+  "about": {
+    "title": "Về bài viết này",
+    "text": "Đây là phần tóm tắt và diễn giải bằng lời của chúng tôi, không phải bản dịch. Bạn nên đọc <source>bản gốc tiếng Anh</source>."
+  },
+  "roots": {
+    "title": "Quay về gốc rễ cypherpunk",
+    "p1": "Tuyên ngôn bắt đầu từ Bitcoin: ra đời ngay sau khủng hoảng tài chính và những gói cứu trợ ngân hàng năm 2009, Bitcoin cho thấy mọi người có thể tự nắm giữ và trao đổi giá trị trực tiếp với nhau, không cần trung gian. Cả một ngành công nghiệp đã mọc lên từ ý tưởng đó.",
+    "p2": "Nhưng theo tuyên ngôn, sau cơn sốt 2017 tinh thần ban đầu đã bị pha loãng: quảng cáo thổi phồng và đầu cơ giá lấn át việc xây dựng công cụ hữu ích, và nhiều dự án sống bằng cách “ăn” chính những người mới đến. Blockchain lại bị các tập đoàn dùng chủ yếu để cắt giảm chi phí. Ergo muốn đi ngược xu hướng đó: dùng blockchain như công cụ cho <b>hợp tác ngang hàng và tương trợ</b>, phục vụ người bình thường, hợp tác xã và doanh nghiệp nhỏ."
+  },
+  "why": {
+    "title": "Vì sao điều này quan trọng?",
+    "p1": "Khi kinh tế khủng hoảng, người giàu, doanh nghiệp lớn — và cả tội phạm — đều có cách tự bảo vệ tài sản; người dân bình thường thì không. Tuyên ngôn lấy ví dụ đồng tiền mất giá ở Thổ Nhĩ Kỳ: khi hệ thống tài chính tập trung thất bại, người chịu thiệt nhất là những người không có lối thoát. Blockchain có thể là lối thoát đó — <em>nếu</em> nó thật sự phi tập trung, không lưu ký (bạn tự giữ khoá) và ai cũng dùng được."
+  },
+  "weapon": {
+    "title": "Khi tiền bị biến thành vũ khí",
+    "p1": "Tuyên ngôn cảnh báo rằng tiền kỹ thuật số của ngân hàng trung ương (CBDC) có thể bị dùng để kiểm soát người dân theo ít nhất ba cách:",
+    "expiring": { "title": "Tiền có “hạn dùng”", "text": "Số dư có thể bị buộc hết hạn hoặc bị huỷ — một hình thức tước đoạt." },
+    "conditional": { "title": "Chi tiêu có điều kiện", "text": "Quyền tiêu tiền gắn với việc “tuân thủ”, trở thành công cụ dập tắt bất đồng." },
+    "censored": { "title": "Kiểm duyệt thị trường", "text": "Chặn quyền truy cập thị trường, phá huỷ chủ quyền tiền tệ của cá nhân." }
+  },
+  "privacy": {
+    "title": "Quyền riêng tư",
+    "p1": "Với tuyên ngôn, quyền riêng tư là nền móng của một xã hội tự do: nó cho phép con người tự quyết định mà không bị giám sát hay ép buộc, và bảo vệ tài sản trước những chính quyền độc đoán. Nhưng Ergo không <em>bắt buộc</em> riêng tư — nó cung cấp công cụ, còn dùng hay không là lựa chọn của mỗi người."
+  },
+  "ergonomic": {
+    "p1": "Cách chơi chữ trong tên gọi: tiền <b>ergonomic</b> — “tiện dụng”, được thiết kế quanh con người — phục vụ đời sống của người dùng thay vì bị dùng để bòn rút họ. Mục tiêu là những công cụ riêng tư, bền bỉ, chống kiểm duyệt mà người bình thường thực sự dùng được, nhất là những người dễ tổn thương nhất khi khủng hoảng ập đến."
+  },
+  "principles": {
+    "title": "Năm nguyên tắc cơ bản",
+    "p1": "Phần cốt lõi của tuyên ngôn là năm nguyên tắc. Dưới mỗi nguyên tắc, chúng tôi ghi thêm <em>nơi bạn thấy nó trong giao thức</em> — phần này là liên hệ của chúng tôi, không nằm trong bản gốc.",
+    "inProtocol": "Trong giao thức: ",
+    "learnMore": "Tìm hiểu →",
+    "decentralization": {
+      "title": "Phi tập trung là trên hết",
+      "text": "Không có điểm tập trung nào trong phát triển, khai thác hay quản trị. Phi tập trung lớn lên nhờ giáo dục, tài liệu minh bạch và cộng đồng tham gia — không phải nhờ cưỡng chế.",
+      "how": "Autolykos v2 là PoW memory-hard, thân thiện với GPU để việc đào không rơi vào tay vài nhà máy ASIC."
+    },
+    "open": {
+      "title": "Mở, không cần cấp phép, an toàn",
+      "text": "Giao thức không giới hạn loại ứng dụng. Mã nguồn mở và kiểm toán được. Ai cũng tham gia được; không cứu trợ, không danh sách đen, không phân biệt đối xử ở tầng giao thức. Quyền riêng tư là tuỳ chọn.",
+      "how": "Sigma protocols đưa công cụ riêng tư vào ngay trong ngôn ngữ — ví dụ ký với tư cách “một người trong nhóm” mà không lộ là ai (chữ ký vòng) — có sẵn, dùng hay không là quyền của bạn."
+    },
+    "people": {
+      "title": "Dành cho người bình thường",
+      "text": "Người dùng phổ thông phải chạy được full node và đào được. Ưu tiên giao dịch ngang hàng hơn là qua trung gian, cùng với giáo dục và công cụ dễ tiếp cận.",
+      "how": "GPU phổ thông vẫn đào được Ergo, và node có thể xác minh mà không cần giữ toàn bộ lịch sử."
+    },
+    "contractual": {
+      "title": "Nền tảng cho “tiền hợp đồng”",
+      "text": "Ergo là tầng nền cho các hợp đồng tài chính, với phí thấp và cách triển khai hiệu quả để giao dịch thường ngày không trở thành gánh nặng.",
+      "how": "Mô hình box eUTXO và ErgoScript: hợp đồng luôn chạy y hệt nhau, và bạn biết phí trước khi gửi."
+    },
+    "longTerm": {
+      "title": "Tầm nhìn dài hạn",
+      "text": "Theo đuổi nguyên tắc thay vì chu kỳ thị trường. Ergo ra đời giữa “mùa đông crypto” và phải tiếp tục thích nghi, tồn tại như hạ tầng có giá trị thật.",
+      "how": "Storage rent giữ blockchain gọn và trả thu nhập cho thợ đào rất lâu sau khi phát hành kết thúc."
+    }
+  },
+  "fair": {
+    "title": "Ra mắt công bằng",
+    "p1": "Tuyên ngôn nhấn mạnh Ergo được ra mắt công bằng: <b>không ICO, không pre-mine</b> cho nhà sáng lập. Mọi ERG đều được đào ra theo một lịch phát hành cố định, viết cứng vào luật đồng thuận từ block đầu tiên.",
+    "treasury": "Phần duy nhất không về tay thợ đào là quỹ phát triển (treasury) trong khoảng 2.5 năm đầu: 7.5 ERG/block, sau đó 4.5 rồi 1.5 ERG/block. Tổng số nằm trong box treasury từ genesis là <b>{{treasury}} ERG</b> — khoảng <b>{{pct}}%</b> tổng cung {{max}} ERG, và dù đã nằm sẵn trong một box từ block genesis, hợp đồng của box chỉ cho rút ra dần theo từng block.",
+    "link": "Xem lịch phát hành →"
+  },
+  "table": {
+    "title": "Ergo muốn là gì — và không muốn là gì",
+    "yes": "Nên là",
+    "no": "Không nên là",
+    "r1": { "yes": "Công cụ cho người bình thường, hợp tác xã, doanh nghiệp nhỏ", "no": "Công cụ cắt giảm chi phí cho tập đoàn" },
+    "r2": { "yes": "Tài chính từ cơ sở, ngang hàng, tự giữ khoá", "no": "Hệ thống lưu ký, phụ thuộc trung gian" },
+    "r3": { "yes": "Hạ tầng riêng tư (tuỳ chọn), chống kiểm duyệt", "no": "Công cụ giám sát và kiểm soát" },
+    "r4": { "yes": "Hợp đồng thông minh chi phí hợp lý", "no": "Nền tảng có cứu trợ, danh sách đen hay phân biệt đối xử" },
+    "r5": { "yes": "Đào và phát triển phân tán rộng", "no": "Tập trung quyền lực đào hay phát triển vào vài bên" }
+  },
+  "next": {
+    "title": "Từ triết lý đến kỹ thuật",
+    "text": "Phần còn lại của trang này cho bạn thấy các nguyên tắc trên được biến thành code ra sao. Bắt đầu với <boxes>Box: những chiếc hộp giữ tiền</boxes>."
+  },
+  "reading": {
+    "title": "Đọc thêm",
+    "meta": "— blog Ergo Platform, 26/04/2021 (tiếng Anh)."
+  }
+}

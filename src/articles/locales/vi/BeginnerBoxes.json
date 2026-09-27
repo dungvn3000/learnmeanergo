@@ -1,0 +1,68 @@
+{
+  "diagram": {
+    "spent": "Bị tiêu (phá huỷ)",
+    "created": "Được tạo mới",
+    "aliceKey": "khoá của An",
+    "bobKey": "khoá của Bình",
+    "change": "khoá của An (tiền thừa)",
+    "fee": "phí thợ đào",
+    "caption": "An gửi 10 ERG cho Bình: 7 + 5 = 10 + 1.999 + 0.001"
+  },
+  "realTx": {
+    "summary": "Giao dịch <tx>{{id}}…</tx> ở block {{height}}: {{spent}}, {{created}}",
+    "spentOne": "{{n}} box bị tiêu",
+    "spentMany": "{{n}} box bị tiêu",
+    "createdOne": "{{n}} box mới được tạo",
+    "createdMany": "{{n}} box mới được tạo",
+    "fee": ", trong đó có một box <fee/> là phí cho thợ đào"
+  },
+  "intro": {
+    "p1": "Khi bạn mở ứng dụng ngân hàng, bạn thấy một con số: <em>số dư</em>. Ngân hàng giữ một bảng tính, mỗi dòng là một tài khoản, và chuyển tiền nghĩa là trừ dòng này, cộng dòng kia.",
+    "p2": "Ergo <b>không hoạt động như vậy</b>. Trên Ergo không có “tài khoản” nào cả. Thay vào đó, tiền nằm trong những chiếc <b>hộp</b> — gọi là <b>box</b>."
+  },
+  "what": {
+    "title": "Box là gì?",
+    "p1": "Hãy tưởng tượng mỗi box là một chiếc hộp nhỏ bằng kính:",
+    "inside": "Bên trong có một lượng <b>ERG</b> (và có thể có cả <tokens>token</tokens> khác).",
+    "lock": "Bên ngoài có một chiếc <b>ổ khoá</b>. Ổ khoá này là một đoạn luật (script) nói rằng ai được mở hộp.",
+    "visible": "Ai cũng nhìn thấy trong hộp có gì, nhưng chỉ ai thoả mãn ổ khoá mới lấy được.",
+    "p2": "“Số dư” mà ví hiển thị cho bạn thực ra chỉ là <b>tổng giá trị của tất cả những box mà khoá của bạn mở được</b>. Ví tự cộng lại cho bạn tiện theo dõi."
+  },
+  "spend": {
+    "title": "Tiêu tiền = phá hộp cũ, đóng hộp mới",
+    "p1": "Box có một đặc điểm quan trọng: <b>không thể mở một phần</b>. Bạn không thể lấy 3 ERG ra khỏi một box 7 ERG rồi để 4 ERG còn lại bên trong. Thay vào đó, một giao dịch sẽ:",
+    "inputs": "Mở (và phá huỷ) một hoặc nhiều box cũ — gọi là <b>inputs</b>.",
+    "outputs": "Tạo ra các box mới với ổ khoá mới — gọi là <b>outputs</b>.",
+    "p2": "Tổng tiền đi vào phải bằng tổng tiền đi ra. Phần dư được trả lại cho chính bạn trong một box mới, gọi là <em>tiền thừa</em> (change) — giống như đưa tờ 500 nghìn để mua ly cà phê và nhận lại tiền thối.",
+    "p3": "Nhìn kỹ: phí giao dịch cũng là một box! Trên Ergo, phí được gửi vào một box đặc biệt mà chỉ thợ đào mới mở được. Thợ đào của block gom tất cả box phí trong block đó về một box thưởng của mình — và box thưởng ấy bị khoá 720 block (khoảng một ngày) trước khi tiêu được."
+  },
+  "real": {
+    "title": "Một giao dịch thật, ngay lúc này",
+    "p1": "Đây là một giao dịch vừa được đào gần đây trên mainnet. Bên trái là các box bị tiêu, bên phải là các box mới:",
+    "p2": "Mỗi box có một <b>box id</b> riêng — một dấu vân tay duy nhất. Nhấn vào box id bất kỳ để xem chiếc hộp đó chứa gì và đã bị tiêu hay chưa."
+  },
+  "utxo": {
+    "title": "UTXO và eUTXO",
+    "p1": "Những box chưa bị tiêu được gọi là <b>UTXO</b> (Unspent Transaction Output). Bitcoin cũng dùng mô hình này. Tập hợp tất cả UTXO chính là “trạng thái” hiện tại của blockchain: ai sở hữu gì.",
+    "p2": "Ergo mở rộng thêm, nên gọi là <b>eUTXO</b> (extended UTXO): box của Ergo có thể chứa token, chứa dữ liệu tuỳ ý trong các “ngăn” gọi là <em>register</em>, và ổ khoá có thể là cả một hợp đồng thông minh chứ không chỉ một chữ ký."
+  },
+  "good": {
+    "title": "Vì sao thiết kế này hay?",
+    "predictable": "<b>Dự đoán được:</b> trước khi gửi, bạn biết chính xác box nào bị tiêu và box nào được tạo. Không có bất ngờ.",
+    "parallel": "<b>Song song:</b> các giao dịch chạm vào những box khác nhau không ảnh hưởng lẫn nhau.",
+    "safe": "<b>An toàn:</b> một box chỉ có thể bị tiêu đúng một lần. Tiêu hai lần (double-spend) là điều mạng từ chối ngay.",
+    "p1": "Lập trình viên David Przybilla tóm tắt cách nhìn này rất gọn trong bài <article>Learning Ergo 101: eUTXO explained for human beings</article>: với người xây ứng dụng, Ergo chỉ là một tập hợp box, thao tác duy nhất là giao dịch, và bạn chỉ cần mô tả “thế giới sau giao dịch trông ra sao” — script trong mỗi box sẽ quyết định điều đó có được phép hay không."
+  },
+  "deeper": {
+    "title": "Muốn đi sâu hơn?",
+    "text": "Bài kỹ thuật <box>Box & registers</box> giải thích từng trường R0–R9, còn <ergotree>ErgoTree & ErgoScript</ergotree> nói về “ổ khoá” được viết ra sao."
+  },
+  "reading": {
+    "title": "Đọc thêm",
+    "meta": "— David Przybilla, 12/2021 (tiếng Anh). Cách nhìn của một lập trình viên: blockchain là một tập hợp box, giao dịch là thao tác duy nhất, script chỉ là “người kiểm duyệt” trả lời đúng/sai — rất hợp để đọc ngay sau bài này."
+  },
+  "next": {
+    "title": "Tiếp theo",
+    "p1": "Những ERG trong box ban đầu đến từ đâu? Đọc tiếp <erg>ERG và nguồn cung</erg>."
+  }
+}

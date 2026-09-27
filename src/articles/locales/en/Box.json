@@ -1,0 +1,120 @@
+{
+  "box": {
+    "spent": "spent",
+    "unspent": "unspent (UTXO)",
+    "r0": "The amount of ERG in the box, stored in nanoERG ({{nano}}). Mandatory.",
+    "r1": "The ErgoTree — the condition for spending the box. The address <address>{{address}}</address> is just a compact way of writing this script. See <ergotree>ErgoTree</ergotree>.",
+    "empty": "(empty)",
+    "r2": "A list of (token id, amount) pairs. May be empty.",
+    "r3": "(creationHeight, id of the transaction that created the box, output position). The height declared when the box was created — used for <rent>storage rent</rent>.",
+    "raw": "Raw bytes: <raw>{{raw}}</raw>",
+    "numeric": "— the first byte <code>0x{{type}}</code> is the type code, the rest is a VLQ = <code>{{zigzag}}</code>, ZigZag-decoded → <code>{{value}}</code>."
+  },
+  "intro": "On Ergo, money doesn't live in “accounts”. It lives in <b>boxes</b> — each one is like a locked container with some ERG inside, which can also hold tokens and carry up to six extra data “labels”. The entire state of the blockchain is simply the set of all unspent boxes (the UTXO set).",
+  "eutxo": {
+    "title": "The eUTXO model",
+    "p1": "Bitcoin uses UTXOs: each output has just a value and a locking script. Ergo <em>extends</em> this (extended UTXO) in two directions:",
+    "li1": "Boxes carry <b>arbitrary data</b> in registers and native protocol-level <b>tokens</b>.",
+    "li2": "The locking script can see <b>the whole transaction</b> spending it: the other outputs, data inputs, the current height… So a contract can say “this box may only be spent if output #0 pays me back at least 10 ERG”.",
+    "p2": "Boxes are <b>immutable</b>: there's no “edit box” operation. To change state, a transaction spends the old box and creates a new one. A contract that needs to remember something between uses (an oracle, a DEX pool) is simply a chain of successive boxes, usually identified by an NFT that travels along with them."
+  },
+  "regs": {
+    "title": "Ten registers: R0 – R9",
+    "p1": "Each box has up to 10 registers. The first four are mandatory and have fixed meanings:",
+    "thContents": "Contents",
+    "r0": "ERG value (nanoERG, type Long)",
+    "r1": "The locking script, as a serialized ErgoTree",
+    "r2": "Tokens: a list of (token id, amount)",
+    "r49": "Optional, set by the box creator. Each register has an explicit type. They must be used contiguously (if R6 is set, R4 and R5 must be too)."
+  },
+  "example": {
+    "title": "A real box",
+    "p1": "Here is an output just created on mainnet that uses optional registers. Boxes like this usually belong to contracts — price oracles, DEXes, NFT markets… — that store their state in R4–R9.",
+    "notFound": "Couldn't find an example box."
+  },
+  "encoding": {
+    "title": "How are registers encoded?",
+    "p1": "Each register is stored as a <em>typed constant</em>: the first byte gives the data type, followed by the value. Integers use ZigZag + VLQ encoding: VLQ stores a number in as few bytes as it needs, and ZigZag maps negative numbers onto small positive ones so they stay short too.",
+    "thCode": "Type code",
+    "thType": "Type",
+    "types": {
+      "group": "GroupElement (a point on secp256k1)",
+      "bytes": "Coll[Byte] (byte array)"
+    },
+    "example": "Example: <code>04e8d403</code> → type <code>0x04</code> (Int), VLQ <code>e8 d4 03</code> = 60008, which ZigZag-decodes to <code>30004</code>."
+  },
+  "boxId": {
+    "title": "Box id",
+    "p1": "<code>boxId = blake2b256(box bytes)</code>, where the bytes include all registers R0–R9. Since R3 contains the transaction id and output position, two boxes never share an id — even if they hold the same amount and have the same owner.",
+    "tipTitle": "See for yourself",
+    "tipText": "Each input of a transaction is just a 32-byte <code>boxId</code>. The node looks that id up in the UTXO set; if it isn't there (already spent or never existed), the transaction is rejected — that's how double spending is prevented."
+  },
+  "minimum": {
+    "title": "Minimum value",
+    "p1": "Every box takes up space in the UTXO set that every node must store. So that nobody can fill it with millions of empty boxes, each box must hold at least <b>360 nanoERG per byte</b> of its size (the default value; miners can vote to change it). A typical wallet box is a few dozen to a few hundred bytes, so the minimum is only around {{min}}–{{max}} ERG. In practice, wallets usually use <code>0.001</code> ERG for each box holding tokens.",
+    "p2": "A box that sits untouched for more than 4 years must also pay <rent>storage rent</rent> — another unique Ergo mechanism."
+  },
+  "limits": {
+    "title": "Limits of boxes and registers",
+    "p1": "A few hard numbers every transaction must respect — knowing them up front saves a lot of debugging when you build boxes yourself:",
+    "thLimit": "Limit",
+    "thValue": "Value",
+    "thMeaning": "Meaning",
+    "size": {
+      "name": "Box size",
+      "value": "<b>4,096 bytes</b> (4 KB)",
+      "text": "The whole box — value, script, tokens and registers — must fit in 4 KB once serialized."
+    },
+    "tokens": {
+      "name": "Token types",
+      "text": "A box can carry at most 255 distinct token ids (each with an amount up to 2<sup>63</sup> − 1)."
+    },
+    "registers": {
+      "text": "R0–R3 are always present. R4–R9 are optional but must be used <em>consecutively</em>: to use R5 you must also set R4 — no gaps."
+    },
+    "minValue": {
+      "name": "Minimum value",
+      "value": "360 nanoERG × size",
+      "text": "The largest possible box (4,096 bytes) needs {{nano}} nanoERG ≈ {{erg}} ERG — still tiny."
+    }
+  },
+  "habit": {
+    "title": "0.001 ERG is just a wallet habit",
+    "text": "The 1,000,000 nanoERG (0.001 ERG) that many wallets use as the “minimum value” is a default of the wallet software, not a consensus rule. The real rule is 360 nanoERG per byte, so a small box needs only a few tens of thousands of nanoERG — but using 0.001 ERG is never wrong."
+  },
+  "guard": {
+    "title": "Guard scripts: the box's lock",
+    "p1": "The script in register R1 is called the <b>guard script</b>. It doesn't “run a program” in the usual sense. It runs only when a transaction tries to spend the box: the node hands the script the full context — the transaction being checked, its inputs, outputs, data inputs and the current height — and the script must answer <b>true</b>. If it answers false, or the proof (signature) is invalid, the whole transaction is rejected. That is why the Cardano and Ergo communities often call these scripts <em>validators</em> rather than “smart contracts”.",
+    "p2": "Guard scripts are stored as compiled bytes (<ergotree>ErgoTree</ergotree>); the language you write them in is ErgoScript. The guard-script section of <section>ErgoScript, guard scripts &amp; ErgoTree</section> goes deeper. Because the address is derived from the script, two boxes with identical scripts share the same address. Some common locks:",
+    "thKind": "Kind",
+    "thWho": "Who can open it",
+    "p2pk": {
+      "name": "Public key (P2PK)",
+      "text": "Whoever holds the private key for <code>pk</code> — an ordinary wallet."
+    },
+    "time": {
+      "name": "Time lock",
+      "text": "The key holder, but only once the chain passes block 1,200,000."
+    },
+    "multisig": {
+      "name": "Multisig / threshold",
+      "text": "Any 2 of the 3 signers together."
+    },
+    "cond": {
+      "name": "Condition on the transaction",
+      "text": "Anyone, as long as the first output keeps at least this box's ERG — the basis of multi-step contracts."
+    }
+  },
+  "turing": {
+    "title": "ErgoScript is deliberately not Turing-complete",
+    "text": "Some tutorials call ErgoScript a Turing-complete language; it is the opposite by design: no unbounded loops or recursion, which is why a node can compute a script's cost <em>before</em> running it and why fees stay predictable. Ergo reaches “Turing completeness” at the blockchain level — by chaining transactions that spend one box to create the next — not inside a single script. See <ergotree>ErgoTree &amp; ErgoScript</ergotree>."
+  },
+  "next": {
+    "title": "What's next",
+    "tx": "<link>Transactions</link> — how boxes are spent and created.",
+    "tokens": "<link>Tokens (EIP-4)</link> — R2 and the metadata registers.",
+    "ergotree": "<link>ErgoTree &amp; ErgoScript</link> — what's inside R1.",
+    "dav": "<link>Learning Ergo 101: eUTXO explained for human beings</link> — an external article explaining the eUTXO model from an app builder's point of view.",
+    "deco": "<link>DECO Education — Registers, Guard Scripts, ErgoScript</link> — a lesson from the “Into the Woods” course on registers, box limits and common guard scripts."
+  }
+}

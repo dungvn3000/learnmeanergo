@@ -1,0 +1,61 @@
+{
+  "live": {
+    "error": "Couldn't fetch the latest block.",
+    "nBits": "4 bytes in the header: a 1-byte exponent + a 3-byte mantissa.",
+    "exponent": {
+      "name": "Exponent",
+      "desc": "The total number of bytes in the full number."
+    },
+    "mantissa": {
+      "name": "Mantissa",
+      "desc": "The first 3 significant bytes of the number."
+    },
+    "decoded": "Decoded",
+    "matches": "Exactly equal to the block's difficulty field ({{difficulty}}).",
+    "compare": "Compare with the difficulty returned by the API: {{difficulty}}.",
+    "target": "The hash of the PoW solution must be smaller than this number. Notice the leading zeros."
+  },
+  "hashrate": {
+    "title": "From difficulty to hashrate",
+    "p1": "Each attempt succeeds with probability roughly <em>target / 2²⁵⁶ ≈ 1 / difficulty</em>. So on average the whole network needs about <em>difficulty</em> attempts per block, and if each block takes ~120 seconds:",
+    "change7d": "7 days: {{change}}%",
+    "difficulty": "Difficulty",
+    "avgBlockTime": "Avg. block time",
+    "target": "Target: 120 s"
+  },
+  "chart": {
+    "title": "Daily difficulty, last 180 days",
+    "label": "Ergo network difficulty, 180 days",
+    "empty": "No chart data yet."
+  },
+  "intro": "If twice as many GPUs suddenly joined the network, blocks would come twice as fast — unless the puzzle became twice as hard. <b>Difficulty</b> is the dial that keeps Ergo ticking at an average of <b>one block every 2 minutes</b>, no matter how many miners there are.",
+  "target": {
+    "title": "Target and difficulty",
+    "p1": "In <autolykos>Autolykos</autolykos>, a solution is valid when the final hash — read as a 256-bit integer — is below a threshold called the <b>target</b>. The smaller the target, the harder it is. Ergo defines:",
+    "code": "target = q / difficulty\nq = order of the secp256k1 group\n  = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141",
+    "p2": "Here <code>q</code> is just a fixed, enormous constant — about 1.16 × 10<sup>77</sup>, close to 2<sup>256</sup>. Dividing it by the difficulty gives the target: at today's difficulty of roughly 6 × 10<sup>13</sup>, only about one hash in 60 trillion falls below it.",
+    "p3": "That makes difficulty the more intuitive number: doubling the difficulty means twice as many attempts are needed on average. And unlike Bitcoin (whose header stores the target), an Ergo header stores the <em>difficulty</em> itself, in compressed form."
+  },
+  "nbits": {
+    "title": "nBits: squeezing a huge number into 4 bytes",
+    "p1": "Difficulty can be a very large number, but the header only reserves 4 bytes for it. Ergo reuses Bitcoin's “compact” format: the first byte is the <b>exponent</b> (the length of the number in bytes), and the next 3 bytes are the <b>mantissa</b> (its first 3 significant bytes). To decode:",
+    "p2": "Let's decode the nBits of the latest block and compare it with the difficulty reported by the explorer:",
+    "estimateTitle": "Only an estimate",
+    "estimateText": "Nobody can count the real hashrate. The explorer infers it from the difficulty and the time between blocks, so the figure fluctuates with miners' short-term luck."
+  },
+  "adjust": {
+    "title": "Difficulty adjustment",
+    "p1": "Originally, Ergo recalculated the difficulty every <b>1024-block epoch</b> using linear regression (linear least squares) over the last 8 epochs — predicting the hashrate trend rather than just looking at the previous epoch like Bitcoin does.",
+    "p2": "Long epochs make the network slow to react when hashrate swings sharply (for example, when miners flock to another coin). So <b>EIP-37</b> — activated in October 2022 at block 844,673 — changed the algorithm:",
+    "epoch": "Epochs were shortened to <b>128 blocks</b> (~4 hours 16 minutes), so difficulty is updated far more often.",
+    "average": "The new difficulty is the average of the linear-regression prediction and a “Bitcoin-style” calculation based on the previous epoch.",
+    "cap": "The change per adjustment is capped (roughly ±50%) to avoid overly large jumps.",
+    "p3": "The exact details (coefficients, rounding) are in the EIP-37 specification and the reference node's source code. The key takeaway: the average block time is always pulled back to around 120 seconds."
+  },
+  "seeAlso": {
+    "title": "See also",
+    "autolykos": "<link>Autolykos v2</link> — the hash that gets compared with the target.",
+    "block": "<link>Blocks & headers</link> — where nBits lives in the header.",
+    "emission": "<link>Emission schedule</link> — the reward a miner earns for winning."
+  }
+}

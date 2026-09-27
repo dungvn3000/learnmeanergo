@@ -1,0 +1,74 @@
+{
+  "chain": {
+    "notMined": "chưa được đào"
+  },
+  "sections": {
+    "header": "~250 byte. Chứa hash của 3 phần còn lại + lời giải PoW.",
+    "txs": "Danh sách giao dịch. Gốc Merkle nằm trong transactionsRoot.",
+    "adProofs": "Bằng chứng thay đổi UTXO set, cho node nhẹ. Hash nằm trong adProofsRoot.",
+    "extension": "Cặp key–value: tham số mạng, interlinks (NiPoPoW). Gốc Merkle trong extensionHash."
+  },
+  "live": {
+    "badge": "dữ liệu trực tiếp",
+    "txCount": "Giao dịch",
+    "size": "Kích thước",
+    "minerGets": "Thợ đào nhận",
+    "fees": "Phí giao dịch"
+  },
+  "field": {
+    "version": "Phiên bản header. Nó tăng mỗi lần giao thức được nâng cấp bằng hard fork hoặc soft fork (ví dụ Autolykos v2 bắt đầu từ version 2).",
+    "parentId": "Id của block ngay trước đó. Chính trường này nối các block thành một <em>chuỗi</em>: muốn sửa một block cũ, bạn phải đào lại mọi block phía sau.",
+    "height": "Vị trí của block trong chuỗi, đếm từ block đầu tiên (height 1); mỗi block sau lớn hơn block trước đúng 1.",
+    "timestamp": "Thời điểm thợ đào tạo header, tính bằng <b>mili giây</b> Unix (Bitcoin dùng giây).",
+    "nBits": "Độ khó được mã hoá “compact” (giống Bitcoin): 1 byte số mũ + 3 byte phần định trị. Xem <difficulty>Độ khó & nBits</difficulty>.",
+    "difficulty": "Giá trị giải mã từ nBits. Chia cho 120 giây ta ước lượng được hashrate: ≈ {{hashrate}} TH/s.",
+    "stateRoot": "Dấu vân tay của toàn bộ box chưa tiêu sau block này. Gồm 33 byte: 32 byte gốc của cây <b>AVL+</b> chứa cả UTXO set, cộng 1 byte chiều cao cây. Có dấu vân tay này và một bằng chứng nhỏ, node nhẹ kiểm tra được một box có tồn tại mà không cần lưu cả tập.",
+    "transactionsRoot": "Gốc Merkle của các giao dịch trong block. Đổi một byte bất kỳ trong một giao dịch, gốc này đổi theo → header (và id) đổi theo.",
+    "adProofsRoot": "Bằng chứng rằng UTXO set đã thay đổi đúng trong block này. Đây là hash của phần <em>AD proofs</em> (authenticated dictionary proofs), cho thấy từng bước stateRoot cũ biến thành stateRoot mới.",
+    "extensionHash": "Gốc Merkle của phần <em>extension</em>: tham số mạng (khi miner bỏ phiếu thay đổi) và interlinks dùng cho NiPoPoW.",
+    "votes": "3 byte phiếu bầu của thợ đào cho việc thay đổi tham số (kích thước block, phí lưu trữ…).",
+    "votesNone": "Toàn 0 nghĩa là block này không bỏ phiếu gì.",
+    "votesSome": "Block này đang bỏ phiếu cho một thay đổi tham số.",
+    "powPk": "Khoá công khai của thợ đào. Phần thưởng block bị khoá cho đúng khoá này — ai tìm ra lời giải cũng không thể “đánh cắp” nó.",
+    "powW": "Trong Autolykos v1 đây là khoá tạm thời. Từ v2 nó không còn dùng: giá trị cố định chính là điểm sinh <code>G</code> của secp256k1 (<code>0279be66…</code>).",
+    "powN": "<b>Nonce</b> 8 byte — thứ thợ đào thay đổi hàng tỉ lần mỗi giây cho tới khi hash đủ nhỏ. Xem <autolykos>Autolykos v2</autolykos>.",
+    "powD": "Cũng là di sản của v1; trong v2 luôn bằng 0.",
+    "id": "Không phải một trường được lưu trong header: đây là <code>blake2b256(header)</code>, dùng để nhắc tới block này (và là parentId của block kế tiếp)."
+  },
+  "intro": {
+    "p1": "Một <b>block</b> là một gói giao dịch được thợ đào đóng dấu bằng Proof-of-Work. Khoảng mỗi <b>2 phút</b>, một block mới được thêm vào cuối chuỗi, và mọi node trên thế giới cập nhật cùng một bản sổ cái.",
+    "p2": "Bài này mổ xẻ phần quan trọng nhất của block — <b>header</b> — trên block mới nhất của mạng Ergo, lấy trực tiếp từ explorer. Trang tự làm mới mỗi 30 giây, nên có thể bạn đang nhìn một block vừa được đào xong."
+  },
+  "structure": {
+    "title": "Một block gồm những gì?",
+    "p1": "Khác với Bitcoin (header + danh sách giao dịch), block Ergo được chia thành <b>bốn phần</b> tách rời. Header chỉ chứa hash của ba phần còn lại, nên một node có thể tải header trước và chỉ lấy những phần nó thật sự cần.",
+    "whyTitle": "Vì sao tách ra?",
+    "whyText": "Node nhẹ (light node) hoặc điện thoại không cần giữ toàn bộ trạng thái hay lịch sử: với header, giao dịch của block mới và AD proofs, nó kiểm tra được rằng trạng thái đã được cập nhật đúng."
+  },
+  "chainSec": {
+    "title": "Chuỗi các block",
+    "p1": "Mỗi header chứa <code>parentId</code> — id của block trước. Vì id là hash của header, sửa bất kỳ block cũ nào sẽ làm đổi id của nó, phá vỡ liên kết với mọi block phía sau."
+  },
+  "header": {
+    "title": "Header, từng trường một",
+    "p1": "Dưới đây là header của block mới nhất. Mỗi dòng gồm tên trường, giá trị thật, và ý nghĩa của nó."
+  },
+  "blockId": {
+    "title": "Block id được tính thế nào?",
+    "p1": "Tất cả các trường trên được tuần tự hoá thành bytes theo một thứ tự cố định, rồi đưa qua hàm băm <b>Blake2b-256</b>. Kết quả 32 byte chính là block id. Bạn có thể thử hàm băm này tại <blake>công cụ Blake2b</blake>.",
+    "p2": "Lưu ý: điều kiện Proof-of-Work <em>không</em> phải “block id nhỏ hơn target” như Bitcoin. Autolykos tính một hash riêng từ header (không gồm lời giải) và nonce, rồi so với target. Chi tiết ở bài <autolykos>Autolykos v2</autolykos>."
+  },
+  "reward": {
+    "title": "Phần thưởng block",
+    "p1": "Giao dịch đầu tiên của mỗi block là giao dịch thưởng (explorer gọi là “Block reward”). Khác coinbase của Bitcoin, nó không tạo ERG mới. Thay vào đó, nó tiêu box của hợp đồng phát hành (emission contract) và chuyển một phần ERG có sẵn trong đó sang box thưởng của thợ đào — xem <coinbase>Không có “coinbase” như Bitcoin</coinbase>. Hiện nay, EIP-27 còn khoá một phần phát hành của mỗi block vào hợp đồng tái phát hành, nên thợ đào nhận ít hơn con số “phát hành” danh nghĩa.",
+    "emission": "ERG được phát hành (rút từ emission contract)",
+    "reemitted": "Bị khoá vào hợp đồng tái phát hành (EIP-27)",
+    "reward": "Thợ đào nhận từ phát hành",
+    "fees": "Cộng phí giao dịch",
+    "p2": "Toàn bộ lịch trình được giải thích trong <emission>Lịch phát hành & EIP-27</emission>; bạn có thể xem giao dịch coinbase và các giao dịch khác của block bằng cách mở trang <explorer>explorer</explorer>."
+  },
+  "confirm": {
+    "title": "Xác nhận (confirmations)",
+    "text": "Một giao dịch nằm trong block ở height <code>h</code> có số xác nhận = <code>tip − h + 1</code>. Mỗi block mới đè lên làm việc viết lại lịch sử khó hơn theo cấp số — đó là lý do sàn giao dịch chờ vài chục xác nhận trước khi ghi nhận tiền nạp."
+  }
+}

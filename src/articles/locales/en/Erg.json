@@ -1,0 +1,46 @@
+{
+  "intro": "<b>ERG</b> is Ergo's native currency. You use it to pay other people and to pay transaction fees, and miners receive it as their reward for securing the network.",
+  "supply": {
+    "title": "A capped supply",
+    "p1": "At most <b>97,739,925 ERG</b> will ever be created — not a single coin more. That number isn't anyone's promise; it's written into the rules that every node enforces. If a block tries to create more ERG than the schedule allows, every node simply throws it away.",
+    "issued": "{{pct}} of the total supply has been issued",
+    "asOf": "as of block {{height}}",
+    "circulating": "In circulation",
+    "locked": "Locked for re-emission",
+    "unmined": "Not yet mined"
+  },
+  "chart": {
+    "now": "Now",
+    "title": "New ERG created per block",
+    "label": "ERG issued per block by height",
+    "caption": "Horizontal axis: block height. Each step drops by 3 ERG and lasts 64,800 blocks (~3 months)."
+  },
+  "origin": {
+    "title": "Where does ERG come from?",
+    "p1": "Every newly mined block creates some new ERG. This is the <b>only</b> way ERG comes into existence — no ICO, no pre-mine. All future ERG is already sitting in a special box called the <em>emission box</em>, locked by a contract that only allows exactly the scheduled amount to be withdrawn at each block.",
+    "p2": "The emission schedule has two phases:",
+    "phase1": "<b>The first 2 years</b> (525,600 blocks): each block creates <b>75 ERG</b>, of which 7.5 ERG goes to the development fund (treasury).",
+    "phase2": "<b>After that</b>: every 64,800 blocks (~3 months), the amount per block drops by <b>3 ERG</b>, until it reaches zero.",
+    "now": "Right now (block {{height}}) each block creates <b>{{emission}} ERG</b>. Emission from the emission box ends around block <b>{{end}}</b> — estimated to be around <b>{{date}}</b>."
+  },
+  "reemission": {
+    "title": "Re-emission (EIP-27)",
+    "p1": "As the reward shrinks towards zero, what will pay miners? In 2022 the community adopted a rule change called <b>EIP-27</b> (an “Ergo Improvement Proposal” — the way changes to Ergo's rules are proposed and agreed on). Starting at block 777,217, part of each block's reward (up to 12 ERG) is <b>locked</b> away in a “savings” contract — the re-emission contract — instead of being paid to the miner straight away.",
+    "p2": "Once the emission box runs dry, this contract keeps releasing <b>3 ERG per block</b> to miners, extending the period in which they get paid by many years. The total supply doesn't change — the ERG is just “saved up” for the future.",
+    "now": "At the current block, of the {{emission}} ERG created, the miner receives <b>{{reward}} ERG</b> immediately; the rest is locked for the re-emission period."
+  },
+  "nano": {
+    "title": "The smallest unit: nanoERG",
+    "p1": "The blockchain doesn't store decimals. Every value is stored as a whole number of <b>nanoERG</b>:",
+    "fee": "0.001 (a common transaction fee)",
+    "p2": "Convert back and forth with the <units>ERG unit converter</units>, or work out the reward at any height with the <calc>emission calculator</calc>."
+  },
+  "more": {
+    "title": "Want more detail?",
+    "text": "The technical article <emission>Emission schedule &amp; EIP-27</emission> goes into the exact formulas and how the reward is split between the miner, the treasury and the re-emission contract."
+  },
+  "next": {
+    "title": "What's next",
+    "p1": "Now you know where ERG comes from. Next, learn how to keep it safe: <wallets>wallets, keys and addresses</wallets>."
+  }
+}

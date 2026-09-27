@@ -2,10 +2,9 @@ import { lazy } from 'react'
 import { Blocks, BookOpen, Boxes, Coins, Compass, Cpu, FileCode2, FileText, Gauge, Hourglass, KeyRound, Layers, Link2, Lock, Megaphone, Pickaxe, ScrollText, Shapes, Sigma, TrendingDown, Wallet } from 'lucide-react'
 import { ARTICLES } from './manifest'
 
-// Each article has a Vietnamese file in this folder and an English one in ./en.
-const vi = import.meta.glob(['./*.jsx'])
-const en = import.meta.glob(['./en/*.jsx'])
-const load = (file) => ({ vi: lazy(vi[`./${file}.jsx`]), en: lazy(en[`./en/${file}.jsx`] ?? vi[`./${file}.jsx`]) })
+// One JSX file per article; its text lives in ./locales/{en,vi}/<File>.json.
+const files = import.meta.glob(['./*.jsx'])
+const load = (file) => lazy(files[`./${file}.jsx`])
 
 const ICONS = { Blocks, Boxes, Coins, Compass, Cpu, FileCode2, FileText, Gauge, Hourglass, KeyRound, Layers, Link2, Lock, Megaphone, Pickaxe, ScrollText, Shapes, Sigma, TrendingDown, Wallet }
 

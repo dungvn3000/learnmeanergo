@@ -1,0 +1,64 @@
+{
+  "pow": {
+    "error": "Không lấy được lời giải PoW.",
+    "title": "Lời giải PoW của block <block>#{{height}}</block>",
+    "pk": {
+      "intro": "Khoá công khai của thợ đào. Nó chính là",
+      "address": "địa chỉ",
+      "matches": "trùng với địa chỉ nhận thưởng",
+      "reward": "địa chỉ nhận thưởng",
+      "outro": ". Phần thưởng của block chỉ mở được bằng khoá này."
+    },
+    "w": {
+      "isG": "Chính là điểm sinh G của secp256k1 — ",
+      "text": "một giá trị cố định trong Autolykos v2, giữ lại chỉ để định dạng header không đổi."
+    },
+    "n": "8 byte mà thợ đào thay đổi liên tục cho tới khi tìm được giá trị băm đủ nhỏ. Đây là phần duy nhất thật sự “được đào”.",
+    "d": "Luôn bằng 0 trong v2 (ở v1, d là một phần của lời giải).",
+    "N": {
+      "name": "N ở độ cao này",
+      "text": "Số phần tử trong bảng mà thợ đào phải giữ trong bộ nhớ. N × 32 byte ≈ {{gib}} GiB (con số lý thuyết — phần mềm đào có thể tổ chức bảng khác đi một chút)."
+    }
+  },
+  "intro": "Giống Bitcoin, Ergo dùng <b>Proof-of-Work</b>: để thêm một block, thợ đào phải tìm một con số (nonce) sao cho giá trị băm của header nhỏ hơn một ngưỡng gọi là <target>target</target>. Khác biệt nằm ở hàm được băm. Bitcoin dùng SHA-256 đôi — rất nhanh, và vì thế bị thống trị bởi máy ASIC chuyên dụng. Ergo dùng <b>Autolykos</b>, một thuật toán <em>memory-hard</em>: tốc độ đào bị giới hạn bởi băng thông bộ nhớ, thứ mà GPU phổ thông đã làm rất tốt.",
+  "idea": {
+    "title": "Ý tưởng: bài toán k-sum",
+    "p1": "Hãy hình dung một bảng tra khổng lồ chỉ vừa trong bộ nhớ của card đồ hoạ. Mỗi lần thử đào là “chọn ngẫu nhiên 32 ô trong bảng, cộng lại, băm tổng, rồi xem có may mắn không”. Phần khó không nằm ở phép toán — mà ở việc phải đọc 32 ô từ một bảng nhiều gigabyte, hàng tỷ lần.",
+    "p2": "Autolykos dựa trên bài toán k-sum: chọn ra k phần tử từ một danh sách lớn sao cho tổng của chúng thoả một điều kiện. Cụ thể trong v2, với k = {{k}}:",
+    "li1": "Có một <b>bảng</b> gồm N phần tử, mỗi phần tử được sinh ra bằng cách băm chỉ số của nó cùng với độ cao block. Thợ đào tính sẵn toàn bộ bảng cho độ cao hiện tại và giữ nó trong VRAM của GPU.",
+    "li2": "Với mỗi nonce thử, băm (thông điệp header ‖ nonce) để sinh ra <b>{{k}} chỉ số</b> giả ngẫu nhiên trong bảng.",
+    "li3": "Lấy {{k}} phần tử tại các chỉ số đó, <b>cộng lại</b>, rồi băm tổng bằng <code>blake2b256</code>.",
+    "li4": "Nếu kết quả (hiểu như một số nguyên) nhỏ hơn target → tìm thấy block. Nếu không → đổi nonce, làm lại.",
+    "code": "for nonce in 0, 1, 2, ...:\n    idx[0..31] = genIndexes(hash(msg ‖ nonce), N)\n    s = table[idx[0]] + table[idx[1]] + ... + table[idx[31]]\n    if blake2b256(s) < target:\n        return nonce   // 🎉 block mới",
+    "p3": "Mỗi lần thử cần {{k}} lần đọc ngẫu nhiên vào một bảng hàng GB. Tính lại phần tử của bảng mỗi lần thay vì lưu thì chậm hơn nhiều, nên ai có nhiều băng thông bộ nhớ nhất sẽ đào nhanh nhất. Một ASIC muốn cạnh tranh cũng phải mang theo lượng bộ nhớ lớn và nhanh — tức là về cơ bản trở thành một chiếc GPU."
+  },
+  "table": {
+    "title": "Bảng N ngày càng lớn",
+    "p1": "Để giữ lợi thế cho phần cứng phổ thông trong dài hạn, kích thước bảng N tăng dần theo thời gian: bắt đầu từ 2<sup>26</sup> (≈ 67 triệu phần tử), rồi từ độ cao {{start}} cứ mỗi {{period}} block (~71 ngày) lại tăng 5%, và dừng tăng quanh độ cao {{freeze}}.",
+    "height": "Độ cao",
+    "bytes": "≈ N × 32 byte"
+  },
+  "versions": {
+    "title": "Autolykos v1 và v2",
+    "p1": "Phiên bản đầu tiên (v1, từ khi mainnet ra mắt năm 2019) được thiết kế <b>non-outsourceable</b>: lời giải được ràng buộc với khoá bí mật của thợ đào, nhằm khiến việc tham gia pool trở nên rủi ro — pool nào giao việc cho thợ đào thì thợ đào có thể lấy luôn phần thưởng. Trên thực tế, điều này không ngăn được pool (họ dùng hợp đồng thông minh để chia thưởng), mà chỉ làm mọi thứ phức tạp hơn.",
+    "p2": "Hard fork tại block <b>{{height}}</b> (tháng 2/2021) đưa vào <b>Autolykos v2</b>: bỏ tính non-outsourceable để pool đào hoạt động bình thường, và đưa vào cơ chế tăng N nói trên. Định dạng header vẫn giữ bốn trường <code>pk, w, n, d</code>, nhưng:",
+    "pk": "<code>pk</code> vẫn là khoá công khai của thợ đào (hoặc pool) — người sẽ nhận phần thưởng.",
+    "w": "<code>w</code> luôn là điểm sinh <em>G</em> của secp256k1 (<code>0279be667e…</code>) — một hằng số giữ chỗ.",
+    "d": "<code>d</code> luôn là 0.",
+    "n": "<code>n</code> — nonce 8 byte — là phần duy nhất thật sự mang thông tin của lời giải."
+  },
+  "live": {
+    "title": "Trên một block thật",
+    "p1": "Đây là lời giải của block mới nhất, lấy trực tiếp từ mạng chính:"
+  },
+  "verify": {
+    "title": "Kiểm chứng rẻ, tìm kiếm đắt",
+    "text": "Tìm nonce cần hàng chục nghìn tỷ lần thử trên toàn mạng (với ~0.5 TH/s, khoảng 60 nghìn tỷ lần cho mỗi block 2 phút). Nhưng để kiểm tra, node chỉ cần tính lại {{k}} phần tử của bảng tại {{k}} chỉ số — không cần giữ cả bảng. Nhờ vậy một node chạy trên máy tính bình thường vẫn xác thực được mọi block."
+  },
+  "more": {
+    "title": "Xem thêm",
+    "difficulty": "<difficulty>Độ khó & nBits</difficulty> — target được tính và điều chỉnh ra sao.",
+    "emission": "<emission>Lịch phát hành</emission> — thợ đào nhận được bao nhiêu ERG cho mỗi block.",
+    "block": "<block>Block & header</block> — lời giải PoW nằm ở đâu trong header."
+  }
+}

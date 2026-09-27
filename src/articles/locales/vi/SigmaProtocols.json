@@ -1,0 +1,68 @@
+{
+  "demo": {
+    "title": "Thử nghiệm: Schnorr với số nhỏ (mod {{p}}, g = {{g}})",
+    "x": { "label": "Khoá bí mật x", "hint": "Chỉ người chứng minh biết" },
+    "r": { "label": "Số ngẫu nhiên r", "hint": "Dùng một lần rồi bỏ" },
+    "e": { "label": "Thử thách e", "hint": "Người xác minh chọn" },
+    "who": { "public": "Công khai", "prover": "Prover", "verifier": "Verifier" },
+    "step1": "gửi cam kết a = gʳ mod p = <b>{{a}}</b>",
+    "step2": "gửi thử thách e = <b>{{e}}</b>",
+    "step3": "gửi z = r + e·x mod (p−1) = <b>{{z}}</b>",
+    "step4": "kiểm tra gᶻ = <b>{{lhs}}</b> và a·hᵉ = <b>{{rhs}}</b>",
+    "cheat": "Giả làm kẻ gian (không biết x)",
+    "valid": "Bằng chứng hợp lệ",
+    "invalid": "Bằng chứng sai"
+  },
+  "intro": {
+    "p1": "Sigma protocol là cách chứng minh “tôi biết một bí mật” — chẳng hạn khoá bí mật — mà không để lộ bí mật đó. Mọi chữ ký trên Ergo đều là một sigma protocol, và khác chữ ký thông thường, nhiều sigma protocol có thể ghép lại thành một bằng chứng duy nhất. Bài này giải thích cách nó hoạt động và vì sao điều đó quan trọng.",
+    "p2": "Trong Bitcoin, “chữ ký” là thứ duy nhất một script có thể yêu cầu về mặt mật mã, và việc kết hợp nhiều chữ ký (multisig) được làm bằng các opcode khá vụng về. Ergo đi theo một hướng khác: mọi yêu cầu mật mã đều là một <b>Σ-protocol</b> (sigma protocol), và các Σ-protocol có thể được ghép với nhau bằng <code>&&</code>, <code>||</code> và <code>atLeast</code> ngay trong <ergotree>ErgoScript</ergotree>. Đây là lý do kiểu trả về của mọi hợp đồng là <code>SigmaProp</code>."
+  },
+  "what": {
+    "title": "Σ-protocol là gì?",
+    "p1": "Σ-protocol là một kiểu <b>zero-knowledge proof</b> ba bước giữa người chứng minh (prover) và người xác minh (verifier). Prover muốn chứng minh “tôi biết một bí mật” mà không tiết lộ bí mật đó:",
+    "commitment": "<b>Commitment</b>: prover chọn một số ngẫu nhiên và gửi đi một “cam kết”.",
+    "challenge": "<b>Challenge</b>: verifier gửi lại một thử thách ngẫu nhiên.",
+    "response": "<b>Response</b>: prover trả lời bằng một con số chỉ có thể tính được nếu biết bí mật.",
+    "p2": "Hình dạng “tới – lui – tới” của ba bước này trông giống chữ Σ, nên mới có tên như vậy. Trên blockchain không có ai để “nói chuyện qua lại”, nên thử thách được thay bằng giá trị băm của thông điệp (giao dịch) và cam kết — kỹ thuật <b>Fiat–Shamir</b>. Kết quả là một bằng chứng không tương tác, chính là thứ nằm trong trường <code>spendingProof</code> của mỗi input."
+  },
+  "dlog": {
+    "title": "proveDlog: chữ ký Schnorr",
+    "p1": "Σ-protocol cơ bản nhất là <code>proveDlog(h)</code>: “tôi biết <em>x</em> sao cho <em>h = gˣ</em>”. Ở đây <em>g</em> là điểm sinh của đường cong secp256k1, <em>x</em> là khoá bí mật và <em>h</em> là khoá công khai. Sau khi áp dụng Fiat–Shamir, đây chính là <b>chữ ký Schnorr</b>. Mọi địa chỉ ví thông thường (P2PK) là một <code>proveDlog</code> — cây <code>0008cd…</code> mà bạn đã gặp.",
+    "p2": "Hãy tự chơi với phiên bản đồ chơi dưới đây. Đổi bất kỳ số nào — phép kiểm tra vẫn đúng, miễn là prover thật sự biết x:",
+    "p3": "Vì sao nó đúng? gᶻ = g<sup>r + e·x</sup> = gʳ · (gˣ)ᵉ = a · hᵉ. Kẻ không biết <em>x</em> phải đoán trước được <em>e</em> mới gian lận được — mà <em>e</em> được chọn <em>sau</em> khi cam kết đã gửi đi.",
+    "reuseTitle": "Không bao giờ dùng lại r",
+    "reuseText": "Nếu cùng một <em>r</em> được dùng cho hai thử thách khác nhau, bất kỳ ai cũng giải ra được <em>x</em> từ hai câu trả lời. Ví thật sinh <em>r</em> ngẫu nhiên (hoặc tất định từ khoá và thông điệp) cho mỗi chữ ký."
+  },
+  "dh": {
+    "title": "proveDHTuple",
+    "p1": "Σ-protocol cơ bản thứ hai là <code>proveDHTuple(g, h, u, v)</code>: “tôi biết <em>x</em> sao cho <em>u = gˣ</em> <b>và</b> <em>v = hˣ</em>” — tức bộ bốn (g, h, u, v) là một bộ Diffie–Hellman. Đây là viên gạch để xây các giao thức riêng tư như ZeroJoin/mixer phi tập trung và chữ ký ẩn danh nâng cao, nơi người ta cần chứng minh hai giá trị liên quan tới cùng một bí mật mà không lộ ra bí mật đó."
+  },
+  "combine": {
+    "title": "Ghép Σ-protocol: AND, OR, atLeast",
+    "p1": "Điều kỳ diệu là Σ-protocol có thể được ghép lại mà kết quả vẫn là một Σ-protocol — và vẫn cho ra một bằng chứng duy nhất:",
+    "thMeaning": "Ý nghĩa",
+    "thUse": "Ứng dụng",
+    "and": { "meaning": "Cả hai cùng ký", "use": "Multisig 2-trên-2" },
+    "or": { "meaning": "Một trong hai ký — verifier không biết là ai", "use": "Ring signature" },
+    "atLeast": { "meaning": "Ít nhất 2 trong 3 cùng ký", "use": "Threshold signature, ví công ty, quỹ DAO" },
+    "nested": { "meaning": "Lồng tuỳ ý", "use": "Chính sách ký phức tạp" }
+  },
+  "ring": {
+    "title": "Ring signature: ký thay mặt cả nhóm",
+    "p1": "Ring signature nói “một trong những người này đã ký” mà không nói là ai. Với <code>alice || bob || carol</code>, prover chỉ cần biết <em>một</em> khoá bí mật.",
+    "p2": "Mẹo nằm ở cách xử lý các nhánh còn lại. Với nhánh mà prover <em>không</em> biết bí mật, họ <em>mô phỏng</em> bằng chứng: chọn trước thử thách và câu trả lời, rồi tính ngược ra cam kết sao cho phương trình vẫn khớp. Nhánh thật thì chứng minh bình thường. Cuối cùng, các thử thách được ràng buộc để XOR của chúng bằng thử thách tổng — chính ràng buộc này ngăn ai đó mô phỏng <em>mọi</em> nhánh. Nhìn vào bằng chứng hoàn chỉnh, không ai phân biệt được nhánh thật với nhánh mô phỏng, nên không ai biết ai trong nhóm đã ký."
+  },
+  "threshold": {
+    "title": "Threshold: k trên n",
+    "p1": "Chữ ký ngưỡng nói “ít nhất k trong n người này đã ký”. <code>atLeast(k, …)</code> dùng cùng mẹo mô phỏng: k người ký thật, n − k nhánh còn lại được mô phỏng, và các thử thách được ràng buộc với nhau bằng một đa thức thay vì XOR (cùng ý tưởng với chia sẻ bí mật Shamir). Kết quả vẫn là <b>một</b> bằng chứng, và người ngoài không biết k người nào đã ký.",
+    "noOpTitle": "Không cần opcode đặc biệt",
+    "noOpText": "Trong Bitcoin, multisig cần <code>OP_CHECKMULTISIG</code> và lộ ra khoá của những người đã ký. Trên Ergo, multisig, ring và threshold chỉ là cách viết biểu thức — và phần “ai đã ký” được giữ kín một cách tự nhiên."
+  },
+  "tx": {
+    "title": "Trong một giao dịch thật",
+    "p1": "Khi node xác thực một input, nó làm hai bước:",
+    "reduce": "<b>Rút gọn</b> ErgoTree với ngữ cảnh hiện tại: mọi phần boolean (như <code>HEIGHT &gt; 1000000</code>) được tính ra true/false. Phần còn lại là một cây Σ-protocol thuần tuý (hoặc hằng true/false).",
+    "verify": "<b>Kiểm tra bằng chứng</b> trong <code>spendingProof</code> với cây Σ đó, lấy thông điệp là các byte của giao dịch.",
+    "p2": "Ví dụ box phí thợ đào rút gọn thành <code>true</code> nếu giao dịch đúng khuôn, nên bằng chứng của nó rỗng — không cần ai ký. Xem thêm tại <ergotree>ErgoTree & ErgoScript</ergotree> và <transaction>Giao dịch</transaction>."
+  }
+}

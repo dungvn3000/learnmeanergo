@@ -1,0 +1,57 @@
+{
+  "chain": {
+    "seed": { "title": "Seed phrase", "text": "A list of English words, e.g. “olive tiger …”. You write it down on paper." },
+    "private": { "title": "Private key", "text": "A huge number (256 bits long) calculated from the seed phrase. This is what signs your transactions." },
+    "public": { "title": "Public key", "text": "Calculated from the private key with one-way maths (the same elliptic-curve method Bitcoin uses). Nobody can work backwards from it to the private key." },
+    "address": { "title": "Address", "text": "The public key with a small label and a typo-check added, written out as letters and digits so it is easy to copy." },
+    "secret": "secret — never share",
+    "shared": "public — share freely"
+  },
+  "demo": {
+    "minerPk": "Public key of the miner of block <block>#{{height}}</block>",
+    "computed": "Address computed right here in your browser",
+    "match": "Matches the reward address recorded by the explorer.",
+    "matchMiner": "Matches the reward address recorded by the explorer ({{miner}}).",
+    "noMatch": "This miner receives rewards at a different address."
+  },
+  "intro": "An Ergo wallet doesn't actually “hold” ERG. Your ERG lives in <boxes>boxes</boxes> on the blockchain. What the wallet holds are the <b>keys</b> that open those boxes.",
+  "seed": {
+    "title": "From seed phrase to address",
+    "p1": "When you create a new wallet, everything is generated in a one-way chain:",
+    "p2": "Every arrow is a <b>one-way</b> calculation: easy going forwards, impossible going backwards. Someone who knows your address can't work out your private key. But someone who has your seed phrase has <em>everything</em>."
+  },
+  "golden": {
+    "title": "The golden rule",
+    "text": "Your seed phrase is your money. Don't photograph it, don't store it in the cloud, don't send it to anyone — including people claiming to be “tech support”. Lose your seed phrase and your wallet together, and the money is gone forever; there's no bank to recover it for you."
+  },
+  "nine": {
+    "title": "Why do Ergo addresses start with a 9?",
+    "p1": "A regular wallet address on Ergo mainnet looks like this: <code>9fQYeMEX…KSACVmgx</code>. They almost always start with the digit <b>9</b>.",
+    "p2": "Here's why. An address is really a short list of bytes turned into letters and digits (an encoding called Base58). The very first byte is a label (the <em>prefix</em>) that says which <em>network</em> the address is for (mainnet or testnet) and what <em>type of address</em> it is. The most common type — a normal wallet, called <b>P2PK</b> (Pay-to-Public-Key) — on mainnet has the prefix <code>0x01</code>. When that byte, followed by the public key, is written out in Base58, the first character always comes out as “9”.",
+    "p3": "At the end of the address there are 4 more bytes: a <b>checksum</b>. If you mistype a single character, the checksum won't match and your wallet will refuse to send — protecting you from typos."
+  },
+  "check": {
+    "title": "Check it yourself",
+    "p1": "Every Ergo block contains the public key of the miner who found it. Below, this page takes that key from the latest block and computes the address itself — you can compare it with the address the miner uses to collect rewards:",
+    "p2": "Want to dissect any address byte by byte? Use the <decoder>address decoder</decoder> or <pk>public key → address</pk> tools."
+  },
+  "many": {
+    "title": "One wallet, many addresses",
+    "p1": "From a single seed phrase, a wallet can derive many key pairs (using a standard called HD — “hierarchical deterministic” — the same one most Bitcoin wallets use), each with its own address. You can use different addresses for different purposes; your wallet balance is the sum of all of them. And all of them can be recovered from that one seed phrase."
+  },
+  "contract": {
+    "title": "Not every address is a person",
+    "p1": "Because a box's lock on Ergo can be a smart contract, some addresses represent a <b>contract</b> rather than a key. They are usually very long (the P2S type contains the entire script) and nobody “owns” them — only someone who satisfies the contract's rules can spend from them. See the <address>Addresses</address> article for details."
+  },
+  "choose": {
+    "title": "Which wallet should I use?",
+    "nautilus": "<b>Nautilus</b> — a browser extension, used to connect to DeFi apps on Ergo.",
+    "mobile": "<b>Ergo Mobile Wallet</b> — an open-source mobile wallet for Android and iOS.",
+    "satergo": "<b>Satergo</b> — a desktop wallet that can run alongside a full node.",
+    "p1": "Whichever wallet you use, the principle is the same: you hold the seed phrase, you hold the money. Always download wallets from their official sources — the full list is at <list>ergoplatform.org/get-erg</list>."
+  },
+  "next": {
+    "title": "What's next",
+    "p1": "We've talked a lot about miners. Who are they and what do they do? Read on: <mining>Mining Ergo</mining>."
+  }
+}

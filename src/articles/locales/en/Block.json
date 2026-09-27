@@ -1,0 +1,74 @@
+{
+  "chain": {
+    "notMined": "not mined yet"
+  },
+  "sections": {
+    "header": "~250 bytes. Holds the hashes of the other 3 sections + the PoW solution.",
+    "txs": "The list of transactions. Their Merkle root goes in transactionsRoot.",
+    "adProofs": "Proofs of the UTXO set changes, for light nodes. Their hash goes in adProofsRoot.",
+    "extension": "Key–value pairs: network parameters, interlinks (NiPoPoW). Merkle root in extensionHash."
+  },
+  "live": {
+    "badge": "live data",
+    "txCount": "Transactions",
+    "size": "Size",
+    "minerGets": "Miner receives",
+    "fees": "Transaction fees"
+  },
+  "field": {
+    "version": "The header version. It goes up each time the protocol is upgraded by a hard fork or soft fork (for example, Autolykos v2 starts at version 2).",
+    "parentId": "The id of the block right before this one. This is the field that links blocks into a <em>chain</em>: to change an old block, you would have to re-mine every block after it.",
+    "height": "The block's position in the chain, counting from the first block (height 1); each block is exactly one higher than its parent.",
+    "timestamp": "When the miner created the header, as a Unix time in <b>milliseconds</b> (Bitcoin uses seconds).",
+    "nBits": "The difficulty in “compact” encoding (like Bitcoin): 1 exponent byte + 3 mantissa bytes. See <difficulty>Difficulty & nBits</difficulty>.",
+    "difficulty": "The value decoded from nBits. Divide it by 120 seconds to estimate the hashrate: ≈ {{hashrate}} TH/s.",
+    "stateRoot": "A fingerprint of every unspent box in existence after this block. It is 33 bytes: the 32-byte root of the <b>AVL+</b> tree that holds the whole UTXO set, plus 1 byte for the tree's height. With this fingerprint and a small proof, a light node can check that a box exists without storing the set itself.",
+    "transactionsRoot": "The Merkle root of the transactions in the block. Change any byte of any transaction and this root changes → so does the header (and the id).",
+    "adProofsRoot": "Proof that the UTXO set changed correctly in this block. It is the hash of the <em>AD proofs</em> section (authenticated dictionary proofs), which shows step by step how the old stateRoot became the new one.",
+    "extensionHash": "The Merkle root of the <em>extension</em> section: network parameters (when miners vote to change them) and the interlinks used by NiPoPoWs.",
+    "votes": "3 bytes of miner votes for parameter changes (block size, storage fee…).",
+    "votesNone": "All zeros means this block votes for nothing.",
+    "votesSome": "This block is voting for a parameter change.",
+    "powPk": "The miner's public key. The block reward is locked to exactly this key — whoever finds the solution can't have it “stolen”.",
+    "powW": "In Autolykos v1 this was a one-time key. From v2 on it's no longer used: its fixed value is simply the secp256k1 generator point <code>G</code> (<code>0279be66…</code>).",
+    "powN": "The 8-byte <b>nonce</b> — the thing miners change billions of times per second until the hash is small enough. See <autolykos>Autolykos v2</autolykos>.",
+    "powD": "Also a leftover from v1; always 0 in v2.",
+    "id": "Not a field stored in the header: it's <code>blake2b256(header)</code>, used to refer to this block (and it becomes the parentId of the next block)."
+  },
+  "intro": {
+    "p1": "A <b>block</b> is a bundle of transactions stamped by a miner with Proof-of-Work. Roughly every <b>2 minutes</b> a new block is added to the end of the chain, and every node in the world updates the same copy of the ledger.",
+    "p2": "This article dissects the most important part of a block — the <b>header</b> — using the latest block on the Ergo network, pulled live from the explorer. The page refreshes every 30 seconds, so you may well be looking at a block that was mined moments ago."
+  },
+  "structure": {
+    "title": "What is a block made of?",
+    "p1": "Unlike Bitcoin (header + list of transactions), an Ergo block is split into <b>four</b> separate sections. The header only contains the hashes of the other three, so a node can download headers first and fetch only the sections it actually needs.",
+    "whyTitle": "Why split it up?",
+    "whyText": "A light node or a phone doesn't need to keep the full state or history: with the header, the new block's transactions and the AD proofs, it can check that the state was updated correctly."
+  },
+  "chainSec": {
+    "title": "The chain of blocks",
+    "p1": "Every header contains a <code>parentId</code> — the id of the previous block. Since the id is a hash of the header, changing any old block changes its id, breaking the link to every block after it."
+  },
+  "header": {
+    "title": "The header, field by field",
+    "p1": "Below is the header of the latest block. Each row shows the field name, its real value, and what it means."
+  },
+  "blockId": {
+    "title": "How is the block id calculated?",
+    "p1": "All the fields above are serialized into bytes in a fixed order, then run through the <b>Blake2b-256</b> hash function. The 32-byte result is the block id. You can try the hash function yourself with the <blake>Blake2b tool</blake>.",
+    "p2": "Note: the Proof-of-Work condition is <em>not</em> “block id below target” as in Bitcoin. Autolykos computes a separate hash from the header (without the solution) and the nonce, then compares that to the target. Details in <autolykos>Autolykos v2</autolykos>."
+  },
+  "reward": {
+    "title": "The block reward",
+    "p1": "The first transaction of every block is the reward transaction (the explorer labels it “Block reward”). Unlike Bitcoin's coinbase, it creates no new ERG. Instead it spends the emission contract's box and moves part of the ERG already inside it to the miner's reward box — see <coinbase>No “coinbase” like Bitcoin</coinbase>. Right now, EIP-27 also locks part of each block's emission into the re-emission contract, so the miner receives less than the nominal “emission” figure.",
+    "emission": "ERG released from the emission contract",
+    "reemitted": "Locked into the re-emission contract (EIP-27)",
+    "reward": "Miner receives from emission",
+    "fees": "Plus transaction fees",
+    "p2": "The full schedule is explained in <emission>Emission schedule & EIP-27</emission>; you can see the reward transaction and the block's other transactions by opening the <explorer>explorer</explorer>."
+  },
+  "confirm": {
+    "title": "Confirmations",
+    "text": "A transaction in the block at height <code>h</code> has <code>tip − h + 1</code> confirmations. Each new block piled on top makes rewriting history exponentially harder — which is why exchanges wait for dozens of confirmations before crediting a deposit."
+  }
+}

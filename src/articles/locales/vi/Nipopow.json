@@ -1,0 +1,99 @@
+{
+  "live": {
+    "title": "Bằng chứng NiPoPoW thật — <code>GET /nipopow/proof/{{m}}/{{k}}</code>",
+    "chain": "Chuỗi thật",
+    "chainSub": "block header",
+    "inProof": "Trong bằng chứng",
+    "inProofSub": "header · ≈ {{size}}",
+    "compression": "Nén",
+    "levels": "Mức superblock",
+    "caption": "Mỗi vạch cam là một header có mặt trong bằng chứng. Phần đầu chuỗi chỉ cần vài superblock rải rác; càng gần đỉnh, mẫu càng dày và {{k}} block cuối được lấy trọn. Dữ liệu từ node <node>{{node}}</node>."
+  },
+  "intro": "Muốn tự kiểm tra rằng một giao dịch nằm trong chuỗi Ergo, cách “chuẩn” là tải toàn bộ block header — hơn 1.8 triệu cái, mỗi cái ~250 byte — rồi kiểm tra proof-of-work của từng cái. Với điện thoại, hay với một hợp đồng thông minh trên blockchain <em>khác</em>, thế là quá nhiều. <b>NiPoPoW</b> (Non-Interactive Proofs of Proof-of-Work) là cách rút chuỗi header ấy xuống còn vài trăm cái mà vẫn giữ được mức tin cậy tương đương.",
+  "superblock": {
+    "title": "Superblock: có block “may mắn” hơn block khác",
+    "p1": "Thợ đào phải tìm một lời giải PoW nhỏ hơn mục tiêu <code>T</code> (xem <difficulty>Độ khó & nBits</difficulty>). Nhưng lời giải thường nhỏ hơn <em>nhiều</em> so với yêu cầu: trung bình cứ 2 block thì có 1 block có lời giải nhỏ hơn <code>T/2</code>, cứ 4 block thì có 1 block nhỏ hơn <code>T/4</code>, và cứ 2<sup>μ</sup> block có 1 block nhỏ hơn <code>T/2<sup>μ</sup></code>. Block như vậy gọi là <b>superblock mức μ</b>.",
+    "level0": "Mức 0: mọi block.",
+    "level1": "Mức 1: khoảng một nửa số block.",
+    "levelMu": "Mức μ: khoảng 1/2<sup>μ</sup> số block — mức cao nhất trong một chuỗi dài n block xấp xỉ log<sub>2</sub>(n).",
+    "p2": "Ý tưởng then chốt: một superblock mức μ “chứa” lượng công việc kỳ vọng bằng 2<sup>μ</sup> block thường. Vì vậy, thay vì đưa ra toàn bộ chuỗi, người chứng minh chỉ cần đưa ra <em>chuỗi các superblock</em> ở mức cao — ít hơn nhiều nhưng đại diện cho lượng proof-of-work tương đương. Không ai “làm giả” được superblock: muốn có một block mức 20 phải may mắn gấp một triệu lần block thường."
+  },
+  "interlink": {
+    "title": "Interlink: con trỏ ngược tới mọi mức",
+    "p1": "Header thường chỉ có một con trỏ ngược: <code>parentId</code>. Để đi từ superblock này tới superblock trước đó <em>cùng mức</em> mà không phải duyệt qua mọi block ở giữa, mỗi block Ergo còn mang thêm một vector <b>interlink</b>: phần tử thứ μ là id của superblock mức μ gần nhất trước nó. Vector này được ghi trong phần <em>extension</em> của block (header cam kết nó qua <code>extensionHash</code>), kèm một Merkle proof để ai cũng kiểm tra được mà không cần cả extension. Vector hiện có khoảng 21 phần tử — đúng bằng số mức superblock mà một chuỗi ~1.9 triệu block có thể có.",
+    "noteTitle": "Vì sao Ergo có sẵn từ block 1",
+    "note": "Bitcoin có thể thêm interlink bằng “velvet fork” (thợ đào ghi thêm dữ liệu, node cũ bỏ qua), nhưng chưa làm. Ergo được thiết kế bởi các nhà nghiên cứu gắn bó mật thiết với công trình NiPoPoW, nên interlink có trong mọi block ngay từ genesis — không cần fork gì cả."
+  },
+  "proof": {
+    "title": "Bằng chứng gồm những gì?",
+    "p1": "Một bằng chứng NiPoPoW có hai tham số bảo mật và ba phần:",
+    "component": "Thành phần",
+    "meaning": "Ý nghĩa",
+    "m": "Số superblock tối thiểu phải có ở mỗi mức được dùng — càng lớn càng khó gian lận, bằng chứng càng dài.",
+    "k": "Số block cuối chuỗi luôn được lấy trọn (giống “số xác nhận”), vì phần đuôi chưa ổn định.",
+    "prefix": "Chuỗi superblock từ genesis tới gần đỉnh, lấy ở mức cao nhất còn đủ m block, rồi xuống dần các mức thấp hơn khi tới gần đỉnh.",
+    "suffix": "k header cuối cùng, kèm interlink của block đầu đuôi để nối với prefix.",
+    "p2": "Bằng chứng ở đầu trang dùng <code>m = {{m}}, k = {{k}}</code>. Node Ergo phục vụ nó qua API <code>/nipopow/proof/{m}/{k}</code> — và bạn có thể xin bằng chứng tới một block cụ thể bằng <code>/nipopow/proof/{m}/{k}/{headerId}</code>."
+  },
+  "verify": {
+    "title": "Người kiểm tra tin ai?",
+    "p1": "Người kiểm tra không cần tin bất kỳ node nào. Họ xin bằng chứng từ <b>nhiều</b> node và giữ lại bằng chứng tốt nhất. Để so sánh hai bằng chứng:",
+    "step1": "Tìm block chung cuối cùng của hai bằng chứng — mọi thứ trước đó đều đã thống nhất.",
+    "step2": "Từ điểm đó trở đi, xét mức superblock cao nhất mà cả hai bằng chứng vẫn còn ít nhất m block.",
+    "step3": "Đếm số block ở mức đó của mỗi bên. Một block mức μ đại diện cho 2<sup>μ</sup> block thường về lượng công việc, nên bên nào nhiều hơn tức là đại diện cho nhiều proof-of-work hơn — và thắng.",
+    "p2": "Chỉ cần <em>ít nhất một</em> node trung thực trong số được hỏi, kết quả sẽ đúng — cùng giả định “đa số sức mạnh băm là trung thực” mà chính blockchain dựa vào.",
+    "warnTitle": "Không phải phép màu",
+    "warn": "NiPoPoW chứng minh “chuỗi này có nhiều proof-of-work nhất”, không chứng minh từng giao dịch hợp lệ — việc đó vẫn cần full node. Ứng dụng chỉ nhận đúng một bằng chứng (ví dụ hợp đồng trên chuỗi khác) phải đặt ngưỡng công việc tối thiểu và đợi đủ xác nhận."
+  },
+  "spv": {
+    "title": "So với SPV của Bitcoin (Electrum)",
+    "p1": "Ví nhẹ của Bitcoin như <b>Electrum</b> dùng mô hình <em>SPV</em> (Simplified Payment Verification) mà Satoshi mô tả trong whitepaper: tải <b>toàn bộ</b> block header (80 byte mỗi cái), kiểm tra proof-of-work của cả chuỗi, rồi hỏi máy chủ Electrum bằng chứng Merkle cho từng giao dịch mình quan tâm. NiPoPoW giữ nguyên ý tưởng đó nhưng thay “toàn bộ header” bằng “vài trăm superblock”:",
+    "rows": {
+      "headers": {
+        "label": "Header cần tải",
+        "btc": "Tất cả — khoảng 950 nghìn header × 80 byte ≈ 75 MB (2026), tăng tuyến tính mãi mãi",
+        "ergo": "Vài trăm header — bằng chứng ở đầu trang chỉ ~40 KB, tăng theo log của chiều dài chuỗi"
+      },
+      "inclusion": {
+        "label": "Chứng minh giao dịch nằm trong chuỗi",
+        "btc": "Nhánh Merkle tới header của block",
+        "ergo": "Nhánh Merkle tới header, cộng bằng chứng NiPoPoW rằng header đó thuộc chuỗi nặng nhất"
+      },
+      "balance": {
+        "label": "Kiểm tra số dư / UTXO",
+        "btc": "Phải tin máy chủ: nó có thể giấu bớt giao dịch của bạn",
+        "ergo": "Có thể tự kiểm tra bằng bằng chứng AVL+ so với <code>stateRoot</code> trong header — máy chủ không giấu được"
+      },
+      "trust": {
+        "label": "Mô hình tin cậy",
+        "btc": "Đa số hashrate trung thực; máy chủ trung thực về lịch sử địa chỉ",
+        "ergo": "Đa số hashrate trung thực; ít nhất một trong các node được hỏi trung thực"
+      },
+      "contract": {
+        "label": "Xác minh trong hợp đồng ở chuỗi khác",
+        "btc": "Gần như bất khả thi — 75 MB header không nhét vào hợp đồng được",
+        "ergo": "Khả thi — vài chục KB, đủ cho sidechain và cầu nối"
+      },
+      "phone": {
+        "label": "Trên điện thoại",
+        "btc": "Electrum dùng “checkpoint” gắn cứng trong phần mềm để đỡ tải header cũ — tức là tin nhà phát triển",
+        "ergo": "Không cần checkpoint: bằng chứng tự đứng được từ genesis"
+      }
+    },
+    "p2": "Cả hai đều <em>không</em> kiểm tra từng giao dịch có hợp lệ hay không — đó vẫn là việc của full node. Điểm khác là NiPoPoW làm cho việc “xác minh chuỗi” rẻ tới mức một hợp đồng thông minh cũng làm được, còn <code>stateRoot</code> của Ergo lấp nốt lỗ hổng lớn nhất của SPV: máy chủ không thể nói dối về tập UTXO. Bitcoin cũng có thể có NiPoPoW qua một velvet fork, nhưng tới nay chưa triển khai."
+  },
+  "uses": {
+    "title": "Ergo dùng NiPoPoW để làm gì?",
+    "bootstrap": "<b>Khởi động node nhanh</b>: node Ergo có thể bắt đầu từ một bằng chứng NiPoPoW (xin từ nhiều peer, giữ bằng chứng tốt nhất) rồi tải ảnh chụp tập UTXO, thay vì đồng bộ từ block 1. Bật bằng <code>ergo.node.nipopow.nipopowBootstrap = true</code>. Tài liệu Ergo ước tính bằng chứng cho vài năm chuỗi chỉ cỡ 30–40 KB, so với ảnh chụp UTXO vài trăm MB.",
+    "light": "<b>Client nhẹ</b>: ví trên điện thoại kiểm tra chuỗi bằng vài trăm header thay vì gần hai triệu, kết hợp với <block>stateRoot</block> để xác minh box.",
+    "mining": "<b>Đào trong không gian logarit</b>: thợ đào chỉ giữ các superblock quan trọng thay vì cả lịch sử (“logarithmic space mining”).",
+    "bridges": "<b>Sidechain và cầu nối</b>: hợp đồng trên một chuỗi khác có thể xác minh “sự kiện X đã xảy ra trên Ergo” từ một bằng chứng — nền tảng cho two-way peg, atomic swap xuyên chuỗi mà không cần bên trung gian.",
+    "p1": "Node 6.0.5 siết thêm ba kiểm tra: xác nhận tham số m/k của bằng chứng yêu cầu, kiểm tra proof-of-work của từng header trước khi dùng để khởi động, và từ chối tham số m/k không hợp lệ từ peer."
+  },
+  "reading": {
+    "title": "Đọc thêm",
+    "docs": "<doc>NiPoPoWs — Ergo docs</doc> (tiếng Anh), cùng các trang con về light client, light miner và sidechain.",
+    "paper": "<paper>Non-Interactive Proofs of Proof-of-Work</paper> — Kiayias, Miller, Zindros (2017), bài báo gốc.",
+    "storage": "<storage>Compact Storage of Superblocks for NIPoPoW Applications</storage> — cách Ergo lưu interlink gọn trong extension."
+  }
+}

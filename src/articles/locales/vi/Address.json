@@ -1,0 +1,68 @@
+{
+  "typeDesc": {
+    "1": "Nội dung là khoá công khai nén 33 byte (secp256k1).",
+    "2": "24 byte đầu của blake2b256(script).",
+    "3": "Nội dung là toàn bộ ErgoTree đã tuần tự hoá."
+  },
+  "decoded": {
+    "error": "Không giải mã được địa chỉ: {{message}}",
+    "unknownNetwork": "Không rõ",
+    "afterBase58": "Sau khi giải mã Base58 ({{n}} byte):",
+    "prefixDesc": "4 bit cao là mạng, 4 bit thấp là loại địa chỉ.",
+    "content": "Nội dung",
+    "contentBytes": "{{n}} byte",
+    "match": "khớp blake2b256(prefix ‖ nội dung)[0..4] = {{checksum}}",
+    "mismatch": "không khớp ({{checksum}})",
+    "checksumDesc": "Tính lại ngay trong trình duyệt của bạn.",
+    "treeP2pk": "P2PK: chỉ cần thêm 0008cd vào trước khoá công khai.",
+    "treeP2s": "P2S: nội dung chính là ErgoTree."
+  },
+  "live": {
+    "label": "Địa chỉ đã đào block #{{height}} ({{miner}})",
+    "miner": "thợ đào",
+    "error": "Không lấy được block mới nhất."
+  },
+  "intro": "Trên blockchain, box không lưu “địa chỉ” — nó lưu một <ergotree>ErgoTree</ergotree>. Địa chỉ chỉ là cách viết ErgoTree (hoặc một phần của nó) sao cho con người có thể sao chép, dán và đọc qua điện thoại mà không sợ gõ nhầm. Một địa chỉ Ergo gồm ba phần, được mã hoá Base58:",
+  "prefix": {
+    "title": "Byte prefix: mạng + loại",
+    "p1": "Byte đầu tiên gói hai thông tin: <b>mạng</b> (4 bit cao) và <b>loại địa chỉ</b> (4 bit thấp). Cộng chúng lại là ra prefix:",
+    "thType": "Loại",
+    "thContent": "Nội dung",
+    "p2pkStart": "<code>0x01</code> → bắt đầu bằng <code>9</code>",
+    "p2pkTestStart": "<code>0x11</code> → bắt đầu bằng <code>3</code>",
+    "p2pkContent": "Khoá công khai nén, 33 byte",
+    "p2shStart": "<code>0x02</code> → bắt đầu bằng <code>6</code>, <code>7</code> hoặc <code>8</code>",
+    "p2shContent": "24 byte đầu của blake2b256(script)",
+    "p2sContent": "Toàn bộ ErgoTree",
+    "p2": "Vì Base58 biểu diễn cả chuỗi byte như một số lớn, byte đầu tiên gần như quyết định ký tự đầu tiên. Đó là lý do mọi địa chỉ ví thông thường (P2PK) trên mainnet đều bắt đầu bằng chữ <code>9</code>."
+  },
+  "p2pk": {
+    "title": "P2PK: địa chỉ ví thông thường",
+    "p1": "Pay-to-Public-Key là loại bạn dùng hàng ngày. Nội dung chỉ là 33 byte khoá công khai; ErgoTree đầy đủ luôn là <code>0008cd</code> + khoá công khai, nên không cần lưu. Dưới đây là địa chỉ của thợ đào vừa tìm ra block mới nhất, được tách byte ngay trong trình duyệt:"
+  },
+  "p2s": {
+    "title": "P2S: địa chỉ của một hợp đồng",
+    "p1": "Pay-to-Script chứa <em>toàn bộ</em> ErgoTree. Kết quả là địa chỉ dài — đôi khi hàng trăm ký tự — nhưng bất kỳ ai cũng đọc được hợp đồng chỉ từ địa chỉ. Ví dụ: địa chỉ của hợp đồng phí thợ đào, thứ xuất hiện trong gần như mọi giao dịch:",
+    "feeLabel": "Hợp đồng phí thợ đào (P2S)"
+  },
+  "p2sh": {
+    "title": "P2SH: chỉ lưu giá trị băm",
+    "p1": "Pay-to-Script-Hash chỉ lưu 24 byte đầu (192 bit) của <code>blake2b256</code> của script. Địa chỉ ngắn gọn, nhưng người tiêu phải cung cấp script gốc khi tiêu box, và script chỉ bị lộ ra lúc đó. Trên thực tế P2SH ít được dùng; hầu hết dApp dùng P2S để hợp đồng minh bạch ngay từ đầu."
+  },
+  "checksum": {
+    "title": "Checksum: bắt lỗi gõ nhầm",
+    "p1": "4 byte cuối là checksum: lấy <code>blake2b256</code> của (prefix ‖ nội dung) và giữ 4 byte đầu. Ví kiểm tra lại checksum trước khi gửi tiền; nếu bạn gõ sai một ký tự, xác suất checksum vẫn khớp chỉ khoảng 1 trên 4 tỷ.",
+    "base58Title": "Vì sao dùng Base58?",
+    "base58Text": "Base58 là Base64 bỏ đi những ký tự dễ nhầm: số <code>0</code> và chữ <code>O</code>, chữ <code>I</code> hoa và <code>l</code> thường, cùng dấu <code>+</code> và <code>/</code>. Ergo dùng cùng bảng chữ cái với Bitcoin."
+  },
+  "many": {
+    "title": "Một ví, nhiều địa chỉ",
+    "p1": "Ví hiện đại (theo chuẩn BIP-32/BIP-44, với đường dẫn <code>m/44'/429'/0'/0/i</code>) sinh ra cả dãy khoá từ một seed phrase — mỗi khoá là một địa chỉ P2PK. Và vì địa chỉ chỉ là cách viết ErgoTree, “địa chỉ” của một hợp đồng phức tạp cũng hợp lệ không kém một địa chỉ ví: bạn có thể gửi tiền tới nó như bình thường."
+  },
+  "try": {
+    "title": "Tự thử",
+    "decoder": "<link>Giải mã địa chỉ</link> — dán địa chỉ bất kỳ để tách từng byte.",
+    "pubkey": "<link>Public key → Địa chỉ</link> — tự dựng một địa chỉ P2PK.",
+    "blake": "<link>Blake2b-256</link> — tự tính checksum."
+  }
+}

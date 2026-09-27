@@ -1,0 +1,67 @@
+{
+  "calc": {
+    "title": "Máy tính phí lưu trữ",
+    "size": "Kích thước box (byte)",
+    "bytes": "{{n}} byte",
+    "value": "Giá trị box (ERG)",
+    "created": "Tạo ở độ cao",
+    "fee": "Phí mỗi chu kỳ",
+    "feeHint": "Thợ đào được lấy tối đa chừng này mỗi lần box “quá hạn”.",
+    "min": "Giá trị tối thiểu",
+    "minHint": "Box nhỏ hơn mức này không được phép tạo ra ngay từ đầu.",
+    "survives": "Box sống được",
+    "tooShort": "Chưa tới 1 chu kỳ — thợ đào có thể lấy toàn bộ box khi quá hạn.",
+    "lives": "{{periods}} chu kỳ ≈ {{years}} năm nếu không bao giờ được động tới",
+    "overdue": "Quá hạn từ block",
+    "already": "— đã có thể bị thu phí (hiện tại: {{height}})",
+    "toGo": "— còn {{blocks}} block (≈ {{years}} năm)"
+  },
+  "intro": "Mỗi node Ergo phải giữ toàn bộ tập box chưa tiêu (UTXO set) để xác thực giao dịch mới. Tập này chỉ có thể lớn dần: người ta tạo box mới liên tục, còn những box bị bỏ quên — ví mất seed, bụi token, thí nghiệm của lập trình viên — thì nằm đó mãi mãi. Trong Bitcoin, người dùng trả phí <em>một lần</em> khi tạo output, rồi được lưu trữ miễn phí vĩnh viễn trên máy của mọi node. Ergo trả lời câu hỏi “ai trả tiền cho việc lưu trữ vĩnh viễn?” bằng <b>storage rent</b> (phí lưu trữ, còn gọi là demurrage).",
+  "rule": {
+    "title": "Quy tắc",
+    "p1": "Nếu một box nằm yên — không bị tiêu, không được “làm mới” — trong <b>{{period}} block</b> (≈ {{years}} năm), thợ đào được phép động vào nó dù không có khoá:",
+    "li1": "Nếu giá trị box <b>lớn hơn</b> phí: thợ đào lấy đúng phần phí, và phải tạo lại một box y hệt (cùng script, token, register) với giá trị đã trừ phí và độ cao tạo mới. Đồng hồ 4 năm bắt đầu lại.",
+    "li2": "Nếu giá trị box <b>nhỏ hơn</b> phí: thợ đào lấy <b>tất cả</b> — cả ERG lẫn mọi token hay NFT bên trong — và box biến mất khỏi UTXO set.",
+    "p2": "Phí được tính theo kích thước box:",
+    "code": "fee = boxSizeInBytes × storageFeeFactor\nstorageFeeFactor = {{factor}} nanoERG / byte  (= {{factorErg}} ERG / byte, giá trị mặc định)"
+  },
+  "warn": {
+    "title": "Token và NFT không được miễn",
+    "text": "Phí trả bằng ERG, nhưng khi box không còn đủ ERG để trả thì thợ đào nhận cả box, kể cả token. Một box giữ NFT quý kèm lượng ERG tối thiểu chính là loại bị “dọn” đầu tiên nếu bị bỏ quên nhiều năm."
+  },
+  "params": {
+    "title": "Tham số có thể bỏ phiếu",
+    "text": "<code>storageFeeFactor</code> và <code>minValuePerByte</code> là tham số của mạng. Thợ đào bỏ phiếu thay đổi chúng qua trường <code>votes</code> trong header, nên con số thực tế có thể khác giá trị mặc định ở trên. Riêng chu kỳ 4 năm thì khác: muốn đổi nó cần một hard fork — điều cộng đồng thường tránh."
+  },
+  "example": {
+    "title": "Ví dụ tính toán",
+    "p1": "Một box ví thông thường (P2PK, không có token) có kích thước cỡ 100 byte. Phí mỗi chu kỳ là 100 × {{factor}} = {{fee}} nanoERG = <b>{{feeErg}} ERG mỗi 4 năm</b>. Với box chứa 10 ERG, phí này là 1.25% sau mỗi 4 năm — và chỉ phát sinh nếu bạn không đụng tới ví trong suốt 4 năm. Chỉ cần gửi tiền cho chính mình một lần là đồng hồ đặt lại.",
+    "p2": "Bài giải thích chính thức của Ergo ước tính mức thu điển hình là <b>khoảng 0.14 ERG cộng phí giao dịch</b> cho mỗi box — cao hơn chút so với con số 100 byte ở trên vì box ví thực tế thường lớn hơn một ít. Cũng theo bài đó, một box chứa <b>1 ERG</b> phải nằm im hoàn toàn khoảng <b>32 năm</b> thì thợ đào mới lấy hết được — với box 100 byte, đó đúng là 8 chu kỳ × 0.125 ERG. Máy tính bên dưới bắt đầu đúng từ trường hợp đó."
+  },
+  "min": {
+    "title": "Giá trị tối thiểu của box",
+    "p1": "Mặt kia của storage rent là quy tắc <b>giá trị tối thiểu</b>: mỗi box phải chứa ít nhất <code>{{min}} nanoERG × kích thước</code> (mặc định). Nhờ vậy không ai tạo được hàng triệu box “bụi” gần như miễn phí để làm phình UTXO set. Đó là lý do một output tối thiểu trong ví thường vào khoảng 0.001 ERG — dư sức trên mức tối thiểu cho những box lớn hơn, có token."
+  },
+  "good": {
+    "title": "Vì sao đây là điều tốt",
+    "bloat": "<b>Chặn phình trạng thái</b>: dữ liệu bị bỏ quên dần dần được dọn khỏi UTXO set, nên chi phí chạy node không tăng mãi mãi.",
+    "dust": "<b>Dọn “bụi”</b>: những lượng coin lặt vặt rải rác trong hàng nghìn box bị quên là thứ bị dọn đầu tiên, vì chúng không đủ trả dù chỉ một chu kỳ phí.",
+    "income": "<b>Thu nhập ổn định cho thợ đào</b>: sau khi phát hành kết thúc, storage rent là nguồn thu không phụ thuộc vào việc mạng đông hay vắng — bổ sung cho phí giao dịch và <emission>tái phát hành EIP-27</emission>.",
+    "lost": "<b>Coin bị mất quay về lưu thông</b>: ERG trong ví mất seed không bị “khoá chết” vĩnh viễn như với Bitcoin, mà chậm rãi chảy về cho thợ đào. Nhờ vậy coin tiếp tục lưu thông, làm dịu hiệu ứng giảm phát mà mọi đồng coin có nguồn cung cố định đều gặp khi người dùng mất khoá.",
+    "fair": "<b>Công bằng</b>: người chiếm nhiều chỗ lưu trữ (box lớn) trả nhiều hơn người chiếm ít."
+  },
+  "real": {
+    "title": "Đã xảy ra thật",
+    "text": "Mainnet Ergo ra mắt tháng 7/2019, nên những box đầu tiên chạm mốc {{period}} block vào khoảng giữa năm 2023 — từ đó, phí lưu trữ không còn là lý thuyết mà là một phần có thật của kinh tế mạng chính."
+  },
+  "avoid": {
+    "title": "Làm sao để không bị thu phí?",
+    "p1": "Rất đơn giản: thỉnh thoảng (ít hơn 4 năm một lần) hãy tiêu box — ví dụ gửi toàn bộ số dư cho chính mình. Box mới được tạo ra với độ cao mới, và đồng hồ bắt đầu lại.",
+    "p2": "Phí tính <em>theo từng box</em>, nên <b>gom box</b> cũng có ích: gửi toàn bộ số dư về một địa chỉ trong một giao dịch sẽ gộp nhiều box nhỏ thành vài box lớn — ít box có thể bị thu phí hơn, và box nào cũng còn rất xa ngưỡng nguy hiểm.",
+    "p3": "Muốn hiểu kích thước một box đến từ đâu? Xem <box>Box & registers</box>."
+  },
+  "reading": {
+    "title": "Đọc thêm",
+    "meta": "— blog Ergo Platform, 18/02/2022 (tiếng Anh)."
+  }
+}

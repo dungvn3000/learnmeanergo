@@ -1,0 +1,67 @@
+{
+  "calc": {
+    "title": "Storage rent calculator",
+    "size": "Box size (bytes)",
+    "bytes": "{{n}} bytes",
+    "value": "Box value (ERG)",
+    "created": "Created at height",
+    "fee": "Fee per period",
+    "feeHint": "The most a miner can take each time the box becomes “overdue”.",
+    "min": "Minimum value",
+    "minHint": "A box below this value can't be created in the first place.",
+    "survives": "Box survives",
+    "tooShort": "Less than 1 period — a miner can take the whole box once it's overdue.",
+    "lives": "{{periods}} periods ≈ {{years}} years if it's never touched",
+    "overdue": "Overdue from block",
+    "already": "— can already be charged (current height: {{height}})",
+    "toGo": "— {{blocks}} blocks to go (≈ {{years}} years)"
+  },
+  "intro": "Every Ergo node has to keep the entire set of unspent boxes (the UTXO set) to validate new transactions. That set can only grow: people create new boxes all the time, while forgotten boxes — wallets with lost seeds, token dust, developer experiments — sit there forever. In Bitcoin, users pay a fee <em>once</em> when creating an output, and then get stored for free, forever, on every node's machine. Ergo answers the question “who pays for storage forever?” with <b>storage rent</b> (also called demurrage).",
+  "rule": {
+    "title": "The rule",
+    "p1": "If a box sits untouched — not spent, not “refreshed” — for <b>{{period}} blocks</b> (≈ {{years}} years), a miner is allowed to touch it even without the key:",
+    "li1": "If the box's value is <b>greater</b> than the fee: the miner takes exactly the fee, and must recreate an identical box (same script, tokens and registers) holding the value minus the fee, with a new creation height. The 4-year clock starts again.",
+    "li2": "If the box's value is <b>less</b> than the fee: the miner takes <b>everything</b> in it — the ERG and any tokens or NFTs — and the box disappears from the UTXO set.",
+    "p2": "The fee is based on the box's size:",
+    "code": "fee = boxSizeInBytes × storageFeeFactor\nstorageFeeFactor = {{factor}} nanoERG / byte  (= {{factorErg}} ERG / byte, default value)"
+  },
+  "warn": {
+    "title": "Tokens and NFTs are not exempt",
+    "text": "Rent is paid in ERG, but when a box can no longer cover it the miner claims the whole box, tokens included. A box that holds a valuable NFT next to the bare-minimum ERG is exactly the kind that gets emptied first if it is left untouched for years."
+  },
+  "params": {
+    "title": "Votable parameters",
+    "text": "<code>storageFeeFactor</code> and <code>minValuePerByte</code> are network parameters. Miners vote to change them through the <code>votes</code> field in the header, so the actual values may differ from the defaults above. The 4-year period itself is different: changing it would take a hard fork, which the community generally avoids."
+  },
+  "example": {
+    "title": "A worked example",
+    "p1": "A typical wallet box (P2PK, no tokens) is around 100 bytes. The fee per period is 100 × {{factor}} = {{fee}} nanoERG = <b>{{feeErg}} ERG every 4 years</b>. For a box holding 10 ERG, that's 1.25% every 4 years — and it only applies if you don't touch your wallet for the full 4 years. Sending your funds to yourself once resets the clock.",
+    "p2": "Ergo's own explainer puts the typical charge at <b>about 0.14 ERG plus a transaction fee</b> per box — slightly more than our 100-byte figure, because real wallet boxes are often a little bigger. The same explainer notes that a box holding <b>1 ERG</b> would take about <b>32 years</b> of total inactivity before a miner could empty it — for a 100-byte box that is exactly 8 periods × 0.125 ERG. The calculator below starts from exactly that case."
+  },
+  "min": {
+    "title": "Minimum box value",
+    "p1": "The flip side of storage rent is the <b>minimum value</b> rule: every box must hold at least <code>{{min}} nanoERG × size</code> (by default). This stops anyone from creating millions of “dust” boxes almost for free to bloat the UTXO set. It's why the minimum output in a wallet is usually around 0.001 ERG — comfortably above the minimum even for larger boxes carrying tokens."
+  },
+  "good": {
+    "title": "Why this is a good thing",
+    "bloat": "<b>Prevents state bloat</b>: abandoned data is gradually cleared out of the UTXO set, so the cost of running a node doesn't grow forever.",
+    "dust": "<b>Garbage collection for dust</b>: tiny amounts scattered across thousands of forgotten boxes are the first to be swept up, because they can't cover even one period of rent.",
+    "income": "<b>Steady income for miners</b>: once emission ends, storage rent is a revenue stream that doesn't depend on how busy the network is — on top of transaction fees and <emission>EIP-27 re-emission</emission>.",
+    "lost": "<b>Lost coins return to circulation</b>: ERG in a wallet with a lost seed isn't locked away forever as it would be with Bitcoin; it slowly flows back to miners. That keeps coins in circulation and softens the slow deflation every capped-supply coin suffers from lost keys.",
+    "fair": "<b>Fairness</b>: those who take up more storage (bigger boxes) pay more than those who take up less."
+  },
+  "real": {
+    "title": "It has already happened",
+    "text": "Ergo mainnet launched in July 2019, so the very first boxes reached the {{period}}-block mark around mid-2023 — since then, storage rent has been a real part of mainnet economics rather than a theory."
+  },
+  "avoid": {
+    "title": "How do I avoid paying it?",
+    "p1": "Simple: every so often (less than once every 4 years), spend your boxes — for example, send your whole balance to yourself. New boxes are created with a new height, and the clock starts over.",
+    "p2": "Rent is charged <em>per box</em>, so it also helps to <b>consolidate</b>: sending everything to one of your addresses in a single transaction merges many small boxes into a few larger ones — fewer boxes that could ever be charged, and each one far from the danger zone.",
+    "p3": "Want to understand where a box's size comes from? See <box>Boxes & registers</box>."
+  },
+  "reading": {
+    "title": "Further reading",
+    "meta": "— Ergo Platform blog, 18 February 2022."
+  }
+}

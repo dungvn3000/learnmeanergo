@@ -1,0 +1,51 @@
+{
+  "live": {
+    "height": "Current block",
+    "circulating": "ERG in circulation",
+    "maxSupply": "out of a maximum {{max}} ERG",
+    "hashrate": "Mining power (hashrate)",
+    "peers": "{{peers}} other computers talking to this node"
+  },
+  "intro": {
+    "p1": "<b>Ergo</b> is a blockchain — a public ledger that anyone can read, nobody can edit, and no company runs. Its currency is called <b>ERG</b>.",
+    "p2": "If you've heard of Bitcoin, you already understand 70% of Ergo. Ergo keeps what Bitcoin does best — security through computing power (Proof-of-Work), money kept in locked boxes rather than accounts, and a fixed maximum number of coins — and adds something Bitcoin barely has: powerful yet safe <b>smart contracts</b> (rules attached to money that the network enforces by itself)."
+  },
+  "short": {
+    "title": "In one sentence",
+    "p1": "Ergo is <em>“programmable Bitcoin”</em>: every coin on Ergo is kept inside a box, and every box carries a small set of rules saying <em>who</em> can open it and <em>under what conditions</em>.",
+    "p2": "With Bitcoin, that rule is almost always “whoever can sign with this key may open it”. With Ergo, the rule can be “whoever can sign, <em>and</em> only after block 2,000,000, <em>and</em> only if at least 100 ERG is paid back to that other address”. Rules like these are what make decentralized exchanges, stablecoins, time-locked savings and more possible — without anyone holding your money for you."
+  },
+  "features": {
+    "title": "Key features",
+    "pow": { "title": "Proof-of-Work", "text": "Secured by computing power like Bitcoin, not by how many coins you hold." },
+    "box": { "title": "The box model (eUTXO)", "text": "Money lives in programmable, locked “boxes” instead of in accounts." },
+    "fair": { "title": "Fair from the start", "text": "No ICO, no pre-mine. Every ERG was created through mining." },
+    "fast": { "title": "A block every ~2 minutes", "text": "5× faster than Bitcoin, while still safe for a decentralized network." }
+  },
+  "history": {
+    "title": "A little history",
+    "p1": "Ergo's main network (mainnet) launched on <b>1 July 2019</b>. It was built by a team of cryptography and blockchain researchers, including Alexander Chepurnoy and Dmitry Meshkov.",
+    "p2": "Ergo launched without an ICO or any pre-sale of coins to investors. From the very first block, ERG could only be created one way: a miner finds a new block and collects the reward. During the first two years a small share of each reward (7.5 ERG per block) went to a development fund (the treasury), then tapered off and ended after about 2.5 years — and that was written into the network's rules from day one, where anyone could check it."
+  },
+  "name": {
+    "title": "Where does the name “Ergo” come from?",
+    "p1": "According to the <docs>official documentation</docs>, the name carries three layers of meaning:",
+    "latin": "In Latin, <b>ergo</b> is a conjunction meaning <em>“therefore”</em> — as in “I think, <b>therefore</b> I am” — used to introduce a logical conclusion.",
+    "greek": "In Greek, the related word <b>ἔργον</b> (<em>ergon</em>) means <em>“work”</em> — a subtle nod to the work of mining and maintaining the blockchain.",
+    "ticker": "The ticker <b>ERG</b> also echoes the <em>erg</em>, a small unit of energy in physics — tying back to work and energy once more."
+  },
+  "who": {
+    "title": "Who is Ergo for?",
+    "users": "<b>Everyday users</b> who want to hold their own money and send and receive it quickly with very low fees (often just 0.001 ERG).",
+    "miners": "<b>GPU miners</b> — the Autolykos v2 algorithm is designed so that specialized mining machines (ASICs) have a hard time dominating.",
+    "devs": "<b>Developers</b> who want to write smart contracts whose behavior can be predicted before a transaction is sent."
+  },
+  "trust": {
+    "title": "You don't need to trust us",
+    "text": "Every number on this page — block height, supply, hashrate — comes straight from the blockchain via <explorer>explorer.erg.vn</explorer>. That's the spirit of a blockchain: <em>don't trust, verify</em>."
+  },
+  "next": {
+    "title": "What's next",
+    "p1": "Read <how>how the Ergo blockchain works</how> — how nodes, miners and blocks fit together. Or, if you're curious, jump straight into the <explorer>explorer</explorer> to see the blocks being mined right now."
+  }
+}

@@ -5,7 +5,7 @@ import { bySlug, sectionOf } from '../articles'
 import { Loading } from '../components/ui'
 import NotFound from './NotFound'
 import { useTranslation } from 'react-i18next'
-import { getLang, pick } from '../lib/i18n'
+import { pick } from '../lib/i18n'
 import { articleJsonLd, useSeo } from '../lib/seo'
 
 const SECTION = {
@@ -50,7 +50,7 @@ export default function ArticlePage() {
   const i = list.indexOf(article)
   const prev = list[i - 1]
   const next = list[i + 1]
-  const Body = article.component[getLang()]
+  const Body = article.component
   const Icon = article.icon
 
   return (

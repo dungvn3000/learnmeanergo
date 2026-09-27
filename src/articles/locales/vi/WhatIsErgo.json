@@ -1,0 +1,51 @@
+{
+  "live": {
+    "height": "Block hiện tại",
+    "circulating": "ERG đang lưu hành",
+    "maxSupply": "trên tối đa {{max}} ERG",
+    "hashrate": "Sức mạnh đào (hashrate)",
+    "peers": "{{peers}} máy tính khác đang nói chuyện với node này"
+  },
+  "intro": {
+    "p1": "<b>Ergo</b> là một blockchain — một cuốn sổ cái công khai mà ai cũng có thể đọc, không ai có thể sửa, và không có công ty nào đứng ra quản lý. Đơn vị tiền của nó là <b>ERG</b>.",
+    "p2": "Nếu bạn đã nghe về Bitcoin, bạn đã hiểu được 70% Ergo. Ergo giữ lại những gì Bitcoin làm tốt nhất — bảo mật bằng sức mạnh tính toán (Proof-of-Work), tiền cất trong những chiếc hộp có khoá thay vì tài khoản, và số coin tối đa cố định — rồi thêm vào một thứ Bitcoin gần như không có: <b>hợp đồng thông minh</b> mạnh mẽ nhưng vẫn an toàn (những luật gắn vào tiền mà chính mạng lưới tự thực thi)."
+  },
+  "short": {
+    "title": "Một câu ngắn gọn",
+    "p1": "Ergo là <em>“Bitcoin có thể lập trình được”</em>: mỗi đồng tiền trên Ergo được cất trong một chiếc hộp, và mỗi chiếc hộp mang theo một đoạn luật nhỏ nói rằng <em>ai</em> và <em>trong điều kiện nào</em> được phép mở nó.",
+    "p2": "Với Bitcoin, luật đó hầu như luôn là “ai có chữ ký của khoá này thì được mở”. Với Ergo, luật có thể là “ai có chữ ký, <em>và</em> chỉ sau block 2,000,000, <em>và</em> phải trả lại ít nhất 100 ERG cho địa chỉ kia”. Chính những luật như vậy tạo nên sàn giao dịch phi tập trung, stablecoin, quỹ tiết kiệm có thời hạn… mà không cần ai giữ tiền hộ bạn."
+  },
+  "features": {
+    "title": "Những đặc điểm chính",
+    "pow": { "title": "Proof-of-Work", "text": "Bảo mật bằng năng lượng tính toán như Bitcoin, không phải bằng số coin nắm giữ." },
+    "box": { "title": "Mô hình box (eUTXO)", "text": "Tiền nằm trong các “hộp” có khoá lập trình được, thay vì trong tài khoản." },
+    "fair": { "title": "Công bằng từ đầu", "text": "Không ICO, không pre-mine. Mọi ERG đều được tạo ra qua việc đào." },
+    "fast": { "title": "Block mỗi ~2 phút", "text": "Nhanh hơn Bitcoin 5 lần, vẫn đủ an toàn cho mạng phi tập trung." }
+  },
+  "history": {
+    "title": "Một chút lịch sử",
+    "p1": "Mạng chính (mainnet) của Ergo khởi chạy ngày <b>1 tháng 7 năm 2019</b>. Dự án được xây dựng bởi nhóm nhà nghiên cứu mật mã và blockchain, trong đó có Alexander Chepurnoy và Dmitry Meshkov.",
+    "p2": "Ergo ra đời không qua ICO hay bán trước coin cho nhà đầu tư. Ngay từ block đầu tiên, ERG chỉ được tạo ra theo một cách: thợ đào tìm ra block mới và nhận phần thưởng. Trong hai năm đầu có một phần nhỏ phần thưởng (7.5 ERG mỗi block) được chuyển vào quỹ phát triển (treasury), rồi giảm dần và chấm dứt sau khoảng 2.5 năm — và điều này được ghi sẵn trong luật của mạng từ ngày đầu, ai cũng kiểm tra được."
+  },
+  "name": {
+    "title": "Cái tên “Ergo” từ đâu ra?",
+    "p1": "Theo <docs>tài liệu chính thức</docs>, cái tên gói ba lớp nghĩa:",
+    "latin": "Trong tiếng Latin, <b>ergo</b> là liên từ nghĩa là <em>“do đó”</em> — như trong “Tôi tư duy, <b>do đó</b> tôi tồn tại” — dùng để dẫn vào một kết luận logic.",
+    "greek": "Trong tiếng Hy Lạp, từ họ hàng <b>ἔργον</b> (<em>ergon</em>) nghĩa là <em>“công việc”</em> — ngầm chỉ công sức đào và duy trì blockchain.",
+    "ticker": "Mã đồng tiền <b>ERG</b> cũng gợi tới <em>erg</em>, một đơn vị năng lượng nhỏ trong vật lý — lại quay về ý “công” và “năng lượng”."
+  },
+  "who": {
+    "title": "Ergo dành cho ai?",
+    "users": "<b>Người dùng bình thường</b> muốn giữ tiền của chính mình, gửi nhận nhanh với phí rất thấp (thường chỉ 0.001 ERG).",
+    "miners": "<b>Thợ đào GPU</b> — thuật toán Autolykos v2 được thiết kế để máy đào chuyên dụng (ASIC) khó chiếm ưu thế.",
+    "devs": "<b>Lập trình viên</b> muốn viết hợp đồng thông minh mà hành vi của nó có thể dự đoán được trước khi gửi giao dịch."
+  },
+  "trust": {
+    "title": "Bạn không cần tin chúng tôi",
+    "text": "Mọi con số trên trang này — độ cao block, nguồn cung, hashrate — được lấy trực tiếp từ blockchain qua <explorer>explorer.erg.vn</explorer>. Đó chính là tinh thần của blockchain: <em>đừng tin, hãy kiểm chứng</em>."
+  },
+  "next": {
+    "title": "Tiếp theo",
+    "p1": "Hãy xem <how>blockchain Ergo hoạt động thế nào</how> — node, thợ đào và block phối hợp với nhau ra sao. Hoặc nếu tò mò, hãy nhảy thẳng vào <explorer>explorer</explorer> để xem những block đang được đào ngay lúc này."
+  }
+}

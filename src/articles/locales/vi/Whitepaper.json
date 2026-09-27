@@ -1,0 +1,99 @@
+{
+  "changed": "Đã thay đổi từ 2019",
+  "genesis": {
+    "noPremine": "Box không thể tiêu, chứa tiêu đề báo Guardian, Vedomosti, Xinhua và id block Bitcoin, Ethereum mới nhất lúc ra mắt — bằng chứng không ai đào trước.",
+    "treasury": "Quỹ phát triển, khoá bằng chữ ký 2-trên-3, mở dần: 7.5 → 4.5 → 1.5 ERG/block trong ~2.5 năm đầu.",
+    "miners": "Hợp đồng phát hành: mỗi block trả phần thưởng cho thợ đào (khoá 720 block) và giữ phần còn lại trong chính nó.",
+    "total": "Tổng: <b>{{total}} ERG</b> — toàn bộ ERG sẽ từng tồn tại, đã nằm sẵn trong ba box này từ block genesis.",
+    "issued": "Hôm nay đã phát ra {{issued}} ERG ({{pct}}%)."
+  },
+  "intro": "<b>Ergo: A Resilient Platform For Contractual Money</b> là whitepaper chính thức của Ergo (phiên bản 1.0, 14/05/2019, tác giả “Ergo Developers”), công bố ngay trước khi mainnet ra mắt. Trang này đi qua từng phần của whitepaper, tóm tắt bằng lời của chúng tôi, chỉ ra chỗ nào <b>đã thay đổi</b> kể từ 2019, và dẫn tới bài giải thích chi tiết trên trang này.",
+  "webVersion": "Bản web trên docs.ergoplatform.com",
+  "abstract": {
+    "title": "Tóm tắt",
+    "p1": "Ergo là một blockchain linh hoạt dành cho hợp đồng tài chính an toàn. Mỗi đồng coin được bảo vệ bởi một chương trình ErgoScript dựa trên <sigma>Sigma protocols</sigma>, cho phép lập trình viên mô tả chính xác điều kiện để tiêu nó. Nền tảng hỗ trợ node nhẹ chạy trên phần cứng phổ thông, chỉ dùng các giải pháp mật mã đã được kiểm chứng, và có cơ chế tự sửa đổi giao thức để thích nghi trong tương lai."
+  },
+  "problem": {
+    "title": "Vấn đề cần giải quyết",
+    "p1": "Whitepaper chỉ ra hai điểm yếu của các blockchain thời đó. Thứ nhất là <b>tài nguyên</b>: mọi người dùng phải tải và kiểm tra mọi giao dịch, còn phí giao dịch vẫn cao dù đang được trợ giá bởi phần thưởng block. Thứ hai là <b>mô hình dữ liệu</b>: mô hình tài khoản của Ethereum linh hoạt nhưng khiến hợp đồng dễ có lỗi — whitepaper nhắc tới khoản thiệt hại khoảng 150 triệu USD năm 2017 do lỗi hợp đồng. Lập luận của Ergo: phần lớn ứng dụng tài chính không cần Turing-complete, nên một mô hình UTXO được mở rộng khả năng hợp đồng là lựa chọn an toàn hơn."
+  },
+  "vision": {
+    "title": "Tầm nhìn",
+    "p1": "Năm nguyên tắc định hướng — chính là những nguyên tắc sau này được nhắc lại trong Tuyên ngôn Ergo:",
+    "decentralization": "<b>Phi tập trung là trên hết</b> — giảm phụ thuộc vào bất kỳ bên nào: nhà phát triển, thợ đào, nhà sản xuất phần cứng.",
+    "regular": "<b>Dành cho người bình thường</b> — ai cũng đào và chạy node được; chống tập trung hoá việc đào.",
+    "contractual": "<b>Nền tảng cho tiền hợp đồng</b> — tập trung vào hợp đồng tài chính hiệu quả và an toàn.",
+    "longTerm": "<b>Tầm nhìn dài hạn</b> — thiết kế để tồn tại hàng thế kỷ, không trông chờ vào hard fork hay một loại phần cứng cụ thể.",
+    "open": "<b>Mở và không cần cấp phép</b> — không phân biệt đối xử, không danh sách đen, không cứu trợ ở tầng giao thức.",
+    "seeAlso": "Xem thêm: <manifesto>Tuyên ngôn Ergo</manifesto>."
+  },
+  "autolykos": {
+    "title": "Đồng thuận Autolykos",
+    "p1": "Ergo dùng Proof-of-Work <b>Autolykos</b>, được giới thiệu là giao thức đầu tiên vừa <em>memory-hard</em> vừa <em>chống pool</em>. Thay vì băm từng nonce một, thợ đào phải chọn 32 số trong một bảng khổng lồ sao cho tổng của chúng “vừa khớp”. Nói chính xác, đó là bài toán “one-list k-sum”: tìm <b>k = 32</b> phần tử trong một danh sách cố định gồm <b>N = 2<sup>26</sup></b> phần tử (khoảng 2 GB) sao cho tổng của chúng thoả một điều kiện với mục tiêu <code>b</code>. Danh sách phải nằm trong bộ nhớ, vì tính lại từng phần tử mỗi lần thử là quá chậm.",
+    "p2": "Để chống pool, phiên bản đầu yêu cầu <b>khoá bí mật</b> của thợ đào trong quá trình đào — không thể giao việc cho pool mà không giao luôn quyền tiêu phần thưởng. Độ khó được điều chỉnh bằng hồi quy tuyến tính (bình phương tối thiểu) trên <b>8 epoch × 1024 block</b> gần nhất, nhắm tới block ~2 phút.",
+    "changed": "Từ block <b>417,792</b> (tháng 2/2021), Ergo chuyển sang <b>Autolykos v2</b>: bỏ tính chống pool để pool đào hoạt động bình thường, và kích thước danh sách không còn cố định mà tăng dần theo độ cao. Thuật toán điều chỉnh độ khó sau đó cũng được sửa bởi EIP-37. Xem <autolykos>Autolykos v2</autolykos> và <difficulty>Độ khó &amp; nBits</difficulty>."
+  },
+  "state": {
+    "title": "Trạng thái của Ergo",
+    "p1": "Thay cho tài khoản, Ergo dùng mô hình <b>UTXO mở rộng</b> xoay quanh các <em>box</em> bất biến. Mỗi box có 10 register: R0 giá trị ERG, R1 script bảo vệ, R2 token, R3 thông tin tạo (độ cao, id giao dịch, vị trí output), và R4–R9 dành cho dữ liệu tuỳ ý.",
+    "p2": "Whitepaper liệt kê các lợi thế so với mô hình tài khoản:",
+    "replay": "Chống tấn công phát lại (replay) và sắp xếp lại giao dịch đơn giản hơn.",
+    "parallel": "Xử lý giao dịch song song, vì các giao dịch không sửa chung một trạng thái.",
+    "atomic": "Giao dịch nguyên tử: hoặc thành công trọn vẹn, hoặc không gì cả — không có lỗi “hết gas” giữa chừng.",
+    "stateless": "Nền móng cho client không cần lưu trạng thái (stateless).",
+    "p3": "Hãy hình dung trạng thái như một dấu vân tay có thể chứng minh cả những gì nằm bên trong. Tập box chưa tiêu được lưu trong một <b>cây AVL+ có xác thực</b>, gói gọn trong một digest <b>33 byte</b> — chính là trường <code>stateRoot</code> trong header. Cây này tạo được bằng chứng một box có (hoặc không có) trong tập, và bằng chứng cho mọi thay đổi. Nhờ vậy node nhẹ kiểm tra block chỉ bằng các bằng chứng đi kèm, với mức an toàn như full node. Theo whitepaper, bằng chứng AVL+ nhỏ hơn khoảng 3 lần so với Merkle Patricia trie của Ethereum. Xem <box>Box &amp; registers</box> và <block>Block &amp; header</block>."
+  },
+  "resilience": {
+    "title": "Sức bền và khả năng tồn tại",
+    "p1": "Để sống lâu, whitepaper đặt ra bốn hướng:",
+    "adHoc": "<b>Không dùng giải pháp tự chế</b>: chỉ dùng mật mã đã được bình duyệt và kiểm thử. Ví dụ phản diện được nêu là IOTA với hàm băm tự thiết kế, dẫn tới lỗ hổng nghiêm trọng và phải hard fork.",
+    "light": "<b>Hỗ trợ client nhẹ</b>: nhờ trạng thái AVL+ có xác thực, thiết bị di động hay mạng yếu vẫn xác minh được.",
+    "rent": "<b>Storage rent</b>: box nằm yên 4 năm bị thu phí theo byte — chống “bụi” và phình trạng thái, giảm nguy cơ DoS kiểu tấn công Ethereum năm 2016, tạo thu nhập ổn định cho thợ đào sau khi hết phát hành, và đưa coin bị mất quay lại lưu thông. Xem <rent>Phí lưu trữ</rent>.",
+    "amend": "<b>Giao thức tự sửa đổi</b>: tham số “mềm” như kích thước block hay mức phí lưu trữ được thợ đào bỏ phiếu theo từng epoch 1024 block (tối đa hai tham số mỗi epoch). Thay đổi lớn — như thêm lệnh mới cho ErgoScript — cần <b>90%</b> phiếu thuận trong <b>32,768</b> block, rồi thêm 32,768 block nữa mới kích hoạt. Node cũ bỏ qua quy tắc mới nhưng vẫn kiểm tra mọi quy tắc nó biết."
+  },
+  "erg": {
+    "title": "Đồng ERG",
+    "p1": "Đồng tiền gốc tên là <b>Erg</b>, chia nhỏ tới 10<sup>9</sup> nanoErg. Nó dùng để thưởng cho thợ đào (bảo vệ mạng khỏi tấn công 51%), trả phí cho tài nguyên tính toán và lưu trữ, và trả storage rent. Toàn bộ nguồn cung được tạo sẵn trong <b>ba box genesis</b>:",
+    "p2": "Lịch phát hành theo whitepaper:",
+    "thBlocks": "Block",
+    "thMiners": "Thợ đào",
+    "row1": "1 – 525,599 (~2 năm)",
+    "row2": "525,600 – 590,399 (~3 tháng)",
+    "row3": "590,400 – 655,199 (~3 tháng)",
+    "row5": "từ 720,000",
+    "row5Miners": "giảm 3 ERG mỗi 64,800 block",
+    "row6Miners": "0 — hết phát hành",
+    "changed": "<b>EIP-27</b> (kích hoạt ở block 777,217) giữ nguyên tổng cung nhưng khoá một phần phần thưởng mỗi block vào hợp đồng tái phát hành, rồi trả dần 3 ERG/block cho thợ đào <em>sau</em> block 2,080,800 — kéo dài thu nhập của thợ đào thêm nhiều năm. Xem <emission>Lịch phát hành &amp; EIP-27</emission>."
+  },
+  "contracts": {
+    "title": "Tiền hợp đồng",
+    "p1": "Mỗi box được bảo vệ bởi một công thức logic kết hợp điều kiện thông thường với các mệnh đề mật mã chứng minh được bằng Sigma protocols, nối bằng AND, OR và <em>k-trên-n</em>. Whitepaper phân biệt hai loại ERG (và token):",
+    "free": "<b>Tự do</b> — chủ sở hữu gửi đi đâu cũng được, như một ví thông thường.",
+    "bounded": "<b>Ràng buộc</b> — hợp đồng bắt giao dịch tiêu nó phải tạo output có tính chất nhất định (script, số lượng…). Đây là cách xây hợp đồng nhiều bước.",
+    "p2": "Những tính năng nền tảng cho hợp đồng:",
+    "ergoscript": "<b>ErgoScript</b> — ngôn ngữ bậc cao có kiểu, ví dụ “chứng minh biết khoá pk1 <em>hoặc</em> pk2” viết là <code>pk1 || pk2</code>. Xem <ergotree>ErgoTree &amp; ErgoScript</ergotree>.",
+    "dataInputs": "<b>Data inputs</b> — đọc một box mà không tiêu huỷ nó; rất hợp cho oracle. Xem <tx>Giao dịch</tx>.",
+    "tokens": "<b>Token tuỳ biến</b> — mỗi giao dịch phát hành được một token mới, id bằng id box input đầu tiên, số lượng từ 1 tới 9,223,372,036,854,775,807. Token được phép đốt (output ≤ input), còn ERG thì bảo toàn tuyệt đối (input = output). Xem <tokens>Token (EIP-4)</tokens>."
+  },
+  "examples": {
+    "title": "Hai ví dụ trong whitepaper",
+    "oracle": "<b>Cá cược nhiệt độ với oracle</b>: oracle phát hành một token duy nhất và đặt nó trong box chứa nhiệt độ (R4) và thời điểm (R5). Hợp đồng cá cược của Alice và Bob chỉ cần kiểm tra data input đầu tiên có mang token đó — sự hiện diện của token chính là chữ ký của oracle.",
+    "mixing": "<b>Trộn coin không tương tác</b>: Bob tiêu box của Alice cùng một box của mình để tạo hai output giống hệt nhau về script; mỗi người chỉ tiêu được một cái, nhưng người ngoài không biết cái nào của ai.",
+    "p1": "Whitepaper cũng nhắc tới atomic swap, gây quỹ cộng đồng, hệ thống trao đổi địa phương và ICO như những ứng dụng khác."
+  },
+  "today": {
+    "title": "2019 và hôm nay",
+    "thTopic": "Chủ đề",
+    "thNow": "Hiện nay",
+    "blockTime": { "topic": "Thời gian block", "then": "~2 phút", "now": "Không đổi" },
+    "pow": { "then": "Autolykos v1, chống pool, N = 2^26 cố định", "now": "Autolykos v2 từ block 417,792; cho phép pool, N tăng dần" },
+    "difficulty": { "topic": "Điều chỉnh độ khó", "then": "Hồi quy trên 8 × 1024 block", "now": "Đã sửa bởi EIP-37" },
+    "emission": { "topic": "Phát hành", "then": "Kết thúc ở block 2,080,800", "now": "Như cũ, cộng thêm tái phát hành EIP-27 sau đó" },
+    "rent": { "then": "4 năm, phí theo byte", "now": "Không đổi; áp dụng thật từ 2023" }
+  },
+  "reading": {
+    "title": "Đọc thêm",
+    "pdf": "<link>Ergo: A Resilient Platform For Contractual Money</link> — whitepaper v1.0, 14/05/2019 (PDF, tiếng Anh).",
+    "web": "<link>Bản web của whitepaper</link> trên docs.ergoplatform.com."
+  }
+}
