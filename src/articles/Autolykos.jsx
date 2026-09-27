@@ -43,7 +43,7 @@ function LivePow() {
         return (
           <Card className="not-prose my-6 p-2 sm:p-4">
             <div className="px-2 pb-2 text-xs font-semibold tracking-wide text-stone-500 uppercase">
-              Lời giải PoW của block <Link to={`/block/${b.height}`} className="text-ergo-600 hover:underline">#{num(b.height)}</Link>
+              Lời giải PoW của block <Link to={`/block/${b.height}`} className="text-ergo-600 hover:underline dark:text-ergo-400">#{num(b.height)}</Link>
             </div>
             <Field name="pk" value={<Hash value={b.pow.pk} full />}>
               Khoá công khai của thợ đào. Nó chính là{' '}

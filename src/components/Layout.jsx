@@ -89,7 +89,7 @@ function Panel({ onNavigate, onClose }) {
             href={REPO}
             target="_blank"
             rel="noreferrer"
-            className="rounded-lg p-2 text-stone-500 hover:text-ergo-600"
+            className="rounded-lg p-2 text-stone-500 hover:text-ergo-600 dark:text-stone-400 dark:hover:text-ergo-400"
             aria-label={t('Mã nguồn trên GitHub', 'Source code on GitHub')}
             title="GitHub"
           >

@@ -65,7 +65,7 @@ function RealTx() {
           <div className="not-prose my-6">
             <TxFlow tx={tx} />
             <p className="mt-3 text-sm text-stone-500">
-              Transaction <Link to={`/tx/${tx.id}`} className="font-mono text-ergo-600 hover:underline">{tx.id.slice(0, 12)}…</Link> in
+              Transaction <Link to={`/tx/${tx.id}`} className="font-mono text-ergo-600 hover:underline dark:text-ergo-400">{tx.id.slice(0, 12)}…</Link> in
               block {tx.height}: {tx.inputs.length} {tx.inputs.length === 1 ? 'box' : 'boxes'} spent, {tx.outputs.length} new{' '}
               {tx.outputs.length === 1 ? 'box' : 'boxes'} created
               {fee && (

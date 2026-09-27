@@ -96,7 +96,7 @@ export default function ArticlePage() {
             <ul className="space-y-2">
               {toc.map((t) => (
                 <li key={t.id}>
-                  <a href={`#${t.id}`} className="text-stone-500 hover:text-ergo-600">
+                  <a href={`#${t.id}`} className="text-stone-500 hover:text-ergo-600 dark:text-stone-400 dark:hover:text-ergo-400">
                     {t.text}
                   </a>
                 </li>

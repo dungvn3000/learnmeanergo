@@ -80,7 +80,7 @@ export default function PubkeyToAddress() {
               {l}
             </button>
           ))}
-          <button onClick={() => setHex(EXAMPLE)} className="ml-auto text-xs text-ergo-600 hover:underline">
+          <button onClick={() => setHex(EXAMPLE)} className="ml-auto text-xs text-ergo-600 hover:underline dark:text-ergo-400">
             {t('Dùng ví dụ (khoá của pool 2Miners)', 'Use an example (the 2Miners pool key)')}
           </button>
         </div>

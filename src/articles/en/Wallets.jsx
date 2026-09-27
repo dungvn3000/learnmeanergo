@@ -55,7 +55,7 @@ function LiveAddressDemo() {
           <Card className="not-prose my-6 space-y-3 p-5 text-sm">
             <div>
               <div className="text-xs font-semibold tracking-wide text-stone-500 uppercase">
-                Public key of the miner of block <Link to={`/block/${b.height}`} className="text-ergo-600">#{b.height}</Link>
+                Public key of the miner of block <Link to={`/block/${b.height}`} className="text-ergo-600 dark:text-ergo-400">#{b.height}</Link>
               </div>
               <Hash value={b.pow.pk} full />
             </div>
