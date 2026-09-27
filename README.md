@@ -3,7 +3,7 @@
 A bilingual (English / Vietnamese) site for learning the Ergo blockchain from the ground up, inspired by [learnmeabitcoin.com](https://learnmeabitcoin.com). Articles, interactive tools and a small explorer all use live data from the [explorer.erg.vn](https://explorer.erg.vn) API.
 
 - **Website:** https://learnmeanergo.com
-- **Source:** https://github.com/dungvn3000/learnmeaanergo
+- **Source:** https://github.com/dungvn3000/learnmeanergo
 
 **Stack:** Vite · React 19 · React Router · Tailwind CSS v4 · lucide-react · @noble/hashes (blake2b)
 
@@ -65,7 +65,7 @@ src/
 
 ## Contributing
 
-Issues and pull requests are welcome at [github.com/dungvn3000/learnmeaanergo](https://github.com/dungvn3000/learnmeaanergo), especially corrections to articles. Please update both the Vietnamese and English versions.
+Issues and pull requests are welcome at [github.com/dungvn3000/learnmeanergo](https://github.com/dungvn3000/learnmeanergo), especially corrections to articles. Please update both the Vietnamese and English versions.
 
 ## License
 

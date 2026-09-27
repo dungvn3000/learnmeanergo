@@ -5,7 +5,7 @@ import SearchBar from './SearchBar'
 import Sidebar from './Sidebar'
 import { LANGS, t, useLang } from '../lib/i18n'
 
-const REPO = 'https://github.com/dungvn3000/learnmeaanergo'
+const REPO = 'https://github.com/dungvn3000/learnmeanergo'
 
 const nav = () => [
   { to: '/beginners', label: t('Người mới', 'Beginners'), icon: GraduationCap },
@@ -160,7 +160,7 @@ export default function Layout() {
             <p className="mt-2 text-stone-500">
               {t('Mã nguồn mở của trang này:', 'This site is open source:')}{' '}
               <a href={REPO} className="inline-flex items-center gap-1 underline hover:text-ergo-600" target="_blank" rel="noreferrer">
-                <Code2 className="size-3.5" /> github.com/dungvn3000/learnmeaanergo
+                <Code2 className="size-3.5" /> github.com/dungvn3000/learnmeanergo
               </a>
             </p>
           </div>
