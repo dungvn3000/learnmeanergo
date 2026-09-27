@@ -4,10 +4,12 @@ import { Wrench } from 'lucide-react'
 import { tools, toolBySlug } from '../tools'
 import { Card, Loading, PageHeader } from '../components/ui'
 import NotFound from './NotFound'
-import { pick, t } from '../lib/i18n'
+import { useTranslation } from 'react-i18next'
+import { pick } from '../lib/i18n'
 import { useSeo } from '../lib/seo'
 
 export function ToolsIndex() {
+  const { t } = useTranslation()
   useSeo({
     path: '/tools',
     image: '/og/tools.png',
@@ -16,8 +18,8 @@ export function ToolsIndex() {
   })
   return (
     <>
-      <PageHeader icon={Wrench} kicker={t('Công cụ', 'Tools')} title={t('Tự tay mổ xẻ Ergo', 'Take Ergo apart yourself')}>
-        {t('Mọi phép tính chạy ngay trong trình duyệt của bạn — không gửi gì lên máy chủ.', 'Every calculation runs right in your browser — nothing is sent to a server.')}
+      <PageHeader icon={Wrench} kicker={t('common.tools')} title={t('tools.takeErgoApartYourself')}>
+        {t('tools.everyCalculationRunsRightInYour')}
       </PageHeader>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {tools.map((x) => (
@@ -35,6 +37,7 @@ export function ToolsIndex() {
 }
 
 export function ToolPage() {
+  const { t } = useTranslation()
   const { slug } = useParams()
   const tool = toolBySlug[slug]
   useSeo({ skip: !tool, path: `/tools/${slug}`, title: tool?.title, description: tool?.summary, image: `/og/${slug}.png` })
@@ -42,14 +45,14 @@ export function ToolPage() {
   const Body = tool.component
   return (
     <>
-      <PageHeader icon={tool.icon} kicker={<Link to="/tools">{t('Công cụ', 'Tools')}</Link>} title={pick(tool.title)}>
+      <PageHeader icon={tool.icon} kicker={<Link to="/tools">{t('common.tools')}</Link>} title={pick(tool.title)}>
         {pick(tool.summary)}
       </PageHeader>
-      <Suspense fallback={<Loading label={t('Đang tải công cụ…', 'Loading tool…')} />}>
+      <Suspense fallback={<Loading label={t('tools.loadingTool')} />}>
         <Body />
       </Suspense>
       <div className="mt-12 border-t border-stone-200 pt-6 dark:border-stone-800">
-        <div className="mb-3 text-xs font-semibold tracking-wide text-stone-500 uppercase">{t('Công cụ khác', 'More tools')}</div>
+        <div className="mb-3 text-xs font-semibold tracking-wide text-stone-500 uppercase">{t('tools.moreTools')}</div>
         <div className="flex flex-wrap gap-2">
           {tools
             .filter((x) => x.slug !== slug)

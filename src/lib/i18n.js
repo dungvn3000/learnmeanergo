@@ -1,50 +1,35 @@
-import { Fragment, createContext, createElement as h, useContext, useEffect, useState } from 'react'
+import { Fragment, createElement as h } from 'react'
+import { useTranslation } from 'react-i18next'
+import i18n, { LANGS } from '../i18n'
 
-// Two languages. The active one lives in a module variable so plain helpers
-// (t, formatters) can read it; switching remounts the tree so everything re-renders.
-export const LANGS = ['en', 'vi']
+// Small helpers around the i18next instance for code that is not a component
+// (formatters, manifests, SEO). Components use useTranslation() directly.
+export { LANGS }
 
-function detect() {
-  if (typeof window === 'undefined') return 'en'
-  try {
-    const q = new URLSearchParams(location.search).get('lang')
-    if (LANGS.includes(q)) return q
-    const saved = localStorage.getItem('lang')
-    if (LANGS.includes(saved)) return saved
-  } catch {
-    /* storage blocked */
-  }
-  // English by default; Vietnamese only when chosen via the switch or ?lang=vi.
-  return 'en'
-}
-
-let current = detect()
-
-export const getLang = () => current
-/** Inline translation: t('Xin chào', 'Hello'). */
-export const t = (vi, en) => (current === 'vi' ? vi : en)
-/** Pick from a { vi, en } object. */
-export const pick = (o) => (o && typeof o === 'object' && 'en' in o ? o[current] ?? o.en : o)
+export const getLang = () => (i18n.language === 'vi' ? 'vi' : 'en')
+/** Pick from a { vi, en } object (article/tool manifests). */
+export const pick = (o) => (o && typeof o === 'object' && 'en' in o ? o[getLang()] ?? o.en : o)
 /** BCP-47 locale for Intl/toLocale* calls. */
-export const locale = () => (current === 'vi' ? 'vi-VN' : 'en-US')
+export const locale = () => (getLang() === 'vi' ? 'vi-VN' : 'en-US')
 
-const Ctx = createContext({ lang: current, setLang: () => {} })
-
-export function LangProvider({ children }) {
-  const [lang, setState] = useState(current)
+/** Current language + a setter that also persists the choice. */
+export function useLang() {
+  const { i18n: inst } = useTranslation()
   const setLang = (l) => {
-    current = l
+    if (!LANGS.includes(l)) return
     try {
       localStorage.setItem('lang', l)
     } catch {
       /* storage blocked */
     }
-    setState(l)
+    inst.changeLanguage(l)
   }
-  useEffect(() => {
-    document.documentElement.lang = lang
-  }, [lang])
-  return h(Ctx.Provider, { value: { lang, setLang } }, h(Fragment, { key: lang }, children))
+  return { lang: getLang(), setLang }
 }
 
-export const useLang = () => useContext(Ctx)
+/** Remounts the tree on a language switch so non-hook readers (pick, locale,
+ *  lazily chosen article bodies) all pick up the new language. */
+export function LangProvider({ children }) {
+  const { i18n: inst } = useTranslation()
+  return h(Fragment, { key: inst.language }, children)
+}

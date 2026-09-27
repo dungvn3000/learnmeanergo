@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { ArrowLeftRight } from 'lucide-react'
 import { Callout, Card, CopyButton } from '../components/ui'
-import { t } from '../lib/i18n'
+import { useTranslation } from 'react-i18next'
+import i18n from '../i18n'
 
 const DECIMALS = 9n
 const SCALE = 10n ** DECIMALS
@@ -9,7 +10,7 @@ const MAX_NANO = 2n ** 63n - 1n // box values are signed 64-bit integers
 
 function checkRange(n) {
   if (n > MAX_NANO) throw new Error(
-      t('Vượt quá giới hạn số nguyên 64-bit (tối đa 9,223,372,036,854,775,807 nanoERG)', 'Exceeds the 64-bit integer limit (max 9,223,372,036,854,775,807 nanoERG)'),
+      i18n.t('units.exceedsThe64BitIntegerLimit'),
     )
   return n
 }
@@ -18,10 +19,10 @@ function checkRange(n) {
 function ergToNano(s) {
   s = s.trim().replace(/[,_\s]/g, '')
   if (!s) return null
-  if (!/^\d*\.?\d*$/.test(s) || s === '.') throw new Error(t('Chỉ nhập số, dùng dấu chấm cho phần thập phân', 'Numbers only, with a dot for the decimal part'))
+  if (!/^\d*\.?\d*$/.test(s) || s === '.') throw new Error(i18n.t('units.numbersOnlyWithADotFor'))
   const [int = '', frac = ''] = s.split('.')
   if (frac.length > 9) throw new Error(
-      t('ERG chỉ có tối đa 9 chữ số thập phân (1 nanoERG = 0.000000001 ERG)', 'ERG has at most 9 decimal places (1 nanoERG = 0.000000001 ERG)'),
+      i18n.t('units.ergHasAtMost9Decimal'),
     )
   return checkRange(BigInt(int || '0') * SCALE + BigInt((frac + '000000000').slice(0, 9)))
 }
@@ -38,19 +39,20 @@ function nanoToErg(n) {
 function parseNano(s) {
   s = s.trim().replace(/[,_\s]/g, '')
   if (!s) return null
-  if (!/^\d+$/.test(s)) throw new Error(t('nanoERG là số nguyên — không có phần thập phân', 'nanoERG is an integer — no decimal part'))
+  if (!/^\d+$/.test(s)) throw new Error(i18n.t('units.nanoergIsAnIntegerNoDecimal'))
   return checkRange(BigInt(s))
 }
 
-const refs = () => [
+const refs = (t) => [
   { label: '1 ERG', nano: 1_000_000_000n },
-  { label: t('Phí giao dịch phổ biến', 'Typical transaction fee'), nano: 1_000_000n },
-  { label: t('Giá trị box nhỏ nhất thường dùng', 'Commonly used minimum box value'), nano: 1_000_000n },
-  { label: t('Thưởng block hiện tại cho thợ đào', 'Current block reward for the miner'), nano: 3_000_000_000n },
+  { label: t('units.typicalTransactionFee'), nano: 1_000_000n },
+  { label: t('units.commonlyUsedMinimumBoxValue'), nano: 1_000_000n },
+  { label: t('units.currentBlockRewardForTheMiner'), nano: 3_000_000_000n },
   { label: '1 nanoERG', nano: 1n },
 ]
 
 export default function Units() {
+  const { t } = useTranslation()
   const [ergIn, setErgIn] = useState('1')
   const [nanoIn, setNanoIn] = useState('1000000000')
   const [err, setErr] = useState(null)
@@ -106,13 +108,13 @@ export default function Units() {
         <table className="w-full text-sm">
           <thead className="bg-stone-50 text-left text-xs tracking-wide text-stone-500 uppercase dark:bg-stone-950">
             <tr>
-              <th className="px-4 py-2">{t('Giá trị tham khảo', 'Reference value')}</th>
+              <th className="px-4 py-2">{t('units.referenceValue')}</th>
               <th className="px-4 py-2 text-right">ERG</th>
               <th className="px-4 py-2 text-right">nanoERG</th>
             </tr>
           </thead>
           <tbody>
-            {refs().map((r) => (
+            {refs(t).map((r) => (
               <tr
                 key={r.label}
                 onClick={() => fromNano(r.nano.toString())}
@@ -127,13 +129,10 @@ export default function Units() {
         </table>
       </Card>
 
-      <Callout type="note" title={t('Vì sao lại có nanoERG?', 'Why nanoERG?')}>
-        {t(
-          'Blockchain không lưu số thập phân. Giá trị của mỗi box là một số nguyên 64-bit tính bằng',
-          'The blockchain doesn’t store decimals. Every box’s value is a 64-bit integer measured in',
-        )}{' '}
+      <Callout type="note" title={t('units.whyNanoerg')}>
+        {t('units.theBlockchainDoesnTStoreDecimals')}{' '}
         <b>nanoERG</b>: 1 ERG = 1,000,000,000 nanoERG.{' '}
-        {t('Ví và explorer chỉ chia cho 10⁹ khi hiển thị cho bạn xem.', 'Wallets and explorers only divide by 10⁹ when displaying it to you.')}
+        {t('units.walletsAndExplorersOnlyDivideBy')}
       </Callout>
     </div>
   )

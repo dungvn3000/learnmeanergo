@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, ArrowDown, Eye, Lock, LockOpen } from 'lucide-react'
 import { Erg, Hash, Swatch, TokenChip } from './ui'
-import { t } from '../lib/i18n'
+import { useTranslation } from 'react-i18next'
 
 // Miner fee contract: every fee output is locked by this well-known ErgoTree.
 export const FEE_TREE_PREFIX = '1005040004000e36100204a00b08cd0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798'
@@ -10,6 +10,7 @@ export const isFeeBox = (b) => typeof b?.ergoTree === 'string' && b.ergoTree.sta
 
 /** One box, drawn as a card. `role` = input | output | data. */
 export function BoxCard({ box, role = 'output', showRegisters = false }) {
+  const { t } = useTranslation()
   const fee = isFeeBox(box)
   const border =
     role === 'data'
@@ -26,17 +27,17 @@ export function BoxCard({ box, role = 'output', showRegisters = false }) {
         </div>
         {role === 'output' &&
           (box.spent || box.spentBy ? (
-            <span className="inline-flex items-center gap-1 text-[11px] text-stone-400" title={t('Đã bị tiêu', 'Spent')}>
-              <LockOpen className="size-3" /> {t('đã tiêu', 'spent')}
+            <span className="inline-flex items-center gap-1 text-[11px] text-stone-400" title={t('txFlow.spent')}>
+              <LockOpen className="size-3" /> {t('common.spent')}
             </span>
           ) : (
-            <span className="inline-flex items-center gap-1 text-[11px] text-emerald-600" title={t('Chưa tiêu (UTXO)', 'Unspent (UTXO)')}>
-              <Lock className="size-3" /> {t('chưa tiêu', 'unspent')}
+            <span className="inline-flex items-center gap-1 text-[11px] text-emerald-600" title={t('txFlow.unspentUtxo')}>
+              <Lock className="size-3" /> {t('common.unspent')}
             </span>
           ))}
         {role === 'data' && (
           <span className="inline-flex items-center gap-1 text-[11px] text-sky-600">
-            <Eye className="size-3" /> {t('chỉ đọc', 'read-only')}
+            <Eye className="size-3" /> {t('txFlow.readOnly')}
           </span>
         )}
       </div>
@@ -45,7 +46,7 @@ export function BoxCard({ box, role = 'output', showRegisters = false }) {
       </div>
       <div className="mt-1 min-w-0 text-xs text-stone-500">
         {fee ? (
-          <span className="font-medium text-amber-700 dark:text-amber-400">{t('Phí cho thợ đào', 'Miner fee')}</span>
+          <span className="font-medium text-amber-700 dark:text-amber-400">{t('txFlow.minerFee')}</span>
         ) : box.address ? (
           <Hash value={box.address} to={`/address/${box.address}`} head={8} tail={6} />
         ) : (
@@ -75,6 +76,7 @@ export function BoxCard({ box, role = 'output', showRegisters = false }) {
 
 /** Inputs → outputs diagram of a transaction. */
 export function TxFlow({ tx, showRegisters = false, limit = 20 }) {
+  const { t } = useTranslation()
   const ins = tx.inputs ?? []
   const outs = tx.outputs ?? []
   const data = tx.dataInputs ?? []
@@ -86,7 +88,7 @@ export function TxFlow({ tx, showRegisters = false, limit = 20 }) {
       <div className="grid gap-2">{children}</div>
     </div>
   )
-  const more = (n) => n > limit && <div className="text-center text-xs text-stone-500">{t(`… và ${n - limit} box nữa`, `… and ${n - limit} more boxes`)}</div>
+  const more = (n) => n > limit && <div className="text-center text-xs text-stone-500">{t('txFlow.andMoreBoxes', { limit: n - limit })}</div>
   return (
     <div>
       {data.length > 0 && (

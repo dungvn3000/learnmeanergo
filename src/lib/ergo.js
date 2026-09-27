@@ -1,12 +1,12 @@
 // Protocol constants and pure helpers used by the articles and tools.
 import { blake2b } from '@noble/hashes/blake2.js'
-import { t } from './i18n.js'
+import i18n from '../i18n'
 
 export const blake2b256 = (bytes) => blake2b(bytes, { dkLen: 32 })
 
 export const hexToBytes = (hex) => {
   hex = hex.trim().replace(/^0x/i, '')
-  if (hex.length % 2 || /[^0-9a-f]/i.test(hex)) throw new Error(t('Chuỗi hex không hợp lệ', 'Invalid hex string'))
+  if (hex.length % 2 || /[^0-9a-f]/i.test(hex)) throw new Error(i18n.t('ergo.invalidHexString'))
   const out = new Uint8Array(hex.length / 2)
   for (let i = 0; i < out.length; i++) out[i] = parseInt(hex.substr(i * 2, 2), 16)
   return out
@@ -20,7 +20,7 @@ export function base58Decode(str) {
   let n = 0n
   for (const ch of str) {
     const v = ALPHABET.indexOf(ch)
-    if (v < 0) throw new Error(t(`Ký tự "${ch}" không thuộc bảng chữ Base58`, `Character "${ch}" is not in the Base58 alphabet`))
+    if (v < 0) throw new Error(i18n.t('ergo.characterIsNotInTheBase58', { ch }))
     n = n * 58n + BigInt(v)
   }
   const out = []
@@ -53,9 +53,9 @@ export function base58Encode(bytes) {
 // ---------- Addresses ----------
 export const NETWORKS = { 0x00: 'Mainnet', 0x10: 'Testnet' }
 export const ADDRESS_TYPES = {
-  1: { code: 'P2PK', name: 'Pay-to-Public-Key', get desc() { return t('Nội dung là khoá công khai nén 33 byte (secp256k1).', 'The content is a 33-byte compressed secp256k1 public key.') } },
-  2: { code: 'P2SH', name: 'Pay-to-Script-Hash', get desc() { return t('24 byte đầu của blake2b256(script).', 'The first 24 bytes of blake2b256(script).') } },
-  3: { code: 'P2S', name: 'Pay-to-Script', get desc() { return t('Nội dung là toàn bộ ErgoTree đã tuần tự hoá.', 'The content is the entire serialized ErgoTree.') } },
+  1: { code: 'P2PK', name: 'Pay-to-Public-Key', get desc() { return i18n.t('ergo.theContentIsA33Byte') } },
+  2: { code: 'P2SH', name: 'Pay-to-Script-Hash', get desc() { return i18n.t('ergo.theFirst24BytesOfBlake2b256') } },
+  3: { code: 'P2S', name: 'Pay-to-Script', get desc() { return i18n.t('ergo.theContentIsTheEntireSerialized') } },
 }
 
 /**
@@ -64,7 +64,7 @@ export const ADDRESS_TYPES = {
  */
 export function decodeAddress(address) {
   const raw = base58Decode(address.trim())
-  if (raw.length < 6) throw new Error(t('Địa chỉ quá ngắn', 'Address is too short'))
+  if (raw.length < 6) throw new Error(i18n.t('ergo.addressIsTooShort'))
   const prefix = raw[0]
   const content = raw.slice(1, -4)
   const checksum = raw.slice(-4)
@@ -78,7 +78,7 @@ export function decodeAddress(address) {
     raw,
     prefix,
     network,
-    networkName: NETWORKS[network] ?? t('Không rõ', 'Unknown'),
+    networkName: NETWORKS[network] ?? i18n.t('common.unknown'),
     type,
     typeInfo: ADDRESS_TYPES[type] ?? null,
     content,

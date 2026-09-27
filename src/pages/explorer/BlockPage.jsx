@@ -7,10 +7,11 @@ import { ago, bytes, erg, num, short, utc } from '../../lib/format'
 import { Async, Badge, Card, Erg, Field, Hash } from '../../components/ui'
 import { TxFlow } from '../../components/TxFlow'
 import { Learn, Section } from './common'
-import { t } from '../../lib/i18n'
+import { useTranslation } from 'react-i18next'
 import { useSeo } from '../../lib/seo'
 
 function TxRow({ tx, open: initial }) {
+  const { t } = useTranslation()
   const [open, setOpen] = useState(initial)
   const total = tx.outputs.reduce((s, o) => s + o.value, 0)
   return (
@@ -26,7 +27,7 @@ function TxRow({ tx, open: initial }) {
         </div>
         <div className="hidden text-right text-sm sm:block">
           <Erg nano={total} digits={4} />
-          <div className="text-xs text-stone-500">{t('phí', 'fee')} {erg(tx.fee)} ERG</div>
+          <div className="text-xs text-stone-500">{t('common.fee')} {erg(tx.fee)} ERG</div>
         </div>
         <ChevronDown className={`size-4 shrink-0 text-stone-400 transition ${open ? 'rotate-180' : ''}`} />
       </button>
@@ -40,6 +41,7 @@ function TxRow({ tx, open: initial }) {
 }
 
 function Block({ b }) {
+  const { t } = useTranslation()
   const hashrate = b.difficulty / 120 / 1e12
   return (
     <>
@@ -50,7 +52,7 @@ function Block({ b }) {
           </div>
           <h1 className="font-mono text-4xl font-extrabold tracking-tight text-stone-900 dark:text-white">{num(b.height)}</h1>
           <div className="mt-2 text-sm text-stone-500">
-            {utc(b.timestamp)} · {ago(b.timestamp)} · {num(b.confirmations)} {t('xác nhận', 'confirmations')}
+            {utc(b.timestamp)} · {ago(b.timestamp)} · {num(b.confirmations)} {t('common.confirmations')}
           </div>
         </div>
         <div className="flex gap-2">
@@ -70,40 +72,40 @@ function Block({ b }) {
       <div className="grid gap-6 lg:grid-cols-2">
         <Card className="px-5 py-2">
           <div className="border-b border-stone-100 py-3 text-xs font-bold tracking-wide text-stone-500 uppercase dark:border-stone-800">
-            Header <span className="font-normal normal-case">— <Learn to="/learn/block">{t('giải thích từng trường', 'every field explained')}</Learn></span>
+            Header <span className="font-normal normal-case">— <Learn to="/learn/block">{t('blockPage.everyFieldExplained')}</Learn></span>
           </div>
           <Field name="Block id" value={<Hash value={b.id} full />}>
-            {t('blake2b256 của header đã tuần tự hoá. Thay đổi bất kỳ byte nào thì id đổi hoàn toàn.', 'blake2b256 of the serialized header. Change any single byte and the id changes completely.')}
+            {t('blockPage.blake2b256OfTheSerializedHeaderChange')}
           </Field>
           <Field name="Parent id" value={<Hash value={b.parentId} to={b.height > 1 ? `/block/${b.height - 1}` : undefined} full />}>
-            {t('Id của block trước — sợi xích nối các block thành blockchain.', 'The id of the previous block — the link that chains blocks into a blockchain.')}
+            {t('blockPage.theIdOfThePreviousBlock')}
           </Field>
           <Field name="Version" value={b.version}>
-            {t('Phiên bản giao thức của header; tăng lên sau mỗi lần nâng cấp mạng (ví dụ v2 kích hoạt Autolykos v2).', 'The header\'s protocol version; it goes up with each network upgrade (e.g. v2 activated Autolykos v2).')}
+            {t('blockPage.theHeaderSProtocolVersionIt')}
           </Field>
           <Field name="Timestamp" value={`${b.timestamp} (${utc(b.timestamp)})`}>
-            {t('Thời điểm thợ đào tạo block, tính bằng mili-giây Unix.', 'When the miner created the block, in Unix milliseconds.')}
+            {t('blockPage.whenTheMinerCreatedTheBlock')}
           </Field>
           <Field name="nBits" value={<span className="font-mono">{b.nBits}</span>}>
-            {t('Độ khó mục tiêu ở dạng nén.', 'The target difficulty in compact form.')} <Learn to="/learn/difficulty">{t('Giải nén nBits', 'Decoding nBits')}</Learn>
+            {t('blockPage.theTargetDifficultyInCompactForm')} <Learn to="/learn/difficulty">{t('blockPage.decodingNbits')}</Learn>
           </Field>
           <Field name="Difficulty" value={num(b.difficulty)}>
-            {t(`Tương đương ~${hashrate.toFixed(2)} TH/s hashrate toàn mạng với block 2 phút.`, `Equivalent to ~${hashrate.toFixed(2)} TH/s of network hashrate at 2-minute blocks.`)}
+            {t('blockPage.equivalentToThSOfNetwork', { v0: hashrate.toFixed(2) })}
           </Field>
           <Field name="State root" value={<Hash value={b.stateRoot} full />} mono>
-            {t('Digest (33 byte) của cây AVL+ chứa toàn bộ UTXO sau block này — cho phép node “nhẹ” xác minh trạng thái.', 'The 33-byte digest of the AVL+ tree holding the entire UTXO set after this block — it lets “light” nodes verify state.')}
+            {t('blockPage.the33ByteDigestOfThe')}
           </Field>
           <Field name="Transactions root" value={<Hash value={b.txRoot} full />}>
-            {t('Merkle root của các giao dịch trong block.', 'Merkle root of the block\'s transactions.')}
+            {t('blockPage.merkleRootOfTheBlockS')}
           </Field>
           <Field name="AD proofs root" value={<Hash value={b.adRoot} full />}>
-            {t('Gốc của các bằng chứng thay đổi trạng thái (authenticated dictionary proofs).', 'Root of the state-change proofs (authenticated dictionary proofs).')}
+            {t('blockPage.rootOfTheStateChangeProofs')}
           </Field>
           <Field name="Extension hash" value={<Hash value={b.extHash} full />}>
-            {t('Merkle root của phần mở rộng: tham số mạng, NiPoPoW interlinks.', 'Merkle root of the extension section: network parameters, NiPoPoW interlinks.')}
+            {t('blockPage.merkleRootOfTheExtensionSection')}
           </Field>
           <Field name="Votes" value={<span className="font-mono">{b.votes}</span>}>
-            {t('3 byte thợ đào dùng để bỏ phiếu thay đổi tham số (0 = không bỏ phiếu).', '3 bytes miners use to vote on parameter changes (0 = no vote).')}
+            {t('blockPage.n3BytesMinersUseToVote')}
           </Field>
         </Card>
 
@@ -113,45 +115,45 @@ function Block({ b }) {
               Proof of Work <span className="font-normal normal-case">— <Learn to="/learn/autolykos">Autolykos v2</Learn></span>
             </div>
             <Field name="Nonce (n)" value={<span className="font-mono">{b.pow.n}</span>}>
-              {t('8 byte mà thợ đào thử liên tục cho tới khi hash đạt mục tiêu.', 'The 8 bytes a miner keeps changing until the hash meets the target.')}
+              {t('blockPage.the8BytesAMinerKeeps')}
             </Field>
             <Field name="Miner pk" value={<Hash value={b.pow.pk} full />}>
-              {t('Khoá công khai thợ đào — phần thưởng bị khoá cho khoá này.', 'The miner\'s public key — the reward is locked to this key.')}
+              {t('blockPage.theMinerSPublicKeyThe')}
             </Field>
             <Field name="w" value={<Hash value={b.pow.w} full />}>
               {b.version >= 2
-                ? t('Không dùng trong Autolykos v2; giữ giá trị điểm sinh G của secp256k1.', 'Unused in Autolykos v2; it holds the secp256k1 generator point G.')
-                : t('Autolykos v1: khoá công khai dùng một lần mà thợ đào tạo cho block này.', 'Autolykos v1: a one-time public key the miner generated for this block.')}
+                ? t('blockPage.unusedInAutolykosV2ItHolds')
+                : t('blockPage.autolykosV1AOneTimePublic')}
             </Field>
             <Field name="d" value={<span className="font-mono break-all">{String(b.pow.d)}</span>}>
               {b.version >= 2
-                ? t('Không dùng trong v2 (luôn 0).', 'Unused in v2 (always 0).')
-                : t('Autolykos v1: giá trị lời giải d của bài toán k-sum; phải nhỏ hơn mục tiêu b.', 'Autolykos v1: the k-sum solution value d; it must be below the target b.')}
+                ? t('blockPage.unusedInV2Always0')
+                : t('blockPage.autolykosV1TheKSumSolution')}
             </Field>
           </Card>
 
           <Card className="px-5 py-2">
             <div className="border-b border-stone-100 py-3 text-xs font-bold tracking-wide text-stone-500 uppercase dark:border-stone-800">
-              {t('Thưởng & nội dung', 'Reward & contents')} <span className="font-normal normal-case">— <Learn to="/learn/emission">{t('lịch phát hành', 'emission schedule')}</Learn></span>
+              {t('blockPage.rewardContents')} <span className="font-normal normal-case">— <Learn to="/learn/emission">{t('blockPage.emissionSchedule')}</Learn></span>
             </div>
-            <Field name={t('Thợ đào', 'Miner')} value={<Link className="text-ergo-600 hover:underline dark:text-ergo-400" to={`/address/${b.minerAddress}`}>{b.miner || short(b.minerAddress, 10, 6)}</Link>} />
-            <Field name={t('Phát hành mới', 'Newly emitted')} value={<Erg nano={b.emission} />}>
-              {t('ERG mới sinh ra ở độ cao này theo lịch phát hành.', 'New ERG created at this height according to the emission schedule.')}
+            <Field name={t('common.miner')} value={<Link className="text-ergo-600 hover:underline dark:text-ergo-400" to={`/address/${b.minerAddress}`}>{b.miner || short(b.minerAddress, 10, 6)}</Link>} />
+            <Field name={t('blockPage.newlyEmitted')} value={<Erg nano={b.emission} />}>
+              {t('blockPage.newErgCreatedAtThisHeight')}
             </Field>
             {b.reemitted > 0 && (
-              <Field name={t('Khoá tái phát hành', 'Re-emission lock')} value={<Erg nano={b.reemitted} />}>
-                {t('EIP-27: phần này bị khoá vào hợp đồng tái phát hành, trả dần cho thợ đào sau khi phát hành chính kết thúc.', 'EIP-27: this part is locked into the re-emission contract and paid out to miners after the main emission ends.')}
+              <Field name={t('blockPage.reEmissionLock')} value={<Erg nano={b.reemitted} />}>
+                {t('blockPage.eip27ThisPartIsLocked')}
               </Field>
             )}
-            <Field name={t('Thợ đào nhận', 'Miner receives')} value={<Erg nano={b.reward} />} />
-            <Field name={t('Phí giao dịch', 'Transaction fees')} value={<Erg nano={b.fees} />} />
-            <Field name={t('Giao dịch', 'Transactions')} value={b.txCount} />
-            <Field name={t('Kích thước', 'Size')} value={`${num(b.size)} byte`} />
+            <Field name={t('common.minerReceives')} value={<Erg nano={b.reward} />} />
+            <Field name={t('blockPage.transactionFees')} value={<Erg nano={b.fees} />} />
+            <Field name={t('common.transactions')} value={b.txCount} />
+            <Field name={t('common.size')} value={`${num(b.size)} byte`} />
           </Card>
         </div>
       </div>
 
-      <Section title={`${t('Giao dịch', 'Transactions')} (${b.txCount})`} right={<Learn to="/learn/transaction">{t('Giao dịch hoạt động thế nào?', 'How do transactions work?')}</Learn>}>
+      <Section title={`${t('common.transactions')} (${b.txCount})`} right={<Learn to="/learn/transaction">{t('blockPage.howDoTransactionsWork')}</Learn>}>
         <div className="grid gap-3">
           {(b.transactions ?? []).map((t, i) => (
             <TxRow key={t.id} tx={t} open={i === 0 && b.txCount <= 3} />
@@ -163,8 +165,9 @@ function Block({ b }) {
 }
 
 export default function BlockPage() {
+  const { t } = useTranslation()
   const { id } = useParams()
   const s = useApi(() => api.block(id), [id])
   useSeo({ path: `/block/${id}`, title: { vi: `Block ${id}`, en: `Block ${id}` }, noindex: true })
-  return <Async state={s} notFound={t('Không tìm thấy block này.', 'Block not found.')}>{(b) => <Block b={b} />}</Async>
+  return <Async state={s} notFound={t('blockPage.blockNotFound')}>{(b) => <Block b={b} />}</Async>
 }

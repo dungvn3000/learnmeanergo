@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, BookOpen, GraduationCap } from 'lucide-react'
 import { sectionOf } from '../articles'
 import { Card, PageHeader } from '../components/ui'
-import { pick, t } from '../lib/i18n'
+import { useTranslation } from 'react-i18next'
+import { pick } from '../lib/i18n'
 import { useSeo } from '../lib/seo'
 
 function ArticleCard({ a, n }) {
@@ -25,6 +26,7 @@ function ArticleCard({ a, n }) {
 }
 
 export function Beginners() {
+  const { t } = useTranslation()
   const list = sectionOf('beginners')
   useSeo({
     path: '/beginners',
@@ -34,8 +36,8 @@ export function Beginners() {
   })
   return (
     <>
-      <PageHeader icon={GraduationCap} kicker={t('Người mới bắt đầu', 'Beginners')} title={t('Ergo, giải thích đơn giản', 'Ergo, explained simply')}>
-        {t('Không cần biết lập trình hay mật mã học. Đọc theo thứ tự — mỗi bài chỉ mất vài phút.', 'No programming or cryptography required. Read them in order — each one takes just a few minutes.')}
+      <PageHeader icon={GraduationCap} kicker={t('common.beginners')} title={t('sectionIndex.ergoExplainedSimply')}>
+        {t('sectionIndex.noProgrammingOrCryptographyRequiredRead')}
       </PageHeader>
       <div className="grid gap-4 md:grid-cols-2">
         {list.map((a, i) => (
@@ -43,13 +45,14 @@ export function Beginners() {
         ))}
       </div>
       <Link to={`/learn/${list[0].slug}`} className="mt-8 inline-flex items-center gap-2 rounded-xl bg-ergo-500 px-5 py-3 font-semibold text-white hover:bg-ergo-600">
-        {t('Bắt đầu đọc', 'Start reading')} <ArrowRight className="size-4" />
+        {t('sectionIndex.startReading')} <ArrowRight className="size-4" />
       </Link>
     </>
   )
 }
 
 export function Technical() {
+  const { t } = useTranslation()
   const list = sectionOf('technical')
   useSeo({
     path: '/technical',
@@ -60,8 +63,8 @@ export function Technical() {
   const groups = [...new Set(list.map((a) => a.group))]
   return (
     <>
-      <PageHeader icon={BookOpen} kicker={t('Kỹ thuật', 'Technical')} title={t('Bên trong Ergo, từng byte một', 'Inside Ergo, byte by byte')}>
-        {t('Cấu trúc block, box, giao dịch, script và kinh tế học của mạng — mỗi khái niệm được minh hoạ bằng dữ liệu thật đang chạy trên mainnet.', 'Blocks, boxes, transactions, scripts and the economics of the network — every concept illustrated with real data from mainnet.')}
+      <PageHeader icon={BookOpen} kicker={t('common.technical')} title={t('sectionIndex.insideErgoByteByByte')}>
+        {t('sectionIndex.blocksBoxesTransactionsScriptsAndThe')}
       </PageHeader>
       {groups.map((g) => (
         <section key={g.en} className="mb-10">

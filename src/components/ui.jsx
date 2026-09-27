@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AlertTriangle, Check, Copy, Info, Lightbulb, Loader2, TriangleAlert } from 'lucide-react'
 import { erg, short, tokenAmount, hueOf } from '../lib/format'
-import { t } from '../lib/i18n'
+import { useTranslation } from 'react-i18next'
 
 export function Card({ className = '', children, ...rest }) {
   return (
@@ -16,11 +16,12 @@ export function Card({ className = '', children, ...rest }) {
 }
 
 export function CopyButton({ text, className = '' }) {
+  const { t } = useTranslation()
   const [done, setDone] = useState(false)
   return (
     <button
       type="button"
-      title={t('Sao chép', 'Copy')}
+      title={t('ui.copy')}
       onClick={(e) => {
         e.preventDefault()
         navigator.clipboard?.writeText(text).then(() => {
@@ -106,20 +107,22 @@ export function Callout({ type = 'note', title, children }) {
   )
 }
 
-export function Loading({ label = t('Đang tải dữ liệu từ blockchain…', 'Loading data from the blockchain…'), className = '' }) {
+export function Loading({ label, className = '' }) {
+  const { t } = useTranslation()
   return (
     <div className={`flex items-center justify-center gap-2 py-10 text-sm text-stone-500 ${className}`}>
-      <Loader2 className="size-4 animate-spin" /> {label}
+      <Loader2 className="size-4 animate-spin" /> {label ?? t('ui.loadingDataFromTheBlockchain')}
     </div>
   )
 }
 
 export function ErrorBox({ error, className = '' }) {
+  const { t } = useTranslation()
   return (
     <div className={`flex items-start gap-2 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800 dark:border-red-900 dark:bg-red-950/40 dark:text-red-300 ${className}`}>
       <AlertTriangle className="mt-0.5 size-4 shrink-0" />
       <div>
-        {t('Không tải được dữ liệu từ explorer.erg.vn.', 'Could not load data from explorer.erg.vn.')}
+        {t('ui.couldNotLoadDataFromExplorer')}
         <div className="mt-1 font-mono text-xs opacity-80">{String(error?.message || error)}</div>
       </div>
     </div>
@@ -127,10 +130,11 @@ export function ErrorBox({ error, className = '' }) {
 }
 
 /** Renders loading / error / not-found states around an API result. */
-export function Async({ state, notFound = t('Không tìm thấy.', 'Not found.'), children }) {
+export function Async({ state, notFound, children }) {
+  const { t } = useTranslation()
   if (state.loading && state.data === undefined) return <Loading />
   if (state.error && state.data === undefined) return <ErrorBox error={state.error} />
-  if (state.data === null) return <div className="py-10 text-center text-stone-500">{notFound}</div>
+  if (state.data === null) return <div className="py-10 text-center text-stone-500">{notFound ?? t('ui.notFound')}</div>
   return children(state.data)
 }
 
@@ -189,15 +193,16 @@ export function PageHeader({ icon: Icon, kicker, title, children }) {
 }
 
 export function Pager({ page, setPage, hasNext }) {
+  const { t } = useTranslation()
   const btn = 'rounded-lg border border-stone-200 px-3 py-1.5 text-sm disabled:opacity-40 hover:bg-stone-100 dark:border-stone-700 dark:hover:bg-stone-800'
   return (
     <div className="mt-4 flex items-center justify-end gap-2">
       <button className={btn} disabled={page <= 1} onClick={() => setPage(page - 1)}>
-        ← {t('Trước', 'Prev')}
+        ← {t('ui.prev')}
       </button>
-      <span className="px-2 text-sm tabular-nums text-stone-500">{t('Trang', 'Page')} {page}</span>
+      <span className="px-2 text-sm tabular-nums text-stone-500">{t('ui.page')} {page}</span>
       <button className={btn} disabled={!hasNext} onClick={() => setPage(page + 1)}>
-        {t('Sau', 'Next')} →
+        {t('ui.next')} →
       </button>
     </div>
   )

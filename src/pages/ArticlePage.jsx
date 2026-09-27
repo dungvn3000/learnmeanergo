@@ -4,7 +4,8 @@ import { ArrowLeft, ArrowRight, BookOpen, GraduationCap } from 'lucide-react'
 import { bySlug, sectionOf } from '../articles'
 import { Loading } from '../components/ui'
 import NotFound from './NotFound'
-import { getLang, pick, t } from '../lib/i18n'
+import { useTranslation } from 'react-i18next'
+import { getLang, pick } from '../lib/i18n'
 import { articleJsonLd, useSeo } from '../lib/seo'
 
 const SECTION = {
@@ -28,6 +29,7 @@ function useToc(ref, key) {
 }
 
 export default function ArticlePage() {
+  const { t } = useTranslation()
   const { slug } = useParams()
   const article = bySlug[slug]
   const body = useRef(null)
@@ -62,7 +64,7 @@ export default function ArticlePage() {
           <p className="mt-3 text-lg text-stone-600 dark:text-stone-400">{pick(article.summary)}</p>
         </div>
         <div ref={body} className="prose-ergo">
-          <Suspense fallback={<Loading label={t('Đang tải bài viết…', 'Loading article…')} />}>
+          <Suspense fallback={<Loading label={t('articlePage.loadingArticle')} />}>
             <Body />
           </Suspense>
         </div>
@@ -71,7 +73,7 @@ export default function ArticlePage() {
           {prev ? (
             <Link to={`/learn/${prev.slug}`} className="group rounded-xl border border-stone-200 p-4 hover:border-ergo-300 dark:border-stone-800">
               <div className="flex items-center gap-1 text-xs text-stone-500">
-                <ArrowLeft className="size-3.5" /> {t('Bài trước', 'Previous')}
+                <ArrowLeft className="size-3.5" /> {t('articlePage.previous')}
               </div>
               <div className="mt-1 font-semibold group-hover:text-ergo-600">{pick(prev.title)}</div>
             </Link>
@@ -81,7 +83,7 @@ export default function ArticlePage() {
           {next && (
             <Link to={`/learn/${next.slug}`} className="group rounded-xl border border-stone-200 p-4 text-right hover:border-ergo-300 dark:border-stone-800">
               <div className="flex items-center justify-end gap-1 text-xs text-stone-500">
-                {t('Bài tiếp theo', 'Next')} <ArrowRight className="size-3.5" />
+                {t('articlePage.next')} <ArrowRight className="size-3.5" />
               </div>
               <div className="mt-1 font-semibold group-hover:text-ergo-600">{pick(next.title)}</div>
             </Link>
@@ -92,7 +94,7 @@ export default function ArticlePage() {
       <aside className="hidden xl:block">
         {toc.length > 1 && (
           <div className="sticky top-24 text-sm">
-            <div className="mb-3 text-xs font-semibold tracking-wide text-stone-500 uppercase">{t('Trong bài này', 'On this page')}</div>
+            <div className="mb-3 text-xs font-semibold tracking-wide text-stone-500 uppercase">{t('articlePage.onThisPage')}</div>
             <ul className="space-y-2">
               {toc.map((t) => (
                 <li key={t.id}>

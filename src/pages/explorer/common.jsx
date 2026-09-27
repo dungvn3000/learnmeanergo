@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom'
 import { BookOpen } from 'lucide-react'
-import { t } from '../../lib/i18n'
+import { useTranslation } from 'react-i18next'
 
 /** Inline "read the guide" link shown next to explorer fields. */
-export function Learn({ to, children = t('Tìm hiểu', 'Learn more') }) {
+export function Learn({ to, children }) {
+  const { t } = useTranslation()
   return (
     <Link to={to} className="inline-flex items-center gap-1 font-medium text-ergo-600 hover:underline dark:text-ergo-400">
-      <BookOpen className="size-3" /> {children}
+      <BookOpen className="size-3" /> {children ?? t('explorerCommon.learnMore')}
     </Link>
   )
 }

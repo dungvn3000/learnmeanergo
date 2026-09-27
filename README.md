@@ -56,7 +56,8 @@ src/
 ## Bilingual (English / Vietnamese)
 
 - The **VI | EN** switch is saved in `localStorage` and can be forced with `?lang=en` / `?lang=vi`. English is the default.
-- `src/lib/i18n.js`: `t('Vietnamese', 'English')` for UI strings, `pick({ vi, en })` for registry data, `locale()` for date/number formatting.
+- UI strings use [react-i18next](https://react.i18next.com/). `src/i18n.js` initialises i18next; the strings live in `src/locales/en.json` and `src/locales/vi.json`, grouped by the file that uses them (`common` for shared ones). In a component: `const { t } = useTranslation()` then `t('blockPage.header')`; outside React (formatters, validators) use `i18n.t(...)` from `src/i18n.js`. Rich text with tags uses `<Trans i18nKey="…" components={{ em: <em /> }} />`.
+- `src/lib/i18n.js`: `pick({ vi, en })` for registry data (article/tool manifests), `locale()` for date/number formatting, `useLang()` for the switch.
 - Articles: the Vietnamese version lives in `src/articles/X.jsx` and the English one in `src/articles/en/X.jsx` (loaded by file name; falls back to Vietnamese if the English file is missing).
 
 **Adding an article:** create `src/articles/X.jsx` and `src/articles/en/X.jsx`, then add an entry to `src/articles/manifest.js` with `slug`, `section`, `icon`, `file: 'X'` and `title`/`summary` as `{ vi, en }`. If the icon is new, also import it in `src/articles/index.js`.

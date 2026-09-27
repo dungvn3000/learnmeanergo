@@ -3,12 +3,13 @@ import { NavLink, useLocation } from 'react-router-dom'
 import { BookOpen, ChevronLeft, GraduationCap, Search, Wrench } from 'lucide-react'
 import { sectionOf } from '../articles'
 import { tools } from '../tools'
-import { pick, t } from '../lib/i18n'
+import { useTranslation } from 'react-i18next'
+import { pick } from '../lib/i18n'
 
 const EXPLORER_PATHS = ['/explorer', '/block/', '/tx/', '/address/', '/box/', '/token/']
 
 /** The site tree shown in the vertical menu. */
-function tree() {
+function tree(t) {
   const technical = sectionOf('technical')
   const groups = [...new Set(technical.map((a) => a.group))]
   const item = (a) => ({ to: `/learn/${a.slug}`, label: pick(a.title) })
@@ -16,27 +17,27 @@ function tree() {
     {
       key: 'beginners',
       icon: GraduationCap,
-      label: t('Người mới bắt đầu', 'Beginners'),
+      label: t('common.beginners'),
       groups: [
-        { items: [{ to: '/beginners', label: t('Tổng quan', 'Overview') }] },
-        { label: t('Hướng dẫn', 'Guide'), items: sectionOf('beginners').map(item) },
+        { items: [{ to: '/beginners', label: t('sidebar.overview') }] },
+        { label: t('sidebar.guide'), items: sectionOf('beginners').map(item) },
       ],
     },
     {
       key: 'technical',
       icon: BookOpen,
-      label: t('Kỹ thuật', 'Technical'),
+      label: t('common.technical'),
       groups: [
-        { items: [{ to: '/technical', label: t('Tổng quan', 'Overview') }] },
+        { items: [{ to: '/technical', label: t('sidebar.overview') }] },
         ...groups.map((g) => ({ label: pick(g), items: technical.filter((a) => a.group === g).map(item) })),
       ],
     },
     {
       key: 'tools',
       icon: Wrench,
-      label: t('Công cụ', 'Tools'),
+      label: t('common.tools'),
       groups: [
-        { items: [{ to: '/tools', label: t('Tất cả công cụ', 'All tools') }] },
+        { items: [{ to: '/tools', label: t('common.allTools') }] },
         { items: tools.map((x) => ({ to: `/tools/${x.slug}`, label: pick(x.title) })) },
       ],
     },
@@ -116,6 +117,7 @@ function Section({ sec, path, onNavigate }) {
 }
 
 export default function Sidebar({ onNavigate }) {
+  const { t } = useTranslation()
   const { pathname } = useLocation()
   const ref = useRef(null)
   // Keep the current page visible in a long menu.
@@ -123,8 +125,8 @@ export default function Sidebar({ onNavigate }) {
     ref.current?.querySelector('[aria-current="page"]')?.scrollIntoView({ block: 'nearest' })
   }, [pathname])
   return (
-    <nav ref={ref} aria-label={t('Mục lục', 'Site navigation')}>
-      {tree().map((sec) => (
+    <nav ref={ref} aria-label={t('sidebar.siteNavigation')}>
+      {tree(t).map((sec) => (
         <Section key={sec.key} sec={sec} path={pathname} onNavigate={onNavigate} />
       ))}
     </nav>

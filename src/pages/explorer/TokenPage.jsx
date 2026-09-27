@@ -6,17 +6,18 @@ import { useApi } from '../../lib/useApi'
 import { ago, num, tokenAmount } from '../../lib/format'
 import { Async, Card, Field, Hash, Pager, Swatch } from '../../components/ui'
 import { Learn, Section, Table, td } from './common'
-import { t } from '../../lib/i18n'
+import { useTranslation } from 'react-i18next'
 import { useSeo } from '../../lib/seo'
 
 function Holders({ tok }) {
+  const { t } = useTranslation()
   const [page, setPage] = useState(1)
   const s = useApi(() => api.tokenHolders(tok.id, page, 10), [tok.id, page])
   return (
     <Async state={s}>
       {(d) => (
         <>
-          <Table head={['#', t('Địa chỉ', 'Address'), { label: t('Số lượng', 'Amount'), right: true }, { label: t('% cung', '% of supply'), right: true }]}>
+          <Table head={['#', t('common.address'), { label: t('tokenPage.amount'), right: true }, { label: t('tokenPage.ofSupply'), right: true }]}>
             {d.items.map((h) => (
               <tr key={h.address}>
                 <td className={`${td} text-stone-400 tabular-nums`}>{h.rank}</td>
@@ -36,6 +37,7 @@ function Holders({ tok }) {
 }
 
 function Token({ tok }) {
+  const { t } = useTranslation()
   return (
     <>
       <div className="mb-8">
@@ -43,34 +45,34 @@ function Token({ tok }) {
           <Shapes className="size-4" /> Token
         </div>
         <h1 className="flex items-center gap-3 text-3xl font-extrabold text-stone-900 dark:text-white">
-          <Swatch id={tok.id} className="size-6 rounded-full" /> {tok.name || t('Token không tên', 'Unnamed token')}
+          <Swatch id={tok.id} className="size-6 rounded-full" /> {tok.name || t('tokenPage.unnamedToken')}
         </h1>
         {tok.desc && <p className="mt-2 text-stone-600 dark:text-stone-400">{tok.desc}</p>}
       </div>
 
       <Card className="px-5 py-2">
         <Field name="Token id" value={<Hash value={tok.id} full />}>
-          {t('Bằng đúng id của box input đầu tiên trong giao dịch phát hành — nên không thể có hai token trùng id.', 'Equal to the id of the first input box of the issuing transaction — so no two tokens can share an id.')}{' '}
+          {t('tokenPage.equalToTheIdOfThe')}{' '}
           <Learn to="/learn/tokens">EIP-4</Learn>
         </Field>
-        <Field name={t('Tổng cung', 'Total supply')} value={`${tokenAmount(tok.supply, tok.decimals)} (${num(tok.supply)} ${t('đơn vị gốc', 'base units')})`}>
-          {t(`Blockchain chỉ lưu số nguyên; ${tok.decimals} chữ số thập phân (R6) là quy ước hiển thị.`, `The blockchain stores only integers; the ${tok.decimals} decimal places (R6) are a display convention.`)}
+        <Field name={t('tokenPage.totalSupply')} value={`${tokenAmount(tok.supply, tok.decimals)} (${num(tok.supply)} ${t('tokenPage.baseUnits')})`}>
+          {t('tokenPage.theBlockchainStoresOnlyIntegersThe', { decimals: tok.decimals })}
         </Field>
-        <Field name={t('Phát hành tại', 'Issued at')} value={<Link to={`/block/${tok.issueHeight}`} className="font-mono text-ergo-600 hover:underline dark:text-ergo-400">block {num(tok.issueHeight)}</Link>} />
-        <Field name={t('Giao dịch phát hành', 'Issuing transaction')} value={<Hash value={tok.issueTx} to={`/tx/${tok.issueTx}`} full />} />
-        <Field name={t('Box phát hành', 'Issuing box')} value={<Hash value={tok.issueBox} to={`/box/${tok.issueBox}`} full />}>
-          {t('Box đầu tiên chứa token; R4–R6 của nó giữ tên, mô tả và số thập phân.', 'The first box holding the token; its R4–R6 hold the name, description and decimals.')}
+        <Field name={t('tokenPage.issuedAt')} value={<Link to={`/block/${tok.issueHeight}`} className="font-mono text-ergo-600 hover:underline dark:text-ergo-400">block {num(tok.issueHeight)}</Link>} />
+        <Field name={t('tokenPage.issuingTransaction')} value={<Hash value={tok.issueTx} to={`/tx/${tok.issueTx}`} full />} />
+        <Field name={t('tokenPage.issuingBox')} value={<Hash value={tok.issueBox} to={`/box/${tok.issueBox}`} full />}>
+          {t('tokenPage.theFirstBoxHoldingTheToken')}
         </Field>
-        {tok.holderCount != null && <Field name={t('Số người nắm giữ', 'Holders')} value={num(tok.holderCount)} />}
+        {tok.holderCount != null && <Field name={t('tokenPage.holders')} value={num(tok.holderCount)} />}
       </Card>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <Section title={t('Người nắm giữ lớn nhất', 'Top holders')}>
+        <Section title={t('tokenPage.topHolders')}>
           <Holders tok={tok} />
         </Section>
         {tok.transfers?.length > 0 && (
-          <Section title={t('Chuyển khoản gần đây', 'Recent transfers')}>
-            <Table head={[t('Giao dịch', 'Transaction'), t('Tới', 'To'), { label: t('Số lượng', 'Amount'), right: true }]}>
+          <Section title={t('tokenPage.recentTransfers')}>
+            <Table head={[t('common.transaction'), t('tokenPage.to'), { label: t('tokenPage.amount'), right: true }]}>
               {tok.transfers.map((x, i) => (
                 <tr key={x.id + i}>
                   <td className={td}>
@@ -92,8 +94,9 @@ function Token({ tok }) {
 }
 
 export default function TokenPage() {
+  const { t } = useTranslation()
   const { id } = useParams()
   const s = useApi(() => api.token(id), [id])
   useSeo({ path: `/token/${id}`, title: { vi: `Token ${s.data?.name || id.slice(0, 12) + '…'}`, en: `Token ${s.data?.name || id.slice(0, 12) + '…'}` }, noindex: true })
-  return <Async state={s} notFound={t('Không tìm thấy token này.', 'Token not found.')}>{(tok) => <Token tok={tok} />}</Async>
+  return <Async state={s} notFound={t('tokenPage.tokenNotFound')}>{(tok) => <Token tok={tok} />}</Async>
 }

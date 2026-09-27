@@ -3,14 +3,15 @@ import { Link, Outlet, useLocation } from 'react-router-dom'
 import { BookOpen, Code2, GraduationCap, Menu, Moon, Search, ShieldCheck, Sun, Wrench, X } from 'lucide-react'
 import SearchBar from './SearchBar'
 import Sidebar from './Sidebar'
-import { LANGS, t, useLang } from '../lib/i18n'
+import { useTranslation } from 'react-i18next'
+import { LANGS, useLang } from '../lib/i18n'
 
 const REPO = 'https://github.com/dungvn3000/learnmeanergo'
 
-const nav = () => [
-  { to: '/beginners', label: t('Người mới', 'Beginners'), icon: GraduationCap },
-  { to: '/technical', label: t('Kỹ thuật', 'Technical'), icon: BookOpen },
-  { to: '/tools', label: t('Công cụ', 'Tools'), icon: Wrench },
+const nav = (t) => [
+  { to: '/beginners', label: t('layout.beginners'), icon: GraduationCap },
+  { to: '/technical', label: t('common.technical'), icon: BookOpen },
+  { to: '/tools', label: t('common.tools'), icon: Wrench },
   { to: '/explorer', label: 'Explorer', icon: Search },
 ]
 
@@ -44,6 +45,7 @@ export function Logo() {
 }
 
 function ThemeToggle() {
+  const { t } = useTranslation()
   const [dark, setDark] = useState(() => document.documentElement.classList.contains('dark'))
   useEffect(() => {
     document.documentElement.classList.toggle('dark', dark)
@@ -57,7 +59,7 @@ function ThemeToggle() {
     <button
       onClick={() => setDark(!dark)}
       className="rounded-lg p-2 text-stone-500 hover:bg-stone-100 hover:text-stone-900 dark:hover:bg-stone-800 dark:hover:text-white"
-      title={dark ? t('Giao diện sáng', 'Light mode') : t('Giao diện tối', 'Dark mode')}
+      title={dark ? t('layout.lightMode') : t('layout.darkMode')}
     >
       {dark ? <Sun className="size-5" /> : <Moon className="size-5" />}
     </button>
@@ -66,12 +68,13 @@ function ThemeToggle() {
 
 /** Logo, search, the menu tree and the settings — the whole left column. */
 function Panel({ onNavigate, onClose }) {
+  const { t } = useTranslation()
   return (
     <div className="flex h-full flex-col">
       <div className="flex h-16 shrink-0 items-center justify-between border-b border-stone-200 px-4 dark:border-stone-800">
         <Logo />
         {onClose && (
-          <button className="rounded-lg p-2" onClick={onClose} aria-label={t('Đóng menu', 'Close menu')}>
+          <button className="rounded-lg p-2" onClick={onClose} aria-label={t('layout.closeMenu')}>
             <X className="size-5" />
           </button>
         )}
@@ -90,7 +93,7 @@ function Panel({ onNavigate, onClose }) {
             target="_blank"
             rel="noreferrer"
             className="rounded-lg p-2 text-stone-500 hover:text-ergo-600 dark:text-stone-400 dark:hover:text-ergo-400"
-            aria-label={t('Mã nguồn trên GitHub', 'Source code on GitHub')}
+            aria-label={t('layout.sourceCodeOnGithub')}
             title="GitHub"
           >
             <Code2 className="size-5" />
@@ -103,9 +106,10 @@ function Panel({ onNavigate, onClose }) {
 }
 
 export default function Layout() {
+  const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const { pathname } = useLocation()
-  const NAV = nav()
+  const NAV = nav(t)
   useEffect(() => {
     setOpen(false)
     window.scrollTo(0, 0)
@@ -122,7 +126,7 @@ export default function Layout() {
 
       <header className="sticky top-0 z-40 border-b border-stone-200 bg-white/90 backdrop-blur lg:hidden dark:border-stone-800 dark:bg-stone-950/90">
         <div className="flex h-14 items-center gap-2 px-3">
-          <button className="rounded-lg p-2" onClick={() => setOpen(true)} aria-label={t('Mở menu', 'Open menu')}>
+          <button className="rounded-lg p-2" onClick={() => setOpen(true)} aria-label={t('layout.openMenu')}>
             <Menu className="size-5" />
           </button>
           <Logo />
@@ -151,21 +155,21 @@ export default function Layout() {
           <div>
             <Logo />
             <p className="mt-3 text-stone-500">
-              {t('Học Ergo từ gốc rễ, lấy cảm hứng từ', 'Learn Ergo from the ground up, inspired by')}{' '}
+              {t('layout.learnErgoFromTheGroundUp')}{' '}
               <a href="https://learnmeabitcoin.com" className="underline hover:text-ergo-600" target="_blank" rel="noreferrer">
                 learnmeabitcoin.com
               </a>
               .
             </p>
             <p className="mt-2 text-stone-500">
-              {t('Mã nguồn mở của trang này:', 'This site is open source:')}{' '}
+              {t('layout.thisSiteIsOpenSource')}{' '}
               <a href={REPO} className="inline-flex items-center gap-1 underline hover:text-ergo-600" target="_blank" rel="noreferrer">
                 <Code2 className="size-3.5" /> github.com/dungvn3000/learnmeanergo
               </a>
             </p>
           </div>
           <div>
-            <div className="mb-2 font-semibold text-stone-900 dark:text-white">{t('Học', 'Learn')}</div>
+            <div className="mb-2 font-semibold text-stone-900 dark:text-white">{t('layout.learn')}</div>
             <ul className="space-y-1.5 text-stone-500">
               {NAV.map((n) => (
                 <li key={n.to}>
@@ -177,29 +181,29 @@ export default function Layout() {
             </ul>
           </div>
           <div>
-            <div className="mb-2 font-semibold text-stone-900 dark:text-white">{t('Dữ liệu', 'Data')}</div>
+            <div className="mb-2 font-semibold text-stone-900 dark:text-white">{t('layout.data')}</div>
             <p className="text-stone-500">
-              {t('Mọi số liệu trực tiếp lấy từ API của', 'All live data comes from the API of')}{' '}
+              {t('layout.allLiveDataComesFromThe')}{' '}
               <a href="https://explorer.erg.vn" className="underline hover:text-ergo-600" target="_blank" rel="noreferrer">
                 explorer.erg.vn
               </a>{' '}
               (Ergo Vietnam).
             </p>
             <p className="mt-2 text-stone-500">
-              {t('Tài liệu gốc:', 'Official docs:')}{' '}
+              {t('layout.officialDocs')}{' '}
               <a href="https://docs.ergoplatform.com" className="underline hover:text-ergo-600" target="_blank" rel="noreferrer">
                 docs.ergoplatform.com
               </a>
             </p>
             <p className="mt-2 text-stone-500">
-              {t('Mã nguồn node Ergo:', 'Ergo node source code:')}{' '}
+              {t('layout.ergoNodeSourceCode')}{' '}
               <a href="https://github.com/ergoplatform/ergo" className="inline-flex items-center gap-1 underline hover:text-ergo-600" target="_blank" rel="noreferrer">
                 <Code2 className="size-3.5" /> github.com/ergoplatform/ergo
               </a>
             </p>
             <p className="mt-2">
               <Link to="/privacy" className="inline-flex items-center gap-1 font-medium text-stone-600 hover:text-ergo-600 dark:text-stone-300">
-                <ShieldCheck className="size-3.5" /> {t('Quyền riêng tư — không theo dõi gì cả', 'Privacy — we track nothing')}
+                <ShieldCheck className="size-3.5" /> {t('layout.privacyWeTrackNothing')}
               </Link>
             </p>
           </div>

@@ -8,7 +8,7 @@ import { ago, erg, num, short, utc } from '../../lib/format'
 import { Async, Badge, Card, Erg, Field, Hash, Pager, TokenChip } from '../../components/ui'
 import { BoxCard } from '../../components/TxFlow'
 import { Learn, Section, Table, td } from './common'
-import { t } from '../../lib/i18n'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSeo } from '../../lib/seo'
 
 const ROWS = 20
@@ -24,13 +24,14 @@ function useDecoded(addr) {
 }
 
 function History({ addr }) {
+  const { t } = useTranslation()
   const [page, setPage] = useState(1)
   const s = useApi(() => api.address(addr, page, ROWS), [addr, page])
   return (
     <Async state={s}>
       {(d) => (
         <>
-          <Table head={[t('Giao dịch', 'Transaction'), t('Độ cao', 'Height'), t('Thời gian', 'Time'), { label: 'ERG', right: true }, 'Token']}>
+          <Table head={[t('common.transaction'), t('common.height'), t('common.time'), { label: 'ERG', right: true }, 'Token']}>
             {d.txs.map((x) => (
               <tr key={x.id} className="hover:bg-stone-50 dark:hover:bg-stone-800/40">
                 <td className={td}>
@@ -69,13 +70,14 @@ function History({ addr }) {
 }
 
 function Unspent({ addr }) {
+  const { t } = useTranslation()
   const [page, setPage] = useState(1)
   const s = useApi(() => api.addressBoxes(addr, page, 12), [addr, page])
   return (
     <Async state={s}>
       {(d) =>
         d.items.length === 0 ? (
-          <p className="text-sm text-stone-500">{t('Địa chỉ này không còn box chưa tiêu nào — số dư bằng 0.', 'This address has no unspent boxes left — its balance is 0.')}</p>
+          <p className="text-sm text-stone-500">{t('addressPage.thisAddressHasNoUnspentBoxes')}</p>
         ) : (
           <>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -92,6 +94,7 @@ function Unspent({ addr }) {
 }
 
 function Address({ a }) {
+  const { t } = useTranslation()
   const dec = useDecoded(a.address)
   const [tab, setTab] = useState('txs')
   const Icon = a.contract ? FileCode2 : KeyRound
@@ -101,7 +104,7 @@ function Address({ a }) {
     <>
       <div className="mb-8">
         <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-ergo-600 dark:text-ergo-400">
-          <Icon className="size-4" /> {a.contract ? t('Địa chỉ hợp đồng', 'Contract address') : t('Địa chỉ', 'Address')}
+          <Icon className="size-4" /> {a.contract ? t('addressPage.contractAddress') : t('common.address')}
           {a.label && <Badge tone="ergo">{a.label}</Badge>}
         </div>
         <h1 className="text-xl font-bold text-stone-900 sm:text-2xl dark:text-white">
@@ -111,14 +114,14 @@ function Address({ a }) {
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
         <Card className="p-6">
-          <div className="text-xs font-semibold tracking-wide text-stone-500 uppercase">{t('Số dư', 'Balance')}</div>
+          <div className="text-xs font-semibold tracking-wide text-stone-500 uppercase">{t('addressPage.balance')}</div>
           <div className="mt-1 text-3xl font-extrabold text-stone-900 dark:text-white">
             <Erg nano={a.balance} />
           </div>
-          {a.unconfirmed !== 0 && <div className="mt-1 text-sm text-sky-600">{a.unconfirmed > 0 ? '+' : ''}{erg(a.unconfirmed)} ERG {t('chưa xác nhận', 'unconfirmed')}</div>}
+          {a.unconfirmed !== 0 && <div className="mt-1 text-sm text-sky-600">{a.unconfirmed > 0 ? '+' : ''}{erg(a.unconfirmed)} ERG {t('addressPage.unconfirmed')}</div>}
           <p className="mt-3 text-sm text-stone-500">
-            {t(<>“Số dư” không được lưu ở đâu cả — nó là tổng giá trị của <strong>{num(a.boxes)}</strong> box chưa tiêu đang bị khoá bởi địa chỉ này.</>, <>A “balance” isn’t stored anywhere — it is the total value of the <strong>{num(a.boxes)}</strong> unspent boxes locked by this address.</>)}{' '}
-            <Learn to="/learn/boxes">{t('Vì sao?', 'Why?')}</Learn>
+            <Trans i18nKey="addressPage.balanceExplained" values={{ boxes: num(a.boxes) }} components={{ b: <strong /> }} />{' '}
+            <Learn to="/learn/boxes">{t('common.why')}</Learn>
           </p>
           {a.tokens?.length > 0 && (
             <div className="mt-4 flex flex-wrap gap-1.5">
@@ -130,28 +133,28 @@ function Address({ a }) {
         </Card>
         <Card className="px-5 py-2">
           {dec && (
-            <Field name={t('Loại', 'Type')} value={`${dec.typeInfo?.code ?? '?'} · ${dec.networkName}`}>
-              {dec.typeInfo?.desc} <Learn to={`/tools/address-decoder?a=${encodeURIComponent(a.address)}`}>{t('Giải mã byte-by-byte', 'Decode byte by byte')}</Learn>
+            <Field name={t('addressPage.type')} value={`${dec.typeInfo?.code ?? '?'} · ${dec.networkName}`}>
+              {dec.typeInfo?.desc} <Learn to={`/tools/address-decoder?a=${encodeURIComponent(a.address)}`}>{t('addressPage.decodeByteByByte')}</Learn>
             </Field>
           )}
           <Field name="ErgoTree" value={<span className="font-mono text-xs break-all">{short(a.ergoTree, 60, 20)}</span>}>
-            {t('Script thật sự khoá các box. Địa chỉ chỉ là cách mã hoá ErgoTree cho dễ đọc.', 'The script that actually locks the boxes. An address is just a human-friendly encoding of the ErgoTree.')} <Learn to="/learn/ergotree">ErgoTree</Learn>
+            {t('addressPage.theScriptThatActuallyLocksThe')} <Learn to="/learn/ergotree">ErgoTree</Learn>
           </Field>
-          <Field name={t('Số giao dịch', 'Transactions')} value={num(a.txCount)} />
-          {a.firstSeen && <Field name={t('Lần đầu xuất hiện', 'First seen')} value={utc(a.firstSeen)} />}
-          {a.lastSeen && <Field name={t('Hoạt động gần nhất', 'Last active')} value={`${utc(a.lastSeen)} (${ago(a.lastSeen)})`} />}
+          <Field name={t('addressPage.transactions')} value={num(a.txCount)} />
+          {a.firstSeen && <Field name={t('addressPage.firstSeen')} value={utc(a.firstSeen)} />}
+          {a.lastSeen && <Field name={t('addressPage.lastActive')} value={`${utc(a.lastSeen)} (${ago(a.lastSeen)})`} />}
         </Card>
       </div>
 
       <Section
-        title={tab === 'txs' ? t('Lịch sử giao dịch', 'Transaction history') : t('Box chưa tiêu (UTXO)', 'Unspent boxes (UTXO)')}
+        title={tab === 'txs' ? t('addressPage.transactionHistory') : t('addressPage.unspentBoxesUtxo')}
         right={
           <div className="flex gap-1">
             <button className={tabCls('txs')} onClick={() => setTab('txs')}>
-              {t('Giao dịch', 'Transactions')}
+              {t('common.transactions')}
             </button>
             <button className={tabCls('boxes')} onClick={() => setTab('boxes')}>
-              {t('Box chưa tiêu', 'Unspent boxes')}
+              {t('addressPage.unspentBoxes')}
             </button>
           </div>
         }
@@ -163,8 +166,9 @@ function Address({ a }) {
 }
 
 export default function AddressPage() {
+  const { t } = useTranslation()
   const { addr } = useParams()
   const s = useApi(() => api.address(addr, 1, 1), [addr])
   useSeo({ path: `/address/${addr}`, title: { vi: `Địa chỉ ${addr.slice(0, 12)}…`, en: `Address ${addr.slice(0, 12)}…` }, noindex: true })
-  return <Async state={s} notFound={t('Địa chỉ này chưa từng xuất hiện trên blockchain.', 'This address has never appeared on the blockchain.')}>{(a) => <Address a={a} />}</Async>
+  return <Async state={s} notFound={t('addressPage.thisAddressHasNeverAppearedOn')}>{(a) => <Address a={a} />}</Async>
 }

@@ -1,4 +1,5 @@
-import { locale, t } from './i18n.js'
+import { locale } from './i18n'
+import i18n from '../i18n'
 
 export const NANO = 1e9
 
@@ -25,12 +26,12 @@ export const bytes = (b) =>
 
 export const ago = (ts) => {
   const s = Math.max(0, Math.round((Date.now() - ts) / 1000))
-  if (s < 60) return t(`${s} giây trước`, `${s}s ago`)
+  if (s < 60) return i18n.t('format.sAgo', { s })
   const m = (s / 60) | 0
-  if (m < 60) return t(`${m} phút trước`, `${m} min ago`)
+  if (m < 60) return i18n.t('format.minAgo', { m })
   const h = (m / 60) | 0
-  if (h < 48) return t(`${h} giờ ${m % 60} phút trước`, `${h}h ${m % 60}m ago`)
-  return t(`${(h / 24) | 0} ngày trước`, `${(h / 24) | 0} days ago`)
+  if (h < 48) return i18n.t('format.hMAgo', { h, m: m % 60 })
+  return i18n.t('format.daysAgo', { d: (h / 24) | 0 })
 }
 
 const pad = (n) => String(n).padStart(2, '0')
