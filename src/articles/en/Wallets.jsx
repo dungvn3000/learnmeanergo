@@ -152,7 +152,11 @@ export default function Wallets() {
       </ul>
       <p>
         Whichever wallet you use, the principle is the same: you hold the seed phrase, you hold the money. Always download wallets from
-        their official sources.
+        their official sources — the full list is at{' '}
+        <a href="https://ergoplatform.org/en/get-erg/#Wallets" target="_blank" rel="noreferrer">
+          ergoplatform.org/get-erg
+        </a>
+        .
       </p>
 
       <h2 id="tiep-theo">What's next</h2>

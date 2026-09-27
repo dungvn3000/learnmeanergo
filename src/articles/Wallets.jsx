@@ -149,7 +149,12 @@ export default function Wallets() {
         </li>
       </ul>
       <p>
-        Dù dùng ví nào, nguyên tắc vẫn vậy: bạn giữ seed phrase, bạn giữ tiền. Hãy luôn tải ví từ nguồn chính thức.
+        Dù dùng ví nào, nguyên tắc vẫn vậy: bạn giữ seed phrase, bạn giữ tiền. Hãy luôn tải ví từ nguồn chính thức — danh sách đầy đủ
+        có tại{' '}
+        <a href="https://ergoplatform.org/en/get-erg/#Wallets" target="_blank" rel="noreferrer">
+          ergoplatform.org/get-erg
+        </a>
+        .
       </p>
 
       <h2 id="tiep-theo">Tiếp theo</h2>
