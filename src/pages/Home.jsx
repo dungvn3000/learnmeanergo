@@ -38,15 +38,15 @@ function LiveChain() {
                   to={`/block/${b.height}`}
                   className={`group w-[118px] rounded-xl border p-2.5 transition hover:-translate-y-0.5 ${
                     i === blocks.length - 1
-                      ? 'border-ergo-400 bg-ergo-500 text-white shadow-lg shadow-ergo-500/25'
-                      : 'border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-900'
+                      ? 'border-ergo-600 bg-ergo-600 text-white shadow-lg shadow-ergo-600/25'
+                      : 'border-stone-200 bg-surface dark:border-stone-700 dark:bg-stone-900'
                   }`}
                 >
-                  <div className="flex items-center gap-1 text-[10px] font-semibold uppercase opacity-70">
+                  <div className="flex items-center gap-1 text-[10px] font-semibold uppercase opacity-90">
                     <Layers className="size-3" /> Block
                   </div>
                   <div className="font-mono text-sm font-bold tabular-nums whitespace-nowrap">{num(b.height)}</div>
-                  <div className="truncate text-[11px] opacity-70">{b.txCount} tx · {ago(b.timestamp)}</div>
+                  <div className="truncate text-[11px] opacity-90">{b.txCount} tx · {ago(b.timestamp)}</div>
                 </Link>
               ) : (
                 <div className="h-[74px] w-[118px] animate-pulse rounded-xl bg-stone-200 dark:bg-stone-800" />
@@ -100,7 +100,7 @@ function PathCard({ icon: Icon, title, to, list, cta }) {
       <ol className="mt-5 flex-1 space-y-1">
         {list.map((a, i) => (
           <li key={a.slug}>
-            <Link to={`/learn/${a.slug}`} className="group flex items-center gap-3 rounded-lg px-2 py-1.5 hover:bg-stone-50 dark:hover:bg-stone-800/60">
+            <Link to={`/learn/${a.slug}`} className="group flex items-center gap-3 rounded-lg px-2 py-1.5 hover:bg-stone-100 dark:hover:bg-stone-800/60">
               <span className="w-5 text-right text-xs font-bold text-stone-400 tabular-nums">{i + 1}</span>
               <a.icon className="size-4 text-stone-400 group-hover:text-ergo-500" />
               <span className="text-sm font-medium group-hover:text-ergo-600">{pick(a.title)}</span>
@@ -130,7 +130,7 @@ export default function Home() {
             {t('home.liveDataFromErgoMainnet')}
           </div>
           <h1 className="text-4xl leading-tight font-extrabold tracking-tight text-stone-900 sm:text-5xl dark:text-white">
-            {t('home.ergoExplained')}<span className="text-ergo-500">{t('home.forEveryone')}</span>.
+            {t('home.ergoExplained')}<span className="text-ergo-600 dark:text-ergo-400">{t('home.forEveryone')}</span>.
           </h1>
           <p className="mt-3 text-sm font-medium text-stone-500">
             {t('home.inspiredBy')}{' '}
@@ -143,10 +143,10 @@ export default function Home() {
             {t('home.aSimpleYetTechnicalGuideTo')}
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <Link to="/beginners" className="inline-flex items-center gap-2 rounded-xl bg-ergo-500 px-5 py-3 font-semibold text-white shadow-lg shadow-ergo-500/25 hover:bg-ergo-600">
+            <Link to="/beginners" className="inline-flex items-center gap-2 rounded-xl bg-ergo-600 px-5 py-3 font-semibold text-white shadow-lg shadow-ergo-600/25 hover:bg-ergo-700">
               <GraduationCap className="size-5" /> {t('common.beginners')}
             </Link>
-            <Link to="/technical" className="inline-flex items-center gap-2 rounded-xl border border-stone-300 bg-white px-5 py-3 font-semibold hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900">
+            <Link to="/technical" className="inline-flex items-center gap-2 rounded-xl border border-stone-300 bg-surface px-5 py-3 font-semibold hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900">
               <BookOpen className="size-5" /> {t('common.technical')}
             </Link>
           </div>

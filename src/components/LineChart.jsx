@@ -133,7 +133,7 @@ export default function LineChart({
       </svg>
       {hover && (
         <div
-          className="pointer-events-none absolute top-2 z-10 rounded-lg border border-stone-200 bg-white px-3 py-2 text-xs shadow-lg dark:border-stone-700 dark:bg-stone-900"
+          className="pointer-events-none absolute top-2 z-10 rounded-lg border border-stone-200 bg-surface px-3 py-2 text-xs shadow-lg dark:border-stone-700 dark:bg-stone-900"
           style={hx > width / 2 ? { right: width - hx + 12 } : { left: hx + 12 }}
         >
           {tooltip ? tooltip(hover) : (

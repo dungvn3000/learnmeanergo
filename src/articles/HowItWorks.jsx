@@ -30,7 +30,7 @@ function LiveChain() {
                   {i > 0 && <ArrowLeft className="size-4 shrink-0 text-stone-400" />}
                   <Link
                     to={`/block/${b.height}`}
-                    className="block w-40 shrink-0 rounded-xl border border-stone-200 bg-white p-3 text-xs transition hover:border-ergo-400 dark:border-stone-700 dark:bg-stone-900"
+                    className="block w-40 shrink-0 rounded-xl border border-stone-200 bg-surface p-3 text-xs transition hover:border-ergo-400 dark:border-stone-700 dark:bg-stone-900"
                   >
                     <div className="text-base font-bold tabular-nums text-stone-900 dark:text-white">#{num(b.height)}</div>
                     <div className="mt-1 font-mono text-stone-500" title={b.id}>id {short(b.id, 5, 4)}</div>

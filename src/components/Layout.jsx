@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
-import { BookOpen, Code2, GraduationCap, Menu, Moon, Search, ShieldCheck, Sun, Wrench, X } from 'lucide-react'
+import { BookOpen, Code2, GraduationCap, Info, Menu, Moon, Search, ShieldCheck, Sun, Wrench, X } from 'lucide-react'
 import SearchBar from './SearchBar'
 import Sidebar from './Sidebar'
 import { useTranslation } from 'react-i18next'
@@ -24,7 +24,7 @@ function LangSwitch() {
           key={l}
           onClick={() => setLang(l)}
           aria-pressed={lang === l}
-          className={`rounded-md px-2 py-1 uppercase ${lang === l ? 'bg-ergo-500 text-white' : 'text-stone-500 hover:text-stone-900 dark:hover:text-white'}`}
+          className={`rounded-md px-2 py-1 uppercase ${lang === l ? 'bg-ergo-600 text-white' : 'text-stone-500 hover:text-stone-900 dark:hover:text-white'}`}
         >
           {l}
         </button>
@@ -124,7 +124,7 @@ export default function Layout() {
         <Panel />
       </aside>
 
-      <header className="sticky top-0 z-40 border-b border-stone-200 bg-white/90 backdrop-blur lg:hidden dark:border-stone-800 dark:bg-stone-950/90">
+      <header className="sticky top-0 z-40 border-b border-stone-200 bg-stone-50/90 backdrop-blur lg:hidden dark:border-stone-800 dark:bg-stone-950/90">
         <div className="flex h-14 items-center gap-2 px-3">
           <button className="rounded-lg p-2" onClick={() => setOpen(true)} aria-label={t('layout.openMenu')}>
             <Menu className="size-5" />
@@ -150,7 +150,7 @@ export default function Layout() {
         </div>
       )}
 
-      <footer className="border-t border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-900">
+      <footer className="border-t border-stone-200 bg-surface dark:border-stone-800 dark:bg-stone-900">
         <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 text-sm sm:grid-cols-3 sm:px-8">
           <div>
             <Logo />
@@ -206,7 +206,15 @@ export default function Layout() {
                 <ShieldCheck className="size-3.5" /> {t('layout.privacyWeTrackNothing')}
               </Link>
             </p>
+            <p className="mt-2">
+              <Link to="/about" className="inline-flex items-center gap-1 font-medium text-stone-600 hover:text-ergo-600 dark:text-stone-300">
+                <Info className="size-3.5" /> {t('layout.about')}
+              </Link>
+            </p>
           </div>
+        </div>
+        <div className="border-t border-stone-200 px-4 py-4 text-center text-xs text-stone-500 dark:border-stone-800">
+          {t('layout.madeBy')}
         </div>
       </footer>
     </div>

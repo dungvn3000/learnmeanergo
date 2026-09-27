@@ -44,7 +44,7 @@ export function Beginners() {
           <ArticleCard key={a.slug} a={a} n={i + 1} />
         ))}
       </div>
-      <Link to={`/learn/${list[0].slug}`} className="mt-8 inline-flex items-center gap-2 rounded-xl bg-ergo-500 px-5 py-3 font-semibold text-white hover:bg-ergo-600">
+      <Link to={`/learn/${list[0].slug}`} className="mt-8 inline-flex items-center gap-2 rounded-xl bg-ergo-600 px-5 py-3 font-semibold text-white hover:bg-ergo-700">
         {t('sectionIndex.startReading')} <ArrowRight className="size-4" />
       </Link>
     </>

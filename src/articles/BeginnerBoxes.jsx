@@ -19,13 +19,13 @@ const EUTXO_ARTICLE = 'https://dav009.medium.com/learning-ergo-101-blockchain-pa
 /** A single illustrated box. */
 function Box({ amount, owner, tone = 'stone', faded = false }) {
   const tones = {
-    stone: 'border-stone-300 bg-white dark:border-stone-600 dark:bg-stone-900',
+    stone: 'border-stone-300 bg-surface dark:border-stone-600 dark:bg-stone-900',
     ergo: 'border-ergo-300 bg-ergo-50 dark:border-ergo-800 dark:bg-ergo-950/40',
     amber: 'border-amber-300 bg-amber-50 dark:border-amber-800 dark:bg-amber-950/30',
   }
   return (
     <div className={`relative w-32 rounded-xl border-2 p-3 text-center ${tones[tone]} ${faded ? 'opacity-50 line-through' : ''}`}>
-      <Lock className="absolute -top-3 left-1/2 size-6 -translate-x-1/2 rounded-full bg-white p-1 text-stone-600 ring-1 ring-stone-200 dark:bg-stone-800 dark:text-stone-300 dark:ring-stone-700" />
+      <Lock className="absolute -top-3 left-1/2 size-6 -translate-x-1/2 rounded-full bg-surface p-1 text-stone-600 ring-1 ring-stone-200 dark:bg-stone-800 dark:text-stone-300 dark:ring-stone-700" />
       <div className="mt-1 text-lg font-bold text-stone-900 dark:text-white">{amount}</div>
       <div className="text-xs text-stone-500">{owner}</div>
     </div>

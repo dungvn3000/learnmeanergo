@@ -33,7 +33,7 @@ function History({ addr }) {
         <>
           <Table head={[t('common.transaction'), t('common.height'), t('common.time'), { label: 'ERG', right: true }, 'Token']}>
             {d.txs.map((x) => (
-              <tr key={x.id} className="hover:bg-stone-50 dark:hover:bg-stone-800/40">
+              <tr key={x.id} className="hover:bg-stone-100 dark:hover:bg-stone-800/40">
                 <td className={td}>
                   <div className="flex items-center gap-2">
                     {x.amount >= 0 ? <ArrowDownLeft className="size-4 text-emerald-500" /> : <ArrowUpRight className="size-4 text-stone-400" />}
@@ -99,7 +99,7 @@ function Address({ a }) {
   const [tab, setTab] = useState('txs')
   const Icon = a.contract ? FileCode2 : KeyRound
   const tabCls = (k) =>
-    `rounded-lg px-3 py-1.5 text-sm font-medium ${tab === k ? 'bg-ergo-500 text-white' : 'text-stone-600 hover:bg-stone-100 dark:text-stone-400 dark:hover:bg-stone-800'}`
+    `rounded-lg px-3 py-1.5 text-sm font-medium ${tab === k ? 'bg-ergo-600 text-white' : 'text-stone-600 hover:bg-stone-100 dark:text-stone-400 dark:hover:bg-stone-800'}`
   return (
     <>
       <div className="mb-8">

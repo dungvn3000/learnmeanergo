@@ -19,7 +19,7 @@ export function BoxCard({ box, role = 'output', showRegisters = false }) {
         ? 'border-amber-300 dark:border-amber-800'
         : 'border-stone-200 dark:border-stone-700'
   return (
-    <div className={`rounded-xl border bg-white p-3 text-sm dark:bg-stone-900 ${border}`}>
+    <div className={`rounded-xl border bg-surface p-3 text-sm dark:bg-stone-900 ${border}`}>
       <div className="flex items-center justify-between gap-2">
         <div className="flex min-w-0 items-center gap-1.5">
           <Swatch id={box.boxId} />
@@ -46,7 +46,7 @@ export function BoxCard({ box, role = 'output', showRegisters = false }) {
       </div>
       <div className="mt-1 min-w-0 text-xs text-stone-500">
         {fee ? (
-          <span className="font-medium text-amber-700 dark:text-amber-400">{t('txFlow.minerFee')}</span>
+          <span className="font-medium text-amber-800 dark:text-amber-400">{t('txFlow.minerFee')}</span>
         ) : box.address ? (
           <Hash value={box.address} to={`/address/${box.address}`} head={8} tail={6} />
         ) : (

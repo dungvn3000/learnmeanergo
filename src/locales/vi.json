@@ -1,4 +1,43 @@
 {
+  "about": {
+    "kicker": "Giới thiệu",
+    "title": "Trang web này được xây dựng thế nào",
+    "lead": "Một ứng dụng React tĩnh dạy về Ergo bằng dữ liệu mainnet trực tiếp — không backend, không cơ sở dữ liệu, không theo dõi.",
+    "intro": "Learn Me An Ergo là một ứng dụng một trang (single-page app). Mọi thứ chạy trong trình duyệt của bạn: các trang chỉ là file tĩnh, còn số liệu trực tiếp — block, giao dịch, địa chỉ, biểu đồ — được lấy thẳng từ API công khai của một Ergo explorer. <b>Không có máy chủ riêng</b> và không có gì để đăng nhập.",
+    "stack": {
+      "title": "Công nghệ sử dụng",
+      "react": "Hiển thị mọi trang, bài viết và bản demo tương tác.",
+      "vite": "Máy chủ phát triển tải lại tức thì, và bản build production.",
+      "router": "Định tuyến phía trình duyệt: /learn, /tools, /block, /tx, /address…",
+      "tailwind": "Toàn bộ giao diện, bằng utility class cộng một stylesheet nhỏ cho kiểu chữ bài viết.",
+      "i18next": "Tiếng Anh và tiếng Việt: chuỗi giao diện và nội dung mọi bài viết nằm trong file JSON.",
+      "noble": "Hàm blake2b256 chạy trong trình duyệt, dùng để tính lại checksum địa chỉ và id.",
+      "lucide": "Bộ icon.",
+      "oxlint": "Kiểm tra mã nguồn (lint) nhanh cho toàn bộ dự án."
+    },
+    "data": {
+      "title": "Dữ liệu lấy từ đâu",
+      "api": "Dữ liệu trực tiếp đến từ REST API của <explorer>explorer.erg.vn</explorer> (Ergo Vietnam), được trình duyệt của bạn gọi thẳng. Số liệu mạng tự làm mới theo chu kỳ; trang web không lưu đệm hay chuyển tiếp gì cả. Riêng bài NiPoPoW còn hỏi hai node Ergo công khai (<code>sv1.erg.vn</code>, <code>sv2.erg.vn</code>) để lấy một bằng chứng trực tiếp.",
+      "protocol": "Logic giao thức — Base58, mã hoá địa chỉ, lịch phát hành, EIP-27 — được viết lại bằng JavaScript thuần và đối chiếu với block thật, để các công cụ có thể hiện từng bước thay vì gọi một hộp đen."
+    },
+    "i18n": {
+      "title": "Hai ngôn ngữ",
+      "p1": "Trang web song ngữ hoàn toàn. Chuỗi giao diện nằm trong <code>src/locales/en.json</code> và <code>vi.json</code>. Mỗi bài viết là một component React duy nhất, phần chữ nằm trong một cặp file JSON riêng và chỉ tải khi mở bài, nên mỗi trang chỉ tải ngôn ngữ cần dùng. Một script nhỏ kiểm tra để hai ngôn ngữ luôn có cùng key, thẻ và biến."
+    },
+    "design": {
+      "title": "Thiết kế để đọc",
+      "p1": "Kiểu chữ bài viết và bảng màu sáng/tối được chuyển thể từ theme <paper>hugo-paper</paper> (MIT): nền giấy ấm, chữ 18px với khoảng cách dòng rộng và cột đọc hẹp. Mọi màu chữ đều được kiểm tra độ tương phản theo chuẩn WCAG AA ở cả hai chế độ. Font chữ (Be Vietnam Pro và JetBrains Mono) được tự host, nên không có yêu cầu nào gửi tới CDN font."
+    },
+    "build": {
+      "title": "Build và triển khai",
+      "p1": "<code>npm run build</code> trước tiên sinh <code>sitemap.xml</code>, <code>robots.txt</code> và <code>llms.txt</code> từ danh sách bài viết và công cụ, rồi Vite đóng gói ứng dụng. Bài viết và công cụ được tách thành các chunk riêng và chỉ tải khi cần.",
+      "p2": "Kết quả là một thư mục file tĩnh. Host tĩnh nào cũng dùng được; chỉ cần một luật trả về <code>index.html</code> cho mọi đường dẫn, đã có sẵn cho Vercel và các host kiểu Netlify. Ảnh xem trước khi chia sẻ được render một lần bằng Chrome headless rồi commit vào repo."
+    },
+    "source": {
+      "title": "Mã nguồn mở",
+      "p1": "Toàn bộ mã nguồn có trên <repo>GitHub</repo>. Rất hoan nghênh các chỉnh sửa cho bài viết — nhớ cập nhật cả hai ngôn ngữ. Xem <privacy>trang quyền riêng tư</privacy> để biết chính xác trang web làm gì và không làm gì với dữ liệu của bạn."
+    }
+  },
   "addressDecoder": {
     "aConstantOfTypeSigmaprop": "hằng số kiểu SigmaProp",
     "addressType": "Loại địa chỉ",
@@ -245,6 +284,7 @@
     "whatMakesErgoDifferent": "Điều gì làm Ergo khác biệt?"
   },
   "layout": {
+    "about": "Giới thiệu",
     "allLiveDataComesFromThe": "Mọi số liệu trực tiếp lấy từ API của",
     "beginners": "Người mới",
     "closeMenu": "Đóng menu",
@@ -254,6 +294,7 @@
     "learn": "Học",
     "learnErgoFromTheGroundUp": "Học Ergo từ gốc rễ, lấy cảm hứng từ",
     "lightMode": "Giao diện sáng",
+    "madeBy": "Được làm bởi một Ergonaut",
     "officialDocs": "Tài liệu gốc:",
     "openMenu": "Mở menu",
     "privacyWeTrackNothing": "Quyền riêng tư — không theo dõi gì cả",

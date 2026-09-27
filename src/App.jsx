@@ -11,6 +11,7 @@ import AddressPage from './pages/explorer/AddressPage'
 import BoxPage from './pages/explorer/BoxPage'
 import TokenPage from './pages/explorer/TokenPage'
 import Privacy from './pages/Privacy'
+import About from './pages/About'
 import NotFound from './pages/NotFound'
 
 export default function App() {
@@ -30,6 +31,7 @@ export default function App() {
         <Route path="box/:id" element={<BoxPage />} />
         <Route path="token/:id" element={<TokenPage />} />
         <Route path="privacy" element={<Privacy />} />
+        <Route path="about" element={<About />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

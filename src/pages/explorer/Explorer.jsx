@@ -117,7 +117,7 @@ export default function Explorer() {
             <>
               <Table head={[t('common.height'), t('common.time'), t('common.miner'), { label: t('explorer.txs'), right: true }, { label: t('common.size'), right: true }, { label: t('explorer.reward'), right: true }]}>
                 {d.items.map((b) => (
-                  <tr key={b.id} className="hover:bg-stone-50 dark:hover:bg-stone-800/40">
+                  <tr key={b.id} className="hover:bg-stone-100 dark:hover:bg-stone-800/40">
                     <td className={td}>
                       <Link to={`/block/${b.height}`} className="font-mono font-semibold text-ergo-600 hover:underline dark:text-ergo-400">
                         {num(b.height)}

@@ -71,7 +71,7 @@ export default function Whitepaper() {
     <>
       <p>{T('intro')}</p>
       <div className="not-prose my-6 flex flex-wrap gap-3">
-        <a href={PDF} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl bg-ergo-500 px-4 py-2.5 text-sm font-semibold text-white hover:bg-ergo-600">
+        <a href={PDF} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl bg-ergo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-ergo-700">
           <Download className="size-4" /> Whitepaper (PDF)
         </a>
         <a href={WEB} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-stone-300 px-4 py-2.5 text-sm font-semibold hover:border-stone-400 dark:border-stone-700">

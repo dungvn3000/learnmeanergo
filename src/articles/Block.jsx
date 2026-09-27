@@ -33,7 +33,7 @@ function ChainDiagram({ block }) {
                 ? 'border-ergo-400 bg-ergo-50 dark:border-ergo-700 dark:bg-ergo-950/40'
                 : c.future
                   ? 'border-dashed border-stone-300 text-stone-400 dark:border-stone-700'
-                  : 'border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-900'
+                  : 'border-stone-200 bg-surface dark:border-stone-700 dark:bg-stone-900'
             }`}
           >
             <div className="font-semibold text-stone-900 dark:text-white">Block {num(c.h)}</div>
@@ -51,9 +51,9 @@ function ChainDiagram({ block }) {
 /** The four sections a full Ergo block is made of. */
 const PARTS = [
   { key: 'header', name: 'Header', cls: 'border-ergo-400 bg-ergo-50 dark:border-ergo-700 dark:bg-ergo-950/40' },
-  { key: 'txs', name: 'Block transactions', cls: 'border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-900' },
-  { key: 'adProofs', name: 'AD proofs', cls: 'border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-900' },
-  { key: 'extension', name: 'Extension', cls: 'border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-900' },
+  { key: 'txs', name: 'Block transactions', cls: 'border-stone-200 bg-surface dark:border-stone-700 dark:bg-stone-900' },
+  { key: 'adProofs', name: 'AD proofs', cls: 'border-stone-200 bg-surface dark:border-stone-700 dark:bg-stone-900' },
+  { key: 'extension', name: 'Extension', cls: 'border-stone-200 bg-surface dark:border-stone-700 dark:bg-stone-900' },
 ]
 
 function SectionsDiagram() {

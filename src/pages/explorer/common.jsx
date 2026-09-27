@@ -26,7 +26,7 @@ export function Section({ title, right, children, className = '' }) {
 
 export function Table({ head, children }) {
   return (
-    <div className="overflow-x-auto rounded-2xl border border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-900">
+    <div className="overflow-x-auto rounded-2xl border border-stone-200 bg-surface dark:border-stone-800 dark:bg-stone-900">
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b border-stone-200 text-left text-xs tracking-wide text-stone-500 uppercase dark:border-stone-800">

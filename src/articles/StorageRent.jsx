@@ -32,7 +32,7 @@ function RentCalculator() {
   const createdH = Number(created || (height ? height - 1_200_000 : 0))
   const claimableAt = createdH + STORAGE_PERIOD
 
-  const input = 'w-full rounded-lg border border-stone-200 bg-white px-3 py-2 font-mono tabular-nums outline-none focus:border-ergo-400 dark:border-stone-700 dark:bg-stone-900'
+  const input = 'w-full rounded-lg border border-stone-200 bg-surface px-3 py-2 font-mono tabular-nums outline-none focus:border-ergo-400 dark:border-stone-700 dark:bg-stone-900'
 
   return (
     <Card className="not-prose my-6 p-5">

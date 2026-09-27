@@ -1,4 +1,43 @@
 {
+  "about": {
+    "kicker": "About",
+    "title": "How this site is built",
+    "lead": "A static React app that teaches Ergo with live mainnet data — no backend, no database, no tracking.",
+    "intro": "Learn Me An Ergo is a single-page app. Everything runs in your browser: the pages are plain files, and the live numbers — blocks, transactions, addresses, charts — are fetched straight from a public Ergo explorer API. There is <b>no server of our own</b> and nothing to log in to.",
+    "stack": {
+      "title": "The stack",
+      "react": "Renders every page, article and interactive demo.",
+      "vite": "Dev server with instant reload, and the production build.",
+      "router": "Client-side routes: /learn, /tools, /block, /tx, /address…",
+      "tailwind": "All styling, as utility classes plus a small stylesheet for article typography.",
+      "i18next": "English and Vietnamese: UI strings and every article's text live in JSON files.",
+      "noble": "blake2b256 in the browser, used to rebuild address checksums and ids.",
+      "lucide": "The icon set.",
+      "oxlint": "Fast linting for the whole codebase."
+    },
+    "data": {
+      "title": "Where the data comes from",
+      "api": "Live data comes from the REST API of <explorer>explorer.erg.vn</explorer> (Ergo Vietnam), called directly from your browser. Network stats refresh on a timer; nothing is cached or proxied by this site. The NiPoPoW article also asks two public Ergo nodes (<code>sv1.erg.vn</code>, <code>sv2.erg.vn</code>) for a live proof.",
+      "protocol": "Protocol logic — Base58, address encoding, the emission schedule, EIP-27 — is re-implemented in plain JavaScript and checked against real blocks, so the tools can show every step instead of calling a black box."
+    },
+    "i18n": {
+      "title": "Two languages",
+      "p1": "The site is fully bilingual. Interface strings live in <code>src/locales/en.json</code> and <code>vi.json</code>. Each article is a single React component whose text sits in its own JSON pair and loads lazily with the article, so a page only downloads the language it needs. A small script checks that both languages have the same keys, tags and variables."
+    },
+    "design": {
+      "title": "Design for reading",
+      "p1": "Article typography and the light/dark palettes are adapted from the <paper>hugo-paper</paper> theme (MIT): a warm paper background, 18px text with generous line height and a narrow reading column. Every text colour is checked against WCAG AA contrast in both themes. Fonts (Be Vietnam Pro and JetBrains Mono) are self-hosted, so no request goes to a font CDN."
+    },
+    "build": {
+      "title": "Build and hosting",
+      "p1": "<code>npm run build</code> first generates <code>sitemap.xml</code>, <code>robots.txt</code> and <code>llms.txt</code> from the article and tool lists, then Vite bundles the app. Articles and tools are split into separate chunks and loaded on demand.",
+      "p2": "The output is a folder of static files. Any static host works; the only rule needed is a fallback that serves <code>index.html</code> for every path, included for both Vercel and Netlify-style hosts. Social preview images are rendered once with headless Chrome and committed."
+    },
+    "source": {
+      "title": "Open source",
+      "p1": "The full source is on <repo>GitHub</repo>. Corrections to the articles are especially welcome — please update both languages. See the <privacy>privacy page</privacy> for exactly what the site does and doesn't do with your data."
+    }
+  },
   "addressDecoder": {
     "aConstantOfTypeSigmaprop": "a constant of type SigmaProp",
     "addressType": "Address type",
@@ -245,6 +284,7 @@
     "whatMakesErgoDifferent": "What makes Ergo different?"
   },
   "layout": {
+    "about": "About",
     "allLiveDataComesFromThe": "All live data comes from the API of",
     "beginners": "Beginners",
     "closeMenu": "Close menu",
@@ -254,6 +294,7 @@
     "learn": "Learn",
     "learnErgoFromTheGroundUp": "Learn Ergo from the ground up, inspired by",
     "lightMode": "Light mode",
+    "madeBy": "Made by an Ergonaut",
     "officialDocs": "Official docs:",
     "openMenu": "Open menu",
     "privacyWeTrackNothing": "Privacy — we track nothing",

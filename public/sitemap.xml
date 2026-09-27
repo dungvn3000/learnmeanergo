@@ -55,6 +55,15 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/privacy" />
   </url>
   <url>
+    <loc>https://learnmeanergo.com/about</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/about?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/about?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/about" />
+  </url>
+  <url>
     <loc>https://learnmeanergo.com/learn/what-is-ergo</loc>
     <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>

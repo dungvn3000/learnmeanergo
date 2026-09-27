@@ -6,17 +6,51 @@
 @theme {
   --font-sans: 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* Card / panel background. Light: linen darkened ~3% (paper's bg-black/3%). Dark mode
+     surfaces keep their own dark:bg-stone-900. */
+  --color-surface: #f3f1ea;
   --color-ergo-50: #fff4ed;
   --color-ergo-100: #ffe6d4;
   --color-ergo-200: #ffc9a8;
   --color-ergo-300: #ffa270;
   --color-ergo-400: #ff7a3d;
   --color-ergo-500: #ff5e18;
-  --color-ergo-600: #e0440a;
+  --color-ergo-600: #bd360b; /* darkened from #e0440a for text/button contrast */
   --color-ergo-700: #b9320b;
   --color-ergo-800: #932a11;
   --color-ergo-900: #772511;
   --color-ergo-950: #401008;
+}
+
+/* Paper reading palette, adapted from the hugo-paper theme by nanxiaobei (MIT,
+   https://github.com/nanxiaobei/hugo-paper). Instead of touching every class, the
+   warm-grey `stone` scale is re-pointed per mode: in light mode the page becomes
+   paper's "linen"; in dark mode the page is linen under an 85% black veil (a warm
+   charcoal) and cards/borders are faint white tints of it. */
+:root {
+  --color-stone-50: #faf8f1; /* linen — page background */
+  --color-stone-100: #ebe7dc; /* hover / subtle fills on surfaces */
+  --color-stone-200: #e7e2d6; /* borders */
+}
+/* Readability (WCAG AA, 4.5:1 for body-size text), measured on the paper surfaces.
+   ergo-600 (see @theme) is the orange for text links and for solid buttons carrying
+   white text: ≥ 4.6:1 as text on light surfaces, ≥ 5.5:1 under white text. */
+:root:not(.dark) {
+  --color-stone-500: #6b645d; /* muted text: ≥ 4.7:1 on page, surface and fills */
+  --color-stone-400: #736c65; /* faint labels: ≥ 4.5:1 on page and surface */
+  /* Status colours used only as text (spent/unspent, ok/error, badges): one shade darker. */
+  --color-emerald-600: oklch(50.8% 0.118 165.612); /* = emerald-700 */
+  --color-red-600: oklch(50.5% 0.213 27.518); /* = red-700 */
+  --color-amber-600: oklch(47.3% 0.137 46.201); /* = amber-800 */
+  --color-sky-600: oklch(50% 0.134 242.749); /* = sky-700 */
+}
+.dark {
+  --color-stone-950: #262524; /* page background */
+  --color-stone-900: #302e2c; /* cards, sidebar */
+  --color-stone-800: #3c3a37; /* borders, inputs, hover */
+  --color-stone-700: #4c4945; /* stronger borders */
+  --color-stone-600: #615d58;
+  color-scheme: dark;
 }
 
 html { scroll-behavior: smooth; }
@@ -31,21 +65,29 @@ body {
   @apply bg-stone-50 text-stone-800 antialiased dark:bg-stone-950 dark:text-stone-200;
 }
 
-/* Dark-mode readability for muted text. `text-stone-500` is the site-wide colour
-   for captions, hints and labels (often 11–13px). On the stone-900 card it only
-   reaches ~4:1 contrast, so in dark mode it steps up to stone-400 (~7:1).
-   Elements that choose their own dark colour (any `dark:` class) are left alone. */
-.dark .text-stone-500:not([class*='dark:']) { color: var(--color-stone-400); }
-.dark .fill-stone-500 { fill: var(--color-stone-400); }
+/* Dark mode: `stone-500` is the site-wide colour for captions, hints and labels
+   (often 11–13px). On the dark card it only reaches ~2.8:1, so in dark mode the
+   variable itself takes stone-400's value (≥ 5:1). Redefining the variable, rather
+   than overriding classes, keeps hover and dark: variants working. */
+/* The same text-only status colours need light shades on the dark surfaces. */
+.dark {
+  --color-stone-500: oklch(70.9% 0.01 56.259);
+  --color-emerald-600: oklch(76.5% 0.177 163.223); /* = emerald-400 */
+  --color-red-600: oklch(70.4% 0.191 22.216); /* = red-400 */
+  --color-amber-600: oklch(82.8% 0.189 84.429); /* = amber-400 */
+  --color-sky-600: oklch(74.6% 0.16 232.661); /* = sky-400 */
+  --color-violet-600: oklch(70.2% 0.183 293.541); /* = violet-400 */
+}
 
 /* Long-form article typography */
-.prose-ergo { @apply max-w-none text-[17px] leading-8; }
+/* Paper-style reading: 18px text, 1.8 line height, near-black / near-white ink. */
+.prose-ergo { @apply max-w-none text-[18px] leading-[1.8] text-stone-900 dark:text-stone-100; }
 .prose-ergo h2:not(.not-prose *) { @apply mt-12 mb-4 scroll-mt-24 text-2xl font-bold tracking-tight text-stone-900 dark:text-white; }
 .prose-ergo h3:not(.not-prose *) { @apply mt-8 mb-3 scroll-mt-24 text-xl font-semibold text-stone-900 dark:text-white; }
 .prose-ergo p:not(.not-prose *) { @apply my-4; }
 .prose-ergo ul:not(.not-prose *) { @apply my-4 list-disc space-y-1 pl-6; }
 .prose-ergo ol:not(.not-prose *) { @apply my-4 list-decimal space-y-1 pl-6; }
-.prose-ergo a:not(.not-prose *) { @apply font-medium text-ergo-600 underline decoration-ergo-300 underline-offset-2 hover:decoration-ergo-600 dark:text-ergo-400; }
+.prose-ergo a:not(.not-prose *) { @apply font-medium text-ergo-700 underline decoration-ergo-300 underline-offset-2 hover:decoration-ergo-700 dark:text-ergo-400 dark:decoration-ergo-400/40 dark:hover:decoration-ergo-400; }
 .prose-ergo strong:not(.not-prose *) { @apply font-semibold text-stone-900 dark:text-white; }
 .prose-ergo code:not(.not-prose *) { @apply rounded bg-stone-200/70 px-1.5 py-0.5 font-mono text-[0.85em] text-stone-800 dark:bg-stone-800 dark:text-stone-200; }
 .prose-ergo pre:not(.not-prose *) { @apply my-5 overflow-x-auto rounded-xl bg-stone-900 p-4 text-sm leading-6 text-stone-100 dark:bg-black/60; }

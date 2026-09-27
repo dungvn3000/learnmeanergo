@@ -40,7 +40,7 @@ function NumInput({ label, value, onChange, hint }) {
         max="2037"
         value={value}
         onChange={(e) => onChange(Math.max(1, Math.min(2037, Number(e.target.value) || 1)))}
-        className="rounded-lg border border-stone-200 bg-white px-3 py-2 font-mono tabular-nums outline-none focus:border-ergo-400 dark:border-stone-700 dark:bg-stone-900"
+        className="rounded-lg border border-stone-200 bg-surface px-3 py-2 font-mono tabular-nums outline-none focus:border-ergo-400 dark:border-stone-700 dark:bg-stone-900"
       />
       {hint && <span className="text-xs text-stone-500">{hint}</span>}
     </label>
@@ -66,7 +66,7 @@ function SchnorrDemo() {
 
   const row = (step, who, text) => (
     <div className="grid grid-cols-[28px_1fr] gap-3 border-b border-stone-100 py-2.5 last:border-0 dark:border-stone-800">
-      <span className="grid size-6 place-items-center rounded-full bg-ergo-500 text-xs font-bold text-white">{step}</span>
+      <span className="grid size-6 place-items-center rounded-full bg-ergo-600 text-xs font-bold text-white">{step}</span>
       <div className="min-w-0 text-sm">
         <span className="font-semibold text-stone-900 dark:text-white">{who}: </span>
         {text}

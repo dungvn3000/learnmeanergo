@@ -15,6 +15,7 @@ const STATIC = [
   { path: '/tools', priority: 0.7, title: 'Tools', desc: 'Interactive calculators and decoders that run in the browser.' },
   { path: '/explorer', priority: 0.6, title: 'Explorer', desc: 'Annotated block explorer for Ergo mainnet (live data from explorer.erg.vn).' },
   { path: '/privacy', priority: 0.3, title: 'Privacy', desc: 'No cookies, no analytics, no accounts, no third-party scripts; only requests to this domain and *.erg.vn.' },
+  { path: '/about', priority: 0.3, title: 'About', desc: 'How the site is built: React, Vite, Tailwind CSS, i18next, and live data from the explorer.erg.vn API.' },
 ]
 const pages = [
   ...STATIC,

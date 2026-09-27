@@ -36,7 +36,7 @@ export default function Privacy() {
       <div className="prose-ergo">
         <div className="not-prose my-6 grid gap-2 sm:grid-cols-2">
           {none.map((x) => (
-            <div key={x} className="flex items-center gap-2 rounded-lg border border-stone-200 bg-white px-3 py-2 text-sm dark:border-stone-800 dark:bg-stone-900">
+            <div key={x} className="flex items-center gap-2 rounded-lg border border-stone-200 bg-surface px-3 py-2 text-sm dark:border-stone-800 dark:bg-stone-900">
               <Check className="size-4 shrink-0 text-emerald-500" /> {x}
             </div>
           ))}

@@ -154,7 +154,7 @@ export default function PubkeyToAddress() {
           {network === 0 && (
             <Link
               to={`/address/${r.address}`}
-              className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-ergo-500 px-4 py-2 text-sm font-medium text-white hover:bg-ergo-600"
+              className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-ergo-600 px-4 py-2 text-sm font-medium text-white hover:bg-ergo-700"
             >
               {t('pubkeyToAddress.viewInTheExplorer')} <ArrowRight className="size-4" />
             </Link>

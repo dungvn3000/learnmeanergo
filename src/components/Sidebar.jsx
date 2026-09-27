@@ -95,7 +95,7 @@ function Section({ sec, path, onNavigate }) {
                   className={({ isActive }) =>
                     `flex items-baseline gap-2 py-1 pr-4 pl-8 font-mono text-[13.5px] leading-snug transition ${
                       isActive
-                        ? 'bg-ergo-500/10 font-semibold text-ergo-700 dark:text-ergo-300'
+                        ? 'bg-ergo-500/10 font-semibold text-ergo-800 dark:text-ergo-300'
                         : 'text-stone-600 hover:text-ergo-600 dark:text-stone-400 dark:hover:text-ergo-400'
                     }`
                   }

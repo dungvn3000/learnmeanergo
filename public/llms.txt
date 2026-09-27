@@ -57,6 +57,7 @@ Every page exists in English (default) and Vietnamese: append `?lang=vi` to any 
 - [Tools](https://learnmeanergo.com/tools): Interactive calculators and decoders that run in the browser.
 - [Explorer](https://learnmeanergo.com/explorer): Annotated block explorer for Ergo mainnet (live data from explorer.erg.vn).
 - [Privacy](https://learnmeanergo.com/privacy): No cookies, no analytics, no accounts, no third-party scripts; only requests to this domain and *.erg.vn.
+- [About](https://learnmeanergo.com/about): How the site is built: React, Vite, Tailwind CSS, i18next, and live data from the explorer.erg.vn API.
 
 ## Optional
 

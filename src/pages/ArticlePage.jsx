@@ -55,7 +55,7 @@ export default function ArticlePage() {
 
   return (
     <div className="grid gap-10 xl:grid-cols-[minmax(0,1fr)_200px]">
-      <article className="min-w-0 max-w-3xl">
+      <article className="min-w-0 max-w-[680px]">
         <div className="mb-8">
           <Link to={section.to} className="mb-3 inline-flex items-center gap-2 text-sm font-semibold text-ergo-600 dark:text-ergo-400">
             <Icon className="size-4" /> {pick(article.group ?? section.label)}

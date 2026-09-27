@@ -16,7 +16,7 @@ function TxRow({ tx, open: initial }) {
   const total = tx.outputs.reduce((s, o) => s + o.value, 0)
   return (
     <Card className="overflow-hidden">
-      <button onClick={() => setOpen(!open)} className="flex w-full items-center gap-3 px-4 py-3 text-left hover:bg-stone-50 dark:hover:bg-stone-800/40">
+      <button onClick={() => setOpen(!open)} className="flex w-full items-center gap-3 px-4 py-3 text-left hover:bg-stone-100 dark:hover:bg-stone-800/40">
         <span className="w-6 text-xs font-bold text-stone-400 tabular-nums">#{tx.index}</span>
         <div className="min-w-0 flex-1">
           <Hash value={tx.id} to={`/tx/${tx.id}`} head={12} tail={8} copy={false} />

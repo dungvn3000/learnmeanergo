@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 export function Card({ className = '', children, ...rest }) {
   return (
     <div
-      className={`rounded-2xl border border-stone-200 bg-white shadow-sm dark:border-stone-800 dark:bg-stone-900 ${className}`}
+      className={`rounded-2xl border border-stone-200 bg-surface dark:border-stone-800 dark:bg-stone-900 ${className}`}
       {...rest}
     >
       {children}

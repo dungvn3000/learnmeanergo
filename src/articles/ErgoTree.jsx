@@ -31,7 +31,7 @@ const TONES = {
 function Bytes({ parts }) {
   return (
     <div className="not-prose my-6">
-      <div className="rounded-xl border border-stone-200 bg-white p-4 font-mono text-sm leading-7 break-all dark:border-stone-800 dark:bg-stone-900">
+      <div className="rounded-xl border border-stone-200 bg-surface p-4 font-mono text-sm leading-7 break-all dark:border-stone-800 dark:bg-stone-900">
         {parts.map((p, i) => (
           <span key={i} className={`mr-0.5 rounded px-1 py-0.5 ${TONES[p.tone]}`} title={p.label}>
             {p.hex}
@@ -207,7 +207,7 @@ export default function ErgoTree() {
       <p>{T('sigma.p1', { sigma })}</p>
       <div className="not-prose my-6 grid gap-3 sm:grid-cols-2">
         <Card className="p-4">
-          <div className="flex items-center gap-2 font-semibold text-emerald-600">
+          <div className="flex items-center gap-2 font-semibold text-emerald-700 dark:text-emerald-400">
             <CheckCircle2 className="size-4" /> {t('sigma.ok.title')}
           </div>
           <ul className="mt-2 space-y-1 text-sm text-stone-600 dark:text-stone-400">
@@ -217,7 +217,7 @@ export default function ErgoTree() {
           </ul>
         </Card>
         <Card className="p-4">
-          <div className="flex items-center gap-2 font-semibold text-red-600">
+          <div className="flex items-center gap-2 font-semibold text-red-700 dark:text-red-400">
             <XCircle className="size-4" /> {t('sigma.bad.title')}
           </div>
           <ul className="mt-2 space-y-1 text-sm text-stone-600 dark:text-stone-400">

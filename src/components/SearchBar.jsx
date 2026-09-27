@@ -40,7 +40,7 @@ export default function SearchBar({ big = false, onDone }) {
           setMiss(false)
         }}
         placeholder={big ? t('searchBar.searchBlocksTransactionsAddressesTokensBoxes') : t('searchBar.searchBlockTxAddress')}
-        className={`w-full rounded-xl border bg-white pr-10 text-stone-900 outline-none placeholder:text-stone-400 focus:border-ergo-400 focus:ring-4 focus:ring-ergo-500/15 dark:bg-stone-900 dark:text-white ${
+        className={`w-full rounded-xl border bg-surface pr-10 text-stone-900 outline-none placeholder:text-stone-400 focus:border-ergo-400 focus:ring-4 focus:ring-ergo-500/15 dark:bg-stone-900 dark:text-white ${
           miss ? 'border-red-300 dark:border-red-800' : 'border-stone-200 dark:border-stone-700'
         } ${big ? 'py-3.5 pl-11 text-base' : 'py-2 pl-9 text-sm'}`}
       />
