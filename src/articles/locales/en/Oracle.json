@@ -1,0 +1,81 @@
+{
+  "intro": "A smart contract can only see what is already on the blockchain. But many useful contracts need to know something about the outside world: the price of ERG in dollars, the result of a match, the weather. An <b>oracle</b> is whoever brings that outside data on-chain so contracts can use it.",
+  "why": {
+    "title": "Why can't a contract just look it up?",
+    "p1": "Every node re-runs every contract and must reach <b>exactly the same result</b>. If a contract could call a website, one node might see $1.02 and another $1.03 a second later, and the network could no longer agree on which transactions are valid.",
+    "p2": "So contracts are deterministic: they can only read the transaction, the boxes it spends and reads, and information about recent blocks such as the current height and the latest headers. Outside data has to be written into a box first, and that is the oracle's job."
+  },
+  "box": {
+    "title": "On Ergo, an oracle is just a box",
+    "p1": "There's nothing special in the protocol for oracles. The data simply sits in the <registers>registers</registers> of a box, for example the price in <code>R4</code>. The box also holds an <tokens>NFT</tokens> (a token that exists exactly once), which acts as its identity card.",
+    "p2": "A contract that needs the price reads that box as a <tx>data input</tx>:",
+    "code": "// Read the ERG/USD price from the oracle pool box\nval oracle = CONTEXT.dataInputs(0)\n\n// Only trust the box that holds the pool's NFT:\n// anyone can create a box with a fake price in R4\nval isPool = oracle.tokens(0)._1 == POOL_NFT_ID\n\n// R4: how many nanoERG one US dollar is worth\nval nanoErgPerUsd = oracle.R4[Long].get\n\nsigmaProp(isPool && ...)",
+    "nftTitle": "Identified by its NFT, not its address",
+    "nft": "Anyone can create a box with any number in R4. What nobody can copy is the NFT, so contracts check the token id, not the address or the value.",
+    "readTitle": "Read without spending",
+    "read": "A data input is read, not spent. Hundreds of transactions in the same block can read the same oracle box at once. If they had to spend it, they would have to take turns, each one spending the box and recreating it, because two transactions can never spend the same box."
+  },
+  "pool": {
+    "title": "Oracle pools: don't trust just one person",
+    "p1": "If a single person posted the price, they could lie or simply make a mistake. So Ergo uses <b>oracle pools</b>: several independent operators report the price, and a contract combines their reports. The ERG/USD pool works in rounds:",
+    "s1": "Each operator fetches the price from outside sources and posts it in a small box of their own, a <b>datapoint</b>: their public key in <code>R4</code>, the id of the current pool box in <code>R5</code>, and their price in <code>R6</code>. The box also holds one of the pool's <b>oracle tokens</b>, which proves the operator is a member.",
+    "s2": "Someone then makes a <b>collection transaction</b>: it spends the pool box, reads the datapoints as data inputs, and writes their <b>average</b> into <code>R4</code> of the new pool box. <code>R5</code> gets a block height the pool uses to schedule the next round.",
+    "s3": "The same transaction pays each operator whose datapoint was used a small reward in ERG.",
+    "p2": "The pool contract enforces all of this on-chain: the NFT can only move to a new pool box that follows the rules. No server is trusted to do the maths.",
+    "v2": "<b>Oracle Pool v2</b> (the EIP-23 proposal) is the newer design, and v2 pools already run on mainnet, for example the <usd>USD Pool</usd> (ERG/USD) and the <gold>Gold Pool</gold> (ERG/XAU). Rounds work the same way, and in both versions a round only counts if at least 4 datapoints are within 5% of each other (the v2 defaults). The main changes: rewards are paid in <em>reward tokens</em> instead of tiny amounts of ERG, the pool box keeps a single address and its <code>R5</code> counts rounds instead of storing a height, and oracle tokens and the <em>ballot tokens</em> used to vote on changes can now be transferred to someone else. The ERG/USD pool that SigmaUSD reads, shown below, still runs the v1 design.",
+    "figAlt": "Diagram: three operators fetch the ERG price from exchanges and each post a datapoint ($0.329, $0.330, $0.330). The datapoints are averaged into the pool box, which holds the NFT and the price 1 ERG = $0.33. SigmaUSD and other contracts read the pool box.",
+    "figCaption": "Operators post datapoints, a collection transaction averages them into the pool box, and contracts read the pool box as a data input. Prices are illustrative."
+  },
+  "live": {
+    "title": "The ERG/USD pool right now",
+    "p1": "This is the real pool box, read from the chain a moment ago:",
+    "box": "Pool box",
+    "nft": "NFT",
+    "r4": "R4 (price)",
+    "r4Text": "{{nano}} nanoERG per US dollar, so 1 USD ≈ {{erg}} ERG and 1 ERG ≈ ${{usd}}.",
+    "r5": "R5",
+    "r5Text": "A block height the pool uses to schedule its rounds, i.e. when the current or upcoming round ends.",
+    "tx": "Last updated by",
+    "txText": "Open this transaction to see the operators' datapoints as data inputs.",
+    "height": "created at block {{height}}"
+  },
+  "sigusd": {
+    "title": "Example: SigmaUSD",
+    "p1": "<b>SigmaUSD</b> is a stablecoin on Ergo: 1 SigUSD is meant to be worth 1 US dollar. To mint or redeem SigUSD, the bank contract has to know how many ERG a dollar is worth. It gets that number from the ERG/USD pool box above, read as a data input, and checks the pool's NFT before trusting it.",
+    "p2": "Any other contract can read the same pool box in the same way, without asking anyone's permission."
+  },
+  "operators": {
+    "title": "Who runs the oracles?",
+    "p1": "An <b>operator</b> is a person or team that keeps oracle software running around the clock. For v2 pools that software is <code>oracle-core</code>: it needs an Ergo node it can send transactions through and a wallet with ERG for fees. Every round it fetches the price, builds the datapoint transaction and signs it with the operator's key, with no one clicking anything.",
+    "p2": "In the ERG/USD pool, <b>5 different public keys</b> (the <code>R4</code> of each datapoint) took part in the three rounds we checked, usually 4 or 5 per round.",
+    "costTitle": "What it costs",
+    "cost1": "In the ERG/USD pool, posting a datapoint costs a <b>0.0011 ERG</b> fee. The reward is <b>0.00025 ERG</b>, the minimum the pool contract requires.",
+    "cost2": "Whoever makes the collection transaction also pays about <b>0.0044 ERG</b> in fees and gets <b>0.0005 ERG</b> instead of 0.00025.",
+    "cost3": "With about 65 rounds a day, a regular operator is <b>down roughly 0.055 ERG a day</b> (around 20 ERG a year), before server costs. Running the ERG/USD oracle today is a service to the ecosystem, not a business.",
+    "cost4": "The rewards come out of the ERG held in the pool box (about 7.3 ERG, enough for roughly 3 months at this pace), so someone has to top it up from time to time. v2 pools pay rewards in tokens instead, but operators still pay transaction fees in ERG.",
+    "note": "These fees are set by the operators' software, not by the protocol, and are what we saw in a few recent transactions.",
+    "joinTitle": "Joining a pool",
+    "join": "In a v2 pool, being an operator means holding one of the pool's <b>oracle tokens</b> (15 by default). Whoever bootstrapped the pool invites a new operator by sending them one oracle token and one reward token, and oracle tokens can later be passed on to someone else. A round only completes if enough operators post in time (at least 4 by default), so a pool needs operators who keep their nodes online.",
+    "guide": "Want to run one? Start with the <bootstrap>ErgoDocs guide to bootstrapping a pool</bootstrap> and the <join>“Joining a running pool”</join> section of the oracle-core README. The community <easy>ergo-easy-oracle</easy> setup runs a mainnet node, oracle-core v2 and monitoring together with Docker, and <stats>Oracle Stats</stats> shows which operators in each v2 pool are currently posting."
+  },
+  "trust": {
+    "title": "What an oracle can't guarantee",
+    "text": "The blockchain only guarantees that “this is the price the pool published”. Whether that price matches the real world depends on the operators. A pool lowers the risk by using many operators and averaging their reports, but you still have to trust that most of them are honest. Data that is already on-chain, like block heights or other boxes, never needs an oracle."
+  },
+  "next": {
+    "title": "What's next",
+    "p1": "Data inputs are explained in more detail in <tx>Transactions</tx>, and registers in <box>Boxes & registers</box>."
+  },
+  "refs": {
+    "title": "References",
+    "eip23": "EIP-23: Oracle Pool v2.0 (proposal, pull request #41 in ergoplatform/eips): boxes, tokens, parameters and contracts of v2 pools.",
+    "eip16": "EIP-16: Oracle-Pool contracts specification (pull request #29): the original v1 pool design.",
+    "oracleCore": "oracle-core: the software pool operators run to post datapoints and refresh the pool.",
+    "ageusdSpec": "AgeUSD specification: the stablecoin design behind SigmaUSD, including the oracle rate in nanoERG per USD.",
+    "ageusdContract": "AgeUSD bank contract: reads the oracle box as a data input and checks the pool NFT.",
+    "docsPools": "ErgoDocs: Oracle Pools: overview of v2, operator resources and recent releases.",
+    "docsBootstrap": "ErgoDocs: Bootstrap an Oracle Pool: step-by-step operator guide.",
+    "easyOracle": "ergo-easy-oracle: community Docker setup for a mainnet node, oracle-core v2 and monitoring.",
+    "oracleStats": "Oracle Stats: live status page for v2 oracle pools."
+  }
+}

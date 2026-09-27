@@ -32,6 +32,7 @@ Every page exists in English (default) and Vietnamese: append `?lang=vi` to any 
 - [ErgoScript, guard scripts & ErgoTree](https://learnmeanergo.com/learn/ergotree): The contract language, the guard script locking every box, and the bytecode boxes carry.
 - [Sigma protocols](https://learnmeanergo.com/learn/sigma): Schnorr signatures, AND/OR/threshold and ring signatures — the cryptography behind ErgoScript.
 - [Addresses](https://learnmeanergo.com/learn/address): P2PK, P2SH, P2S: the prefix byte, Base58 and the blake2b256 checksum.
+- [Oracles & oracle pools](https://learnmeanergo.com/learn/oracle): How outside data like the ERG/USD price gets on-chain, and why SigmaUSD can trust it.
 
 ### Mining & economics
 

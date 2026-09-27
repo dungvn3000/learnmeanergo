@@ -1,0 +1,81 @@
+{
+  "intro": "Hợp đồng thông minh chỉ nhìn thấy những gì đã nằm trên blockchain. Nhưng nhiều hợp đồng hữu ích lại cần biết chuyện bên ngoài: giá ERG theo đô la, kết quả một trận đấu, thời tiết. <b>Oracle</b> là bên đưa dữ liệu bên ngoài đó lên chuỗi để hợp đồng dùng được.",
+  "why": {
+    "title": "Sao hợp đồng không tự tra cứu được?",
+    "p1": "Mọi node đều chạy lại mọi hợp đồng và phải ra <b>đúng cùng một kết quả</b>. Nếu hợp đồng được gọi một website, node này có thể thấy $1.02 còn node kia một giây sau thấy $1.03, và mạng không còn thống nhất được giao dịch nào hợp lệ.",
+    "p2": "Vì vậy hợp đồng mang tính tất định: nó chỉ đọc được giao dịch, các box mà giao dịch tiêu và đọc, cùng thông tin về các block gần đây như độ cao hiện tại và các header mới nhất. Dữ liệu bên ngoài phải được ghi vào một box trước, và đó là việc của oracle."
+  },
+  "box": {
+    "title": "Trên Ergo, oracle chỉ là một box",
+    "p1": "Giao thức không có gì đặc biệt dành cho oracle. Dữ liệu chỉ đơn giản nằm trong <registers>thanh ghi</registers> của một box, ví dụ giá nằm ở <code>R4</code>. Box này còn giữ một <tokens>NFT</tokens> (token chỉ tồn tại đúng một đơn vị), đóng vai trò như chứng minh thư của nó.",
+    "p2": "Hợp đồng cần giá sẽ đọc box đó dưới dạng <tx>data input</tx>:",
+    "code": "// Đọc giá ERG/USD từ box của oracle pool\nval oracle = CONTEXT.dataInputs(0)\n\n// Chỉ tin box giữ NFT của pool:\n// ai cũng tạo được một box có giá giả trong R4\nval isPool = oracle.tokens(0)._1 == POOL_NFT_ID\n\n// R4: 1 đô la Mỹ bằng bao nhiêu nanoERG\nval nanoErgPerUsd = oracle.R4[Long].get\n\nsigmaProp(isPool && ...)",
+    "nftTitle": "Nhận diện bằng NFT, không bằng địa chỉ",
+    "nft": "Ai cũng tạo được một box có con số bất kỳ trong R4. Thứ không ai sao chép được là NFT, nên hợp đồng kiểm tra token id, chứ không kiểm tra địa chỉ hay giá trị.",
+    "readTitle": "Đọc mà không tiêu",
+    "read": "Data input chỉ được đọc, không bị tiêu. Hàng trăm giao dịch trong cùng một block có thể cùng đọc một box oracle. Nếu phải tiêu box để đọc thì các giao dịch phải xếp hàng lần lượt, mỗi giao dịch tiêu box rồi tạo lại nó, vì hai giao dịch không bao giờ tiêu chung một box."
+  },
+  "pool": {
+    "title": "Oracle pool: không tin vào một người",
+    "p1": "Nếu chỉ một người đăng giá, người đó có thể gian lận hoặc đơn giản là nhầm. Vì vậy Ergo dùng <b>oracle pool</b>: nhiều nhà vận hành độc lập cùng báo giá, rồi một hợp đồng gộp các báo cáo lại. Pool ERG/USD chạy theo từng vòng:",
+    "s1": "Mỗi nhà vận hành lấy giá từ các nguồn bên ngoài rồi đăng vào một box nhỏ của riêng mình, gọi là <b>datapoint</b>: public key của họ ở <code>R4</code>, id của pool box hiện tại ở <code>R5</code>, và giá của họ ở <code>R6</code>. Box này còn giữ một <b>oracle token</b> của pool, chứng minh người đăng là thành viên.",
+    "s2": "Sau đó có người tạo một <b>giao dịch gom (collection)</b>: tiêu pool box, đọc các datapoint dưới dạng data input, rồi ghi <b>giá trung bình</b> vào <code>R4</code> của pool box mới. <code>R5</code> ghi một độ cao block mà pool dùng để lên lịch cho vòng tiếp theo.",
+    "s3": "Cùng giao dịch đó trả một khoản thưởng nhỏ bằng ERG cho từng nhà vận hành có datapoint được dùng.",
+    "p2": "Hợp đồng của pool thực thi tất cả những điều này trên chuỗi: NFT chỉ được chuyển sang một pool box mới nếu đúng luật. Không có máy chủ nào được tin để làm phép tính.",
+    "v2": "<b>Oracle Pool v2</b> (đề xuất EIP-23) là thiết kế mới hơn, và đã có pool v2 chạy trên mainnet, ví dụ <usd>USD Pool</usd> (ERG/USD) và <gold>Gold Pool</gold> (ERG/XAU). Các vòng vẫn chạy như vậy, và ở cả hai phiên bản, một vòng chỉ được tính khi có ít nhất 4 datapoint chênh nhau không quá 5% (mức mặc định của v2). Những thay đổi chính: phần thưởng trả bằng <em>reward token</em> thay vì các khoản ERG rất nhỏ, pool box chỉ dùng một địa chỉ và <code>R5</code> của nó đếm số vòng thay vì lưu độ cao block, còn oracle token và <em>ballot token</em> (dùng để bỏ phiếu thay đổi pool) giờ có thể chuyển cho người khác. Pool ERG/USD mà SigmaUSD đọc, ở bên dưới, vẫn chạy theo thiết kế v1.",
+    "figAlt": "Sơ đồ: ba nhà vận hành lấy giá ERG từ các sàn và mỗi người đăng một datapoint ($0.329, $0.330, $0.330). Các datapoint được tính trung bình vào pool box, box giữ NFT và giá 1 ERG = $0.33. SigmaUSD và các hợp đồng khác đọc pool box.",
+    "figCaption": "Nhà vận hành đăng datapoint, giao dịch gom tính trung bình vào pool box, và các hợp đồng đọc pool box dưới dạng data input. Giá trong hình chỉ để minh hoạ."
+  },
+  "live": {
+    "title": "Pool ERG/USD ngay lúc này",
+    "p1": "Đây là pool box thật, vừa được đọc từ chuỗi:",
+    "box": "Pool box",
+    "nft": "NFT",
+    "r4": "R4 (giá)",
+    "r4Text": "{{nano}} nanoERG cho mỗi đô la Mỹ, tức 1 USD ≈ {{erg}} ERG và 1 ERG ≈ ${{usd}}.",
+    "r5": "R5",
+    "r5Text": "Độ cao block mà pool dùng để lên lịch các vòng, tức là lúc vòng hiện tại hoặc vòng sắp tới kết thúc.",
+    "tx": "Cập nhật gần nhất bởi",
+    "txText": "Mở giao dịch này để thấy datapoint của các nhà vận hành nằm trong phần data input.",
+    "height": "tạo ở block {{height}}"
+  },
+  "sigusd": {
+    "title": "Ví dụ: SigmaUSD",
+    "p1": "<b>SigmaUSD</b> là stablecoin trên Ergo: 1 SigUSD được thiết kế để trị giá 1 đô la Mỹ. Để phát hành hay đổi lại SigUSD, hợp đồng ngân hàng phải biết 1 đô la bằng bao nhiêu ERG. Nó lấy con số này từ pool box ERG/USD ở trên, đọc dưới dạng data input, và kiểm tra NFT của pool trước khi tin.",
+    "p2": "Bất kỳ hợp đồng nào khác cũng có thể đọc cùng pool box đó theo cách tương tự, không cần xin phép ai."
+  },
+  "operators": {
+    "title": "Ai chạy các oracle?",
+    "p1": "<b>Nhà vận hành</b> là một người hoặc một nhóm giữ cho phần mềm oracle chạy suốt ngày đêm. Với pool v2, phần mềm đó là <code>oracle-core</code>: nó cần một node Ergo để gửi giao dịch và một ví có ERG để trả phí. Mỗi vòng, nó tự lấy giá, tạo giao dịch datapoint và ký bằng khoá của nhà vận hành, không cần ai bấm nút.",
+    "p2": "Ở pool ERG/USD, <b>5 public key khác nhau</b> (chính là <code>R4</code> của mỗi datapoint) đã tham gia trong ba vòng mà chúng tôi kiểm tra, thường là 4 hoặc 5 người mỗi vòng.",
+    "costTitle": "Tốn bao nhiêu?",
+    "cost1": "Ở pool ERG/USD, đăng một datapoint tốn phí <b>0.0011 ERG</b>. Thưởng là <b>0.00025 ERG</b>, mức tối thiểu mà hợp đồng của pool quy định.",
+    "cost2": "Người tạo giao dịch gom trả thêm khoảng <b>0.0044 ERG</b> phí và nhận <b>0.0005 ERG</b> thay vì 0.00025.",
+    "cost3": "Với khoảng 65 vòng mỗi ngày, một nhà vận hành bình thường <b>lỗ khoảng 0.055 ERG mỗi ngày</b> (khoảng 20 ERG mỗi năm), chưa kể tiền máy chủ. Chạy oracle ERG/USD hiện nay là đóng góp cho hệ sinh thái, không phải để kinh doanh.",
+    "cost4": "Tiền thưởng được trích từ ERG nằm trong pool box (khoảng 7.3 ERG, đủ cho khoảng 3 tháng với nhịp hiện tại), nên thỉnh thoảng phải có người nạp thêm. Pool v2 trả thưởng bằng token, nhưng nhà vận hành vẫn trả phí giao dịch bằng ERG.",
+    "note": "Các mức phí này do phần mềm của nhà vận hành tự đặt, không phải do giao thức quy định, và là những gì chúng tôi thấy trong vài giao dịch gần đây.",
+    "joinTitle": "Tham gia một pool",
+    "join": "Trong pool v2, làm nhà vận hành nghĩa là giữ một trong các <b>oracle token</b> của pool (mặc định 15 token). Người khởi tạo pool mời nhà vận hành mới bằng cách gửi cho họ một oracle token và một reward token, và oracle token sau này có thể chuyển cho người khác. Một vòng chỉ hoàn tất khi đủ số nhà vận hành đăng giá kịp thời (mặc định ít nhất 4), nên pool cần những nhà vận hành giữ node luôn trực tuyến.",
+    "guide": "Muốn tự chạy một oracle? Hãy bắt đầu với <bootstrap>hướng dẫn khởi tạo pool trên ErgoDocs</bootstrap> và mục <join>“Joining a running pool”</join> trong README của oracle-core. Bộ cài <easy>ergo-easy-oracle</easy> của cộng đồng dựng sẵn node mainnet, oracle-core v2 và phần giám sát bằng Docker, còn <stats>Oracle Stats</stats> cho biết nhà vận hành nào trong mỗi pool v2 đang đăng giá."
+  },
+  "trust": {
+    "title": "Oracle không đảm bảo được điều gì",
+    "text": "Blockchain chỉ đảm bảo rằng “đây là giá mà pool đã công bố”. Giá đó có khớp với ngoài đời hay không phụ thuộc vào các nhà vận hành. Pool giảm rủi ro bằng cách dùng nhiều nhà vận hành và lấy trung bình, nhưng bạn vẫn phải tin rằng đa số họ trung thực. Dữ liệu vốn đã nằm trên chuỗi, như độ cao block hay các box khác, thì không bao giờ cần oracle."
+  },
+  "next": {
+    "title": "Tiếp theo",
+    "p1": "Data input được giải thích kỹ hơn ở bài <tx>Giao dịch</tx>, còn thanh ghi ở bài <box>Box & registers</box>."
+  },
+  "refs": {
+    "title": "Tài liệu tham khảo",
+    "eip23": "EIP-23: Oracle Pool v2.0 (đề xuất, pull request #41 trong ergoplatform/eips): box, token, tham số và hợp đồng của pool v2.",
+    "eip16": "EIP-16: đặc tả hợp đồng Oracle-Pool (pull request #29): thiết kế pool v1 ban đầu.",
+    "oracleCore": "oracle-core: phần mềm mà nhà vận hành pool chạy để đăng datapoint và refresh pool.",
+    "ageusdSpec": "Đặc tả AgeUSD: thiết kế stablecoin đứng sau SigmaUSD, có ghi đơn vị giá oracle là nanoERG cho mỗi USD.",
+    "ageusdContract": "Hợp đồng ngân hàng AgeUSD: đọc box oracle dưới dạng data input và kiểm tra NFT của pool.",
+    "docsPools": "ErgoDocs: Oracle Pools: tổng quan về v2, tài liệu cho nhà vận hành và các bản phát hành gần đây.",
+    "docsBootstrap": "ErgoDocs: Bootstrap an Oracle Pool: hướng dẫn từng bước cho nhà vận hành.",
+    "easyOracle": "ergo-easy-oracle: bộ cài Docker của cộng đồng cho node mainnet, oracle-core v2 và giám sát.",
+    "oracleStats": "Oracle Stats: trang trạng thái trực tiếp của các pool oracle v2."
+  }
+}

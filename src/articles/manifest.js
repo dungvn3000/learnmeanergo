@@ -60,6 +60,9 @@ export const ARTICLES = [
   { slug: 'address', section: 'technical', group: SCRIPT, icon: 'KeyRound', file: 'Address',
     title: { vi: 'Địa chỉ', en: 'Addresses' },
     summary: { vi: 'P2PK, P2SH, P2S: prefix, Base58 và checksum blake2b256.', en: 'P2PK, P2SH, P2S: the prefix byte, Base58 and the blake2b256 checksum.' } },
+  { slug: 'oracle', section: 'technical', group: SCRIPT, icon: 'RadioTower', file: 'Oracle',
+    title: { vi: 'Oracle & oracle pool', en: 'Oracles & oracle pools' },
+    summary: { vi: 'Cách đưa dữ liệu bên ngoài như giá ERG/USD lên chuỗi, và vì sao SigmaUSD tin được nó.', en: 'How outside data like the ERG/USD price gets on-chain, and why SigmaUSD can trust it.' } },
 
   // ---- Technical: mining & economics ----
   { slug: 'autolykos', section: 'technical', group: MINING, icon: 'Cpu', file: 'Autolykos',
