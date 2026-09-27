@@ -151,7 +151,7 @@ export default function Home() {
           <LiveChain />
           <div className="mt-5 border-t border-stone-100 pt-5 dark:border-stone-800">
             <SearchBar big />
-            <p className="mt-2 text-xs text-stone-500">{t('Thử nhập một độ cao block, ví dụ 1 — block đầu tiên sau genesis.', 'Try a block height, e.g. 1 — the first block after genesis.')}</p>
+            <p className="mt-2 text-xs text-stone-500">{t('Thử nhập một độ cao block, ví dụ 1 — block genesis.', 'Try a block height, e.g. 1 — the genesis block.')}</p>
           </div>
         </Card>
       </section>

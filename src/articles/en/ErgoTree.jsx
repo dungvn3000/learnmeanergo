@@ -406,7 +406,7 @@ pk1 || pk2                          // either one — a ring signature`}</code>
       <h2 id="costing">Execution cost</h2>
       <p>
         Every operation in an ErgoTree has a cost. When validating a transaction, a node adds up the cost of all input scripts; if it exceeds the block limit
-        (a parameter miners can vote to change), the transaction is rejected. This is how Ergo allows powerful contracts without Ethereum-style “gas”: the
+        (a parameter miners can vote to change), the transaction is rejected. This is how Ergo allows powerful contracts without Ethereum-style “gas”:
         there are no unbounded loops, so cost is always bounded, and the node stops a script as soon as its accumulated cost exceeds the limit (since v5.0,
         cost is counted during execution rather than estimated up front).
       </p>

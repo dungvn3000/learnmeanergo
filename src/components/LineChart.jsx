@@ -36,6 +36,10 @@ export default function LineChart({
   const ih = height - pad.t - pad.b
 
   const { sx, sy, yTicks, xTicks, path, areaPath } = useMemo(() => {
+    if (!points?.length) {
+      const none = () => 0
+      return { sx: none, sy: none, yTicks: [], xTicks: [], path: '', areaPath: '' }
+    }
     const xs = points.map((p) => p.x)
     const ys = points.map((p) => p.y)
     const x0 = Math.min(...xs)
@@ -65,6 +69,9 @@ export default function LineChart({
     return { sx, sy, yTicks, xTicks, path: d, areaPath }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [points, width, height, step, yMin])
+
+  // All hooks are above this line, so bailing out here is safe.
+  if (!points?.length) return null
 
   const onMove = (e) => {
     const r = e.currentTarget.getBoundingClientRect()

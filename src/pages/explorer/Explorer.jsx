@@ -25,15 +25,19 @@ function HashrateChart() {
         <Learn to="/learn/difficulty">{t('Độ khó & hashrate', 'Difficulty & hashrate')}</Learn>
       </div>
       <Async state={s}>
-        {(d) => (
-          <LineChart
-            label={t('Hashrate mạng Ergo 90 ngày', 'Ergo network hashrate, 90 days')}
-            points={d.points.map((p) => ({ x: p.t, y: p.v }))}
-            height={220}
-            xFormat={shortDate}
-            yFormat={(v) => `${+v.toFixed(2)} ${d.unit}`}
-          />
-        )}
+        {(d) =>
+          d?.points?.length ? (
+            <LineChart
+              label={t('Hashrate mạng Ergo 90 ngày', 'Ergo network hashrate, 90 days')}
+              points={d.points.map((p) => ({ x: p.t, y: p.v }))}
+              height={220}
+              xFormat={shortDate}
+              yFormat={(v) => `${+v.toFixed(2)} ${d.unit}`}
+            />
+          ) : (
+            <div className="py-8 text-center text-sm text-stone-500">{t('Chưa có dữ liệu.', 'No data yet.')}</div>
+          )
+        }
       </Async>
     </Card>
   )

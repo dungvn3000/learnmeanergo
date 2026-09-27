@@ -145,8 +145,8 @@ export default function Manifesto() {
       <Card className="not-prose my-6 flex items-start gap-4 p-5">
         <Coins className="mt-0.5 size-6 shrink-0 text-ergo-500" />
         <div className="text-[15px] leading-7">
-          The only part that doesn’t go to miners is the development treasury during roughly the first 2.5 years: 7.5 ERG/block, then 4.5 and 1.5 ERG/block. That
-          adds up to <strong>{num(TREASURY, 1)} ERG</strong> — about <strong>{((TREASURY / MAX_SUPPLY) * 100).toFixed(2)}%</strong> of the{' '}
+          The only part that doesn’t go to miners is the development treasury during roughly the first 2.5 years: 7.5 ERG/block, then 4.5 and 1.5 ERG/block. The
+          genesis treasury box held <strong>{num(TREASURY, 1)} ERG</strong> — about <strong>{((TREASURY / MAX_SUPPLY) * 100).toFixed(2)}%</strong> of the{' '}
           {num(MAX_SUPPLY)} ERG total supply, and although it sat in a box from the genesis block, that box&apos;s contract only let it be released block by block.{' '}
           <Link to="/learn/emission" className="font-medium text-ergo-600 hover:underline dark:text-ergo-400">
             See the emission schedule →

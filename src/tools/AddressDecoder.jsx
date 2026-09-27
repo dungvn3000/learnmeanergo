@@ -187,7 +187,7 @@ export default function AddressDecoder() {
                     <>
                       {t('Với P2PK, ErgoTree =', 'For P2PK, ErgoTree =')} <span className="font-mono">0008cd</span> {t('+ khoá công khai: header', '+ public key: header')}{' '}
                       <span className="font-mono">00</span>, {t('hằng số kiểu SigmaProp', 'a constant of type SigmaProp')} <span className="font-mono">08</span>,{' '}
-                      {t('phép', 'the')} <span className="font-mono">ProveDlog</span> {t('', 'opcode')} <span className="font-mono">cd</span>.
+                      {t('phép', 'the')} <span className="font-mono">ProveDlog</span> {t('mã lệnh', 'opcode')} <span className="font-mono">cd</span>.
                     </>
                   ) : (
                     t('Với P2S, nội dung địa chỉ chính là toàn bộ ErgoTree.', 'For P2S, the address content is the entire ErgoTree.')

@@ -86,7 +86,7 @@ export default function Nipopow() {
   return (
     <>
       <p>
-        To check for yourself that a transaction is in the Ergo chain, the “proper” way is to download every block header — over 1.8 million of them, ~220 bytes
+        To check for yourself that a transaction is in the Ergo chain, the “proper” way is to download every block header — over 1.8 million of them, ~250 bytes
         each — and verify each one&apos;s proof-of-work. For a phone, or for a smart contract on <em>another</em> blockchain, that is far too much.{' '}
         <strong>NiPoPoWs</strong> (Non-Interactive Proofs of Proof-of-Work) shrink that header chain down to a few hundred headers while keeping equivalent
         confidence.

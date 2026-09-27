@@ -86,7 +86,7 @@ export default function Nipopow() {
   return (
     <>
       <p>
-        Muốn tự kiểm tra rằng một giao dịch nằm trong chuỗi Ergo, cách “chuẩn” là tải toàn bộ block header — hơn 1.8 triệu cái, mỗi cái ~220 byte — rồi kiểm tra
+        Muốn tự kiểm tra rằng một giao dịch nằm trong chuỗi Ergo, cách “chuẩn” là tải toàn bộ block header — hơn 1.8 triệu cái, mỗi cái ~250 byte — rồi kiểm tra
         proof-of-work của từng cái. Với điện thoại, hay với một hợp đồng thông minh trên blockchain <em>khác</em>, thế là quá nhiều. <strong>NiPoPoW</strong>
         (Non-Interactive Proofs of Proof-of-Work) là cách rút chuỗi header ấy xuống còn vài trăm cái mà vẫn giữ được mức tin cậy tương đương.
       </p>

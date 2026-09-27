@@ -146,7 +146,7 @@ export default function Manifesto() {
       <Card className="not-prose my-6 flex items-start gap-4 p-5">
         <Coins className="mt-0.5 size-6 shrink-0 text-ergo-500" />
         <div className="text-[15px] leading-7">
-          Phần duy nhất không về tay thợ đào là quỹ phát triển (treasury) trong khoảng 2.5 năm đầu: 7.5 ERG/block, sau đó 4.5 rồi 1.5 ERG/block. Cộng lại là{' '}
+          Phần duy nhất không về tay thợ đào là quỹ phát triển (treasury) trong khoảng 2.5 năm đầu: 7.5 ERG/block, sau đó 4.5 rồi 1.5 ERG/block. Tổng số nằm trong box treasury từ genesis là{' '}
           <strong>{num(TREASURY, 1)} ERG</strong> — khoảng <strong>{((TREASURY / MAX_SUPPLY) * 100).toFixed(2)}%</strong> tổng cung{' '}
           {num(MAX_SUPPLY)} ERG, và dù đã nằm sẵn trong một box từ block genesis, hợp đồng của box chỉ cho rút ra dần theo từng block.{' '}
           <Link to="/learn/emission" className="font-medium text-ergo-600 hover:underline dark:text-ergo-400">
