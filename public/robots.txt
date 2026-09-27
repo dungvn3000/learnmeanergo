@@ -1,0 +1,11 @@
+# Learn Me An Ergo
+User-agent: *
+Allow: /
+# Explorer detail pages are unbounded (every block / tx / address / box / token) — keep crawlers on the guides.
+Disallow: /block/
+Disallow: /tx/
+Disallow: /address/
+Disallow: /box/
+Disallow: /token/
+
+Sitemap: https://learnmeanergo.com/sitemap.xml

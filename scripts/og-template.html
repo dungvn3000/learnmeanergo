@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body { font-family: 'Be Vietnam Pro', system-ui, sans-serif; background: #1c1917; color: #fff; position: relative; }
+  .glow { position: absolute; right: -180px; top: -220px; width: 760px; height: 760px; border-radius: 50%;
+          background: radial-gradient(closest-side, rgba(255,94,24,.55), rgba(255,94,24,0)); }
+  .wrap { position: absolute; inset: 0; padding: 64px 72px; display: flex; flex-direction: column; }
+  .brand { display: flex; align-items: center; gap: 18px; }
+  .mark { width: 72px; height: 72px; }
+  .brand .name { font-size: 30px; font-weight: 800; letter-spacing: -.01em; }
+  .brand .name b { color: #ff5e18; }
+  .kicker { margin-top: 74px; font-size: 24px; font-weight: 700; color: #ff7a3d; text-transform: uppercase; letter-spacing: .08em; }
+  .title { margin-top: 14px; font-size: 76px; line-height: 1.05; font-weight: 800; letter-spacing: -.025em; max-width: 1000px; }
+  .title.small { font-size: 60px; }
+  .sub { margin-top: 22px; font-size: 28px; line-height: 1.35; color: #d6d3d1; max-width: 900px; font-weight: 500; }
+  .foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 22px; color: #a8a29e; }
+  .chain { display: flex; align-items: center; gap: 0; }
+  .box { width: 54px; height: 44px; border-radius: 10px; border: 3px solid #57534e; }
+  .box.hot { border-color: #ff5e18; background: #ff5e18; box-shadow: 0 8px 24px rgba(255,94,24,.4); }
+  .link { width: 18px; height: 3px; background: #57534e; }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="wrap">
+    <div class="brand">
+      <img class="mark" src="../public/icon-192.png" alt="" />
+      <div class="name">Learn Me An <b>Ergo</b></div>
+    </div>
+    <div class="kicker" id="kicker">Ergo, explained for everyone</div>
+    <h1 class="title" id="title">How the Ergo blockchain actually works</h1>
+    <p class="sub" id="sub">Boxes, transactions, ErgoScript, Autolykos — explained with live mainnet data. English &amp; Vietnamese.</p>
+    <div class="foot">
+      <span>learnmeanergo.com</span>
+      <div class="chain">
+        <div class="box"></div><div class="link"></div><div class="box"></div><div class="link"></div><div class="box"></div><div class="link"></div><div class="box hot"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

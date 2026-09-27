@@ -1,0 +1,50 @@
+@import 'tailwindcss';
+@import './fonts.css';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-ergo-50: #fff4ed;
+  --color-ergo-100: #ffe6d4;
+  --color-ergo-200: #ffc9a8;
+  --color-ergo-300: #ffa270;
+  --color-ergo-400: #ff7a3d;
+  --color-ergo-500: #ff5e18;
+  --color-ergo-600: #e0440a;
+  --color-ergo-700: #b9320b;
+  --color-ergo-800: #932a11;
+  --color-ergo-900: #772511;
+  --color-ergo-950: #401008;
+}
+
+html { scroll-behavior: smooth; }
+
+/* A grid without an explicit column count gets one shrinkable column, so wide
+   content (hashes, charts, block strips) can never push the page sideways.
+   grid-cols-* utilities live in a later layer and still win. */
+@layer components {
+  .grid { grid-template-columns: minmax(0, 1fr); }
+}
+body {
+  @apply bg-stone-50 text-stone-800 antialiased dark:bg-stone-950 dark:text-stone-200;
+}
+
+/* Long-form article typography */
+.prose-ergo { @apply max-w-none text-[17px] leading-8; }
+.prose-ergo h2:not(.not-prose *) { @apply mt-12 mb-4 scroll-mt-24 text-2xl font-bold tracking-tight text-stone-900 dark:text-white; }
+.prose-ergo h3:not(.not-prose *) { @apply mt-8 mb-3 scroll-mt-24 text-xl font-semibold text-stone-900 dark:text-white; }
+.prose-ergo p:not(.not-prose *) { @apply my-4; }
+.prose-ergo ul:not(.not-prose *) { @apply my-4 list-disc space-y-1 pl-6; }
+.prose-ergo ol:not(.not-prose *) { @apply my-4 list-decimal space-y-1 pl-6; }
+.prose-ergo a:not(.not-prose *) { @apply font-medium text-ergo-600 underline decoration-ergo-300 underline-offset-2 hover:decoration-ergo-600 dark:text-ergo-400; }
+.prose-ergo strong:not(.not-prose *) { @apply font-semibold text-stone-900 dark:text-white; }
+.prose-ergo code:not(.not-prose *) { @apply rounded bg-stone-200/70 px-1.5 py-0.5 font-mono text-[0.85em] text-stone-800 dark:bg-stone-800 dark:text-stone-200; }
+.prose-ergo pre:not(.not-prose *) { @apply my-5 overflow-x-auto rounded-xl bg-stone-900 p-4 text-sm leading-6 text-stone-100 dark:bg-black/60; }
+.prose-ergo pre code:not(.not-prose *) { @apply bg-transparent p-0 text-inherit; }
+.prose-ergo table:not(.not-prose *) { @apply my-6 block w-full max-w-full overflow-x-auto border-collapse text-sm; }
+.prose-ergo th:not(.not-prose *) { @apply border-b border-stone-300 px-3 py-2 text-left font-semibold dark:border-stone-700; }
+.prose-ergo td:not(.not-prose *) { @apply border-b border-stone-200 px-3 py-2 align-top dark:border-stone-800; }
+
+.hash { @apply font-mono break-all; }

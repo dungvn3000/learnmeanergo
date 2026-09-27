@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://learnmeanergo.com/</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/beginners</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/beginners?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/beginners?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/beginners" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/technical</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/technical?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/technical?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/technical" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/tools</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/tools?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/tools?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/tools" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/explorer</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/explorer?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/explorer?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/explorer" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/privacy</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/privacy?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/privacy?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/privacy" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/learn/what-is-ergo</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/what-is-ergo?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/learn/what-is-ergo?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/learn/what-is-ergo" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/learn/manifesto</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/manifesto?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/learn/manifesto?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/learn/manifesto" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/learn/how-it-works</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/how-it-works?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/learn/how-it-works?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/learn/how-it-works" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/learn/boxes</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/boxes?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/learn/boxes?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/learn/boxes" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/learn/erg</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/erg?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/learn/erg?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/learn/erg" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/learn/wallets</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/wallets?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/learn/wallets?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/learn/wallets" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/learn/mining-basics</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/mining-basics?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/learn/mining-basics?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/learn/mining-basics" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/learn/whitepaper</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/whitepaper?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/learn/whitepaper?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/learn/whitepaper" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/learn/block</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/block?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/learn/block?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/learn/block" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/learn/transaction</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/transaction?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/learn/transaction?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/learn/transaction" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/learn/box</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/box?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/learn/box?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/learn/box" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/learn/tokens</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/tokens?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/learn/tokens?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/learn/tokens" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/learn/ergotree</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/ergotree?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/learn/ergotree?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/learn/ergotree" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/learn/sigma</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/sigma?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/learn/sigma?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/learn/sigma" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/learn/address</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/address?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/learn/address?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/learn/address" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/learn/autolykos</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/autolykos?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/learn/autolykos?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/learn/autolykos" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/learn/difficulty</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/difficulty?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/learn/difficulty?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/learn/difficulty" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/learn/nipopow</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/nipopow?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/learn/nipopow?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/learn/nipopow" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/learn/emission</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/emission?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/learn/emission?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/learn/emission" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/learn/storage-rent</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/storage-rent?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/learn/storage-rent?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/learn/storage-rent" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/tools/address-decoder</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/tools/address-decoder?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/tools/address-decoder?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/tools/address-decoder" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/tools/pubkey-to-address</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/tools/pubkey-to-address?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/tools/pubkey-to-address?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/tools/pubkey-to-address" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/tools/blake2b</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/tools/blake2b?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/tools/blake2b?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/tools/blake2b" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/tools/units</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/tools/units?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/tools/units?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/tools/units" />
+  </url>
+  <url>
+    <loc>https://learnmeanergo.com/tools/emission-calculator</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/tools/emission-calculator?lang=en" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://learnmeanergo.com/tools/emission-calculator?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnmeanergo.com/tools/emission-calculator" />
+  </url>
+</urlset>

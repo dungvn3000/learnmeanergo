@@ -1,0 +1,68 @@
+# Learn Me An Ergo
+
+> A bilingual (English / Vietnamese) guide to how the Ergo blockchain works — boxes and the eUTXO model, transactions, ErgoTree/ErgoScript, sigma protocols, addresses, Autolykos mining, difficulty, the emission schedule with EIP-27, and storage rent — inspired by learnmeabitcoin.com and illustrated with live Ergo mainnet data.
+
+Every page exists in English (default) and Vietnamese: append `?lang=vi` to any URL for the Vietnamese version, `?lang=en` for English. Live numbers on the pages come from the public API of https://explorer.erg.vn (Ergo Vietnam). Guides are the site's own summaries and explanations; primary sources are linked from each page (Ergo whitepaper v1.0 2019, the Ergo Manifesto 2021, docs.ergoplatform.com).
+
+## Beginners
+
+- [What is Ergo?](https://learnmeanergo.com/learn/what-is-ergo): A Proof-of-Work blockchain for safe smart contracts, built for ordinary people.
+- [The Ergo Manifesto](https://learnmeanergo.com/learn/manifesto): Why Ergo exists: cypherpunk roots, privacy and five basic principles.
+- [How does the Ergo blockchain work?](https://learnmeanergo.com/learn/how-it-works): Nodes, miners, blocks and transactions — the big picture in 10 minutes.
+- [Boxes: where the money lives](https://learnmeanergo.com/learn/boxes): Ergo has no “account balances”. Instead, there are locked boxes.
+- [ERG and its supply](https://learnmeanergo.com/learn/erg): How many ERG exist, who creates them, and when the last one gets mined.
+- [Wallets, keys and addresses](https://learnmeanergo.com/learn/wallets): Seed phrases, private keys, and why Ergo addresses start with a 9.
+- [Mining Ergo](https://learnmeanergo.com/learn/mining-basics): What miners do, how they get paid, and why GPUs can still mine.
+
+## Technical
+
+### Foundations
+
+- [The Ergo whitepaper](https://learnmeanergo.com/learn/whitepaper): “A Resilient Platform For Contractual Money” (2019), section by section — and what has changed since.
+
+### Data structures
+
+- [Blocks & headers](https://learnmeanergo.com/learn/block): Every header field, explained on a real block.
+- [Transactions](https://learnmeanergo.com/learn/transaction): Inputs, data inputs, outputs, fees and how the transaction id is computed.
+- [Boxes & registers](https://learnmeanergo.com/learn/box): The eUTXO model: R0–R9, box ids and the minimum value.
+- [Tokens (EIP-4)](https://learnmeanergo.com/learn/tokens): Tokens as first-class citizens: issuance, token ids and metadata.
+
+### Scripts & addresses
+
+- [ErgoScript, guard scripts & ErgoTree](https://learnmeanergo.com/learn/ergotree): The contract language, the guard script locking every box, and the bytecode boxes carry.
+- [Sigma protocols](https://learnmeanergo.com/learn/sigma): Schnorr signatures, AND/OR/threshold and ring signatures — the cryptography behind ErgoScript.
+- [Addresses](https://learnmeanergo.com/learn/address): P2PK, P2SH, P2S: the prefix byte, Base58 and the blake2b256 checksum.
+
+### Mining & economics
+
+- [Autolykos v2](https://learnmeanergo.com/learn/autolykos): The memory-hard PoW algorithm, and what pk, w, n and d mean.
+- [Difficulty & nBits](https://learnmeanergo.com/learn/difficulty): Target, nBits, hashrate and the EIP-37 adjustment algorithm.
+- [NiPoPoWs: compact proofs of the chain](https://learnmeanergo.com/learn/nipopow): Superblocks, interlinks, and how 1.8 million headers shrink to a few hundred you can still trust.
+- [Emission schedule & EIP-27](https://learnmeanergo.com/learn/emission): 75 ERG → 3 ERG: the emission curve and the re-emission mechanism.
+- [Storage rent](https://learnmeanergo.com/learn/storage-rent): Why a box left untouched for 4 years gets charged — and why that is a good thing.
+
+## Tools
+
+- [Address decoder](https://learnmeanergo.com/tools/address-decoder): Split an address into prefix, content and checksum, and check every byte.
+- [Public key → Address](https://learnmeanergo.com/tools/pubkey-to-address): Build a P2PK address by hand from a 33-byte public key.
+- [Blake2b-256](https://learnmeanergo.com/tools/blake2b): The hash function behind block ids, tx ids, box ids and address checksums.
+- [ERG unit converter](https://learnmeanergo.com/tools/units): ERG ↔ nanoERG — the unit the blockchain actually stores.
+- [Emission calculator](https://learnmeanergo.com/tools/emission-calculator): Block reward, EIP-27 lock and total supply at any height.
+
+## Site
+
+- [Learn Me An Ergo](https://learnmeanergo.com/): Home: live chain, network stats and the two learning paths.
+- [Beginners](https://learnmeanergo.com/beginners): Ergo explained simply, in reading order.
+- [Technical](https://learnmeanergo.com/technical): Inside Ergo byte by byte: data structures, scripts, mining and economics.
+- [Tools](https://learnmeanergo.com/tools): Interactive calculators and decoders that run in the browser.
+- [Explorer](https://learnmeanergo.com/explorer): Annotated block explorer for Ergo mainnet (live data from explorer.erg.vn).
+- [Privacy](https://learnmeanergo.com/privacy): No cookies, no analytics, no accounts, no third-party scripts; only requests to this domain and *.erg.vn.
+
+## Optional
+
+- [Ergo whitepaper (PDF)](https://ergoplatform.org/uploads/whitepaper_668cb39ee5.pdf): "Ergo: A Resilient Platform For Contractual Money", v1.0, 14 May 2019.
+- [The Ergo Manifesto](https://ergoplatform.org/en/blog/2021-04-26-the-ergo-manifesto/): Ergo Platform blog, 26 April 2021.
+- [Ergo documentation](https://docs.ergoplatform.com): official protocol documentation.
+- [DECO Education: Registers, Guard Scripts, ErgoScript](https://deco-education.github.io/deco-docs/docs/into-the-woods/trail1-eutxo-n-nfts/registers-guardscripts-ergoscript): lesson on registers, box limits and guard scripts from the “Into the Woods” course.
+- [Learning Ergo 101: eUTXO explained for human beings](https://dav009.medium.com/learning-ergo-101-blockchain-paradigm-eutxo-c90b0274cf5e): David Przybilla's programmer-friendly introduction to the eUTXO model (2021).
+- [explorer.erg.vn](https://explorer.erg.vn): the block explorer and API this site reads from.
