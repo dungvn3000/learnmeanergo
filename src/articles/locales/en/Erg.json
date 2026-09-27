@@ -21,13 +21,15 @@
     "p2": "The emission schedule has two phases:",
     "phase1": "<b>The first 2 years</b> (525,600 blocks): each block creates <b>75 ERG</b>, of which 7.5 ERG goes to the development fund (treasury).",
     "phase2": "<b>After that</b>: every 64,800 blocks (~3 months), the amount per block drops by <b>3 ERG</b>, until it reaches zero.",
-    "now": "Right now (block {{height}}) each block creates <b>{{emission}} ERG</b>. Emission from the emission box ends around block <b>{{end}}</b> — estimated to be around <b>{{date}}</b>."
+    "now": "Right now (block {{height}}) the emission box releases <b>{{emission}} ERG</b> per block. At block <b>{{next}}</b> (around {{nextDate}}) this drops to {{nextEmission}} ERG. Emission from the emission box ends at block <b>{{end}}</b>, estimated around <b>{{date}}</b>. After that, miners keep receiving 3 ERG per block from the re-emission contract (see below).",
+    "nowEnded": "Emission from the emission box ended at block <b>{{end}}</b>. Miners now receive <b>3 ERG per block</b> from the re-emission contract (see below)."
   },
   "reemission": {
     "title": "Re-emission (EIP-27)",
     "p1": "As the reward shrinks towards zero, what will pay miners? In 2022 the community adopted a rule change called <b>EIP-27</b> (an “Ergo Improvement Proposal” — the way changes to Ergo's rules are proposed and agreed on). Starting at block 777,217, part of each block's reward (up to 12 ERG) is <b>locked</b> away in a “savings” contract — the re-emission contract — instead of being paid to the miner straight away.",
     "p2": "Once the emission box runs dry, this contract keeps releasing <b>3 ERG per block</b> to miners, extending the period in which they get paid by many years. The total supply doesn't change — the ERG is just “saved up” for the future.",
-    "now": "At the current block, of the {{emission}} ERG created, the miner receives <b>{{reward}} ERG</b> immediately; the rest is locked for the re-emission period."
+    "now": "At the current block, of the {{emission}} ERG created, the miner receives <b>{{reward}} ERG</b> immediately; the rest is locked for the re-emission period.",
+    "nowEnded": "The emission box is now empty, so the whole <b>3 ERG</b> block reward is paid from the re-emission contract."
   },
   "nano": {
     "title": "The smallest unit: nanoERG",

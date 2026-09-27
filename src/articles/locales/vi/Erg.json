@@ -21,13 +21,15 @@
     "p2": "Lịch phát hành có hai giai đoạn:",
     "phase1": "<b>2 năm đầu</b> (525,600 block): mỗi block tạo ra <b>75 ERG</b>, trong đó 7.5 ERG vào quỹ phát triển (treasury).",
     "phase2": "<b>Sau đó</b>: cứ mỗi 64,800 block (~3 tháng), lượng ERG mỗi block giảm <b>3 ERG</b>, cho đến khi về 0.",
-    "now": "Hiện tại (block {{height}}) mỗi block tạo ra <b>{{emission}} ERG</b>. Việc phát hành từ emission box sẽ kết thúc ở khoảng block <b>{{end}}</b> — ước tính vào khoảng <b>{{date}}</b>."
+    "now": "Hiện tại (block {{height}}) emission box nhả ra <b>{{emission}} ERG</b> mỗi block. Đến block <b>{{next}}</b> (khoảng {{nextDate}}) con số này giảm còn {{nextEmission}} ERG. Việc phát hành từ emission box kết thúc ở block <b>{{end}}</b>, ước tính vào khoảng <b>{{date}}</b>. Sau đó, thợ đào vẫn tiếp tục nhận 3 ERG mỗi block từ hợp đồng tái phát hành (xem bên dưới).",
+    "nowEnded": "Việc phát hành từ emission box đã kết thúc ở block <b>{{end}}</b>. Giờ đây thợ đào nhận <b>3 ERG mỗi block</b> từ hợp đồng tái phát hành (xem bên dưới)."
   },
   "reemission": {
     "title": "Tái phát hành (EIP-27)",
     "p1": "Khi phần thưởng giảm dần về 0, lấy gì trả công cho thợ đào? Năm 2022, cộng đồng đã thông qua một thay đổi luật gọi là <b>EIP-27</b> (“Ergo Improvement Proposal” — cách mọi thay đổi luật của Ergo được đề xuất và thống nhất). Từ block 777,217, một phần phần thưởng mỗi block (tối đa 12 ERG) được <b>khoá lại</b> trong một hợp đồng “tiết kiệm” — hợp đồng tái phát hành — thay vì trả ngay cho thợ đào.",
     "p2": "Sau khi emission box cạn, hợp đồng này sẽ tiếp tục nhả ra <b>3 ERG mỗi block</b> cho thợ đào, kéo dài thời gian họ được trả thưởng thêm nhiều năm. Tổng cung không đổi — chỉ là ERG được “để dành” cho tương lai.",
-    "now": "Ở block hiện tại, trong {{emission}} ERG được tạo ra, thợ đào nhận ngay <b>{{reward}} ERG</b>, phần còn lại được khoá cho giai đoạn tái phát hành."
+    "now": "Ở block hiện tại, trong {{emission}} ERG được tạo ra, thợ đào nhận ngay <b>{{reward}} ERG</b>, phần còn lại được khoá cho giai đoạn tái phát hành.",
+    "nowEnded": "Emission box giờ đã cạn, nên toàn bộ phần thưởng <b>3 ERG</b> mỗi block được trả từ hợp đồng tái phát hành."
   },
   "nano": {
     "title": "Đơn vị nhỏ nhất: nanoERG",

@@ -89,7 +89,11 @@ export default function Erg() {
   const T = (k, extra, values) => <Trans t={t} i18nKey={k} values={values} components={{ ...TAGS, ...extra }} />
   const ns = useApi(() => api.networkState(), [], 60000)
   const d = ns.data
-  const endDate = d ? new Date(d.tipTimestamp + (REEMISSION_START - d.height) * BLOCK_TIME_SEC * 1000) : null
+  const dateAt = (h) => new Date(d.tipTimestamp + (h - d.height) * BLOCK_TIME_SEC * 1000)
+  // First height of the next 3-ERG step down.
+  const nextStep = d && (d.height < FIXED_RATE_PERIOD
+    ? FIXED_RATE_PERIOD
+    : FIXED_RATE_PERIOD + (Math.floor((d.height - FIXED_RATE_PERIOD) / EPOCH_LENGTH) + 1) * EPOCH_LENGTH)
 
   return (
     <>
@@ -109,19 +113,30 @@ export default function Erg() {
       <RewardChart height={d?.height} />
       {d && (
         <p>
-          {T('origin.now', null, {
-            height: num(d.height),
-            emission: emissionAt(d.height),
-            end: num(REEMISSION_START),
-            date: endDate.toLocaleDateString(locale(), { month: 'long', year: 'numeric' }),
-          })}
+          {d.height >= REEMISSION_START
+            ? T('origin.nowEnded', null, { end: num(REEMISSION_START) })
+            : T('origin.now', null, {
+                height: num(d.height),
+                emission: emissionAt(d.height),
+                next: num(nextStep),
+                nextDate: dateAt(nextStep).toLocaleDateString(locale(), { day: 'numeric', month: 'long', year: 'numeric' }),
+                nextEmission: emissionAt(nextStep),
+                end: num(REEMISSION_START),
+                date: dateAt(REEMISSION_START).toLocaleDateString(locale(), { month: 'long', year: 'numeric' }),
+              })}
         </p>
       )}
 
       <h2 id="tai-phat-hanh">{t('reemission.title')}</h2>
       <p>{T('reemission.p1')}</p>
       <p>{T('reemission.p2')}</p>
-      {d && <Callout type="note">{T('reemission.now', null, { emission: emissionAt(d.height), reward: minerRewardAt(d.height) })}</Callout>}
+      {d && (
+        <Callout type="note">
+          {d.height >= REEMISSION_START
+            ? T('reemission.nowEnded')
+            : T('reemission.now', null, { emission: emissionAt(d.height), reward: minerRewardAt(d.height) })}
+        </Callout>
+      )}
 
       <h2 id="nanoerg">{t('nano.title')}</h2>
       <p>{T('nano.p1')}</p>
