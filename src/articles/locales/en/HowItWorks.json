@@ -6,10 +6,22 @@
     "caption": "The 5 latest blocks on mainnet (updates automatically). Notice: each block's <mono>parent</mono> is exactly the <mono>id</mono> of the block before it."
   },
   "steps": {
-    "create": { "title": "1. You create a transaction", "text": "Your wallet picks a few boxes to spend, signs with your secret key and sends it to a node." },
-    "mempool": { "title": "2. Into the mempool", "text": "The node checks the transaction is valid, then relays it to other nodes. It waits in a “waiting room” called the mempool." },
-    "mine": { "title": "3. Miners pack it into a block", "text": "Miners pick transactions from the mempool, assemble a block and race to solve the Proof-of-Work puzzle." },
-    "update": { "title": "4. Every node updates", "text": "The winning block is broadcast. Every node re-checks all of it independently, then appends it to its own chain." }
+    "create": {
+      "title": "1. You create a transaction",
+      "text": "Your wallet picks a few boxes to spend, signs with your secret key and sends it to a node."
+    },
+    "mempool": {
+      "title": "2. Into the mempool",
+      "text": "The node checks the transaction is valid, then relays it to other nodes. It waits in a “waiting room” called the mempool."
+    },
+    "mine": {
+      "title": "3. Miners pack it into a block",
+      "text": "Miners pick transactions from the mempool, assemble a block and race to solve the Proof-of-Work puzzle."
+    },
+    "update": {
+      "title": "4. Every node updates",
+      "text": "The winning block is broadcast. Every node re-checks all of it independently, then appends it to its own chain."
+    }
   },
   "intro": "Ergo is a network of many computers around the world, all keeping a copy of the same ledger. There is no central server. So how do they agree on who owns how much? This article answers that question.",
   "node": {
@@ -20,7 +32,9 @@
   },
   "journey": {
     "title": "The journey of a transaction",
-    "mempool": "Right now there are <b>{{n}}</b> transactions waiting in the node's mempool to be included in the next block."
+    "mempool": "Right now there are <b>{{n}}</b> transactions waiting in the node's mempool to be included in the next block.",
+    "figAlt": "The journey of a transaction: 1. your wallet signs it, 2. it waits in a node's mempool, 3. a miner packs it into a block while guessing numbers, 4. every node checks the new block and adds it to its chain.",
+    "figCaption": "A transaction goes from your wallet, through the mempool and a miner's block, to every node's copy of the chain."
   },
   "blocks": {
     "title": "Blocks and the chain",

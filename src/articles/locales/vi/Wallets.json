@@ -1,9 +1,21 @@
 {
   "chain": {
-    "seed": { "title": "Seed phrase", "text": "Danh sách từ tiếng Anh, ví dụ “olive tiger …”. Bạn chép ra giấy." },
-    "private": { "title": "Khoá bí mật (private key)", "text": "Một con số khổng lồ (dài 256 bit) tính ra từ seed phrase. Chính nó ký các giao dịch của bạn." },
-    "public": { "title": "Khoá công khai (public key)", "text": "Tính ra từ khoá bí mật bằng một phép toán một chiều (cùng phương pháp đường cong elliptic mà Bitcoin dùng). Không ai tính ngược lại được khoá bí mật." },
-    "address": { "title": "Địa chỉ", "text": "Khoá công khai được gắn thêm một nhãn nhỏ và một mã kiểm tra lỗi gõ, rồi viết ra thành chữ và số cho dễ chép." },
+    "seed": {
+      "title": "Seed phrase",
+      "text": "Danh sách từ tiếng Anh, ví dụ “olive tiger …”. Bạn chép ra giấy."
+    },
+    "private": {
+      "title": "Khoá bí mật (private key)",
+      "text": "Một con số khổng lồ (dài 256 bit) tính ra từ seed phrase. Chính nó ký các giao dịch của bạn."
+    },
+    "public": {
+      "title": "Khoá công khai (public key)",
+      "text": "Tính ra từ khoá bí mật bằng một phép toán một chiều (cùng phương pháp đường cong elliptic mà Bitcoin dùng). Không ai tính ngược lại được khoá bí mật."
+    },
+    "address": {
+      "title": "Địa chỉ",
+      "text": "Khoá công khai được gắn thêm một nhãn nhỏ và một mã kiểm tra lỗi gõ, rồi viết ra thành chữ và số cho dễ chép."
+    },
     "secret": "bí mật — không bao giờ chia sẻ",
     "shared": "công khai — chia sẻ thoải mái"
   },
@@ -18,7 +30,9 @@
   "seed": {
     "title": "Từ seed phrase đến địa chỉ",
     "p1": "Khi bạn tạo ví mới, mọi thứ được sinh ra theo một chuỗi một chiều:",
-    "p2": "Mỗi mũi tên là một phép tính <b>một chiều</b>: đi xuôi thì dễ, đi ngược thì không thể. Ai biết địa chỉ của bạn cũng không thể suy ra khoá bí mật. Nhưng ai có seed phrase của bạn thì có <em>tất cả</em>."
+    "p2": "Mỗi mũi tên là một phép tính <b>một chiều</b>: đi xuôi thì dễ, đi ngược thì không thể. Ai biết địa chỉ của bạn cũng không thể suy ra khoá bí mật. Nhưng ai có seed phrase của bạn thì có <em>tất cả</em>.",
+    "figAlt": "Seed phrase, khoá bí mật, public key và địa chỉ xếp thành hàng, nối bằng các mũi tên một chiều. Seed phrase và khoá bí mật được đánh dấu phải giữ kín, public key và địa chỉ thì chia sẻ được, và chiều ngược lại bị gạch chéo.",
+    "figCaption": "Mỗi bước tính được từ bước trước, nhưng không bao giờ đi ngược lại được: giữ kín hai thứ đầu, còn hai thứ sau cứ thoải mái chia sẻ."
   },
   "golden": {
     "title": "Quy tắc vàng",

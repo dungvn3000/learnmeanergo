@@ -4,7 +4,7 @@ import { api } from '../lib/api'
 import { useApi } from '../lib/useApi'
 import { num } from '../lib/format'
 import { articleNs } from '../lib/i18n'
-import { Async, Callout, Card, Field, Hash } from '../components/ui'
+import { Async, Callout, Card, Field, Figure, Hash } from '../components/ui'
 import en from './locales/en/Oracle.json'
 import vi from './locales/vi/Oracle.json'
 
@@ -118,17 +118,7 @@ export default function Oracle() {
         <li>{T('pool.s2')}</li>
         <li>{T('pool.s3')}</li>
       </ol>
-      <figure className="not-prose my-6">
-        <img
-          src="/img/oracle-pool.webp"
-          alt={t('pool.figAlt')}
-          width={1360}
-          height={768}
-          loading="lazy"
-          className="w-full rounded-xl border border-stone-200 dark:border-stone-800"
-        />
-        <figcaption className="mt-2 text-center text-sm text-stone-500">{t('pool.figCaption')}</figcaption>
-      </figure>
+      <Figure src="/img/oracle-pool.webp" alt={t('pool.figAlt')} width={1360} height={768} caption={t('pool.figCaption')} />
       <p>{t('pool.p2')}</p>
       <p>{T('pool.v2', { usd: <Link to={`/token/${V2_USD_NFT}`} />, gold: <Link to={`/token/${V2_GOLD_NFT}`} /> })}</p>
 

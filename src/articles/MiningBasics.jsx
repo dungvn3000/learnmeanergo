@@ -6,7 +6,7 @@ import { useApi } from '../lib/useApi'
 import { compact, num } from '../lib/format'
 import { minerRewardAt } from '../lib/ergo'
 import { articleNs, getLang, locale } from '../lib/i18n'
-import { Async, Callout, Card, Stat } from '../components/ui'
+import { Async, Callout, Card, Figure, Stat } from '../components/ui'
 import LineChart from '../components/LineChart'
 import en from './locales/en/MiningBasics.json'
 import vi from './locales/vi/MiningBasics.json'
@@ -93,6 +93,7 @@ export default function MiningBasics() {
         <li>{T('what.s3')}</li>
       </ol>
       <p>{T('what.p2')}</p>
+      <Figure src="/img/mining.webp" alt={t('what.figAlt')} width={1360} height={470} caption={t('what.figCaption')} />
       <HashrateChart />
 
       <h2 id="phan-thuong">{t('reward.title')}</h2>

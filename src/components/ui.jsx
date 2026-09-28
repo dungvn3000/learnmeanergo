@@ -87,6 +87,23 @@ export function TokenChip({ asset, signed = false }) {
   )
 }
 
+/** Illustration with a caption. `width`/`height` are the image's pixel size, to reserve space before it loads. */
+export function Figure({ src, alt, width, height, caption }) {
+  return (
+    <figure className="not-prose my-6">
+      <img
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        loading="lazy"
+        className="w-full rounded-xl border border-stone-200 dark:border-stone-800"
+      />
+      {caption && <figcaption className="mt-2 text-center text-sm text-stone-500">{caption}</figcaption>}
+    </figure>
+  )
+}
+
 const CALLOUT = {
   note: { icon: Info, cls: 'border-sky-200 bg-sky-50 dark:border-sky-900 dark:bg-sky-950/40', ic: 'text-sky-600 dark:text-sky-400' },
   tip: { icon: Lightbulb, cls: 'border-ergo-200 bg-ergo-50 dark:border-ergo-900 dark:bg-ergo-950/30', ic: 'text-ergo-600 dark:text-ergo-400' },

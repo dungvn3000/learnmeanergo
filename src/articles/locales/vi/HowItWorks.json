@@ -6,10 +6,22 @@
     "caption": "5 block mới nhất trên mainnet (tự cập nhật). Để ý: <mono>cha</mono> của mỗi block chính là <mono>id</mono> của block đứng trước nó."
   },
   "steps": {
-    "create": { "title": "1. Bạn tạo giao dịch", "text": "Ví của bạn chọn vài box để tiêu, ký bằng khoá bí mật và gửi đến một node." },
-    "mempool": { "title": "2. Vào mempool", "text": "Node kiểm tra giao dịch hợp lệ, rồi lan truyền nó tới các node khác. Giao dịch chờ trong “phòng chờ” gọi là mempool." },
-    "mine": { "title": "3. Thợ đào gom vào block", "text": "Thợ đào chọn các giao dịch từ mempool, ghép thành block và thi nhau giải bài toán Proof-of-Work." },
-    "update": { "title": "4. Mọi node cập nhật", "text": "Block thắng cuộc được phát đi. Mỗi node tự kiểm tra lại toàn bộ rồi nối nó vào chuỗi của mình." }
+    "create": {
+      "title": "1. Bạn tạo giao dịch",
+      "text": "Ví của bạn chọn vài box để tiêu, ký bằng khoá bí mật và gửi đến một node."
+    },
+    "mempool": {
+      "title": "2. Vào mempool",
+      "text": "Node kiểm tra giao dịch hợp lệ, rồi lan truyền nó tới các node khác. Giao dịch chờ trong “phòng chờ” gọi là mempool."
+    },
+    "mine": {
+      "title": "3. Thợ đào gom vào block",
+      "text": "Thợ đào chọn các giao dịch từ mempool, ghép thành block và thi nhau giải bài toán Proof-of-Work."
+    },
+    "update": {
+      "title": "4. Mọi node cập nhật",
+      "text": "Block thắng cuộc được phát đi. Mỗi node tự kiểm tra lại toàn bộ rồi nối nó vào chuỗi của mình."
+    }
   },
   "intro": "Ergo là một mạng lưới gồm rất nhiều máy tính trên khắp thế giới, cùng giữ một bản sao của một cuốn sổ cái. Không có máy chủ trung tâm. Vậy làm sao chúng đồng ý với nhau về việc ai có bao nhiêu tiền? Bài này trả lời câu hỏi đó.",
   "node": {
@@ -20,7 +32,9 @@
   },
   "journey": {
     "title": "Hành trình của một giao dịch",
-    "mempool": "Ngay lúc này có <b>{{n}}</b> giao dịch đang chờ trong mempool của node, đợi được đưa vào block tiếp theo."
+    "mempool": "Ngay lúc này có <b>{{n}}</b> giao dịch đang chờ trong mempool của node, đợi được đưa vào block tiếp theo.",
+    "figAlt": "Hành trình của một giao dịch: 1. ví của bạn ký giao dịch, 2. giao dịch chờ trong mempool của một node, 3. thợ đào gói nó vào block trong khi đoán số, 4. mọi node kiểm tra block mới và nối nó vào chuỗi của mình.",
+    "figCaption": "Giao dịch đi từ ví của bạn, qua mempool và block của thợ đào, tới bản sao chuỗi của mọi node."
   },
   "blocks": {
     "title": "Block và chuỗi",

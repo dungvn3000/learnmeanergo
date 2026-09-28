@@ -5,7 +5,7 @@ import { api } from '../lib/api'
 import { useApi } from '../lib/useApi'
 import { ago, num, short } from '../lib/format'
 import { articleNs } from '../lib/i18n'
-import { Async, Callout, Card } from '../components/ui'
+import { Async, Callout, Card, Figure } from '../components/ui'
 import en from './locales/en/HowItWorks.json'
 import vi from './locales/vi/HowItWorks.json'
 
@@ -76,6 +76,7 @@ export default function HowItWorks() {
       )}
 
       <h2 id="hanh-trinh-giao-dich">{t('journey.title')}</h2>
+      <Figure src="/img/tx-journey.webp" alt={t('journey.figAlt')} width={1360} height={520} caption={t('journey.figCaption')} />
       <div className="not-prose my-6 grid gap-3 sm:grid-cols-2">
         {STEPS.map((s) => (
           <Card key={s.key} className="p-4">

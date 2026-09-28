@@ -1,9 +1,21 @@
 {
   "chain": {
-    "seed": { "title": "Seed phrase", "text": "A list of English words, e.g. “olive tiger …”. You write it down on paper." },
-    "private": { "title": "Private key", "text": "A huge number (256 bits long) calculated from the seed phrase. This is what signs your transactions." },
-    "public": { "title": "Public key", "text": "Calculated from the private key with one-way maths (the same elliptic-curve method Bitcoin uses). Nobody can work backwards from it to the private key." },
-    "address": { "title": "Address", "text": "The public key with a small label and a typo-check added, written out as letters and digits so it is easy to copy." },
+    "seed": {
+      "title": "Seed phrase",
+      "text": "A list of English words, e.g. “olive tiger …”. You write it down on paper."
+    },
+    "private": {
+      "title": "Private key",
+      "text": "A huge number (256 bits long) calculated from the seed phrase. This is what signs your transactions."
+    },
+    "public": {
+      "title": "Public key",
+      "text": "Calculated from the private key with one-way maths (the same elliptic-curve method Bitcoin uses). Nobody can work backwards from it to the private key."
+    },
+    "address": {
+      "title": "Address",
+      "text": "The public key with a small label and a typo-check added, written out as letters and digits so it is easy to copy."
+    },
     "secret": "secret — never share",
     "shared": "public — share freely"
   },
@@ -18,7 +30,9 @@
   "seed": {
     "title": "From seed phrase to address",
     "p1": "When you create a new wallet, everything is generated in a one-way chain:",
-    "p2": "Every arrow is a <b>one-way</b> calculation: easy going forwards, impossible going backwards. Someone who knows your address can't work out your private key. But someone who has your seed phrase has <em>everything</em>."
+    "p2": "Every arrow is a <b>one-way</b> calculation: easy going forwards, impossible going backwards. Someone who knows your address can't work out your private key. But someone who has your seed phrase has <em>everything</em>.",
+    "figAlt": "Seed phrase, private key, public key and address in a row, linked by one-way arrows. The seed phrase and private key are marked keep secret, the public key and address safe to share, and the way back is crossed out.",
+    "figCaption": "Each step can be computed from the previous one, but never the other way round: keep the first two secret, share the last two freely."
   },
   "golden": {
     "title": "The golden rule",

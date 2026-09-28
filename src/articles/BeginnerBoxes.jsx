@@ -3,7 +3,7 @@ import { Trans } from 'react-i18next'
 import { api } from '../lib/api'
 import { useApi } from '../lib/useApi'
 import { articleNs } from '../lib/i18n'
-import { Async, Callout, Erg } from '../components/ui'
+import { Async, Callout, Erg, Figure } from '../components/ui'
 import { TxFlow, isFeeBox } from '../components/TxFlow'
 import en from './locales/en/BeginnerBoxes.json'
 import vi from './locales/vi/BeginnerBoxes.json'
@@ -68,17 +68,7 @@ export default function BeginnerBoxes() {
         <li>{t('what.visible')}</li>
       </ul>
       <p>{T('what.p2')}</p>
-      <figure className="not-prose my-6">
-        <img
-          src="/img/boxes.webp"
-          alt={t('what.figAlt')}
-          width={1360}
-          height={580}
-          loading="lazy"
-          className="w-full rounded-xl border border-stone-200 dark:border-stone-800"
-        />
-        <figcaption className="mt-2 text-center text-sm text-stone-500">{t('what.figCaption')}</figcaption>
-      </figure>
+      <Figure src="/img/boxes.webp" alt={t('what.figAlt')} width={1360} height={580} caption={t('what.figCaption')} />
 
       <h2 id="tieu-tien">{t('spend.title')}</h2>
       <p>{T('spend.p1')}</p>
@@ -87,17 +77,7 @@ export default function BeginnerBoxes() {
         <li>{T('spend.outputs')}</li>
       </ol>
       <p>{T('spend.p2')}</p>
-      <figure className="not-prose my-8">
-        <img
-          src="/img/spend.webp"
-          alt={t('diagram.alt')}
-          width={1360}
-          height={590}
-          loading="lazy"
-          className="w-full rounded-xl border border-stone-200 dark:border-stone-800"
-        />
-        <figcaption className="mt-2 text-center text-sm text-stone-500">{t('diagram.caption')}</figcaption>
-      </figure>
+      <Figure src="/img/spend.webp" alt={t('diagram.alt')} width={1360} height={590} caption={t('diagram.caption')} />
       <p>{t('spend.p3')}</p>
 
       <h2 id="vi-du-that">{t('real.title')}</h2>

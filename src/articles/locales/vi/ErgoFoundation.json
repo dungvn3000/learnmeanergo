@@ -39,5 +39,9 @@
     "treasury": "ErgoDocs: Treasury: phần phân bổ ban đầu, các khoản rút và tài sản hiện tại.",
     "votes": "ErgoDocs: Votes: các quyết định đã ghi lại của Foundation.",
     "future": "ErgoDocs: Future: việc bàn giao cho DevDAO, InfraDAO và Sigmanauts."
+  },
+  "introFig": {
+    "figAlt": "Treasury box 4.33 triệu ERG, nhả dần theo hợp đồng vesting, chia thành 1.78 triệu ERG cho đợt đổi EFYT và 2.55 triệu ERG cho Ergo Foundation. Foundation chi số này cho phát triển, sàn giao dịch, marketing và vận hành, rồi bàn giao công việc cho DevDAO, InfraDAO và Sigmanauts.",
+    "figCaption": "Quỹ đã đi đâu: một phần trả cho đợt đổi EFYT, phần còn lại tài trợ cho công việc của Foundation, giờ đã chuyển sang các nhóm cộng đồng."
   }
 }

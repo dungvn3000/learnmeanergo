@@ -22,7 +22,9 @@
     "s1": "Take the transactions waiting in the mempool and check they're valid.",
     "s2": "Assemble them into a candidate block that points to the latest block in the chain.",
     "s3": "Change one spare number in the block (the <b>nonce</b>), recompute the block's fingerprint (its hash), and check whether it's small enough. Repeat billions of times.",
-    "p2": "Step 3 is like rolling dice billions of times hoping for an extremely rare number. There's no shortcut — you just try lots of times, very fast. The combined guessing speed of the whole network is called the <b>hashrate</b>."
+    "p2": "Step 3 is like rolling dice billions of times hoping for an extremely rare number. There's no shortcut — you just try lots of times, very fast. The combined guessing speed of the whole network is called the <b>hashrate</b>.",
+    "figAlt": "A mining rig fills in the nonce of a candidate block and hashes it again and again. Nonces 1 to 3 give hashes that are too big; nonce 4 gives a hash starting with zeros that is small enough, so the block joins the chain and the miner earns the block reward.",
+    "figCaption": "Mining is guessing: change the nonce, hash, repeat until the hash is small enough. The lucky guess wins the block reward."
   },
   "reward": {
     "title": "The reward",

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Trans } from 'react-i18next'
 import { TREASURY_ADDRESS } from '../lib/ergo'
 import { articleNs } from '../lib/i18n'
-import { Callout } from '../components/ui'
+import { Callout, Figure } from '../components/ui'
 import en from './locales/en/ErgoFoundation.json'
 import vi from './locales/vi/ErgoFoundation.json'
 
@@ -25,6 +25,7 @@ export default function ErgoFoundation() {
   return (
     <>
       <p>{T('intro')}</p>
+      <Figure src="/img/foundation.webp" alt={t('introFig.figAlt')} width={1360} height={540} caption={t('introFig.figCaption')} />
 
       <h2 id="tien-tu-dau">{t('money.title')}</h2>
       <p>{T('money.p1', { treasury: <Link to={`/address/${TREASURY_ADDRESS}`} /> })}</p>

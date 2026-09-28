@@ -5,7 +5,7 @@ import { api } from '../lib/api'
 import { useApi } from '../lib/useApi'
 import { p2pkAddress } from '../lib/ergo'
 import { articleNs } from '../lib/i18n'
-import { Async, Callout, Card, Hash } from '../components/ui'
+import { Async, Callout, Card, Figure, Hash } from '../components/ui'
 import en from './locales/en/Wallets.json'
 import vi from './locales/vi/Wallets.json'
 
@@ -94,6 +94,7 @@ export default function Wallets() {
 
       <h2 id="tu-seed-den-dia-chi">{t('seed.title')}</h2>
       <p>{t('seed.p1')}</p>
+      <Figure src="/img/keys.webp" alt={t('seed.figAlt')} width={1360} height={550} caption={t('seed.figCaption')} />
       <KeyChain />
       <p>{T('seed.p2')}</p>
 

@@ -39,5 +39,9 @@
     "treasury": "ErgoDocs: Treasury: the initial allocation, withdrawals and current holdings.",
     "votes": "ErgoDocs: Votes: the Foundation's recorded decisions.",
     "future": "ErgoDocs: Future: the handover to DevDAO, InfraDAO and the Sigmanauts."
+  },
+  "introFig": {
+    "figAlt": "The treasury box of 4.33 million ERG, released under a vesting contract, split into 1.78 million ERG for the EFYT swap and 2.55 million ERG for the Ergo Foundation, which spent it on development, exchanges, marketing and operations before handing its work over to DevDAO, InfraDAO and the Sigmanauts.",
+    "figCaption": "Where the treasury went: part paid for the EFYT swap, the rest funded the Foundation's work, which has now passed to community groups."
   }
 }

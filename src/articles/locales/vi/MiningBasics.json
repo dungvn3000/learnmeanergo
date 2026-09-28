@@ -22,7 +22,9 @@
     "s1": "Lấy các giao dịch đang chờ trong mempool và kiểm tra chúng hợp lệ.",
     "s2": "Ghép chúng thành một block ứng viên, trỏ về block mới nhất của chuỗi.",
     "s3": "Đổi một con số phụ trong block (gọi là <b>nonce</b>), tính lại dấu vân tay của block (mã băm), rồi xem nó đã đủ nhỏ chưa. Lặp lại hàng tỉ lần.",
-    "p2": "Bước 3 giống như tung xúc xắc hàng tỉ lần để ra một con số cực hiếm. Không có mẹo nào — chỉ có thử thật nhiều và thật nhanh. Tốc độ thử của cả mạng gọi là <b>hashrate</b>."
+    "p2": "Bước 3 giống như tung xúc xắc hàng tỉ lần để ra một con số cực hiếm. Không có mẹo nào — chỉ có thử thật nhiều và thật nhanh. Tốc độ thử của cả mạng gọi là <b>hashrate</b>.",
+    "figAlt": "Một dàn máy đào điền nonce vào block ứng viên rồi băm đi băm lại. Nonce 1 đến 3 cho hash quá lớn; nonce 4 cho hash bắt đầu bằng các số 0, đủ nhỏ, nên block được nối vào chuỗi và thợ đào nhận phần thưởng block.",
+    "figCaption": "Đào là đoán: đổi nonce, băm, lặp lại cho đến khi hash đủ nhỏ. Lần đoán trúng sẽ nhận phần thưởng block."
   },
   "reward": {
     "title": "Phần thưởng",
