@@ -1,0 +1,43 @@
+{
+  "intro": "<b>Ergo Foundation</b> (EF) là tổ chức pháp lý và quản lý quỹ được lập ra để khởi động hệ sinh thái Ergo. Nó <b>không</b> phải công ty sở hữu hay điều hành Ergo: mạng lưới do các node và thợ đào khắp thế giới vận hành, và bản thân mạng lưới vẫn chạy nếu không có Foundation.",
+  "money": {
+    "title": "Tiền của Foundation từ đâu ra",
+    "p1": "Foundation được cấp vốn từ <b>quỹ phát triển (treasury)</b>: <b>4,330,791.5 ERG</b>, khoảng 4.43% tổng số ERG, được để riêng khi chuỗi ra mắt năm 2019 trong một <treasury>treasury box</treasury>. Một hợp đồng chỉ cho rút số ERG này ra dần trong 2.5 năm đầu, cùng nhịp với việc đào, và lúc ra mắt, mỗi lần rút đều cần chữ ký của 2 trong 3 thành viên Foundation.",
+    "p2": "Khoảng 1.78 triệu ERG trong số đó dùng để đổi cho người giữ <efyt>EFYT</efyt>, một token được phát ra trước khi ra mắt, nên Foundation còn lại khoảng 2.55 triệu ERG. Xem chi tiết ở bài <emission>Lịch phát hành & EIP-27</emission>."
+  },
+  "did": {
+    "title": "Foundation đã làm gì",
+    "p1": "Foundation nêu bốn nguyên tắc: phát triển không làm hỏng mạng và được thợ đào, người dùng, các dự án chấp nhận; mã nguồn mở với giấy phép thoáng; quyền riêng tư; và dùng quỹ chủ yếu cho cộng đồng. Trên thực tế, Foundation chi tiền cho:",
+    "infra": "<b>Hạ tầng và phát triển:</b> nghiên cứu giao thức, node tham chiếu, thư viện và công cụ cho lập trình viên, nhất là những việc cộng đồng chưa ai làm.",
+    "edu": "<b>Giáo dục và quảng bá:</b> tài liệu học, biên tập nội dung và sự kiện.",
+    "grants": "<b>Tài trợ (grant)</b> cho các dự án trong hệ sinh thái.",
+    "exchanges": "<b>Niêm yết sàn:</b> với tư cách pháp nhân, Foundation là đầu mối chính làm việc với các sàn tập trung.",
+    "p2": "Theo báo cáo của chính Foundation, tổng cộng khoảng <b>8.35 triệu USD</b> đã được rút khỏi quỹ. Với phần có sổ sách chi tiết (khoảng 4.95 triệu USD), khoảng một nửa cho phát triển, một phần tư cho sàn giao dịch và market maker, 15% cho marketing và biên tập, 10% cho vận hành Foundation."
+  },
+  "didnt": {
+    "title": "Foundation không làm gì",
+    "p1": "Foundation cho biết họ thường không trả tiền cho influencer hay chiến dịch quảng cáo, tránh chi tiền cho những thứ như airdrop hay giveaway, và không kiểm duyệt hay bảo chứng mã nguồn của ai. Ergo cũng không có một “đội ngũ lõi” chính thức duy nhất: các lập trình viên làm độc lập, được các nhóm khác nhau trả lương, hoặc tình nguyện."
+  },
+  "today": {
+    "title": "Foundation ngày nay",
+    "p1": "Quỹ đã được chi gần hết. Tính đến tháng 6/2026, Foundation báo cáo chỉ còn khoảng <b>2,506 ERG</b> tiền mặt, cộng khoảng 530,000 USD token khó bán của các dự án trong hệ sinh thái, và không còn tiền để tài trợ.",
+    "p2": "Công việc đã chuyển sang các nhóm cộng đồng: <b>DevDAO</b> giờ lo gây quỹ cho phát triển lõi, <b>InfraDAO</b> vận hành phần lớn hạ tầng của hệ sinh thái, và <b>Sigmanauts</b> quản lý các kênh cộng đồng chính. Lập trình viên chủ chốt của Ergo, Alexander Chepurnoy (kushti), đã rút khỏi Foundation vào tháng 1/2024 để tập trung vào phát triển.",
+    "p3": "Foundation dự định thu gọn thành một pháp nhân tối thiểu, tốn khoảng 2,000 USD mỗi năm, vẫn có thể ký thoả thuận với các sàn và làm vỏ pháp lý cho những việc do cộng đồng tài trợ."
+  },
+  "note": {
+    "title": "Vì sao điều này quan trọng",
+    "text": "Ergo được thiết kế để không cần tổ chức nào mới chạy được. Luật do mọi node thực thi, và muốn thay đổi thì cần thợ đào và người dùng ủng hộ. Việc Foundation thu nhỏ lại cũng nằm trong kế hoạch đó: như trang của Foundation viết, mục tiêu là “an ecosystem that can sustain itself without centralised support” (một hệ sinh thái tự đứng được mà không cần hỗ trợ tập trung)."
+  },
+  "next": {
+    "title": "Tiếp theo",
+    "p1": "Tìm hiểu ERG được phát hành thế nào ở bài <erg>ERG và nguồn cung</erg>, hoặc đọc tiếp <wallets>Ví, khoá và địa chỉ</wallets>."
+  },
+  "refs": {
+    "title": "Tài liệu tham khảo",
+    "about": "ErgoDocs: Ergo Foundation: Foundation là gì, sứ mệnh và các thành viên.",
+    "scope": "ErgoDocs: Scope: Foundation làm gì và không làm gì.",
+    "treasury": "ErgoDocs: Treasury: phần phân bổ ban đầu, các khoản rút và tài sản hiện tại.",
+    "votes": "ErgoDocs: Votes: các quyết định đã ghi lại của Foundation.",
+    "future": "ErgoDocs: Future: việc bàn giao cho DevDAO, InfraDAO và Sigmanauts."
+  }
+}

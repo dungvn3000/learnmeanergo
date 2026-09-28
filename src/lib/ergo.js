@@ -160,6 +160,10 @@ export function emittedUpTo(h) {
 export const heightToDate = (h, ref = { height: 1, time: Date.UTC(2019, 6, 1) }) =>
   new Date(ref.time + (h - ref.height) * BLOCK_TIME_SEC * 1000)
 
+/** Genesis treasury box of the Ergo Foundation (4,330,791.5 ERG, vesting contract, 2-of-3 multisig at launch). */
+export const TREASURY_ADDRESS =
+  '4L1ktFSzm3SH1UioDuUf5hyaraHird4D2dEACwQ1qHGjSKtA6KaNvSzRCZXZGf9jkfNAEC1SrYaZmCuvb2BKiXk5zW9xuvrXFT7FdNe2KqbymiZvo5UQLAm5jQY8ZBRhTZ4AFtZa1UF5nd4aofwPiL7YkJuyiL5hDHMZL1ZnyL746tHmRYMjAhCgE7d698dRhkdSeVy'
+
 // ---------- Storage rent ----------
 export const STORAGE_PERIOD = 1_051_200 // blocks ≈ 4 years
 export const STORAGE_FEE_FACTOR = 1_250_000 // nanoERG per byte per period (default, votable)

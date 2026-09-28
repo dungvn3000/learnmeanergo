@@ -11,6 +11,7 @@ Every page exists in English (default) and Vietnamese: append `?lang=vi` to any 
 - [How does the Ergo blockchain work?](https://learnmeanergo.com/learn/how-it-works): Nodes, miners, blocks and transactions — the big picture in 10 minutes.
 - [Boxes: where the money lives](https://learnmeanergo.com/learn/boxes): Ergo has no “account balances”. Instead, there are locked boxes.
 - [ERG and its supply](https://learnmeanergo.com/learn/erg): How many ERG exist, who creates them, and when the last one gets mined.
+- [The Ergo Foundation](https://learnmeanergo.com/learn/ergo-foundation): The organisation that used the treasury to get Ergo started, and why it is now stepping back.
 - [Wallets, keys and addresses](https://learnmeanergo.com/learn/wallets): Seed phrases, private keys, and why Ergo addresses start with a 9.
 - [Mining Ergo](https://learnmeanergo.com/learn/mining-basics): What miners do, how they get paid, and why GPUs can still mine.
 

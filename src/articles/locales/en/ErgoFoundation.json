@@ -1,0 +1,43 @@
+{
+  "intro": "The <b>Ergo Foundation</b> (EF) is the legal and treasury entity created to get Ergo's ecosystem started. It is <b>not</b> a company that owns or runs Ergo: the network is run by nodes and miners all over the world, and the network itself would keep running without the Foundation.",
+  "money": {
+    "title": "Where its money came from",
+    "p1": "The Foundation was funded by the <b>treasury</b>: <b>4,330,791.5 ERG</b>, about 4.43% of all ERG, set aside when the chain launched in 2019 in a separate <treasury>treasury box</treasury>. A contract only let the ERG out gradually over the first 2.5 years, at the same pace as mining, and, at launch, every withdrawal needed signatures from 2 of 3 Foundation members.",
+    "p2": "About 1.78 million of those ERG went to people swapping <efyt>EFYT</efyt>, a token handed out before launch, which left roughly 2.55 million ERG for the Foundation itself. See <emission>Emission schedule & EIP-27</emission> for the details."
+  },
+  "did": {
+    "title": "What it did",
+    "p1": "The Foundation described four principles: development that doesn't break the network and is accepted by miners, users and projects; open-source code with permissive licences; privacy; and spending the treasury mainly on the community. In practice it paid for:",
+    "infra": "<b>Infrastructure and development:</b> protocol research, the reference node, libraries and developer tools, especially where no one in the community was doing the work.",
+    "edu": "<b>Education and promotion:</b> learning materials, editorial work and events.",
+    "grants": "<b>Grants</b> to ecosystem projects.",
+    "exchanges": "<b>Exchange listings:</b> as a legal entity, it was the main contact for centralised exchanges.",
+    "p2": "Its own report counts about <b>$8.35 million</b> withdrawn from the treasury in total. For the part with detailed accounts (about $4.95 million), roughly half went to development, a quarter to exchanges and market makers, 15% to marketing and editorial work and 10% to running the Foundation."
+  },
+  "didnt": {
+    "title": "What it doesn't do",
+    "p1": "The Foundation says it does not normally pay influencers or ad campaigns, avoids spending on things like airdrops or giveaways, and does not review or endorse anyone's code. There is also no single official “core team”: developers are independent, paid by different groups, or volunteers."
+  },
+  "today": {
+    "title": "The Foundation today",
+    "p1": "The treasury has been spent. As of June 2026 the Foundation reported only about <b>2,506 ERG</b> in liquid funds, plus about $530,000 worth of hard-to-sell tokens from ecosystem projects, and no money left for grants.",
+    "p2": "Its work has moved to community groups: the <b>DevDAO</b> now organises funding for core development, the <b>InfraDAO</b> runs most of the ecosystem's infrastructure, and the <b>Sigmanauts</b> manage the main community channels. Ergo's key developer, Alexander Chepurnoy (kushti), stepped back from the Foundation in January 2024 to focus on development.",
+    "p3": "The Foundation plans to shrink to a minimal legal entity, costing around $2,000 a year, that can still sign agreements with exchanges and act as a legal wrapper for community-funded work."
+  },
+  "note": {
+    "title": "Why this matters",
+    "text": "Ergo was designed so that no organisation is needed to keep it running. The rules are enforced by every node, and changes need the support of miners and users. The Foundation's shrinking role is part of that plan: as its own page puts it, the goal was “an ecosystem that can sustain itself without centralised support”."
+  },
+  "next": {
+    "title": "What's next",
+    "p1": "Learn how ERG is issued in <erg>ERG and its supply</erg>, or keep going with <wallets>Wallets, keys and addresses</wallets>."
+  },
+  "refs": {
+    "title": "References",
+    "about": "ErgoDocs: Ergo Foundation: what it is, its mission and its members.",
+    "scope": "ErgoDocs: Scope: what the Foundation does and doesn't do.",
+    "treasury": "ErgoDocs: Treasury: the initial allocation, withdrawals and current holdings.",
+    "votes": "ErgoDocs: Votes: the Foundation's recorded decisions.",
+    "future": "ErgoDocs: Future: the handover to DevDAO, InfraDAO and the Sigmanauts."
+  }
+}

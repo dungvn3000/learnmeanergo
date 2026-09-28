@@ -6,7 +6,7 @@ import { api } from '../lib/api'
 import { useApi } from '../lib/useApi'
 import { num } from '../lib/format'
 import {
-  BLOCK_TIME_SEC, EIP27_ACTIVATION, EPOCH_LENGTH, EPOCH_REDUCTION, FIXED_RATE, FIXED_RATE_PERIOD, GENESIS_TIME, MAX_SUPPLY, REEMISSION_PER_BLOCK, REEMISSION_START,
+  BLOCK_TIME_SEC, EIP27_ACTIVATION, EPOCH_LENGTH, EPOCH_REDUCTION, FIXED_RATE, FIXED_RATE_PERIOD, GENESIS_TIME, MAX_SUPPLY, REEMISSION_PER_BLOCK, REEMISSION_START, TREASURY_ADDRESS,
   emissionAt, emittedUpTo, heightToDate, minerRewardAt, reemissionLockAt, treasuryAt,
 } from '../lib/ergo'
 import { articleNs, getLang } from '../lib/i18n'
@@ -34,10 +34,6 @@ const REFS = [
   ['docsEfyt', 'https://docs.ergoplatform.com/efyt/'],
   ['foundationScript', FOUNDATION_SCRIPT_URL],
 ]
-
-// Genesis treasury box of the Ergo Foundation (4,330,791.5 ERG, vesting contract).
-const TREASURY_ADDRESS =
-  '4L1ktFSzm3SH1UioDuUf5hyaraHird4D2dEACwQ1qHGjSKtA6KaNvSzRCZXZGf9jkfNAEC1SrYaZmCuvb2BKiXk5zW9xuvrXFT7FdNe2KqbymiZvo5UQLAm5jQY8ZBRhTZ4AFtZa1UF5nd4aofwPiL7YkJuyiL5hDHMZL1ZnyL746tHmRYMjAhCgE7d698dRhkdSeVy'
 
 // Total ERG that EIP-27 locks between activation and the end of emission.
 const TOTAL_REEMISSION = (() => {
