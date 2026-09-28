@@ -4,7 +4,7 @@ import { Ban, Coins, FileCode2, Hourglass, Network, Scale, ShieldCheck, Users } 
 import { MAX_SUPPLY } from '../lib/ergo'
 import { num } from '../lib/format'
 import { articleNs } from '../lib/i18n'
-import { Callout, Card } from '../components/ui'
+import { Callout, Card, Figure } from '../components/ui'
 import en from './locales/en/Manifesto.json'
 import vi from './locales/vi/Manifesto.json'
 
@@ -40,6 +40,7 @@ export default function Manifesto() {
   return (
     <>
       <p>{T('intro')}</p>
+      <Figure src="/img/manifesto.webp" alt={t('figure.alt')} width={1360} height={768} caption={t('figure.caption')} />
       <Callout type="note" title={t('about.title')}>
         {T('about.text', undefined, { source: <a href={SOURCE} target="_blank" rel="noreferrer" /> })}
       </Callout>

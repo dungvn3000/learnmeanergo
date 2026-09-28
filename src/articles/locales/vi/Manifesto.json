@@ -1,5 +1,9 @@
 {
   "intro": "Tháng 4/2021, blog của Ergo Platform đăng <b>The Ergo Manifesto</b> — bản tuyên ngôn giải thích <em>vì sao</em> Ergo tồn tại, chứ không chỉ nó hoạt động thế nào. Nếu các bài khác trên trang này nói về box, script và thuật toán, thì bài này nói về những giá trị đứng sau các lựa chọn thiết kế đó.",
+  "figure": {
+    "alt": "Hai nửa. Bên trái, màu xám, “Money as control”: một toà tháp ngân hàng trung ương có camera giám sát, dây buộc vào những đồng xu trong tay người dân, bên dưới là ba biểu tượng: tiền hết hạn, chi tiêu có điều kiện và thị trường bị kiểm duyệt. Bên phải, màu cam, “Money for people”: những người bình thường với laptop và máy đào GPU tại nhà tạo thành mạng ngang hàng, mỗi người giữ hộp coin với chìa khoá riêng, cùng một chiếc khiên ghi “Private by choice” (riêng tư tuỳ chọn).",
+    "caption": "Lựa chọn mà bản tuyên ngôn đặt ra: tiền là công cụ kiểm soát, hay tiền do chính người bình thường nắm giữ, vận hành và đào."
+  },
   "about": {
     "title": "Về bài viết này",
     "text": "Đây là phần tóm tắt và diễn giải bằng lời của chúng tôi, không phải bản dịch. Bạn nên đọc <source>bản gốc tiếng Anh</source>."
@@ -16,9 +20,18 @@
   "weapon": {
     "title": "Khi tiền bị biến thành vũ khí",
     "p1": "Tuyên ngôn cảnh báo rằng tiền kỹ thuật số của ngân hàng trung ương (CBDC) có thể bị dùng để kiểm soát người dân theo ít nhất ba cách:",
-    "expiring": { "title": "Tiền có “hạn dùng”", "text": "Số dư có thể bị buộc hết hạn hoặc bị huỷ — một hình thức tước đoạt." },
-    "conditional": { "title": "Chi tiêu có điều kiện", "text": "Quyền tiêu tiền gắn với việc “tuân thủ”, trở thành công cụ dập tắt bất đồng." },
-    "censored": { "title": "Kiểm duyệt thị trường", "text": "Chặn quyền truy cập thị trường, phá huỷ chủ quyền tiền tệ của cá nhân." }
+    "expiring": {
+      "title": "Tiền có “hạn dùng”",
+      "text": "Số dư có thể bị buộc hết hạn hoặc bị huỷ — một hình thức tước đoạt."
+    },
+    "conditional": {
+      "title": "Chi tiêu có điều kiện",
+      "text": "Quyền tiêu tiền gắn với việc “tuân thủ”, trở thành công cụ dập tắt bất đồng."
+    },
+    "censored": {
+      "title": "Kiểm duyệt thị trường",
+      "text": "Chặn quyền truy cập thị trường, phá huỷ chủ quyền tiền tệ của cá nhân."
+    }
   },
   "privacy": {
     "title": "Quyền riêng tư",
@@ -68,11 +81,26 @@
     "title": "Ergo muốn là gì — và không muốn là gì",
     "yes": "Nên là",
     "no": "Không nên là",
-    "r1": { "yes": "Công cụ cho người bình thường, hợp tác xã, doanh nghiệp nhỏ", "no": "Công cụ cắt giảm chi phí cho tập đoàn" },
-    "r2": { "yes": "Tài chính từ cơ sở, ngang hàng, tự giữ khoá", "no": "Hệ thống lưu ký, phụ thuộc trung gian" },
-    "r3": { "yes": "Hạ tầng riêng tư (tuỳ chọn), chống kiểm duyệt", "no": "Công cụ giám sát và kiểm soát" },
-    "r4": { "yes": "Hợp đồng thông minh chi phí hợp lý", "no": "Nền tảng có cứu trợ, danh sách đen hay phân biệt đối xử" },
-    "r5": { "yes": "Đào và phát triển phân tán rộng", "no": "Tập trung quyền lực đào hay phát triển vào vài bên" }
+    "r1": {
+      "yes": "Công cụ cho người bình thường, hợp tác xã, doanh nghiệp nhỏ",
+      "no": "Công cụ cắt giảm chi phí cho tập đoàn"
+    },
+    "r2": {
+      "yes": "Tài chính từ cơ sở, ngang hàng, tự giữ khoá",
+      "no": "Hệ thống lưu ký, phụ thuộc trung gian"
+    },
+    "r3": {
+      "yes": "Hạ tầng riêng tư (tuỳ chọn), chống kiểm duyệt",
+      "no": "Công cụ giám sát và kiểm soát"
+    },
+    "r4": {
+      "yes": "Hợp đồng thông minh chi phí hợp lý",
+      "no": "Nền tảng có cứu trợ, danh sách đen hay phân biệt đối xử"
+    },
+    "r5": {
+      "yes": "Đào và phát triển phân tán rộng",
+      "no": "Tập trung quyền lực đào hay phát triển vào vài bên"
+    }
   },
   "next": {
     "title": "Từ triết lý đến kỹ thuật",

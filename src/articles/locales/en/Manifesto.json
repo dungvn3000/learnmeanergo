@@ -1,5 +1,9 @@
 {
   "intro": "In April 2021 the Ergo Platform blog published <b>The Ergo Manifesto</b> — a statement of <em>why</em> Ergo exists, not just how it works. The other pages on this site are about boxes, scripts and algorithms; this one is about the values behind those design choices.",
+  "figure": {
+    "alt": "Two halves. Left, in gray, “Money as control”: a central bank tower with a surveillance camera holds strings tied to the coins in people's hands, above three icons: money that expires, conditional spending and censored markets. Right, in orange, “Money for people”: ordinary people with laptops and home GPU rigs form a peer-to-peer network, each holding their own box of coins with their own key, with a shield labeled “Private by choice”.",
+    "caption": "The choice the manifesto describes: money as a tool of control, or money that ordinary people hold, run and mine themselves."
+  },
   "about": {
     "title": "About this page",
     "text": "This is our own summary and interpretation, not a copy. We recommend reading <source>the original</source>."
@@ -16,9 +20,18 @@
   "weapon": {
     "title": "The weaponization of money",
     "p1": "The manifesto warns that central bank digital currencies (CBDCs) could be used to control citizens in at least three ways:",
-    "expiring": { "title": "Money that expires", "text": "Balances can be forced to expire or be burned — a form of confiscation." },
-    "conditional": { "title": "Conditional spending", "text": "The right to spend is tied to “compliance”, becoming a tool to silence dissent." },
-    "censored": { "title": "Censored markets", "text": "Access to markets can be blocked, destroying individual monetary sovereignty." }
+    "expiring": {
+      "title": "Money that expires",
+      "text": "Balances can be forced to expire or be burned — a form of confiscation."
+    },
+    "conditional": {
+      "title": "Conditional spending",
+      "text": "The right to spend is tied to “compliance”, becoming a tool to silence dissent."
+    },
+    "censored": {
+      "title": "Censored markets",
+      "text": "Access to markets can be blocked, destroying individual monetary sovereignty."
+    }
   },
   "privacy": {
     "title": "Privacy",
@@ -68,11 +81,26 @@
     "title": "What Ergo wants to be — and what it doesn’t",
     "yes": "Should be",
     "no": "Should not be",
-    "r1": { "yes": "Tools for ordinary people, cooperatives and small businesses", "no": "A cost-cutting tool for corporations" },
-    "r2": { "yes": "Grassroots, peer-to-peer, self-custodial finance", "no": "A custodial system that depends on intermediaries" },
-    "r3": { "yes": "Private (optionally), censorship-resistant infrastructure", "no": "A tool for surveillance and control" },
-    "r4": { "yes": "Affordable smart contracts", "no": "A platform with bailouts, blacklists or discrimination" },
-    "r5": { "yes": "Widely distributed mining and development", "no": "Mining or development power concentrated in a few hands" }
+    "r1": {
+      "yes": "Tools for ordinary people, cooperatives and small businesses",
+      "no": "A cost-cutting tool for corporations"
+    },
+    "r2": {
+      "yes": "Grassroots, peer-to-peer, self-custodial finance",
+      "no": "A custodial system that depends on intermediaries"
+    },
+    "r3": {
+      "yes": "Private (optionally), censorship-resistant infrastructure",
+      "no": "A tool for surveillance and control"
+    },
+    "r4": {
+      "yes": "Affordable smart contracts",
+      "no": "A platform with bailouts, blacklists or discrimination"
+    },
+    "r5": {
+      "yes": "Widely distributed mining and development",
+      "no": "Mining or development power concentrated in a few hands"
+    }
   },
   "next": {
     "title": "From philosophy to engineering",
