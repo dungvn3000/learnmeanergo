@@ -1,11 +1,6 @@
 {
   "diagram": {
-    "spent": "Spent (destroyed)",
-    "created": "Newly created",
-    "aliceKey": "Alice's key",
-    "bobKey": "Bob's key",
-    "change": "Alice's key (change)",
-    "fee": "miner fee",
+    "alt": "Two opened, empty glass boxes of 7 and 5 ERG belonging to Alice are spent by a transaction, which creates three new locked boxes: 10 ERG for Bob, 1.999 ERG change for Alice and a 0.001 ERG miner fee. 7 + 5 = 10 + 1.999 + 0.001.",
     "caption": "Alice sends Bob 10 ERG: 7 + 5 = 10 + 1.999 + 0.001"
   },
   "realTx": {
@@ -26,7 +21,9 @@
     "inside": "Inside is some amount of <b>ERG</b> (and possibly other <tokens>tokens</tokens> too).",
     "lock": "On the outside is a <b>lock</b>. The lock is a piece of logic (a script) that says who may open the box.",
     "visible": "Anyone can see what's inside, but only someone who satisfies the lock can take it.",
-    "p2": "The “balance” your wallet shows you is really just <b>the total value of all the boxes your keys can open</b>. The wallet adds them up for your convenience."
+    "p2": "The “balance” your wallet shows you is really just <b>the total value of all the boxes your keys can open</b>. The wallet adds them up for your convenience.",
+    "figAlt": "Four glass boxes holding 7, 5, 3 and 2 ERG, each with a padlock. The 7, 5 and 2 ERG boxes have locks that open with Alice's orange key and are linked to Alice's wallet, which shows a balance of 14 ERG. The 3 ERG box has a gray lock belonging to someone else.",
+    "figCaption": "Alice's balance is not stored anywhere: her wallet adds up the boxes her key can open (7 + 5 + 2 = 14 ERG). The 3 ERG box belongs to someone else."
   },
   "spend": {
     "title": "Spending = breaking old boxes, sealing new ones",

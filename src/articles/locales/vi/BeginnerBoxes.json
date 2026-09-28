@@ -1,11 +1,6 @@
 {
   "diagram": {
-    "spent": "Bị tiêu (phá huỷ)",
-    "created": "Được tạo mới",
-    "aliceKey": "khoá của An",
-    "bobKey": "khoá của Bình",
-    "change": "khoá của An (tiền thừa)",
-    "fee": "phí thợ đào",
+    "alt": "Hai hộp kính 7 ERG và 5 ERG của Alice đã mở và trống được tiêu bởi một giao dịch, tạo ra ba hộp mới có khoá: 10 ERG cho Bob, 1.999 ERG tiền thừa cho Alice và 0.001 ERG phí thợ đào. 7 + 5 = 10 + 1.999 + 0.001.",
     "caption": "An gửi 10 ERG cho Bình: 7 + 5 = 10 + 1.999 + 0.001"
   },
   "realTx": {
@@ -26,7 +21,9 @@
     "inside": "Bên trong có một lượng <b>ERG</b> (và có thể có cả <tokens>token</tokens> khác).",
     "lock": "Bên ngoài có một chiếc <b>ổ khoá</b>. Ổ khoá này là một đoạn luật (script) nói rằng ai được mở hộp.",
     "visible": "Ai cũng nhìn thấy trong hộp có gì, nhưng chỉ ai thoả mãn ổ khoá mới lấy được.",
-    "p2": "“Số dư” mà ví hiển thị cho bạn thực ra chỉ là <b>tổng giá trị của tất cả những box mà khoá của bạn mở được</b>. Ví tự cộng lại cho bạn tiện theo dõi."
+    "p2": "“Số dư” mà ví hiển thị cho bạn thực ra chỉ là <b>tổng giá trị của tất cả những box mà khoá của bạn mở được</b>. Ví tự cộng lại cho bạn tiện theo dõi.",
+    "figAlt": "Bốn hộp kính chứa 7, 5, 3 và 2 ERG, mỗi hộp có một ổ khoá. Các hộp 7, 5 và 2 ERG có ổ khoá mở bằng chìa màu cam của Alice và được nối tới ví của Alice, ví hiển thị số dư 14 ERG. Hộp 3 ERG có ổ khoá màu xám của người khác.",
+    "figCaption": "Số dư của Alice không được lưu ở đâu cả: ví của cô ấy cộng các box mà chìa khoá của cô mở được (7 + 5 + 2 = 14 ERG). Box 3 ERG là của người khác."
   },
   "spend": {
     "title": "Tiêu tiền = phá hộp cũ, đóng hộp mới",

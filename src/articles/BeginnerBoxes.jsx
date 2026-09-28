@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { Trans } from 'react-i18next'
-import { ArrowRight, Flame, Lock, Sparkles } from 'lucide-react'
 import { api } from '../lib/api'
 import { useApi } from '../lib/useApi'
 import { articleNs } from '../lib/i18n'
@@ -17,52 +16,6 @@ const TAGS = { b: <strong />, em: <em />, code: <code /> }
 const EUTXO_ARTICLE = 'https://dav009.medium.com/learning-ergo-101-blockchain-paradigm-eutxo-c90b0274cf5e'
 
 /** A single illustrated box. */
-function Box({ amount, owner, tone = 'stone', faded = false }) {
-  const tones = {
-    stone: 'border-stone-300 bg-surface dark:border-stone-600 dark:bg-stone-900',
-    ergo: 'border-ergo-300 bg-ergo-50 dark:border-ergo-800 dark:bg-ergo-950/40',
-    amber: 'border-amber-300 bg-amber-50 dark:border-amber-800 dark:bg-amber-950/30',
-  }
-  return (
-    <div className={`relative w-32 rounded-xl border-2 p-3 text-center ${tones[tone]} ${faded ? 'opacity-50 line-through' : ''}`}>
-      <Lock className="absolute -top-3 left-1/2 size-6 -translate-x-1/2 rounded-full bg-surface p-1 text-stone-600 ring-1 ring-stone-200 dark:bg-stone-800 dark:text-stone-300 dark:ring-stone-700" />
-      <div className="mt-1 text-lg font-bold text-stone-900 dark:text-white">{amount}</div>
-      <div className="text-xs text-stone-500">{owner}</div>
-    </div>
-  )
-}
-
-function SpendDiagram() {
-  const { t } = useT()
-  return (
-    <div className="not-prose my-8 rounded-2xl border border-stone-200 bg-stone-50 p-5 dark:border-stone-800 dark:bg-stone-900/50">
-      <div className="flex flex-wrap items-center justify-center gap-6">
-        <div className="text-center">
-          <div className="mb-4 flex items-center justify-center gap-1 text-xs font-semibold tracking-wide text-stone-500 uppercase">
-            <Flame className="size-3.5" /> {t('diagram.spent')}
-          </div>
-          <div className="flex gap-3">
-            <Box amount="7 ERG" owner={t('diagram.aliceKey')} />
-            <Box amount="5 ERG" owner={t('diagram.aliceKey')} />
-          </div>
-        </div>
-        <ArrowRight className="size-8 text-ergo-500" />
-        <div className="text-center">
-          <div className="mb-4 flex items-center justify-center gap-1 text-xs font-semibold tracking-wide text-stone-500 uppercase">
-            <Sparkles className="size-3.5" /> {t('diagram.created')}
-          </div>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Box amount="10 ERG" owner={t('diagram.bobKey')} tone="ergo" />
-            <Box amount="1.999 ERG" owner={t('diagram.change')} />
-            <Box amount="0.001 ERG" owner={t('diagram.fee')} tone="amber" />
-          </div>
-        </div>
-      </div>
-      <p className="mt-5 text-center text-sm text-stone-500">{t('diagram.caption')}</p>
-    </div>
-  )
-}
-
 /** Pick a small, readable recent transaction to show as a real example. */
 function RealTx() {
   const { t } = useT()
@@ -115,6 +68,17 @@ export default function BeginnerBoxes() {
         <li>{t('what.visible')}</li>
       </ul>
       <p>{T('what.p2')}</p>
+      <figure className="not-prose my-6">
+        <img
+          src="/img/boxes.webp"
+          alt={t('what.figAlt')}
+          width={1360}
+          height={580}
+          loading="lazy"
+          className="w-full rounded-xl border border-stone-200 dark:border-stone-800"
+        />
+        <figcaption className="mt-2 text-center text-sm text-stone-500">{t('what.figCaption')}</figcaption>
+      </figure>
 
       <h2 id="tieu-tien">{t('spend.title')}</h2>
       <p>{T('spend.p1')}</p>
@@ -123,7 +87,17 @@ export default function BeginnerBoxes() {
         <li>{T('spend.outputs')}</li>
       </ol>
       <p>{T('spend.p2')}</p>
-      <SpendDiagram />
+      <figure className="not-prose my-8">
+        <img
+          src="/img/spend.webp"
+          alt={t('diagram.alt')}
+          width={1360}
+          height={590}
+          loading="lazy"
+          className="w-full rounded-xl border border-stone-200 dark:border-stone-800"
+        />
+        <figcaption className="mt-2 text-center text-sm text-stone-500">{t('diagram.caption')}</figcaption>
+      </figure>
       <p>{t('spend.p3')}</p>
 
       <h2 id="vi-du-that">{t('real.title')}</h2>
