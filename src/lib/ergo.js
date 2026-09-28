@@ -99,6 +99,7 @@ export function p2pkAddress(pubKeyHex, network = 0x00) {
 
 // ---------- Emission schedule (EmissionRules + EIP-27) ----------
 export const BLOCK_TIME_SEC = 120
+export const GENESIS_TIME = 1561978977137 // timestamp of block 1 (1 July 2019)
 export const FIXED_RATE_PERIOD = 525_600 // ~2 years at 2 min/block
 export const FIXED_RATE = 75 // ERG per block
 export const EPOCH_LENGTH = 64_800 // ~3 months

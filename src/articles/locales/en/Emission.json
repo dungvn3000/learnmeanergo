@@ -5,7 +5,7 @@
     "treasury": "Treasury: {{v}} ERG",
     "lock": "EIP-27 lock: {{v}} ERG"
   },
-  "intro": "There was no ICO for ERG. Every ERG is created according to a fixed schedule, written into the protocol from day one: each new block “prints” a set amount of ERG, and that amount shrinks over time until it reaches zero. In total there will only ever be <b>{{max}} ERG</b>.",
+  "intro": "There was no ICO for ERG. Every ERG enters circulation according to a fixed schedule, written into the protocol from day one: each new block releases a set amount of ERG, and that amount shrinks over time until it reaches zero. In total there will only ever be <b>{{max}} ERG</b>.",
   "pctOfMax": "{{pct}}% of max supply",
   "stats": {
     "issued": "Issued",
@@ -27,7 +27,9 @@
   },
   "treasury": {
     "title": "The treasury share",
-    "p1": "In the early years, a small part of every block went to a treasury to fund development: {{t1}} ERG/block for the first {{period}} blocks, then {{t2}} and {{t3}} ERG over the next two epochs. Miners received the rest ({{miner}} ERG/block). From block {{from}} onwards, the entire emission goes to miners."
+    "p1": "In the early years, part of each block's scheduled emission went to a treasury to fund development: {{t1}} ERG/block for the first {{period}} blocks, then {{t2}} and {{t3}} ERG over the next two epochs. Miners received the rest ({{miner}} ERG/block) from the emission box. The treasury's share never passed through the emission box: it was set aside at genesis in a separate <treasury>treasury box</treasury> holding <b>4,330,791.5 ERG</b>, roughly what these per-block amounts add up to, and a vesting contract released it gradually. From block {{from}} onwards, the entire emission goes to miners.",
+    "announcement": "The original announcement, <curve>Ergo's emission curve</curve> (May 2019), explains the split: the treasury gets <b>4.43%</b> of all emitted ERG to fund development, promotion and events, and to swap the pre-launch <efyt>EFYT</efyt> tokens for ERG. That swap ran 1:1 until 1 July 2021: the treasury paid out <b>1,782,615 ERG</b>, and 188,330 EFYT were never claimed. Before launch, EFYT had been airdropped to the community, used to pay developers (about 150,000 EFYT in 2018) and other costs, and 500,000 EFYT were sold to three private investors. Since any holder could swap, part of the treasury's ERG was in effect spent, and sold, before mainnet launched.",
+    "p2": "The treasury box's contract checks two things: the box can only be spent if at least the not-yet-due part of the schedule stays locked in it, and the spender must satisfy the condition stored in <code>R4</code>, which at launch was a <b>2-of-3 multisignature</b> of Ergo Foundation members. See the <faq>ErgoDocs FAQ</faq> for the genesis boxes, the <efTreasury>Ergo Foundation Treasury</efTreasury> page for how the funds were spent, and <code>foundationScript</code> in the <code_>sigmastate-interpreter</code_> source for the contract."
   },
   "eip27": {
     "title": "EIP-27: re-emission",
@@ -64,5 +66,15 @@
     "chartTitle": "Total ERG issued by height",
     "chartLabel": "Total ERG issued by height"
   },
-  "outro": "Want the numbers at a specific height? Use the <calc>emission calculator</calc>. The dates above are estimates assuming 2-minute blocks — real timing can drift by a few weeks."
+  "outro": "Want the numbers at a specific height? Use the <calc>emission calculator</calc>. The dates above are estimates based on the average block time since launch (a little over 2 minutes); real timing can drift by a few weeks.",
+  "refs": {
+    "title": "References",
+    "curve": "Ergo's emission curve (Ergo blog, May 2019): the original emission schedule and the 4.43% treasury share.",
+    "eip27": "EIP-27: Emission Retargeting Soft-Fork: the re-emission rules (up to 12 ERG locked per block, 3 ERG paid out per block after emission ends).",
+    "docsEmission": "ErgoDocs: Emission: the emission schedule, the genesis state and the proof of no premine.",
+    "docsFaq": "ErgoDocs FAQ: where the total supply of about 97.74 million ERG comes from, and the three genesis boxes.",
+    "docsTreasury": "ErgoDocs: Ergo Foundation Treasury: the initial allocation and how the funds were spent.",
+    "docsEfyt": "ErgoDocs: EFYT: the pre-launch token and its 1:1 swap for ERG.",
+    "foundationScript": "foundationScript in sigmastate-interpreter: the contract that locks the treasury box."
+  }
 }

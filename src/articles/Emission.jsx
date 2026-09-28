@@ -6,7 +6,7 @@ import { api } from '../lib/api'
 import { useApi } from '../lib/useApi'
 import { num } from '../lib/format'
 import {
-  BLOCK_TIME_SEC, EIP27_ACTIVATION, EPOCH_LENGTH, EPOCH_REDUCTION, FIXED_RATE, FIXED_RATE_PERIOD, MAX_SUPPLY, REEMISSION_PER_BLOCK, REEMISSION_START,
+  BLOCK_TIME_SEC, EIP27_ACTIVATION, EPOCH_LENGTH, EPOCH_REDUCTION, FIXED_RATE, FIXED_RATE_PERIOD, GENESIS_TIME, MAX_SUPPLY, REEMISSION_PER_BLOCK, REEMISSION_START,
   emissionAt, emittedUpTo, heightToDate, minerRewardAt, reemissionLockAt, treasuryAt,
 } from '../lib/ergo'
 import { articleNs, getLang } from '../lib/i18n'
@@ -21,6 +21,23 @@ const useT = articleNs('Emission', { en, vi })
 const TAGS = { b: <strong />, em: <em />, code: <code /> }
 
 const MAX_H = 2_200_000
+
+const FOUNDATION_SCRIPT_URL =
+  'https://github.com/ergoplatform/sigmastate-interpreter/blob/develop/interpreter/shared/src/main/scala/org/ergoplatform/ErgoTreePredef.scala'
+
+const REFS = [
+  ['curve', 'https://ergoplatform.org/en/blog/2019_05_20-curve/'],
+  ['eip27', 'https://github.com/ergoplatform/eips/blob/master/eip-0027.md'],
+  ['docsEmission', 'https://docs.ergoplatform.com/mining/emission/'],
+  ['docsFaq', 'https://docs.ergoplatform.com/faq/'],
+  ['docsTreasury', 'https://docs.ergoplatform.com/ef/ef-treasury/'],
+  ['docsEfyt', 'https://docs.ergoplatform.com/efyt/'],
+  ['foundationScript', FOUNDATION_SCRIPT_URL],
+]
+
+// Genesis treasury box of the Ergo Foundation (4,330,791.5 ERG, vesting contract).
+const TREASURY_ADDRESS =
+  '4L1ktFSzm3SH1UioDuUf5hyaraHird4D2dEACwQ1qHGjSKtA6KaNvSzRCZXZGf9jkfNAEC1SrYaZmCuvb2BKiXk5zW9xuvrXFT7FdNe2KqbymiZvo5UQLAm5jQY8ZBRhTZ4AFtZa1UF5nd4aofwPiL7YkJuyiL5hDHMZL1ZnyL746tHmRYMjAhCgE7d698dRhkdSeVy'
 
 // Total ERG that EIP-27 locks between activation and the end of emission.
 const TOTAL_REEMISSION = (() => {
@@ -49,7 +66,9 @@ export default function Emission() {
 
   // Estimated calendar date of a height: anchored to the live tip when we have it.
   const tipTime = net?.tipTimestamp
-  const dateOf = (h) => (height && tipTime ? new Date(tipTime + (h - height) * BLOCK_TIME_SEC * 1000) : heightToDate(h))
+  // Average block time since launch, so dates years away don't drift with short-term hashrate swings.
+  const blockMs = height > 1 && tipTime ? (tipTime - GENESIS_TIME) / (height - 1) : BLOCK_TIME_SEC * 1000
+  const dateOf = (h) => (height && tipTime ? new Date(tipTime + (h - height) * blockMs) : heightToDate(h))
   const fmtDate = (h) => {
     const d = dateOf(h)
     // VI keeps its compact MM/YYYY form; EN shows e.g. "Sep 2026".
@@ -115,13 +134,31 @@ export default function Emission() {
 
       <h2 id="quy-phat-trien">{t('treasury.title')}</h2>
       <p>
-        {t('treasury.p1', {
-          t1: treasuryAt(1),
-          period: num(FIXED_RATE_PERIOD),
-          t2: treasuryAt(FIXED_RATE_PERIOD),
-          t3: treasuryAt(FIXED_RATE_PERIOD + EPOCH_LENGTH),
-          miner: FIXED_RATE - treasuryAt(1),
-          from: num(FIXED_RATE_PERIOD + 2 * EPOCH_LENGTH),
+        {T(
+          'treasury.p1',
+          {
+            t1: treasuryAt(1),
+            period: num(FIXED_RATE_PERIOD),
+            t2: treasuryAt(FIXED_RATE_PERIOD),
+            t3: treasuryAt(FIXED_RATE_PERIOD + EPOCH_LENGTH),
+            miner: FIXED_RATE - treasuryAt(1),
+            from: num(FIXED_RATE_PERIOD + 2 * EPOCH_LENGTH),
+          },
+          { treasury: <Link to={`/address/${TREASURY_ADDRESS}`} /> },
+        )}
+      </p>
+
+      <p>
+        {T('treasury.announcement', undefined, {
+          curve: <a href="https://ergoplatform.org/en/blog/2019_05_20-curve/" target="_blank" rel="noreferrer" />,
+          efyt: <a href="https://docs.ergoplatform.com/efyt/" target="_blank" rel="noreferrer" />,
+        })}
+      </p>
+      <p>
+        {T('treasury.p2', undefined, {
+          faq: <a href="https://docs.ergoplatform.com/faq/" target="_blank" rel="noreferrer" />,
+          efTreasury: <a href="https://docs.ergoplatform.com/ef/ef-treasury/" target="_blank" rel="noreferrer" />,
+          code_: <a href={FOUNDATION_SCRIPT_URL} target="_blank" rel="noreferrer" />,
         })}
       </p>
 
@@ -203,6 +240,17 @@ export default function Emission() {
         />
       </Card>
       <p>{T('outro', undefined, { calc: <Link to="/tools/emission-calculator" /> })}</p>
+
+      <h2 id="tham-khao">{t('refs.title')}</h2>
+      <ul>
+        {REFS.map(([key, href]) => (
+          <li key={key}>
+            <a href={href} target="_blank" rel="noreferrer">
+              {t(`refs.${key}`)}
+            </a>
+          </li>
+        ))}
+      </ul>
     </>
   )
 }

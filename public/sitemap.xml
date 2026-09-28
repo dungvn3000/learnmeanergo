@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://learnmeanergo.com/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/?lang=en" />
@@ -11,7 +11,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/beginners</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/beginners?lang=en" />
@@ -20,7 +20,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/technical</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/technical?lang=en" />
@@ -29,7 +29,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/tools</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/tools?lang=en" />
@@ -38,7 +38,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/explorer</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/explorer?lang=en" />
@@ -47,7 +47,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/privacy</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/privacy?lang=en" />
@@ -56,7 +56,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/about</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/about?lang=en" />
@@ -65,7 +65,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/learn/what-is-ergo</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/what-is-ergo?lang=en" />
@@ -74,7 +74,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/learn/manifesto</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/manifesto?lang=en" />
@@ -83,7 +83,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/learn/how-it-works</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/how-it-works?lang=en" />
@@ -92,7 +92,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/learn/boxes</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/boxes?lang=en" />
@@ -101,7 +101,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/learn/erg</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/erg?lang=en" />
@@ -110,7 +110,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/learn/wallets</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/wallets?lang=en" />
@@ -119,7 +119,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/learn/mining-basics</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/mining-basics?lang=en" />
@@ -128,7 +128,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/learn/whitepaper</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/whitepaper?lang=en" />
@@ -137,7 +137,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/learn/block</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/block?lang=en" />
@@ -146,7 +146,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/learn/transaction</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/transaction?lang=en" />
@@ -155,7 +155,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/learn/box</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/box?lang=en" />
@@ -164,7 +164,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/learn/tokens</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/tokens?lang=en" />
@@ -173,7 +173,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/learn/ergotree</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/ergotree?lang=en" />
@@ -182,7 +182,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/learn/sigma</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/sigma?lang=en" />
@@ -191,7 +191,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/learn/address</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/address?lang=en" />
@@ -200,7 +200,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/learn/oracle</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/oracle?lang=en" />
@@ -209,7 +209,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/learn/autolykos</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/autolykos?lang=en" />
@@ -218,7 +218,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/learn/difficulty</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/difficulty?lang=en" />
@@ -227,7 +227,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/learn/nipopow</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/nipopow?lang=en" />
@@ -236,7 +236,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/learn/emission</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/emission?lang=en" />
@@ -245,7 +245,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/learn/storage-rent</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/learn/storage-rent?lang=en" />
@@ -254,7 +254,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/tools/address-decoder</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/tools/address-decoder?lang=en" />
@@ -263,7 +263,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/tools/pubkey-to-address</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/tools/pubkey-to-address?lang=en" />
@@ -272,7 +272,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/tools/blake2b</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/tools/blake2b?lang=en" />
@@ -281,7 +281,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/tools/units</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/tools/units?lang=en" />
@@ -290,7 +290,7 @@
   </url>
   <url>
     <loc>https://learnmeanergo.com/tools/emission-calculator</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://learnmeanergo.com/tools/emission-calculator?lang=en" />

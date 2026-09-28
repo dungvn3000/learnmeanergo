@@ -5,7 +5,7 @@
     "treasury": "Quỹ phát triển: {{v}} ERG",
     "lock": "Khoá EIP-27: {{v}} ERG"
   },
-  "intro": "Không có ICO nào cho ERG. Mọi đồng ERG đều được tạo ra theo một lịch trình cố định, viết sẵn trong giao thức từ ngày đầu tiên: mỗi block mới “in” thêm một lượng ERG nhất định, và lượng đó giảm dần theo thời gian cho tới khi bằng 0. Tổng cộng sẽ chỉ có <b>{{max}} ERG</b>.",
+  "intro": "Không có ICO nào cho ERG. Mọi đồng ERG đều đi vào lưu thông theo một lịch trình cố định, viết sẵn trong giao thức từ ngày đầu tiên: mỗi block mới nhả ra một lượng ERG nhất định, và lượng đó giảm dần theo thời gian cho tới khi bằng 0. Tổng cộng sẽ chỉ có <b>{{max}} ERG</b>.",
   "pctOfMax": "{{pct}}% tổng cung",
   "stats": {
     "issued": "Đã phát hành",
@@ -27,7 +27,9 @@
   },
   "treasury": {
     "title": "Phần dành cho quỹ phát triển",
-    "p1": "Trong giai đoạn đầu, một phần nhỏ của mỗi block được chuyển vào quỹ (treasury) để tài trợ phát triển: {{t1}} ERG/block trong {{period}} block đầu, rồi {{t2}} và {{t3}} ERG trong hai epoch tiếp theo. Thợ đào nhận phần còn lại ({{miner}} ERG/block). Từ block {{from}}, toàn bộ lượng phát hành thuộc về thợ đào."
+    "p1": "Trong giai đoạn đầu, một phần lượng phát hành của mỗi block được dành cho quỹ (treasury) để tài trợ phát triển: {{t1}} ERG/block trong {{period}} block đầu, rồi {{t2}} và {{t3}} ERG trong hai epoch tiếp theo. Thợ đào nhận phần còn lại ({{miner}} ERG/block) từ emission box. Phần của quỹ không đi qua emission box: nó được để riêng ngay từ genesis trong một <treasury>treasury box</treasury> chứa <b>4,330,791.5 ERG</b>, xấp xỉ tổng các khoản mỗi block ở trên, và một hợp đồng vesting nhả số ERG này ra dần dần. Từ block {{from}}, toàn bộ lượng phát hành thuộc về thợ đào.",
+    "announcement": "Bài công bố gốc, <curve>Ergo's emission curve</curve> (tháng 5/2019), giải thích cách chia này: quỹ nhận <b>4.43%</b> tổng lượng ERG phát hành để tài trợ phát triển, quảng bá, sự kiện, và để đổi token <efyt>EFYT</efyt> (phát hành trước mainnet) sang ERG. Đợt hoán đổi đó theo tỉ lệ 1:1 và kéo dài đến 1/7/2021: quỹ đã trả ra <b>1,782,615 ERG</b>, còn 188,330 EFYT không ai đổi. Trước khi ra mắt, EFYT đã được airdrop cho cộng đồng, dùng để trả công lập trình viên (khoảng 150,000 EFYT năm 2018) và các chi phí khác, và 500,000 EFYT được bán cho ba nhà đầu tư tư nhân. Vì ai giữ EFYT cũng đổi được, một phần ERG của quỹ thực chất đã được chi tiêu, và bán, trước khi mainnet ra mắt.",
+    "p2": "Hợp đồng của treasury box kiểm tra hai điều: box chỉ được tiêu nếu phần chưa đến hạn theo lịch vẫn được giữ lại trong box, và người tiêu phải thoả điều kiện lưu ở <code>R4</code>, lúc ra mắt là một <b>multisig 2-trên-3</b> của các thành viên Ergo Foundation. Xem <faq>FAQ của ErgoDocs</faq> về các box genesis, trang <efTreasury>Ergo Foundation Treasury</efTreasury> về cách quỹ đã được chi tiêu, và <code>foundationScript</code> trong mã nguồn <code_>sigmastate-interpreter</code_> để đọc hợp đồng."
   },
   "eip27": {
     "title": "EIP-27: tái phát hành",
@@ -64,5 +66,15 @@
     "chartTitle": "Tổng ERG đã phát hành theo độ cao",
     "chartLabel": "Tổng ERG đã phát hành theo độ cao"
   },
-  "outro": "Muốn biết con số ở một độ cao cụ thể? Dùng <calc>máy tính phát hành</calc>. Các ngày tháng ở trên là ước tính với block 2 phút — thời gian thật có thể lệch vài tuần."
+  "outro": "Muốn biết con số ở một độ cao cụ thể? Dùng <calc>máy tính phát hành</calc>. Các ngày tháng ở trên là ước tính dựa trên thời gian block trung bình kể từ khi ra mắt (hơn 2 phút một chút); thời gian thật có thể lệch vài tuần.",
+  "refs": {
+    "title": "Tài liệu tham khảo",
+    "curve": "Ergo's emission curve (blog Ergo, tháng 5/2019): lịch phát hành gốc và phần 4.43% cho quỹ.",
+    "eip27": "EIP-27: Emission Retargeting Soft-Fork: luật tái phát hành (khoá tối đa 12 ERG mỗi block, trả 3 ERG mỗi block sau khi hết phát hành).",
+    "docsEmission": "ErgoDocs: Emission: lịch phát hành, trạng thái genesis và proof-of-no-premine.",
+    "docsFaq": "FAQ của ErgoDocs: tổng cung khoảng 97.74 triệu ERG đến từ đâu, và ba box genesis.",
+    "docsTreasury": "ErgoDocs: Ergo Foundation Treasury: phần phân bổ ban đầu và cách quỹ đã được chi tiêu.",
+    "docsEfyt": "ErgoDocs: EFYT: token phát hành trước mainnet và đợt đổi 1:1 sang ERG.",
+    "foundationScript": "foundationScript trong sigmastate-interpreter: hợp đồng khoá treasury box."
+  }
 }

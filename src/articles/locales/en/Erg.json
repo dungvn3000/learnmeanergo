@@ -17,16 +17,16 @@
   },
   "origin": {
     "title": "Where does ERG come from?",
-    "p1": "Every newly mined block creates some new ERG. This is the <b>only</b> way ERG comes into existence — no ICO, no pre-mine. All future ERG is already sitting in a special box called the <em>emission box</em>, locked by a contract that only allows exactly the scheduled amount to be withdrawn at each block.",
+    "p1": "Every newly mined block brings some new ERG into circulation. This is the <b>only</b> way ERG enters circulation — no ICO, no pre-mine. All the ERG that miners will ever receive is already sitting in a special box called the <emission>emission box</emission>, locked by a contract that only allows exactly the scheduled amount to be withdrawn at each block.",
     "p2": "The emission schedule has two phases:",
-    "phase1": "<b>The first 2 years</b> (525,600 blocks): each block creates <b>75 ERG</b>, of which 7.5 ERG goes to the development fund (treasury).",
+    "phase1": "<b>The first 2 years</b> (525,600 blocks): each block releases <b>75 ERG</b>: 67.5 ERG from the emission box to the miner, and 7.5 ERG for the development fund. That share didn't come from the emission box: from day one it sat in its own <treasury>treasury box</treasury>, which started with 4,330,791.5 ERG and a vesting contract that only let the funds out gradually. Part of that fund paid for <efyt>EFYT</efyt>, a token handed out before launch (airdrops, developer pay, and 500,000 sold to three private investors in 2017) that any holder could swap 1:1 for ERG.",
     "phase2": "<b>After that</b>: every 64,800 blocks (~3 months), the amount per block drops by <b>3 ERG</b>, until it reaches zero.",
     "now": "Right now (block {{height}}) the emission box releases <b>{{emission}} ERG</b> per block. At block <b>{{next}}</b> (around {{nextDate}}) this drops to {{nextEmission}} ERG. Emission from the emission box ends at block <b>{{end}}</b>, estimated around <b>{{date}}</b>. After that, miners keep receiving 3 ERG per block from the re-emission contract (see below).",
     "nowEnded": "Emission from the emission box ended at block <b>{{end}}</b>. Miners now receive <b>3 ERG per block</b> from the re-emission contract (see below)."
   },
   "reemission": {
     "title": "Re-emission (EIP-27)",
-    "p1": "As the reward shrinks towards zero, what will pay miners? In 2022 the community adopted a rule change called <b>EIP-27</b> (an “Ergo Improvement Proposal” — the way changes to Ergo's rules are proposed and agreed on). Starting at block 777,217, part of each block's reward (up to 12 ERG) is <b>locked</b> away in a “savings” contract — the re-emission contract — instead of being paid to the miner straight away.",
+    "p1": "As the reward shrinks towards zero, what will pay miners? In 2022 the community adopted a rule change called <b>EIP-27</b> (an “Ergo Improvement Proposal” — the way changes to Ergo's rules are proposed and agreed on). Starting at block 777,217, part of each block's reward (up to 12 ERG) is <b>locked</b> away in a “savings” contract — the <reemission>re-emission contract</reemission> — instead of being paid to the miner straight away.",
     "p2": "Once the emission box runs dry, this contract keeps releasing <b>3 ERG per block</b> to miners, extending the period in which they get paid by many years. The total supply doesn't change — the ERG is just “saved up” for the future.",
     "now": "At the current block, of the {{emission}} ERG created, the miner receives <b>{{reward}} ERG</b> immediately; the rest is locked for the re-emission period.",
     "nowEnded": "The emission box is now empty, so the whole <b>3 ERG</b> block reward is paid from the re-emission contract."
@@ -50,13 +50,13 @@
       "note": "Since 2022 (EIP-27), part of each reward is saved for later."
     },
     "r3": {
-      "period": "mid 2027 – ~2044",
+      "period": "mid 2027 – ~2045",
       "perBlock": "0 (the emission box is empty)",
       "miner": "3 ERG",
       "note": "Miners are paid from the ERG saved by EIP-27."
     },
     "r4": {
-      "period": "After ~2044",
+      "period": "After ~2045",
       "perBlock": "0",
       "miner": "Fees only",
       "note": "Miners earn transaction fees and <rent>storage rent</rent>."
