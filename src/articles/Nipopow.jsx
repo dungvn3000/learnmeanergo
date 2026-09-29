@@ -4,7 +4,7 @@ import { Layers, Link2, Scale, Zap } from 'lucide-react'
 import { useApi } from '../lib/useApi'
 import { bytes, num } from '../lib/format'
 import { articleNs } from '../lib/i18n'
-import { Async, Callout, Card, Stat } from '../components/ui'
+import { Async, Callout, Card, Figure, Stat } from '../components/ui'
 import en from './locales/en/Nipopow.json'
 import vi from './locales/vi/Nipopow.json'
 
@@ -110,6 +110,7 @@ export default function Nipopow() {
         <li>{T('superblock.levelMu')}</li>
       </ul>
       <p>{T('superblock.p2')}</p>
+      <Figure src="/img/nipopow.webp" alt={t('superblock.figAlt')} width={1360} height={459} caption={t('superblock.figCaption')} />
 
       <h2 id="interlink">{t('interlink.title')}</h2>
       <p>{T('interlink.p1')}</p>

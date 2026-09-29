@@ -16,7 +16,9 @@
     "level0": "Level 0: every block.",
     "level1": "Level 1: about half of all blocks.",
     "levelMu": "Level μ: about 1/2<sup>μ</sup> of all blocks — the highest level in a chain of n blocks is roughly log<sub>2</sub>(n).",
-    "p2": "The key idea: a level-μ superblock “contains” an expected 2<sup>μ</sup> ordinary blocks' worth of work. So instead of presenting the whole chain, a prover can present just the <em>chain of superblocks</em> at a high level — far fewer blocks, representing an equivalent amount of proof-of-work. Nobody can fake superblocks: producing a level-20 block requires being a million times luckier than for an ordinary block."
+    "p2": "The key idea: a level-μ superblock “contains” an expected 2<sup>μ</sup> ordinary blocks' worth of work. So instead of presenting the whole chain, a prover can present just the <em>chain of superblocks</em> at a high level — far fewer blocks, representing an equivalent amount of proof-of-work. Nobody can fake superblocks: producing a level-20 block requires being a million times luckier than for an ordinary block.",
+    "figAlt": "A chain of 24 blocks drawn as a skip list. Every block is level 0; every 2nd block also reaches level 1, every 4th level 2 and every 8th level 3. Orange interlink arrows jump back from block 24 to 16 to 8 along level 3, and blocks 21 to 24 are marked as the last k blocks. An arrow points to a NiPoPoW proof of just four headers, next to a much taller stack labelled full chain.",
+    "figCaption": "Superblocks form a ladder: the higher the level, the rarer the block. A proof climbs the high levels through the interlinks (only the top level's are drawn), steps down to lower levels near the tip and adds the last k blocks in full — so a few hundred headers can stand in for almost two million. (Idealised: real superblocks land at random, not at exact multiples.)"
   },
   "interlink": {
     "title": "Interlinks: back-pointers to every level",
