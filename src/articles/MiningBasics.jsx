@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Trans } from 'react-i18next'
-import { Clock, Cpu, Gauge, Pickaxe } from 'lucide-react'
+import { Clock, Cpu, ExternalLink, Gauge, Pickaxe } from 'lucide-react'
 import { api } from '../lib/api'
 import { useApi } from '../lib/useApi'
 import { compact, num } from '../lib/format'
@@ -68,6 +68,36 @@ function PoolShare({ pools }) {
   )
 }
 
+const POOLS = [
+  { key: '2miners', name: '2Miners', url: 'https://erg.2miners.com' },
+  { key: 'herominers', name: 'HeroMiners', url: 'https://ergo.herominers.com' },
+  { key: 'sigmanauts', name: 'Sigmanauts Mining Pool', url: 'https://sigmanauts.com/mining/' },
+  { key: 'lithos', name: 'Lithos', url: 'https://lithos.work' },
+]
+const MINERS = [{ key: 'soat', name: 'soat-miner', url: 'https://github.com/blindrun/soat-miner' }]
+
+function Picks({ title, items }) {
+  const { t } = useT()
+  return (
+    <div className="not-prose my-6">
+      <div className="mb-2 text-sm font-semibold text-stone-900 dark:text-white">{title}</div>
+      <div className="grid gap-3">
+        {items.map((it) => (
+          <Card key={it.key} className="p-4">
+            <a href={it.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 font-semibold text-stone-900 hover:text-ergo-600 dark:text-white">
+              {it.name}
+              <ExternalLink className="size-3.5 text-stone-400" />
+            </a>
+            <div className="mt-1 text-sm text-stone-500">
+              <Trans t={t} i18nKey={`start.items.${it.key}`} components={{ ...TAGS, rent: <Link to="/learn/storage-rent" className="text-ergo-600 hover:underline dark:text-ergo-400" /> }} />
+            </div>
+          </Card>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function MiningBasics() {
   const { t } = useT()
   const T = (k, extra, values) => <Trans t={t} i18nKey={k} values={values} components={{ ...TAGS, ...extra }} />
@@ -127,6 +157,12 @@ export default function MiningBasics() {
       <p>{T('pool.p1')}</p>
       {d?.poolShare24h?.length > 0 && <PoolShare pools={d.poolShare24h} />}
       <p>{t('pool.p2')}</p>
+
+      <h2 id="bat-dau">{t('start.title')}</h2>
+      <p>{T('start.p1')}</p>
+      <Picks title={t('start.poolsTitle')} items={POOLS} />
+      <Picks title={t('start.minerTitle')} items={MINERS} />
+      <Callout type="warn">{t('start.note')}</Callout>
 
       <h2 id="tiep-theo">{t('next.title')}</h2>
       <p>

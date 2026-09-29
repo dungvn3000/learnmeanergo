@@ -50,6 +50,20 @@
     "p1": "With thousands of miners, the chance of a small rig finding a block on its own is very low — you might wait months. So most miners join a <b>pool</b>: they combine their power and split the rewards according to their contribution. Smaller payouts, but far more regular.",
     "p2": "The spread across pools is worth watching: if one pool controlled more than half the hashrate, it could in theory disrupt the network. Miners can switch pools at any time — a way of “voting with their feet” that keeps the network decentralized."
   },
+  "start": {
+    "title": "Getting started: pools and a miner",
+    "p1": "To mine you need two things: a <b>pool</b> to join and <b>mining software</b> for your GPU. Here are three pools popular with Ergo miners, a new kind of decentralized pool, and an open-source miner.",
+    "poolsTitle": "Pools",
+    "minerTitle": "Mining software",
+    "items": {
+      "2miners": "One of the largest Ergo pools, with servers in Europe, the USA and Asia. Works with most popular miners, and can also pay you in Bitcoin instead of ERG.",
+      "herominers": "A long-running multi-coin pool with servers around the world. Offers PPS+ and PROPX payouts, a solo-mining option, and per-rig statistics.",
+      "sigmanauts": "A community pool run as a DAO by the Sigmanauts, Ergo's volunteer community group. Uses PPLNS payouts, pays weekly bonus tokens, and was the first pool to collect <rent>storage rent</rent> on boxes older than four years.",
+      "soat": "An open-source (MIT) GPU miner with <b>no dev fee</b>: NVIDIA via CUDA, AMD via Vulkan, on Linux and Windows. It comes with a simple app — pick a pool, paste your address, click Mine — plus a gaming mode that slows the cards down so you can play while you mine. Needs a GPU with at least 8 GB of memory, and that requirement slowly grows over time.",
+      "lithos": "Not a company-run pool but a <b>decentralized pool protocol</b>: smart contracts on Ergo check each miner's work and pay them directly, with no pool operator holding the rewards. You run your own Ergo node plus the Lithos client. It's still early — the testnet is live and mainnet is in pre-release — so it's aimed at more technical miners for now."
+    },
+    "note": "Fees and payout rules change over time, so check each pool's own site before you start. Only download miners from their official release page: antivirus programs often flag even genuine GPU miners, so a warning (or the lack of one) won't tell you whether a download is fake."
+  },
   "next": {
     "title": "What's next",
     "p1": "You've finished the beginner section! Ready to go deeper? Start with <block>Blocks & headers</block> in the <technical>Technical</technical> section, or watch freshly mined blocks in the <explorer>explorer</explorer>."

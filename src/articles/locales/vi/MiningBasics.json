@@ -50,6 +50,20 @@
     "p1": "Với hàng nghìn thợ đào, xác suất một dàn máy nhỏ tự tìm được block là rất thấp — có thể phải chờ hàng tháng. Vì vậy phần lớn thợ đào tham gia <b>pool</b>: góp sức với nhau và chia phần thưởng theo đóng góp. Thu nhập ít hơn mỗi lần nhưng đều đặn hơn.",
     "p2": "Sự phân bổ giữa các pool rất đáng theo dõi: nếu một pool chiếm quá nửa hashrate, về lý thuyết nó có thể gây rối mạng. Thợ đào có thể chuyển pool bất cứ lúc nào — một cách “bỏ phiếu bằng chân” giữ cho mạng phi tập trung."
   },
+  "start": {
+    "title": "Bắt đầu: pool và phần mềm đào",
+    "p1": "Để đào bạn cần hai thứ: một <b>pool</b> để tham gia và <b>phần mềm đào</b> cho GPU. Dưới đây là ba pool được thợ đào Ergo dùng nhiều, một kiểu pool phi tập trung mới, và một phần mềm đào mã nguồn mở.",
+    "poolsTitle": "Pool",
+    "minerTitle": "Phần mềm đào",
+    "items": {
+      "2miners": "Một trong những pool Ergo lớn nhất, có server ở châu Âu, Mỹ và châu Á. Chạy được với hầu hết phần mềm đào phổ biến, và có thể trả thưởng bằng Bitcoin thay vì ERG.",
+      "herominers": "Pool đa coin hoạt động lâu năm, có server khắp thế giới. Hỗ trợ trả thưởng PPS+ và PROPX, có chế độ đào solo và thống kê riêng cho từng dàn máy.",
+      "sigmanauts": "Pool cộng đồng do Sigmanauts — nhóm tình nguyện của cộng đồng Ergo — vận hành theo mô hình DAO. Trả thưởng kiểu PPLNS, thưởng thêm token hằng tuần, và là pool đầu tiên thu <rent>storage rent</rent> trên các box đã quá bốn năm.",
+      "soat": "Phần mềm đào GPU mã nguồn mở (MIT), <b>không thu phí dev</b>: NVIDIA qua CUDA, AMD qua Vulkan, chạy trên Linux và Windows. Có ứng dụng giao diện đơn giản — chọn pool, dán địa chỉ ví, bấm Mine — cùng chế độ gaming giảm tốc card để vừa chơi game vừa đào. Cần GPU có tối thiểu 8 GB bộ nhớ, và yêu cầu này tăng dần theo thời gian.",
+      "lithos": "Không phải pool do một công ty vận hành mà là một <b>giao thức pool phi tập trung</b>: smart contract trên Ergo kiểm tra phần việc đào của từng thợ đào và trả thưởng trực tiếp, không có nhà vận hành nào giữ tiền thưởng. Bạn tự chạy một node Ergo cùng Lithos client. Dự án còn ở giai đoạn đầu — testnet đang chạy, mainnet ở bản pre-release — nên hiện phù hợp hơn với thợ đào rành kỹ thuật."
+    },
+    "note": "Phí và cách trả thưởng có thể thay đổi, nên hãy xem trang chính thức của từng pool trước khi bắt đầu. Chỉ tải phần mềm đào từ trang phát hành chính thức: phần mềm diệt virus thường cảnh báo cả những phần mềm đào GPU thật, nên có cảnh báo hay không cũng không cho biết file bạn tải có phải hàng giả hay không."
+  },
   "next": {
     "title": "Tiếp theo",
     "p1": "Bạn đã hoàn thành phần cho người mới! Sẵn sàng đi sâu hơn? Bắt đầu với <block>Block & header</block> trong phần <technical>Kỹ thuật</technical>, hoặc xem các block vừa được đào trong <explorer>explorer</explorer>."
