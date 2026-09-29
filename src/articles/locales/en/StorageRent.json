@@ -23,7 +23,9 @@
     "li1": "If the box's value is <b>greater</b> than the fee: the miner takes exactly the fee, and must recreate an identical box (same script, tokens and registers) holding the value minus the fee, with a new creation height. The 4-year clock starts again.",
     "li2": "If the box's value is <b>less</b> than the fee: the miner takes <b>everything</b> in it — the ERG and any tokens or NFTs — and the box disappears from the UTXO set.",
     "p2": "The fee is based on the box's size:",
-    "code": "fee = boxSizeInBytes × storageFeeFactor\nstorageFeeFactor = {{factor}} nanoERG / byte  (= {{factorErg}} ERG / byte, default value)"
+    "code": "fee = boxSizeInBytes × storageFeeFactor\nstorageFeeFactor = {{factor}} nanoERG / byte  (= {{factorErg}} ERG / byte, default value)",
+    "figAlt": "A box is created and left untouched for 1,051,200 blocks, about 4 years. A green arrow loops back to the start: spending the box or sending it to yourself restarts the clock. After the period a miner may charge rent, where fee = box size × storageFeeFactor. If the value is greater than the fee, the miner takes the fee and must recreate the same box with the value minus the fee and a new creation height. If the value is less than the fee, the miner takes the whole box, its ERG and any tokens or NFTs included, and the box disappears.",
+    "figCaption": "The storage rent rule at a glance. The green loop is the owner's move, not the miner's: spend the box, or send it to yourself, before the 4 years are up and the clock starts over."
   },
   "warn": {
     "title": "Tokens and NFTs are not exempt",

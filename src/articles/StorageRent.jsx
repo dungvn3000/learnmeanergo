@@ -6,7 +6,7 @@ import { useApi } from '../lib/useApi'
 import { BLOCK_TIME_SEC, MIN_VALUE_PER_BYTE, STORAGE_FEE_FACTOR, STORAGE_PERIOD } from '../lib/ergo'
 import { erg, num } from '../lib/format'
 import { articleNs } from '../lib/i18n'
-import { Callout, Card, Field } from '../components/ui'
+import { Callout, Card, Field, Figure } from '../components/ui'
 import en from './locales/en/StorageRent.json'
 import vi from './locales/vi/StorageRent.json'
 
@@ -111,6 +111,7 @@ export default function StorageRent() {
         <li>{T('rule.li1')}</li>
         <li>{T('rule.li2')}</li>
       </ul>
+      <Figure src="/img/storage-rent.webp" alt={t('rule.figAlt')} width={1360} height={463} caption={t('rule.figCaption')} />
       <Callout type="warn" title={t('warn.title')}>
         {t('warn.text')}
       </Callout>
