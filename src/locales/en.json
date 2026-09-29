@@ -425,13 +425,15 @@
     "whatIsABox": "What is a box?"
   },
   "ui": {
+    "close": "Close",
     "copy": "Copy",
     "couldNotLoadDataFromExplorer": "Could not load data from explorer.erg.vn.",
     "loadingDataFromTheBlockchain": "Loading data from the blockchain…",
     "next": "Next",
     "notFound": "Not found.",
     "page": "Page",
-    "prev": "Prev"
+    "prev": "Prev",
+    "zoomIn": "Zoom in"
   },
   "units": {
     "commonlyUsedMinimumBoxValue": "Commonly used minimum box value",

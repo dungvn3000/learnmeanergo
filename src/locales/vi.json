@@ -425,13 +425,15 @@
     "whatIsABox": "Box là gì?"
   },
   "ui": {
+    "close": "Đóng",
     "copy": "Sao chép",
     "couldNotLoadDataFromExplorer": "Không tải được dữ liệu từ explorer.erg.vn.",
     "loadingDataFromTheBlockchain": "Đang tải dữ liệu từ blockchain…",
     "next": "Sau",
     "notFound": "Không tìm thấy.",
     "page": "Trang",
-    "prev": "Trước"
+    "prev": "Trước",
+    "zoomIn": "Phóng to"
   },
   "units": {
     "commonlyUsedMinimumBoxValue": "Giá trị box nhỏ nhất thường dùng",

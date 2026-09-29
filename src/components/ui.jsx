@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { AlertTriangle, Check, Copy, Info, Lightbulb, Loader2, TriangleAlert } from 'lucide-react'
+import { AlertTriangle, Check, Copy, Info, Lightbulb, Loader2, Maximize2, TriangleAlert, X } from 'lucide-react'
 import { erg, short, tokenAmount, hueOf } from '../lib/format'
 import { useTranslation } from 'react-i18next'
 
@@ -89,17 +89,53 @@ export function TokenChip({ asset, signed = false }) {
 
 /** Illustration with a caption. `width`/`height` are the image's pixel size, to reserve space before it loads. */
 export function Figure({ src, alt, width, height, caption }) {
+  const { t } = useTranslation()
+  const dialog = useRef(null)
+  const open = () => dialog.current?.showModal()
+  const close = () => dialog.current?.close()
   return (
     <figure className="not-prose my-6">
-      <img
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-        loading="lazy"
-        className="w-full rounded-xl border border-stone-200 dark:border-stone-800"
-      />
+      <div className="group relative">
+        <button type="button" onClick={open} className="block w-full cursor-zoom-in" aria-label={t('ui.zoomIn')}>
+          <img
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            loading="lazy"
+            className="w-full rounded-xl border border-stone-200 dark:border-stone-800"
+          />
+        </button>
+        <button
+          type="button"
+          onClick={open}
+          title={t('ui.zoomIn')}
+          aria-label={t('ui.zoomIn')}
+          className="absolute top-2 right-2 rounded-lg border border-stone-200 bg-white/90 p-1.5 text-stone-600 shadow-sm transition hover:text-ergo-600 dark:border-stone-700 dark:bg-stone-900/90 dark:text-stone-300"
+        >
+          <Maximize2 className="size-4" />
+        </button>
+      </div>
       {caption && <figcaption className="mt-2 text-center text-sm text-stone-500">{caption}</figcaption>}
+      {/* Native modal: Esc closes it, focus stays inside, and the page behind is inert. */}
+      <dialog
+        ref={dialog}
+        onClick={(e) => e.target === e.currentTarget && close()}
+        className="m-0 h-full max-h-none w-full max-w-none bg-transparent p-0 backdrop:bg-black/85"
+      >
+        <div onClick={(e) => e.target === e.currentTarget && close()} className="flex min-h-full items-center justify-center overflow-auto p-4 sm:p-8">
+          <img src={src} alt={alt} width={width} height={height} className="h-auto max-w-none rounded-xl bg-white" />
+        </div>
+        <button
+          type="button"
+          onClick={close}
+          title={t('ui.close')}
+          aria-label={t('ui.close')}
+          className="fixed top-3 right-3 rounded-full bg-white/90 p-2 text-stone-700 shadow hover:bg-white"
+        >
+          <X className="size-5" />
+        </button>
+      </dialog>
     </figure>
   )
 }
