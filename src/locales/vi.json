@@ -216,7 +216,7 @@
     "theAmountOfNewErgCreated": "Lượng ERG mới được tạo ra bởi hợp đồng phát hành ở block này.",
     "theRewardDropsBy3Erg": "Mỗi 64,800 block (~3 tháng) phần thưởng giảm 3 ERG.",
     "theShareForTheDevelopmentTreasury": "Phần dành cho quỹ phát triển trong khoảng 2.5 năm đầu (7.5 ERG/block, sau đó 4.5 và 1.5 ERG).",
-    "thisBlockHasAlreadyBeenMined": "Block này đã được đào. Đang tải ngày thật của nó; trước đó đây chỉ là ước tính.",
+    "thisBlockHasAlreadyBeenMined": "Block này đã được đào, nhưng chưa lấy được ngày thật của nó nên đây chỉ là ước tính.",
     "totalEmissionBlock": "Tổng phát hành / block",
     "totalEmitted": "Tổng đã phát hành",
     "transactionFees": "phí giao dịch",

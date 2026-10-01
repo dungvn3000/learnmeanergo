@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Radio } from 'lucide-react'
 import { api } from '../lib/api'
@@ -69,7 +69,13 @@ export default function EmissionCalculator() {
 
   const past = tip && height <= tip.height
   // A mined block has a real timestamp; only future heights need extrapolating.
-  const mined = useApi(() => (past ? api.block(height) : Promise.resolve(null)), [past ? height : 0])
+  // Wait until the slider or input settles before fetching the block.
+  const [settled, setSettled] = useState(height)
+  useEffect(() => {
+    const id = setTimeout(() => setSettled(height), 400)
+    return () => clearTimeout(id)
+  }, [height])
+  const mined = useApi(() => (past && settled === height ? api.block(height) : Promise.resolve(null)), [past ? settled : 0])
   const realTime = past && mined.data?.height === height ? mined.data.timestamp : null
   const date = realTime
     ? new Date(realTime)
@@ -154,7 +160,7 @@ export default function EmissionCalculator() {
         <Field name={realTime ? t('emissionCalculator.date') : t('emissionCalculator.dateEstimated')} value={fmtDate(date)}>
           {realTime
             ? t('emissionCalculator.minedOnThisDate')
-            : past
+            : past && mined.error
             ? t('emissionCalculator.thisBlockHasAlreadyBeenMined')
             : t('emissionCalculator.extrapolatedFromTheLatestBlockAt')}
         </Field>

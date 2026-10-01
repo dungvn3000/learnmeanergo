@@ -216,7 +216,7 @@
     "theAmountOfNewErgCreated": "The amount of new ERG created by the emission contract at this block.",
     "theRewardDropsBy3Erg": "The reward drops by 3 ERG every 64,800 blocks (~3 months).",
     "theShareForTheDevelopmentTreasury": "The share for the development treasury during roughly the first 2.5 years (7.5 ERG/block, then 4.5 and 1.5 ERG).",
-    "thisBlockHasAlreadyBeenMined": "This block has already been mined. Loading its real date; until then this is an estimate.",
+    "thisBlockHasAlreadyBeenMined": "This block has already been mined, but its real date couldn't be loaded, so this is an estimate.",
     "totalEmissionBlock": "Total emission / block",
     "totalEmitted": "Total emitted",
     "transactionFees": "transaction fees",

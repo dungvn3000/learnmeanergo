@@ -54,7 +54,7 @@
       "headers": {
         "label": "Headers to download",
         "btc": "All of them — roughly 950 thousand headers × 80 bytes ≈ 75 MB (2026), growing linearly forever",
-        "ergo": "A few hundred at most — the proof at the top of this page has ~30 KB of headers (well under 200 KB with the interlinks and their Merkle proofs), growing with the log of the chain length"
+        "ergo": "A few hundred at most — the proof at the top of this page has ~30 KB of headers (about 170 KB with the interlinks and their Merkle proofs), growing with the log of the chain length"
       },
       "inclusion": {
         "label": "Proving a transaction is in the chain",

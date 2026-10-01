@@ -40,7 +40,7 @@
   },
   "nine": {
     "title": "Why do Ergo addresses start with a 9?",
-    "p1": "A regular wallet address on Ergo mainnet looks like this: <code>9fQYeMEX…KSACVmgx</code>. Regular wallet addresses always start with the digit <b>9</b>; contract addresses can start with other characters.",
+    "p1": "A regular wallet address on Ergo mainnet looks like this: <code>9fQYeMEX…KSACVmgx</code>. It always starts with the digit <b>9</b>; contract addresses can start with other characters.",
     "p2": "Here's why. An address is really a short list of bytes turned into letters and digits (an encoding called Base58). The very first byte is a label (the <em>prefix</em>) that says which <em>network</em> the address is for (mainnet or testnet) and what <em>type of address</em> it is. The most common type — a normal wallet, called <b>P2PK</b> (Pay-to-Public-Key) — on mainnet has the prefix <code>0x01</code>. When that byte, followed by the public key, is written out in Base58, the first character always comes out as “9”.",
     "p3": "At the end of the address there are 4 more bytes: a <b>checksum</b>. If you mistype a single character, the checksum won't match and your wallet will refuse to send — protecting you from typos."
   },

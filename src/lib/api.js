@@ -44,7 +44,7 @@ const ROUTE_BY_TYPE = { block: '/block/', transaction: '/tx/', address: '/addres
 export async function resolveSearch(q) {
   q = String(q || '').trim()
   if (/^\d{1,3}([,._ ]\d{3})+$/.test(q)) q = q.replace(/[,._ ]/g, '') // 1,884,000 → 1884000
-  if (!q) return null
+  if (!q || /^0+$/.test(q)) return null // heights start at 1
   const hit = await api.search(q)
   return hit ? ROUTE_BY_TYPE[hit.type] + hit.id : null
 }

@@ -54,7 +54,7 @@
       "headers": {
         "label": "Header cần tải",
         "btc": "Tất cả — khoảng 950 nghìn header × 80 byte ≈ 75 MB (2026), tăng tuyến tính mãi mãi",
-        "ergo": "Nhiều nhất vài trăm header — bằng chứng ở đầu trang có ~30 KB header (chưa tới 200 KB khi tính cả interlink và Merkle proof của chúng), tăng theo log của chiều dài chuỗi"
+        "ergo": "Nhiều nhất vài trăm header — bằng chứng ở đầu trang có ~30 KB header (khoảng 170 KB khi tính cả interlink và Merkle proof của chúng), tăng theo log của chiều dài chuỗi"
       },
       "inclusion": {
         "label": "Chứng minh giao dịch nằm trong chuỗi",
