@@ -9,7 +9,7 @@ import { Learn, Section } from './common'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSeo } from '../../lib/seo'
 
-const regHelp = () => ({
+const regHelp = (t) => ({
   R4: t('boxPage.theFirstFreeRegisterForEip'),
   R5: t('boxPage.aFreeRegisterForEip4'),
   R6: t('boxPage.aFreeRegisterForEip42'),
@@ -112,7 +112,7 @@ function Box({ b }) {
               >
                 <span className="font-mono break-all">raw: {r.raw}</span>
                 <br />
-                {regHelp()[r.key]}
+                {regHelp(t)[r.key]}
               </Field>
             ))}
           </Card>
