@@ -62,7 +62,7 @@
     "nautilus": "<b>Nautilus</b> — a browser extension, used to connect to DeFi apps on Ergo.",
     "mobile": "<b>Ergo Mobile Wallet</b> — an open-source mobile wallet for Android and iOS.",
     "satergo": "<b>Satergo</b> — a desktop wallet that can run alongside a full node.",
-    "p1": "Whichever wallet you use, the principle is the same: you hold the seed phrase, you hold the money. Always download wallets from their official sources — the full list is at <list>ergoplatform.org/get-erg</list>."
+    "p1": "Whichever wallet you use, the principle is the same: you hold the seed phrase, you hold the money. Always download wallets from their official sources — the full list is at <list>docs.ergoplatform.com/wallets-overview</list>."
   },
   "next": {
     "title": "What's next",

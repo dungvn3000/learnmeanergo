@@ -62,7 +62,7 @@
     "nautilus": "<b>Nautilus</b> — tiện ích trình duyệt, dùng để kết nối với các ứng dụng DeFi trên Ergo.",
     "mobile": "<b>Ergo Mobile Wallet</b> — ví di động mã nguồn mở cho Android và iOS.",
     "satergo": "<b>Satergo</b> — ví desktop, có thể chạy kèm một node đầy đủ.",
-    "p1": "Dù dùng ví nào, nguyên tắc vẫn vậy: bạn giữ seed phrase, bạn giữ tiền. Hãy luôn tải ví từ nguồn chính thức — danh sách đầy đủ có tại <list>ergoplatform.org/get-erg</list>."
+    "p1": "Dù dùng ví nào, nguyên tắc vẫn vậy: bạn giữ seed phrase, bạn giữ tiền. Hãy luôn tải ví từ nguồn chính thức — danh sách đầy đủ có tại <list>docs.ergoplatform.com/wallets-overview</list>."
   },
   "next": {
     "title": "Tiếp theo",

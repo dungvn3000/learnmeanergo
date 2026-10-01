@@ -124,7 +124,7 @@ export default function Wallets() {
         <li>{T('choose.mobile')}</li>
         <li>{T('choose.satergo')}</li>
       </ul>
-      <p>{T('choose.p1', { list: <a href="https://ergoplatform.org/en/get-erg/#Wallets" target="_blank" rel="noreferrer" /> })}</p>
+      <p>{T('choose.p1', { list: <a href="https://docs.ergoplatform.com/wallets-overview/" target="_blank" rel="noreferrer" /> })}</p>
 
       <h2 id="tiep-theo">{t('next.title')}</h2>
       <p>{T('next.p1', { mining: <Link to="/learn/mining-basics" /> })}</p>
