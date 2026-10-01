@@ -11,7 +11,7 @@
     },
     "w": {
       "isG": "This is exactly the secp256k1 generator point G — ",
-      "text": "a fixed value in Autolykos v2, kept only so the header format stays the same."
+      "text": "a fixed value in Autolykos v2. It is not stored in the header at all: the node fills it in so the API keeps the same shape as for v1 blocks."
     },
     "n": "8 bytes the miner keeps changing until it finds a small enough hash. This is the only part that is actually “mined”.",
     "d": "Always 0 in v2 (in v1, d was part of the solution).",
@@ -42,8 +42,8 @@
   },
   "versions": {
     "title": "Autolykos v1 and v2",
-    "p1": "The first version (v1, used since mainnet launched in 2019) was designed to be <b>non-outsourceable</b>: a solution was tied to the miner's secret key, to make pool mining risky — if a pool handed out work, a miner could simply keep the reward. In practice this didn't stop pools (they used smart contracts to split rewards); it only made everything more complicated.",
-    "p2": "The hard fork at block <b>{{height}}</b> (February 2021) introduced <b>Autolykos v2</b>: it dropped non-outsourceability so that mining pools work normally, and introduced the growing-N mechanism described above. The header format still keeps the four fields <code>pk, w, n, d</code>, but:",
+    "p1": "The first version (v1, used since mainnet launched in 2019) was designed to be <b>non-outsourceable</b>: a solution was tied to the miner's secret key, to make pool mining risky — if a pool handed out work, a miner could simply keep the reward. In practice it didn't stop pools either: the Ergo researchers themselves showed that pools could get around it with collateralized smart contracts. It only made everything more complicated.",
+    "p2": "The hard fork at block <b>{{height}}</b> (February 2021) introduced <b>Autolykos v2</b>: it dropped non-outsourceability so that mining pools work normally, and introduced the growing-N mechanism described above. The API still shows the four solution fields <code>pk, w, n, d</code> as in v1, but a v2 header only stores <code>pk</code> and <code>n</code>:",
     "pk": "<code>pk</code> is still the public key of the miner (or pool) — whoever receives the reward.",
     "w": "<code>w</code> is always the secp256k1 generator point <em>G</em> (<code>0279be667e…</code>) — a placeholder constant.",
     "d": "<code>d</code> is always 0.",

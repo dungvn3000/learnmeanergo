@@ -41,7 +41,7 @@
     "p1": "Difficulty có thể là một số rất lớn, nhưng header chỉ dành 4 byte cho nó. Ergo dùng lại định dạng “compact” của Bitcoin: byte đầu là <b>số mũ</b> (số byte của con số), 3 byte sau là <b>phần định trị</b> (3 byte có nghĩa đầu tiên). Giải nén:",
     "p2": "Hãy giải nén nBits của block mới nhất và so với difficulty mà explorer báo:",
     "estimateTitle": "Chỉ là ước lượng",
-    "estimateText": "Không ai đếm được hashrate thật. Explorer suy ngược nó từ độ khó và thời gian giữa các block, nên con số dao động theo vận may của thợ đào trong ngắn hạn."
+    "estimateText": "Không ai đếm được hashrate thật. Explorer chỉ suy ra nó từ độ khó (độ khó ÷ 120 giây), nên con số chỉ đổi khi độ khó được điều chỉnh và luôn trễ hơn thay đổi thật của hashrate."
   },
   "adjust": {
     "title": "Điều chỉnh độ khó",

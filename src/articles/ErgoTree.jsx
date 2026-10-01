@@ -229,7 +229,7 @@ export default function ErgoTree() {
       </div>
 
       <h2 id="guard-kinds">{t('kinds.title')}</h2>
-      <p>{T('kinds.p1', { ergotree: <Link to="/learn/ergotree" /> })}</p>
+      <p>{T('kinds.p1', { ergotree: <a href="#ergotree-layout" /> })}</p>
       <h3>{t('kinds.pk.title')}</h3>
       <pre>
         <code>{t('kinds.pk.code')}</code>

@@ -67,7 +67,7 @@
     },
     "tokens": {
       "name": "Số loại token",
-      "text": "Mỗi box mang tối đa 255 token id khác nhau (số lượng mỗi token thì tới 2<sup>63</sup> − 1)."
+      "text": "Mỗi box mang tối đa 255 token id khác nhau (số lượng mỗi token thì tới 2<sup>63</sup> − 1). Trên thực tế, giới hạn kích thước box 4 KB chỉ cho khoảng 120."
     },
     "registers": {
       "text": "R0–R3 luôn có. R4–R9 tuỳ chọn nhưng phải dùng <em>liền nhau</em>: muốn có R5 thì phải có R4, không được bỏ trống ở giữa."

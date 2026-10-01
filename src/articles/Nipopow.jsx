@@ -36,7 +36,7 @@ async function fetchProof() {
         headers,
         tip: headers.at(-1).height,
         prefixHeights: p.prefix.map((x) => x.header.height),
-        levels: p.suffixHead.interlinks.length,
+        levels: p.suffixHead.interlinks.length - 1, // the first entry is the genesis id
         approxBytes: headers.reduce((s, h) => s + (h.size || 0), 0),
       }
     } catch (e) {

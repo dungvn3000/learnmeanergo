@@ -19,13 +19,13 @@
     "title": "Key features",
     "pow": { "title": "Proof-of-Work", "text": "Secured by computing power like Bitcoin, not by how many coins you hold." },
     "box": { "title": "The box model (eUTXO)", "text": "Money lives in programmable, locked “boxes” instead of in accounts." },
-    "fair": { "title": "Fair from the start", "text": "No ICO, no pre-mine. Every ERG was created through mining." },
+    "fair": { "title": "Fair from the start", "text": "No ICO, no pre-mine. ERG is released only block by block, as blocks are mined." },
     "fast": { "title": "A block every ~2 minutes", "text": "5× faster than Bitcoin, while still safe for a decentralized network." }
   },
   "history": {
     "title": "A little history",
     "p1": "Ergo's main network (mainnet) launched on <b>1 July 2019</b>. It was built by a team of cryptography and blockchain researchers, including Alexander Chepurnoy and Dmitry Meshkov.",
-    "p2": "Ergo launched without an ICO or any pre-sale of coins to investors. From the very first block, ERG could only be created one way: a miner finds a new block and collects the reward. During the first two years a small share of each reward (7.5 ERG per block) went to a development fund (the treasury), then tapered off and ended after about 2.5 years — and that was written into the network's rules from day one, where anyone could check it."
+    "p2": "Ergo launched without an ICO or any pre-sale of coins to investors. From the very first block, ERG could only be released one way: block by block, as miners find new blocks and collect the reward. During the first two years, alongside each block reward, 7.5 ERG per block was released to a development fund (the treasury), then tapered off and ended after about 2.5 years — and that was written into the network's rules from day one, where anyone could check it."
   },
   "name": {
     "title": "Where does the name “Ergo” come from?",

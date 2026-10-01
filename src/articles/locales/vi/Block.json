@@ -3,7 +3,7 @@
     "notMined": "chưa được đào"
   },
   "sections": {
-    "header": "~250 byte. Chứa hash của 3 phần còn lại + lời giải PoW.",
+    "header": "~220 byte. Chứa hash của 3 phần còn lại + lời giải PoW.",
     "txs": "Danh sách giao dịch. Gốc Merkle nằm trong transactionsRoot.",
     "adProofs": "Bằng chứng thay đổi UTXO set, cho node nhẹ. Hash nằm trong adProofsRoot.",
     "extension": "Cặp key–value: tham số mạng, interlinks (NiPoPoW). Gốc Merkle trong extensionHash."
@@ -55,7 +55,7 @@
   },
   "blockId": {
     "title": "Block id được tính thế nào?",
-    "p1": "Tất cả các trường trên được tuần tự hoá thành bytes theo một thứ tự cố định, rồi đưa qua hàm băm <b>Blake2b-256</b>. Kết quả 32 byte chính là block id. Bạn có thể thử hàm băm này tại <blake>công cụ Blake2b</blake>.",
+    "p1": "Các trường được lưu trong header được tuần tự hoá thành bytes theo một thứ tự cố định (không gồm độ khó, vốn được giải mã từ nBits, và không gồm chính id; từ v2 cũng không gồm <code>w</code> và <code>d</code>), rồi đưa qua hàm băm <b>Blake2b-256</b>. Kết quả 32 byte chính là block id. Bạn có thể thử hàm băm này tại <blake>công cụ Blake2b</blake>.",
     "p2": "Lưu ý: điều kiện Proof-of-Work <em>không</em> phải “block id nhỏ hơn target” như Bitcoin. Autolykos tính một hash riêng từ header (không gồm lời giải) và nonce, rồi so với target. Chi tiết ở bài <autolykos>Autolykos v2</autolykos>."
   },
   "reward": {
@@ -65,7 +65,7 @@
     "reemitted": "Bị khoá vào hợp đồng tái phát hành (EIP-27)",
     "reward": "Thợ đào nhận từ phát hành",
     "fees": "Cộng phí giao dịch",
-    "p2": "Toàn bộ lịch trình được giải thích trong <emission>Lịch phát hành & EIP-27</emission>; bạn có thể xem giao dịch coinbase và các giao dịch khác của block bằng cách mở trang <explorer>explorer</explorer>."
+    "p2": "Toàn bộ lịch trình được giải thích trong <emission>Lịch phát hành & EIP-27</emission>; bạn có thể xem giao dịch thưởng và các giao dịch khác của block bằng cách mở trang <explorer>explorer</explorer>."
   },
   "confirm": {
     "title": "Xác nhận (confirmations)",

@@ -2,7 +2,7 @@
   "intro": "<b>ERG</b> is Ergo's native currency. You use it to pay other people and to pay transaction fees, and miners receive it as their reward for securing the network.",
   "supply": {
     "title": "A capped supply",
-    "p1": "At most <b>97,739,925 ERG</b> will ever be created — not a single coin more. That number isn't anyone's promise; it's written into the rules that every node enforces. If a block tries to create more ERG than the schedule allows, every node simply throws it away.",
+    "p1": "At most <b>97,739,924 ERG</b> will ever be created — not a single coin more. That number isn't anyone's promise; it's written into the rules that every node enforces. If a block tries to create more ERG than the schedule allows, every node simply throws it away.",
     "issued": "{{pct}} of the total supply has been issued",
     "asOf": "as of block {{height}}",
     "circulating": "In circulation",

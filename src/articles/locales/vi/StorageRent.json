@@ -20,11 +20,11 @@
   "rule": {
     "title": "Quy tắc",
     "p1": "Nếu một box nằm yên — không bị tiêu, không được “làm mới” — trong <b>{{period}} block</b> (≈ {{years}} năm), thợ đào được phép động vào nó dù không có khoá:",
-    "li1": "Nếu giá trị box <b>lớn hơn</b> phí: thợ đào lấy đúng phần phí, và phải tạo lại một box y hệt (cùng script, token, register) với giá trị đã trừ phí và độ cao tạo mới. Đồng hồ 4 năm bắt đầu lại.",
+    "li1": "Nếu giá trị box <b>lớn hơn</b> phí: thợ đào lấy tối đa bằng phần phí, và phải tạo lại một box y hệt (cùng script, token, register) với giá trị đã trừ phí và độ cao tạo mới. Đồng hồ 4 năm bắt đầu lại.",
     "li2": "Nếu giá trị box <b>nhỏ hơn</b> phí: thợ đào lấy <b>tất cả</b> — cả ERG lẫn mọi token hay NFT bên trong — và box biến mất khỏi UTXO set.",
     "p2": "Phí được tính theo kích thước box:",
     "code": "fee = boxSizeInBytes × storageFeeFactor\nstorageFeeFactor = {{factor}} nanoERG / byte  (= {{factorErg}} ERG / byte, giá trị mặc định)",
-    "figAlt": "Một box được tạo rồi để yên 1.051.200 block, khoảng 4 năm. Mũi tên xanh quay về điểm đầu: tiêu box hoặc tự gửi cho chính mình sẽ đặt lại đồng hồ. Hết thời hạn, thợ đào được thu phí lưu trữ, với fee = kích thước box × storageFeeFactor. Nếu giá trị lớn hơn phí, thợ đào lấy phần phí và phải tạo lại đúng box đó với giá trị trừ đi phí và chiều cao tạo mới. Nếu giá trị nhỏ hơn phí, thợ đào lấy cả box, gồm toàn bộ ERG cùng mọi token hay NFT bên trong, và box biến mất.",
+    "figAlt": "Một box được tạo rồi để yên 1,051,200 block, khoảng 4 năm. Mũi tên xanh quay về điểm đầu: tiêu box hoặc tự gửi cho chính mình sẽ đặt lại đồng hồ. Hết thời hạn, thợ đào được thu phí lưu trữ, với fee = kích thước box × storageFeeFactor. Nếu giá trị lớn hơn phí, thợ đào lấy phần phí và phải tạo lại đúng box đó với giá trị trừ đi phí và độ cao tạo mới. Nếu giá trị nhỏ hơn phí, thợ đào lấy cả box, gồm toàn bộ ERG cùng mọi token hay NFT bên trong, và box biến mất.",
     "figCaption": "Quy tắc storage rent trong một hình. Vòng xanh là việc của chủ box, không phải của thợ đào: tiêu box, hoặc tự gửi cho chính mình, trước khi đủ 4 năm là đồng hồ đếm lại từ đầu."
   },
   "warn": {

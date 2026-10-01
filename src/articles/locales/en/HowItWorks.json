@@ -43,7 +43,7 @@
   },
   "miners": {
     "title": "Miners and Proof-of-Work",
-    "p1": "Who gets to write the next block? The answer is a <b>Proof-of-Work</b> contest — a lottery you win by guessing fast. Miners keep changing one spare number inside their block (the <em>nonce</em>) and recomputing the block's fingerprint, billions of times, until the fingerprint comes out small enough to count as a win (below a limit called the <em>target</em>). The first miner to get there broadcasts the block and collects a reward in newly created ERG.",
+    "p1": "Who gets to write the next block? The answer is a <b>Proof-of-Work</b> contest — a lottery you win by guessing fast. Miners keep changing one spare number inside their block (the <em>nonce</em>) and recomputing a special hash of the block (the proof-of-work puzzle), billions of times, until that hash comes out small enough to count as a win (below a limit called the <em>target</em>). The first miner to get there broadcasts the block and collects a reward in newly created ERG.",
     "p2": "Finding a solution takes a lot of work, but checking one is extremely fast. That's why a laptop running a node can verify the effort of the entire mining network. See <mining>Mining Ergo</mining> for details."
   },
   "confirm": {

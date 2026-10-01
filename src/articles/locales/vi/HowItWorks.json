@@ -43,7 +43,7 @@
   },
   "miners": {
     "title": "Thợ đào và Proof-of-Work",
-    "p1": "Ai được quyền viết block tiếp theo? Câu trả lời là cuộc thi <b>Proof-of-Work</b> — một trò xổ số mà ai đoán nhanh hơn thì thắng. Thợ đào liên tục đổi một con số phụ trong block của mình (gọi là <em>nonce</em>) rồi tính lại dấu vân tay của block, hàng tỉ lần, cho đến khi dấu vân tay đủ nhỏ để được tính là thắng (nhỏ hơn một ngưỡng gọi là <em>target</em>). Thợ đào đầu tiên làm được sẽ phát block đi và nhận phần thưởng bằng ERG mới.",
+    "p1": "Ai được quyền viết block tiếp theo? Câu trả lời là cuộc thi <b>Proof-of-Work</b> — một trò xổ số mà ai đoán nhanh hơn thì thắng. Thợ đào liên tục đổi một con số phụ trong block của mình (gọi là <em>nonce</em>) rồi tính lại một mã băm đặc biệt của block (câu đố proof-of-work), hàng tỉ lần, cho đến khi mã băm đó đủ nhỏ để được tính là thắng (nhỏ hơn một ngưỡng gọi là <em>target</em>). Thợ đào đầu tiên làm được sẽ phát block đi và nhận phần thưởng bằng ERG mới.",
     "p2": "Việc tìm lời giải rất tốn công, nhưng kiểm tra lời giải thì cực nhanh. Đó là lý do một chiếc laptop chạy node có thể xác minh công sức của cả mạng lưới đào. Chi tiết xem ở <mining>Đào Ergo</mining>."
   },
   "confirm": {
@@ -56,6 +56,6 @@
   },
   "next": {
     "title": "Tiếp theo",
-    "p1": "Bạn đã biết giao dịch đi đâu. Nhưng bên trong giao dịch có gì? Trên Ergo, câu trả lời là những chiếc hộp — <boxes>box</boxes>."
+    "p1": "Bạn đã biết giao dịch đi đâu. Nhưng bên trong giao dịch có gì? Trên Ergo, câu trả lời là những chiếc hộp — <boxes>Box: những chiếc hộp giữ tiền</boxes>."
   }
 }

@@ -9,7 +9,7 @@
     "levels": "Superblock levels",
     "caption": "Each orange tick is a header included in the proof. The early chain needs only a few scattered superblocks; towards the tip the sampling gets denser, and the last {{k}} blocks are included in full. Data from node <node>{{node}}</node>."
   },
-  "intro": "To check for yourself that a transaction is in the Ergo chain, the “proper” way is to download every block header — over 1.8 million of them, ~250 bytes each — and verify each one's proof-of-work. For a phone, or for a smart contract on <em>another</em> blockchain, that is far too much. <b>NiPoPoWs</b> (Non-Interactive Proofs of Proof-of-Work) shrink that header chain down to a few hundred headers while keeping equivalent confidence.",
+  "intro": "To check for yourself that a transaction is in the Ergo chain, the “proper” way is to download every block header — over 1.8 million of them, ~220 bytes each — and verify each one's proof-of-work. For a phone, or for a smart contract on <em>another</em> blockchain, that is far too much. <b>NiPoPoWs</b> (Non-Interactive Proofs of Proof-of-Work) shrink that header chain down to a few hundred headers while keeping equivalent confidence.",
   "superblock": {
     "title": "Superblocks: some blocks are “luckier” than others",
     "p1": "A miner has to find a PoW solution below the target <code>T</code> (see <difficulty>Difficulty & nBits</difficulty>). But solutions are often <em>much</em> smaller than required: on average one block in 2 has a solution below <code>T/2</code>, one in 4 is below <code>T/4</code>, and one in 2<sup>μ</sup> is below <code>T/2<sup>μ</sup></code>. Such a block is called a <b>level-μ superblock</b>.",
@@ -22,7 +22,7 @@
   },
   "interlink": {
     "title": "Interlinks: back-pointers to every level",
-    "p1": "A normal header has a single back-pointer: <code>parentId</code>. To jump from one superblock to the previous one <em>at the same level</em> without walking every block in between, each Ergo block also carries an <b>interlink</b> vector: entry μ is the id of the most recent level-μ superblock before it. The vector lives in the block's <em>extension</em> section (the header commits to it through <code>extensionHash</code>), together with a Merkle proof so anyone can verify it without the whole extension. Today the vector has about 21 entries — exactly the number of superblock levels a ~1.9-million-block chain can have.",
+    "p1": "A normal header has a single back-pointer: <code>parentId</code>. To jump from one superblock to the previous one <em>at the same level</em> without walking every block in between, each Ergo block also carries an <b>interlink</b> vector: after the genesis id in the first slot, there is one entry per level: the id of the most recent superblock of that level before it. The vector lives in the block's <em>extension</em> section (the header commits to it through <code>extensionHash</code>), together with a Merkle proof so anyone can verify it without the whole extension. Today the vector has about 21 entries: the genesis id plus about 20 levels, roughly log₂ of a ~1.9-million-block chain.",
     "noteTitle": "Why Ergo has had it since block 1",
     "note": "Bitcoin could add interlinks with a “velvet fork” (miners add extra data; old nodes ignore it), but hasn't. Ergo was designed by researchers closely connected to the NiPoPoW work, so interlinks have been in every block since genesis — no fork required."
   },
@@ -41,8 +41,8 @@
     "title": "Whom does the verifier trust?",
     "p1": "The verifier doesn't need to trust any node. It asks <b>several</b> nodes for proofs and keeps the best one. To compare two proofs:",
     "step1": "Find the last block both proofs have in common — everything before it is agreed on.",
-    "step2": "After that point, look at the highest superblock level where both proofs still have at least m blocks.",
-    "step3": "Count the blocks at that level on each side. A level-μ block stands for 2<sup>μ</sup> ordinary blocks of work, so the side with more of them represents more proof-of-work — and wins.",
+    "step2": "After that point, score each proof on its own: for every level μ where it still has at least m blocks, compute 2<sup>μ</sup> × (number of level-μ blocks). The proof's score is the best of these.",
+    "step3": "A level-μ block stands for 2<sup>μ</sup> ordinary blocks of work, so the higher score represents more proof-of-work — and wins. The two proofs may be scored at different levels.",
     "p2": "As long as <em>at least one</em> of the nodes asked is honest, the result is correct — the same “honest majority of hash power” assumption the blockchain itself rests on.",
     "warnTitle": "Not magic",
     "warn": "A NiPoPoW proves “this chain has the most proof-of-work”, not that every transaction is valid — that still takes a full node. An application that accepts a single proof (say, a contract on another chain) must set a minimum-work threshold and wait for enough confirmations."
@@ -54,7 +54,7 @@
       "headers": {
         "label": "Headers to download",
         "btc": "All of them — roughly 950 thousand headers × 80 bytes ≈ 75 MB (2026), growing linearly forever",
-        "ergo": "A few hundred — the proof at the top of this page is ~40 KB, growing with the log of the chain length"
+        "ergo": "A few hundred at most — the proof at the top of this page has ~30 KB of headers (well under 200 KB with the interlinks and their Merkle proofs), growing with the log of the chain length"
       },
       "inclusion": {
         "label": "Proving a transaction is in the chain",

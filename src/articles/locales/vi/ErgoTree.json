@@ -73,7 +73,7 @@
   },
   "loops": {
     "title": "Không có vòng lặp vô hạn",
-    "text": "ErgoScript không có vòng lặp tự do hay đệ quy. Chi phí thực thi của mỗi script được ước lượng và giới hạn, nên một hợp đồng không bao giờ có thể làm node “treo”. Muốn làm logic nhiều bước, bạn chuỗi nhiều giao dịch lại với nhau."
+    "text": "ErgoScript không có vòng lặp tự do hay đệ quy. Chi phí thực thi của mỗi script được đo và giới hạn, nên một hợp đồng không bao giờ có thể làm node “treo”. Muốn làm logic nhiều bước, bạn chuỗi nhiều giao dịch lại với nhau."
   },
   "guard": {
     "title": "Guard script: chương trình ErgoScript thật sự làm gì",

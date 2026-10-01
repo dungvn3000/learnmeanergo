@@ -31,7 +31,7 @@
       "note": "custom script — a real contract"
     },
     "title": "Common kinds of guard script",
-    "p1": "Written in ErgoScript, compiled to an <ergotree>ErgoTree</ergotree> and placed in R1:",
+    "p1": "Written in ErgoScript, compiled to an <ergotree>ErgoTree</ergotree> (byte layout below) and placed in R1:",
     "pk": {
       "title": "1. Public key — an ordinary wallet (P2PK)",
       "code": "sigmaProp(pk)   // pk is your public key",
@@ -73,7 +73,7 @@
   },
   "loops": {
     "title": "No infinite loops",
-    "text": "ErgoScript has no unbounded loops or recursion. The execution cost of every script is estimated and capped, so a contract can never make a node “hang”. For multi-step logic, you chain several transactions together."
+    "text": "ErgoScript has no unbounded loops or recursion. The execution cost of every script is metered and capped, so a contract can never make a node “hang”. For multi-step logic, you chain several transactions together."
   },
   "guard": {
     "title": "Guard scripts: what an ErgoScript contract actually does",

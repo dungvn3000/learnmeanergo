@@ -36,7 +36,7 @@
     "r5": "R5",
     "r5Text": "A block height the pool uses to schedule its rounds, i.e. when the current or upcoming round ends.",
     "tx": "Last updated by",
-    "txText": "Open this transaction to see the operators' datapoints as data inputs.",
+    "txText": "The ERG/USD pool still runs v1, so its pool box alternates between two transactions: a collection transaction, which has the operators' datapoints as data inputs, and a “start epoch” transaction a few blocks later, which has none. Depending on the moment, this link opens one or the other.",
     "height": "created at block {{height}}"
   },
   "sigusd": {
@@ -50,10 +50,10 @@
     "p2": "In the ERG/USD pool, <b>5 different public keys</b> (the <code>R4</code> of each datapoint) took part in the three rounds we checked, usually 4 or 5 per round.",
     "costTitle": "What it costs",
     "cost1": "In the ERG/USD pool, posting a datapoint costs a <b>0.0011 ERG</b> fee. The reward is <b>0.00025 ERG</b>, the minimum the pool contract requires.",
-    "cost2": "Whoever makes the collection transaction also pays about <b>0.0044 ERG</b> in fees and gets <b>0.0005 ERG</b> instead of 0.00025.",
-    "cost3": "With about 65 rounds a day, a regular operator is <b>down roughly 0.055 ERG a day</b> (around 20 ERG a year), before server costs. Running the ERG/USD oracle today is a service to the ecosystem, not a business.",
-    "cost4": "The rewards come out of the ERG held in the pool box (about 7.3 ERG, enough for roughly 3 months at this pace), so someone has to top it up from time to time. v2 pools pay rewards in tokens instead, but operators still pay transaction fees in ERG.",
-    "note": "These fees are set by the operators' software, not by the protocol, and are what we saw in a few recent transactions.",
+    "cost2": "Whoever makes the collection transaction also pays about <b>0.004–0.006 ERG</b> in fees and gets <b>0.0005 ERG</b> instead of 0.00025.",
+    "cost3": "With about 80 rounds a day, a regular operator is <b>down roughly 0.07 ERG a day</b> (around 25 ERG a year), before server costs. Running the ERG/USD oracle today is a service to the ecosystem, not a business.",
+    "cost4": "The rewards come out of the ERG held in the pool box (about 7 ERG, enough for roughly 2 months at this pace), so someone has to top it up from time to time. v2 pools pay rewards in tokens instead, but operators still pay transaction fees in ERG.",
+    "note": "These fees are set by the operators' software, not by the protocol, and are what we saw in a few transactions in October 2026.",
     "joinTitle": "Joining a pool",
     "join": "In a v2 pool, being an operator means holding one of the pool's <b>oracle tokens</b> (15 by default). Whoever bootstrapped the pool invites a new operator by sending them one oracle token and one reward token, and oracle tokens can later be passed on to someone else. A round only completes if enough operators post in time (at least 4 by default), so a pool needs operators who keep their nodes online.",
     "guide": "Want to run one? Start with the <bootstrap>ErgoDocs guide to bootstrapping a pool</bootstrap> and the <join>“Joining a running pool”</join> section of the oracle-core README. The community <easy>ergo-easy-oracle</easy> setup runs a mainnet node, oracle-core v2 and monitoring together with Docker, and <stats>Oracle Stats</stats> shows which operators in each v2 pool are currently posting."

@@ -67,7 +67,7 @@
     },
     "tokens": {
       "name": "Token types",
-      "text": "A box can carry at most 255 distinct token ids (each with an amount up to 2<sup>63</sup> − 1)."
+      "text": "A box can carry at most 255 distinct token ids (each with an amount up to 2<sup>63</sup> − 1). In practice the 4 KB box size limit caps it at around 120."
     },
     "registers": {
       "text": "R0–R3 are always present. R4–R9 are optional but must be used <em>consecutively</em>: to use R5 you must also set R4 — no gaps."

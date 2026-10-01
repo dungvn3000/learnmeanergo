@@ -9,7 +9,7 @@
     "levels": "Mức superblock",
     "caption": "Mỗi vạch cam là một header có mặt trong bằng chứng. Phần đầu chuỗi chỉ cần vài superblock rải rác; càng gần đỉnh, mẫu càng dày và {{k}} block cuối được lấy trọn. Dữ liệu từ node <node>{{node}}</node>."
   },
-  "intro": "Muốn tự kiểm tra rằng một giao dịch nằm trong chuỗi Ergo, cách “chuẩn” là tải toàn bộ block header — hơn 1.8 triệu cái, mỗi cái ~250 byte — rồi kiểm tra proof-of-work của từng cái. Với điện thoại, hay với một hợp đồng thông minh trên blockchain <em>khác</em>, thế là quá nhiều. <b>NiPoPoW</b> (Non-Interactive Proofs of Proof-of-Work) là cách rút chuỗi header ấy xuống còn vài trăm cái mà vẫn giữ được mức tin cậy tương đương.",
+  "intro": "Muốn tự kiểm tra rằng một giao dịch nằm trong chuỗi Ergo, cách “chuẩn” là tải toàn bộ block header — hơn 1.8 triệu cái, mỗi cái ~220 byte — rồi kiểm tra proof-of-work của từng cái. Với điện thoại, hay với một hợp đồng thông minh trên blockchain <em>khác</em>, thế là quá nhiều. <b>NiPoPoW</b> (Non-Interactive Proofs of Proof-of-Work) là cách rút chuỗi header ấy xuống còn vài trăm cái mà vẫn giữ được mức tin cậy tương đương.",
   "superblock": {
     "title": "Superblock: có block “may mắn” hơn block khác",
     "p1": "Thợ đào phải tìm một lời giải PoW nhỏ hơn mục tiêu <code>T</code> (xem <difficulty>Độ khó & nBits</difficulty>). Nhưng lời giải thường nhỏ hơn <em>nhiều</em> so với yêu cầu: trung bình cứ 2 block thì có 1 block có lời giải nhỏ hơn <code>T/2</code>, cứ 4 block thì có 1 block nhỏ hơn <code>T/4</code>, và cứ 2<sup>μ</sup> block có 1 block nhỏ hơn <code>T/2<sup>μ</sup></code>. Block như vậy gọi là <b>superblock mức μ</b>.",
@@ -22,7 +22,7 @@
   },
   "interlink": {
     "title": "Interlink: con trỏ ngược tới mọi mức",
-    "p1": "Header thường chỉ có một con trỏ ngược: <code>parentId</code>. Để đi từ superblock này tới superblock trước đó <em>cùng mức</em> mà không phải duyệt qua mọi block ở giữa, mỗi block Ergo còn mang thêm một vector <b>interlink</b>: phần tử thứ μ là id của superblock mức μ gần nhất trước nó. Vector này được ghi trong phần <em>extension</em> của block (header cam kết nó qua <code>extensionHash</code>), kèm một Merkle proof để ai cũng kiểm tra được mà không cần cả extension. Vector hiện có khoảng 21 phần tử — đúng bằng số mức superblock mà một chuỗi ~1.9 triệu block có thể có.",
+    "p1": "Header thường chỉ có một con trỏ ngược: <code>parentId</code>. Để đi từ superblock này tới superblock trước đó <em>cùng mức</em> mà không phải duyệt qua mọi block ở giữa, mỗi block Ergo còn mang thêm một vector <b>interlink</b>: sau id của genesis ở vị trí đầu tiên, mỗi mức có một phần tử: id của superblock gần nhất ở mức đó trước nó. Vector này được ghi trong phần <em>extension</em> của block (header cam kết nó qua <code>extensionHash</code>), kèm một Merkle proof để ai cũng kiểm tra được mà không cần cả extension. Vector hiện có khoảng 21 phần tử: id của genesis cộng khoảng 20 mức, xấp xỉ log₂ của một chuỗi ~1.9 triệu block.",
     "noteTitle": "Vì sao Ergo có sẵn từ block 1",
     "note": "Bitcoin có thể thêm interlink bằng “velvet fork” (thợ đào ghi thêm dữ liệu, node cũ bỏ qua), nhưng chưa làm. Ergo được thiết kế bởi các nhà nghiên cứu gắn bó mật thiết với công trình NiPoPoW, nên interlink có trong mọi block ngay từ genesis — không cần fork gì cả."
   },
@@ -41,8 +41,8 @@
     "title": "Người kiểm tra tin ai?",
     "p1": "Người kiểm tra không cần tin bất kỳ node nào. Họ xin bằng chứng từ <b>nhiều</b> node và giữ lại bằng chứng tốt nhất. Để so sánh hai bằng chứng:",
     "step1": "Tìm block chung cuối cùng của hai bằng chứng — mọi thứ trước đó đều đã thống nhất.",
-    "step2": "Từ điểm đó trở đi, xét mức superblock cao nhất mà cả hai bằng chứng vẫn còn ít nhất m block.",
-    "step3": "Đếm số block ở mức đó của mỗi bên. Một block mức μ đại diện cho 2<sup>μ</sup> block thường về lượng công việc, nên bên nào nhiều hơn tức là đại diện cho nhiều proof-of-work hơn — và thắng.",
+    "step2": "Từ điểm đó trở đi, chấm điểm từng bằng chứng một cách riêng rẽ: với mỗi mức μ mà nó còn ít nhất m block, tính 2<sup>μ</sup> × (số block mức μ). Điểm của bằng chứng là giá trị lớn nhất trong số đó.",
+    "step3": "Một block mức μ đại diện cho 2<sup>μ</sup> block thường về lượng công việc, nên điểm cao hơn tức là đại diện cho nhiều proof-of-work hơn — và thắng. Hai bằng chứng có thể được chấm ở hai mức khác nhau.",
     "p2": "Chỉ cần <em>ít nhất một</em> node trung thực trong số được hỏi, kết quả sẽ đúng — cùng giả định “đa số sức mạnh băm là trung thực” mà chính blockchain dựa vào.",
     "warnTitle": "Không phải phép màu",
     "warn": "NiPoPoW chứng minh “chuỗi này có nhiều proof-of-work nhất”, không chứng minh từng giao dịch hợp lệ — việc đó vẫn cần full node. Ứng dụng chỉ nhận đúng một bằng chứng (ví dụ hợp đồng trên chuỗi khác) phải đặt ngưỡng công việc tối thiểu và đợi đủ xác nhận."
@@ -54,7 +54,7 @@
       "headers": {
         "label": "Header cần tải",
         "btc": "Tất cả — khoảng 950 nghìn header × 80 byte ≈ 75 MB (2026), tăng tuyến tính mãi mãi",
-        "ergo": "Vài trăm header — bằng chứng ở đầu trang chỉ ~40 KB, tăng theo log của chiều dài chuỗi"
+        "ergo": "Nhiều nhất vài trăm header — bằng chứng ở đầu trang có ~30 KB header (chưa tới 200 KB khi tính cả interlink và Merkle proof của chúng), tăng theo log của chiều dài chuỗi"
       },
       "inclusion": {
         "label": "Chứng minh giao dịch nằm trong chuỗi",

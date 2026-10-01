@@ -41,7 +41,7 @@
     "p1": "Difficulty can be a very large number, but the header only reserves 4 bytes for it. Ergo reuses Bitcoin's “compact” format: the first byte is the <b>exponent</b> (the length of the number in bytes), and the next 3 bytes are the <b>mantissa</b> (its first 3 significant bytes). To decode:",
     "p2": "Let's decode the nBits of the latest block and compare it with the difficulty reported by the explorer:",
     "estimateTitle": "Only an estimate",
-    "estimateText": "Nobody can count the real hashrate. The explorer infers it from the difficulty and the time between blocks, so the figure fluctuates with miners' short-term luck."
+    "estimateText": "Nobody can count the real hashrate. The explorer derives it from the difficulty alone (difficulty ÷ 120 s), so it only moves when the difficulty retargets and lags behind real changes in hashrate."
   },
   "adjust": {
     "title": "Difficulty adjustment",

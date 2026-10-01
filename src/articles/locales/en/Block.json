@@ -3,7 +3,7 @@
     "notMined": "not mined yet"
   },
   "sections": {
-    "header": "~250 bytes. Holds the hashes of the other 3 sections + the PoW solution.",
+    "header": "~220 bytes. Holds the hashes of the other 3 sections + the PoW solution.",
     "txs": "The list of transactions. Their Merkle root goes in transactionsRoot.",
     "adProofs": "Proofs of the UTXO set changes, for light nodes. Their hash goes in adProofsRoot.",
     "extension": "Key–value pairs: network parameters, interlinks (NiPoPoW). Merkle root in extensionHash."
@@ -55,7 +55,7 @@
   },
   "blockId": {
     "title": "How is the block id calculated?",
-    "p1": "All the fields above are serialized into bytes in a fixed order, then run through the <b>Blake2b-256</b> hash function. The 32-byte result is the block id. You can try the hash function yourself with the <blake>Blake2b tool</blake>.",
+    "p1": "The header's stored fields are serialized into bytes in a fixed order (not the difficulty, which is decoded from nBits, nor the id itself; and since v2, not <code>w</code> or <code>d</code> either), then run through the <b>Blake2b-256</b> hash function. The 32-byte result is the block id. You can try the hash function yourself with the <blake>Blake2b tool</blake>.",
     "p2": "Note: the Proof-of-Work condition is <em>not</em> “block id below target” as in Bitcoin. Autolykos computes a separate hash from the header (without the solution) and the nonce, then compares that to the target. Details in <autolykos>Autolykos v2</autolykos>."
   },
   "reward": {

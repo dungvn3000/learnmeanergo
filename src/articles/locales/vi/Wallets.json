@@ -40,7 +40,7 @@
   },
   "nine": {
     "title": "Vì sao địa chỉ Ergo bắt đầu bằng số 9?",
-    "p1": "Địa chỉ ví thông thường trên Ergo mainnet trông như thế này: <code>9fQYeMEX…KSACVmgx</code>. Chúng gần như luôn bắt đầu bằng chữ số <b>9</b>.",
+    "p1": "Địa chỉ ví thông thường trên Ergo mainnet trông như thế này: <code>9fQYeMEX…KSACVmgx</code>. Địa chỉ ví thông thường luôn bắt đầu bằng chữ số <b>9</b>; địa chỉ hợp đồng có thể bắt đầu bằng ký tự khác.",
     "p2": "Lý do như sau. Địa chỉ thực chất là một dãy byte ngắn được viết ra thành chữ và số (cách viết này gọi là Base58). Byte đầu tiên là một nhãn (gọi là <em>prefix</em>) cho biết địa chỉ thuộc <em>mạng</em> nào (mainnet hay testnet) và là <em>loại địa chỉ</em> gì. Loại phổ biến nhất — ví thông thường, gọi là <b>P2PK</b> (Pay-to-Public-Key) — trên mainnet có prefix <code>0x01</code>. Khi byte đó cùng khoá công khai phía sau được viết ra theo Base58, ký tự đầu tiên luôn là “9”.",
     "p3": "Cuối địa chỉ còn có 4 byte <b>checksum</b>. Nếu bạn gõ sai một ký tự, checksum sẽ không khớp và ví sẽ từ chối gửi — bảo vệ bạn khỏi lỗi đánh máy."
   },

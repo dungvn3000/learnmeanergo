@@ -108,7 +108,9 @@ export const FOUNDERS_INITIAL = 7.5
 export const EIP27_ACTIVATION = 777_217
 export const REEMISSION_START = 2_080_800
 export const REEMISSION_PER_BLOCK = 3
-export const MAX_SUPPLY = 97_739_925 // ERG, all blocks summed
+// The genesis emission box (93,409,132.5) plus the treasury box (4,330,791.5). The per-block
+// schedule below sums to 1 ERG more, because the treasury box held 1 ERG less than its schedule.
+export const MAX_SUPPLY = 97_739_924 // ERG
 
 /** Total new ERG created at a height (miners + treasury). */
 export function emissionAt(h) {
@@ -154,7 +156,7 @@ export function emittedUpTo(h) {
     total += (to - from + 1) * rate
     from = to + 1
   }
-  return total
+  return Math.min(total, MAX_SUPPLY)
 }
 
 export const heightToDate = (h, ref = { height: 1, time: Date.UTC(2019, 6, 1) }) =>

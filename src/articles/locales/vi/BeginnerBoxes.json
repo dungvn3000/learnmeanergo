@@ -1,7 +1,7 @@
 {
   "diagram": {
     "alt": "Hai hộp kính 7 ERG và 5 ERG của Alice đã mở và trống được tiêu bởi một giao dịch, tạo ra ba hộp mới có khoá: 10 ERG cho Bob, 1.999 ERG tiền thừa cho Alice và 0.001 ERG phí thợ đào. 7 + 5 = 10 + 1.999 + 0.001.",
-    "caption": "An gửi 10 ERG cho Bình: 7 + 5 = 10 + 1.999 + 0.001"
+    "caption": "Alice gửi 10 ERG cho Bob: 7 + 5 = 10 + 1.999 + 0.001"
   },
   "realTx": {
     "summary": "Giao dịch <tx>{{id}}…</tx> ở block {{height}}: {{spent}}, {{created}}",

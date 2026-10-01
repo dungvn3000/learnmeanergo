@@ -19,13 +19,13 @@
     "title": "Những đặc điểm chính",
     "pow": { "title": "Proof-of-Work", "text": "Bảo mật bằng năng lượng tính toán như Bitcoin, không phải bằng số coin nắm giữ." },
     "box": { "title": "Mô hình box (eUTXO)", "text": "Tiền nằm trong các “hộp” có khoá lập trình được, thay vì trong tài khoản." },
-    "fair": { "title": "Công bằng từ đầu", "text": "Không ICO, không pre-mine. Mọi ERG đều được tạo ra qua việc đào." },
+    "fair": { "title": "Công bằng từ đầu", "text": "Không ICO, không pre-mine. ERG chỉ được phát ra theo từng block, khi block được đào." },
     "fast": { "title": "Block mỗi ~2 phút", "text": "Nhanh hơn Bitcoin 5 lần, vẫn đủ an toàn cho mạng phi tập trung." }
   },
   "history": {
     "title": "Một chút lịch sử",
     "p1": "Mạng chính (mainnet) của Ergo khởi chạy ngày <b>1 tháng 7 năm 2019</b>. Dự án được xây dựng bởi nhóm nhà nghiên cứu mật mã và blockchain, trong đó có Alexander Chepurnoy và Dmitry Meshkov.",
-    "p2": "Ergo ra đời không qua ICO hay bán trước coin cho nhà đầu tư. Ngay từ block đầu tiên, ERG chỉ được tạo ra theo một cách: thợ đào tìm ra block mới và nhận phần thưởng. Trong hai năm đầu có một phần nhỏ phần thưởng (7.5 ERG mỗi block) được chuyển vào quỹ phát triển (treasury), rồi giảm dần và chấm dứt sau khoảng 2.5 năm — và điều này được ghi sẵn trong luật của mạng từ ngày đầu, ai cũng kiểm tra được."
+    "p2": "Ergo ra đời không qua ICO hay bán trước coin cho nhà đầu tư. Ngay từ block đầu tiên, ERG chỉ được phát ra theo một cách: từng block một, khi thợ đào tìm ra block mới và nhận phần thưởng. Trong hai năm đầu, bên cạnh phần thưởng của mỗi block, có thêm 7.5 ERG mỗi block được phát cho quỹ phát triển (treasury), rồi giảm dần và chấm dứt sau khoảng 2.5 năm — và điều này được ghi sẵn trong luật của mạng từ ngày đầu, ai cũng kiểm tra được."
   },
   "name": {
     "title": "Cái tên “Ergo” từ đâu ra?",

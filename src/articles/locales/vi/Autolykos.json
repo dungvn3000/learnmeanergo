@@ -11,7 +11,7 @@
     },
     "w": {
       "isG": "Chính là điểm sinh G của secp256k1 — ",
-      "text": "một giá trị cố định trong Autolykos v2, giữ lại chỉ để định dạng header không đổi."
+      "text": "một giá trị cố định trong Autolykos v2. Nó hoàn toàn không được lưu trong header: node tự điền vào để API giữ nguyên dạng như với block v1."
     },
     "n": "8 byte mà thợ đào thay đổi liên tục cho tới khi tìm được giá trị băm đủ nhỏ. Đây là phần duy nhất thật sự “được đào”.",
     "d": "Luôn bằng 0 trong v2 (ở v1, d là một phần của lời giải).",
@@ -42,8 +42,8 @@
   },
   "versions": {
     "title": "Autolykos v1 và v2",
-    "p1": "Phiên bản đầu tiên (v1, từ khi mainnet ra mắt năm 2019) được thiết kế <b>non-outsourceable</b>: lời giải được ràng buộc với khoá bí mật của thợ đào, nhằm khiến việc tham gia pool trở nên rủi ro — pool nào giao việc cho thợ đào thì thợ đào có thể lấy luôn phần thưởng. Trên thực tế, điều này không ngăn được pool (họ dùng hợp đồng thông minh để chia thưởng), mà chỉ làm mọi thứ phức tạp hơn.",
-    "p2": "Hard fork tại block <b>{{height}}</b> (tháng 2/2021) đưa vào <b>Autolykos v2</b>: bỏ tính non-outsourceable để pool đào hoạt động bình thường, và đưa vào cơ chế tăng N nói trên. Định dạng header vẫn giữ bốn trường <code>pk, w, n, d</code>, nhưng:",
+    "p1": "Phiên bản đầu tiên (v1, từ khi mainnet ra mắt năm 2019) được thiết kế <b>non-outsourceable</b>: lời giải được ràng buộc với khoá bí mật của thợ đào, nhằm khiến việc tham gia pool trở nên rủi ro — pool nào giao việc cho thợ đào thì thợ đào có thể lấy luôn phần thưởng. Trên thực tế, điều này cũng không ngăn được pool: chính các nhà nghiên cứu của Ergo đã chỉ ra rằng pool có thể lách qua bằng hợp đồng thông minh có thế chấp. Nó chỉ làm mọi thứ phức tạp hơn.",
+    "p2": "Hard fork tại block <b>{{height}}</b> (tháng 2/2021) đưa vào <b>Autolykos v2</b>: bỏ tính non-outsourceable để pool đào hoạt động bình thường, và đưa vào cơ chế tăng N nói trên. API vẫn hiển thị bốn trường lời giải <code>pk, w, n, d</code> như ở v1, nhưng header v2 chỉ lưu <code>pk</code> và <code>n</code>:",
     "pk": "<code>pk</code> vẫn là khoá công khai của thợ đào (hoặc pool) — người sẽ nhận phần thưởng.",
     "w": "<code>w</code> luôn là điểm sinh <em>G</em> của secp256k1 (<code>0279be667e…</code>) — một hằng số giữ chỗ.",
     "d": "<code>d</code> luôn là 0.",
