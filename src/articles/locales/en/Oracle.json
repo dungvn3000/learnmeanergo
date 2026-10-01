@@ -23,7 +23,7 @@
     "s3": "The same transaction pays each operator whose datapoint was used a small reward in ERG.",
     "p2": "The pool contract enforces all of this on-chain: the NFT can only move to a new pool box that follows the rules. No server is trusted to do the maths.",
     "v2": "<b>Oracle Pool v2</b> (the EIP-23 proposal) is the newer design, and v2 pools already run on mainnet, for example the <usd>USD Pool</usd> (ERG/USD) and the <gold>Gold Pool</gold> (ERG/XAU). Rounds work the same way, and in both versions a round only counts if at least 4 datapoints are within 5% of each other (the v2 defaults). The main changes: rewards are paid in <em>reward tokens</em> instead of tiny amounts of ERG, the pool box keeps a single address and its <code>R5</code> counts rounds instead of storing a height, and oracle tokens and the <em>ballot tokens</em> used to vote on changes can now be transferred to someone else. The ERG/USD pool that SigmaUSD reads, shown below, still runs the v1 design.",
-    "figAlt": "Diagram: three operators fetch the ERG price from exchanges and each post a datapoint ($0.329, $0.330, $0.330). The datapoints are averaged into the pool box, which holds the NFT and the price 1 ERG = $0.33. SigmaUSD and other contracts read the pool box.",
+    "figAlt": "Diagram: four operators fetch the ERG price from exchanges and each post a datapoint ($0.329, $0.330, $0.330, $0.331). The datapoints are averaged into the pool box, which holds the NFT and the price 1 ERG = $0.33. SigmaUSD and other contracts read the pool box.",
     "figCaption": "Operators post datapoints, a collection transaction averages them into the pool box, and contracts read the pool box as a data input. Prices are illustrative."
   },
   "live": {

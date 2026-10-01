@@ -23,7 +23,7 @@
     "s3": "Cùng giao dịch đó trả một khoản thưởng nhỏ bằng ERG cho từng nhà vận hành có datapoint được dùng.",
     "p2": "Hợp đồng của pool thực thi tất cả những điều này trên chuỗi: NFT chỉ được chuyển sang một pool box mới nếu đúng luật. Không có máy chủ nào được tin để làm phép tính.",
     "v2": "<b>Oracle Pool v2</b> (đề xuất EIP-23) là thiết kế mới hơn, và đã có pool v2 chạy trên mainnet, ví dụ <usd>USD Pool</usd> (ERG/USD) và <gold>Gold Pool</gold> (ERG/XAU). Các vòng vẫn chạy như vậy, và ở cả hai phiên bản, một vòng chỉ được tính khi có ít nhất 4 datapoint chênh nhau không quá 5% (mức mặc định của v2). Những thay đổi chính: phần thưởng trả bằng <em>reward token</em> thay vì các khoản ERG rất nhỏ, pool box chỉ dùng một địa chỉ và <code>R5</code> của nó đếm số vòng thay vì lưu độ cao block, còn oracle token và <em>ballot token</em> (dùng để bỏ phiếu thay đổi pool) giờ có thể chuyển cho người khác. Pool ERG/USD mà SigmaUSD đọc, ở bên dưới, vẫn chạy theo thiết kế v1.",
-    "figAlt": "Sơ đồ: ba nhà vận hành lấy giá ERG từ các sàn và mỗi người đăng một datapoint ($0.329, $0.330, $0.330). Các datapoint được tính trung bình vào pool box, box giữ NFT và giá 1 ERG = $0.33. SigmaUSD và các hợp đồng khác đọc pool box.",
+    "figAlt": "Sơ đồ: bốn nhà vận hành lấy giá ERG từ các sàn và mỗi người đăng một datapoint ($0.329, $0.330, $0.330, $0.331). Các datapoint được tính trung bình vào pool box, box giữ NFT và giá 1 ERG = $0.33. SigmaUSD và các hợp đồng khác đọc pool box.",
     "figCaption": "Nhà vận hành đăng datapoint, giao dịch gom tính trung bình vào pool box, và các hợp đồng đọc pool box dưới dạng data input. Giá trong hình chỉ để minh hoạ."
   },
   "live": {
