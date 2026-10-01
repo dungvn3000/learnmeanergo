@@ -14,6 +14,7 @@ const sig = (s) => [...new Set([...s.matchAll(/<\/?([a-zA-Z][\w-]*)\s*\/?>|\{\{\
 let bad = 0
 const fail = (f, msg) => { bad++; console.log(`✗ ${f}: ${msg}`) }
 for (const f of files) {
+  const before = bad
   const pEn = `${dir}/locales/en/${f}.json`, pVi = `${dir}/locales/vi/${f}.json`, pJsx = `${dir}/${f}.jsx`
   if (!existsSync(pEn) || !existsSync(pVi)) { fail(f, 'missing locale JSON'); continue }
   if (existsSync(`${dir}/en/${f}.jsx`)) fail(f, `src/articles/en/${f}.jsx still exists`)
@@ -28,9 +29,9 @@ for (const f of files) {
   const used = new Set()
   for (const m of src.matchAll(/(?:\bt|\bT)\(\s*'([^'`$]+)'/g)) used.add(m[1])
   for (const m of src.matchAll(/i18nKey="([^"]+)"/g)) used.add(m[1])
-  const prefixes = [...src.matchAll(/(?:\bt|\bT)\(\s*`([^`$]*)\$\{/g)].map((m) => m[1])
+  const prefixes = [...src.matchAll(/(?:(?:\bt|\bT)\(\s*|i18nKey=\{)`([^`$]*)\$\{/g)].map((m) => m[1])
   for (const k of used) if (!(k in en)) fail(f, `JSX uses unknown key: ${k}`)
   for (const k in en) if (!used.has(k) && !prefixes.some((p) => k.startsWith(p))) fail(f, `key never used in JSX: ${k}`)
-  if (!bad) console.log(`✓ ${f}: ${Object.keys(en).length} keys`)
+  if (bad === before) console.log(`✓ ${f}: ${Object.keys(en).length} keys`)
 }
 process.exit(bad ? 1 : 0)

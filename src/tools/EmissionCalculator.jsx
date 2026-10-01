@@ -67,10 +67,15 @@ export default function EmissionCalculator() {
     }
   }, [height])
 
-  const date = tip
-    ? new Date(tip.timestamp + (height - tip.height) * BLOCK_TIME_SEC * 1000)
-    : new Date(Date.UTC(2019, 6, 1) + (height - 1) * BLOCK_TIME_SEC * 1000)
   const past = tip && height <= tip.height
+  // A mined block has a real timestamp; only future heights need extrapolating.
+  const mined = useApi(() => (past ? api.block(height) : Promise.resolve(null)), [past ? height : 0])
+  const realTime = past && mined.data?.height === height ? mined.data.timestamp : null
+  const date = realTime
+    ? new Date(realTime)
+    : tip
+      ? new Date(tip.timestamp + (height - tip.height) * BLOCK_TIME_SEC * 1000)
+      : new Date(Date.UTC(2019, 6, 1) + (height - 1) * BLOCK_TIME_SEC * 1000)
   const phase = phaseOf(height, t)
 
   return (
@@ -146,8 +151,10 @@ export default function EmissionCalculator() {
         <Field name={t('emissionCalculator.phase')} value={<Badge tone={phase.tone}>{phase.label}</Badge>}>
           {phase.desc}
         </Field>
-        <Field name={t('emissionCalculator.dateEstimated')} value={fmtDate(date)}>
-          {past
+        <Field name={realTime ? t('emissionCalculator.date') : t('emissionCalculator.dateEstimated')} value={fmtDate(date)}>
+          {realTime
+            ? t('emissionCalculator.minedOnThisDate')
+            : past
             ? t('emissionCalculator.thisBlockHasAlreadyBeenMined')
             : t('emissionCalculator.extrapolatedFromTheLatestBlockAt')}
         </Field>

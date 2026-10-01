@@ -46,18 +46,27 @@ export function Logo() {
 
 function ThemeToggle() {
   const { t } = useTranslation()
-  const [dark, setDark] = useState(() => document.documentElement.classList.contains('dark'))
+  const root = document.documentElement
+  const [dark, setDark] = useState(() => root.classList.contains('dark'))
+  // Both toggles (desktop panel and mobile header) follow the class on <html>.
   useEffect(() => {
-    document.documentElement.classList.toggle('dark', dark)
+    const mo = new MutationObserver(() => setDark(root.classList.contains('dark')))
+    mo.observe(root, { attributes: true, attributeFilter: ['class'] })
+    return () => mo.disconnect()
+  }, [root])
+  // Only an explicit switch is remembered; until then the OS preference applies.
+  const toggle = () => {
+    const next = !root.classList.contains('dark')
+    root.classList.toggle('dark', next)
     try {
-      localStorage.setItem('theme', dark ? 'dark' : 'light')
+      localStorage.setItem('theme', next ? 'dark' : 'light')
     } catch {
       /* storage blocked */
     }
-  }, [dark])
+  }
   return (
     <button
-      onClick={() => setDark(!dark)}
+      onClick={toggle}
       className="rounded-lg p-2 text-stone-500 hover:bg-stone-100 hover:text-stone-900 dark:hover:bg-stone-800 dark:hover:text-white"
       title={dark ? t('layout.lightMode') : t('layout.darkMode')}
     >
@@ -108,12 +117,26 @@ function Panel({ onNavigate, onClose }) {
 export default function Layout() {
   const { t } = useTranslation()
   const [open, setOpen] = useState(false)
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
   const NAV = nav(t)
   useEffect(() => {
     setOpen(false)
-    window.scrollTo(0, 0)
-  }, [pathname])
+    if (!hash) {
+      window.scrollTo(0, 0)
+      return
+    }
+    // Article bodies load lazily, so wait (up to ~3 s) for the anchor to exist.
+    let tries = 0
+    const timer = setInterval(() => {
+      const el = document.getElementById(decodeURIComponent(hash.slice(1)))
+      if (el || ++tries > 30) {
+        clearInterval(timer)
+        if (el) el.scrollIntoView()
+        else window.scrollTo(0, 0)
+      }
+    }, 100)
+    return () => clearInterval(timer)
+  }, [pathname, hash])
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
   }, [open])

@@ -72,7 +72,7 @@ const POOLS = [
   { key: '2miners', name: '2Miners', url: 'https://erg.2miners.com' },
   { key: 'herominers', name: 'HeroMiners', url: 'https://ergo.herominers.com' },
   { key: 'sigmanauts', name: 'Sigmanauts Mining Pool', url: 'https://sigmanauts.com/mining/' },
-  { key: 'lithos', name: 'Lithos', url: 'https://lithos.work' },
+  { key: 'lithos', name: 'Lithos', url: 'https://github.com/Lithos-Protocol' },
 ]
 const MINERS = [{ key: 'soat', name: 'soat-miner', url: 'https://github.com/blindrun/soat-miner' }]
 

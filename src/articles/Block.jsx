@@ -100,7 +100,7 @@ function LiveHeader({ block }) {
       <Field name="timestamp" value={`${block.timestamp} (${utc(block.timestamp)})`} mono>
         {T('field.timestamp')}
       </Field>
-      <Field name="nBits" value={<code className="font-mono">{block.nBits}</code>}>
+      <Field name="nBits" value={<code className="font-mono">{String(block.nBits).padStart(8, '0')}</code>}>
         {T('field.nBits', { difficulty: <Link to="/learn/difficulty" /> })}
       </Field>
       <Field name="difficulty" value={`${num(block.difficulty)} (≈ ${compact(block.difficulty)})`}>

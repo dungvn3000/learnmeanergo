@@ -74,7 +74,7 @@ export function useSeo({ title, description, path, type = 'website', noindex = f
     meta('name', 'twitter:image', imageUrl)
     meta('name', 'twitter:title', fullTitle)
     meta('name', 'twitter:description', d)
-    link('canonical', url)
+    link('canonical', lang === 'vi' ? `${url}?lang=vi` : url)
     link('alternate', `${url}?lang=en`, 'en')
     link('alternate', `${url}?lang=vi`, 'vi')
     link('alternate', url, 'x-default')

@@ -57,7 +57,7 @@
     "minerOfTheLatestBlock": "Thợ đào của block mới nhất",
     "n0x00MainnetP2pkAddressesStartWith": "0x00 = mainnet (địa chỉ P2PK bắt đầu bằng “9”), 0x10 = testnet (bắt đầu bằng “3”).",
     "network": "Mạng",
-    "opcode": "mã lệnh",
+    "opcode": "là",
     "p2shOnlyHoldsAHashOf": "P2SH chỉ chứa hash của script, nên không thể khôi phục ErgoTree từ địa chỉ — người tiêu phải tiết lộ script khi chi tiêu.",
     "prefixContent": "prefix ‖ nội dung",
     "prefixNetworkTypeAddressTypeThe": "prefix = loại mạng + loại địa chỉ. Nửa byte cao là mạng, nửa byte thấp là loại.",
@@ -66,7 +66,7 @@
     "step2ReadThePrefixByte": "Bước 2 — Đọc byte prefix",
     "step3VerifyTheChecksum": "Bước 3 — Kiểm tra checksum",
     "step4TheLockingScriptErgotree": "Bước 4 — Script khoá tiền (ErgoTree)",
-    "the": "phép",
+    "the": "và mã lệnh",
     "theStringIsReallyOneBig": "Chuỗi ký tự thực chất là một con số lớn viết ở hệ cơ số 58. Đổi nó sang hệ 16 ta được {{length}} byte:",
     "viewThisAddressInTheExplorer": "Xem địa chỉ này trên explorer",
     "withBlake2b256AndTakeTheFirst": "bằng blake2b256 và lấy 4 byte đầu. Nếu gõ sai dù chỉ một ký tự, checksum sẽ không khớp."
@@ -190,6 +190,7 @@
   "emissionCalculator": {
     "blockHeight": "Độ cao block",
     "current": "Hiện tại",
+    "date": "Ngày",
     "dateEstimated": "Ngày (ước tính)",
     "declining": "Giảm dần",
     "decliningEip27": "Giảm dần + EIP-27",
@@ -204,6 +205,7 @@
     "fixedRatePeriod": "Giai đoạn cố định",
     "fromBlockThisPartGoesInto": "Từ block {{v0}}, phần này được gửi vào hợp đồng tái phát hành thay vì trả ngay cho thợ đào: 12 ERG nếu phần thưởng ≥ 15 ERG, còn lại là (phần thưởng − 3).",
     "mainEmissionIsOverMinersReceive": "Phát hành chính đã hết; thợ đào nhận 3 ERG/block từ hợp đồng tái phát hành (EIP-27).",
+    "minedOnThisDate": "Timestamp của block này, đọc trực tiếp từ chain.",
     "n3ErgPerBlockPaidFrom": "3 ERG mỗi block được trả từ hợp đồng tái phát hành cho tới khi nó cạn.",
     "n75ErgPerBlockForThe": "75 ERG mỗi block trong ~2 năm đầu (525,600 block).",
     "newEmission": "Phát hành mới",
@@ -214,7 +216,7 @@
     "theAmountOfNewErgCreated": "Lượng ERG mới được tạo ra bởi hợp đồng phát hành ở block này.",
     "theRewardDropsBy3Erg": "Mỗi 64,800 block (~3 tháng) phần thưởng giảm 3 ERG.",
     "theShareForTheDevelopmentTreasury": "Phần dành cho quỹ phát triển trong khoảng 2.5 năm đầu (7.5 ERG/block, sau đó 4.5 và 1.5 ERG).",
-    "thisBlockHasAlreadyBeenMined": "Block này đã được đào — ngày thực tế có thể lệch vài ngày do thời gian block dao động.",
+    "thisBlockHasAlreadyBeenMined": "Block này đã được đào. Đang tải ngày thật của nó; trước đó đây chỉ là ước tính.",
     "totalEmissionBlock": "Tổng phát hành / block",
     "totalEmitted": "Tổng đã phát hành",
     "transactionFees": "phí giao dịch",
@@ -230,7 +232,7 @@
     "theFirst24BytesOfBlake2b256": "24 byte đầu của blake2b256(script)."
   },
   "explorer": {
-    "avgBlockTime": "Block trung bình",
+    "avgBlockTime": "Thời gian block TB",
     "difficulty": "độ khó",
     "difficultyHashrate": "Độ khó & hashrate",
     "ergoNetworkHashrate90Days": "Hashrate mạng Ergo 90 ngày",
@@ -281,7 +283,8 @@
     "theLatestBlock": "Block mới nhất",
     "tryABlockHeightEG": "Thử nhập một độ cao block, ví dụ 1 — block genesis.",
     "wasMinedBy": "được đào bởi",
-    "whatMakesErgoDifferent": "Điều gì làm Ergo khác biệt?"
+    "whatMakesErgoDifferent": "Điều gì làm Ergo khác biệt?",
+    "storageRent": "Phí lưu trữ"
   },
   "layout": {
     "about": "Giới thiệu",

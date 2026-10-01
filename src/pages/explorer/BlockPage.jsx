@@ -86,7 +86,7 @@ function Block({ b }) {
           <Field name="Timestamp" value={`${b.timestamp} (${utc(b.timestamp)})`}>
             {t('blockPage.whenTheMinerCreatedTheBlock')}
           </Field>
-          <Field name="nBits" value={<span className="font-mono">{b.nBits}</span>}>
+          <Field name="nBits" value={<span className="font-mono">{String(b.nBits).padStart(8, '0')}</span>}>
             {t('blockPage.theTargetDifficultyInCompactForm')} <Learn to="/learn/difficulty">{t('blockPage.decodingNbits')}</Learn>
           </Field>
           <Field name="Difficulty" value={num(b.difficulty)}>
@@ -112,7 +112,7 @@ function Block({ b }) {
         <div className="space-y-6">
           <Card className="px-5 py-2">
             <div className="border-b border-stone-100 py-3 text-xs font-bold tracking-wide text-stone-500 uppercase dark:border-stone-800">
-              Proof of Work <span className="font-normal normal-case">— <Learn to="/learn/autolykos">Autolykos v2</Learn></span>
+              Proof of Work <span className="font-normal normal-case">— <Learn to="/learn/autolykos">{b.version >= 2 ? 'Autolykos v2' : 'Autolykos v1'}</Learn></span>
             </div>
             <Field name="Nonce (n)" value={<span className="font-mono">{b.pow.n}</span>}>
               {t('blockPage.the8BytesAMinerKeeps')}

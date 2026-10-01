@@ -43,6 +43,7 @@ const ROUTE_BY_TYPE = { block: '/block/', transaction: '/tx/', address: '/addres
 /** Resolve free text (height, id, address…) to an in-app route, or null. */
 export async function resolveSearch(q) {
   q = String(q || '').trim()
+  if (/^\d{1,3}([,._ ]\d{3})+$/.test(q)) q = q.replace(/[,._ ]/g, '') // 1,884,000 → 1884000
   if (!q) return null
   const hit = await api.search(q)
   return hit ? ROUTE_BY_TYPE[hit.type] + hit.id : null

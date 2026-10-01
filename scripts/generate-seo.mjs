@@ -25,8 +25,9 @@ const pages = [
 
 // ---- sitemap.xml (with hreflang alternates) ----
 const esc = (s) => s.replace(/&/g, '&amp;')
-const urlEntry = (p) => `  <url>
-    <loc>${esc(ORIGIN + p.path)}</loc>
+// One <url> per language version: each is its own canonical (the VI page is `?lang=vi`).
+const urlEntry = (p, lang) => `  <url>
+    <loc>${esc(ORIGIN + p.path)}${lang === 'vi' ? '?lang=vi' : ''}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>${p.path === '/' || p.path === '/explorer' ? 'daily' : 'monthly'}</changefreq>
     <priority>${p.priority.toFixed(1)}</priority>
@@ -38,7 +39,7 @@ writeFileSync(
   'public/sitemap.xml',
   `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${pages.map(urlEntry).join('\n')}
+${pages.flatMap((p) => [urlEntry(p, 'en'), urlEntry(p, 'vi')]).join('\n')}
 </urlset>
 `,
 )

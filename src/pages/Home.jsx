@@ -10,6 +10,12 @@ import { tools } from '../tools'
 import { Card, Stat } from '../components/ui'
 import SearchBar from '../components/SearchBar'
 import { useTranslation } from 'react-i18next'
+
+/** 119.6 s → "2m 00s": round once, then split, so the seconds never read 60. */
+function fmtBlockTime(sec) {
+  const s = Math.round(sec)
+  return `${Math.floor(s / 60)}m ${String(s % 60).padStart(2, '0')}s`
+}
 import { pick } from '../lib/i18n'
 import { useSeo, websiteJsonLd } from '../lib/seo'
 
@@ -76,7 +82,7 @@ function NetworkStats() {
       <Stat icon={Layers} label={t('common.height')} value={d ? num(d.height) : dash} sub={d ? `${t('home.lastBlock')} ${ago(d.tipTimestamp)}` : ' '} />
       <Stat icon={Cpu} label="Hashrate" value={d ? `${d.hashrate} TH/s` : dash} sub={d ? `${d.hashrateChange7d > 0 ? '+' : ''}${d.hashrateChange7d}% ${t('home.over7Days')}` : ' '} />
       <Stat icon={Coins} label={t('home.circulatingErg')} value={d ? `${num(d.circulating / 1e6, 2)}M` : dash} sub={d ? `${t('home.ofMax')} ${num(d.maxSupply / 1e6, 2)}M ERG` : ' '} />
-      <Stat icon={Clock} label={t('home.blockTime')} value={d ? `${Math.floor(d.avgBlockTimeSec / 60)}m ${String(Math.round(d.avgBlockTimeSec % 60)).padStart(2, '0')}s` : dash} sub={t('home.target2Minutes')} />
+      <Stat icon={Clock} label={t('home.blockTime')} value={d ? fmtBlockTime(d.avgBlockTimeSec) : dash} sub={t('home.target2Minutes')} />
     </div>
   )
 }
@@ -85,7 +91,7 @@ const features = (t) => [
   { icon: Boxes, title: t('home.theEutxoModel'), text: t('home.coinsLiveInLockedBoxesThat'), to: '/learn/boxes' },
   { icon: FileCode2, title: 'ErgoScript & Sigma', text: t('home.smartContractsBuiltOnSigmaProtocols'), to: '/learn/ergotree' },
   { icon: Pickaxe, title: 'Autolykos v2', text: t('home.memoryHardGpuFriendlyAsicResistant'), to: '/learn/autolykos' },
-  { icon: Hourglass, title: 'Storage rent', text: t('home.boxesLeftUntouchedFor4Years'), to: '/learn/storage-rent' },
+  { icon: Hourglass, title: t('home.storageRent'), text: t('home.boxesLeftUntouchedFor4Years'), to: '/learn/storage-rent' },
 ]
 
 function PathCard({ icon: Icon, title, to, list, cta }) {

@@ -190,6 +190,7 @@
   "emissionCalculator": {
     "blockHeight": "Block height",
     "current": "Current",
+    "date": "Date",
     "dateEstimated": "Date (estimated)",
     "declining": "Declining",
     "decliningEip27": "Declining + EIP-27",
@@ -204,6 +205,7 @@
     "fixedRatePeriod": "Fixed-rate period",
     "fromBlockThisPartGoesInto": "From block {{v0}}, this part goes into the re-emission contract instead of straight to the miner: 12 ERG if the reward is ≥ 15 ERG, otherwise (reward − 3).",
     "mainEmissionIsOverMinersReceive": "Main emission is over; miners receive 3 ERG/block from the re-emission contract (EIP-27).",
+    "minedOnThisDate": "The timestamp of this block, read from the chain.",
     "n3ErgPerBlockPaidFrom": "3 ERG per block paid from the re-emission contract until it runs dry.",
     "n75ErgPerBlockForThe": "75 ERG per block for the first ~2 years (525,600 blocks).",
     "newEmission": "New emission",
@@ -214,7 +216,7 @@
     "theAmountOfNewErgCreated": "The amount of new ERG created by the emission contract at this block.",
     "theRewardDropsBy3Erg": "The reward drops by 3 ERG every 64,800 blocks (~3 months).",
     "theShareForTheDevelopmentTreasury": "The share for the development treasury during roughly the first 2.5 years (7.5 ERG/block, then 4.5 and 1.5 ERG).",
-    "thisBlockHasAlreadyBeenMined": "This block has already been mined — the actual date may differ by a few days because block times vary.",
+    "thisBlockHasAlreadyBeenMined": "This block has already been mined. Loading its real date; until then this is an estimate.",
     "totalEmissionBlock": "Total emission / block",
     "totalEmitted": "Total emitted",
     "transactionFees": "transaction fees",
@@ -281,7 +283,8 @@
     "theLatestBlock": "The latest block",
     "tryABlockHeightEG": "Try a block height, e.g. 1 — the genesis block.",
     "wasMinedBy": "was mined by",
-    "whatMakesErgoDifferent": "What makes Ergo different?"
+    "whatMakesErgoDifferent": "What makes Ergo different?",
+    "storageRent": "Storage rent"
   },
   "layout": {
     "about": "About",
