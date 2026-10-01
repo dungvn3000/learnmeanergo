@@ -30,7 +30,9 @@
     "li3": "Fetch the {{k}} elements at those indexes, <b>add them up</b>, then hash the sum with <code>blake2b256</code>.",
     "li4": "If the result (read as an integer) is below the target → block found. Otherwise → change the nonce and try again.",
     "code": "for nonce in 0, 1, 2, ...:\n    idx[0..31] = genIndexes(hash(msg ‖ nonce), N)\n    s = table[idx[0]] + table[idx[1]] + ... + table[idx[31]]\n    if blake2b256(s) < target:\n        return nonce   // 🎉 new block",
-    "p3": "Every attempt needs {{k}} random reads from a table that is gigabytes in size. Recomputing table elements each time instead of storing them is far slower, so whoever has the most memory bandwidth mines fastest. An ASIC that wants to compete also has to carry a large amount of fast memory — at which point it has essentially become a GPU."
+    "p3": "Every attempt needs {{k}} random reads from a table that is gigabytes in size. Recomputing table elements each time instead of storing them is far slower, so whoever has the most memory bandwidth mines fastest. An ASIC that wants to compete also has to carry a large amount of fast memory — at which point it has essentially become a GPU.",
+    "figAlt": "One Autolykos mining attempt as a loop. The header message plus a nonce are hashed; the hash fans out into 32 random indexes pointing at scattered cells of a large grid, the table of N elements held in a graphics card's VRAM, several GB in size. The 32 picked elements are added together, the sum is hashed with blake2b256, and the result is compared with the target. If it is below the target, a block is found; if not, a red arrow loops back: nonce + 1, try again.",
+    "figCaption": "Every attempt is {{k}} random reads from a multi-gigabyte table. Memory bandwidth, not raw arithmetic, decides how fast you can go round this loop."
   },
   "table": {
     "title": "An ever-growing table N",

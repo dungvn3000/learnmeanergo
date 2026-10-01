@@ -30,7 +30,9 @@
     "li3": "Lấy {{k}} phần tử tại các chỉ số đó, <b>cộng lại</b>, rồi băm tổng bằng <code>blake2b256</code>.",
     "li4": "Nếu kết quả (hiểu như một số nguyên) nhỏ hơn target → tìm thấy block. Nếu không → đổi nonce, làm lại.",
     "code": "for nonce in 0, 1, 2, ...:\n    idx[0..31] = genIndexes(hash(msg ‖ nonce), N)\n    s = table[idx[0]] + table[idx[1]] + ... + table[idx[31]]\n    if blake2b256(s) < target:\n        return nonce   // 🎉 block mới",
-    "p3": "Mỗi lần thử cần {{k}} lần đọc ngẫu nhiên vào một bảng hàng GB. Tính lại phần tử của bảng mỗi lần thay vì lưu thì chậm hơn nhiều, nên ai có nhiều băng thông bộ nhớ nhất sẽ đào nhanh nhất. Một ASIC muốn cạnh tranh cũng phải mang theo lượng bộ nhớ lớn và nhanh — tức là về cơ bản trở thành một chiếc GPU."
+    "p3": "Mỗi lần thử cần {{k}} lần đọc ngẫu nhiên vào một bảng hàng GB. Tính lại phần tử của bảng mỗi lần thay vì lưu thì chậm hơn nhiều, nên ai có nhiều băng thông bộ nhớ nhất sẽ đào nhanh nhất. Một ASIC muốn cạnh tranh cũng phải mang theo lượng bộ nhớ lớn và nhanh — tức là về cơ bản trở thành một chiếc GPU.",
+    "figAlt": "Một lần thử đào Autolykos dưới dạng vòng lặp. Thông điệp header cộng với một nonce được băm; kết quả băm toả ra 32 chỉ số ngẫu nhiên trỏ vào các ô rải rác trong một lưới lớn, tức bảng N phần tử nằm trong VRAM của card đồ hoạ, dung lượng vài GB. 32 phần tử được chọn cộng lại, tổng được băm bằng blake2b256 rồi so với target. Nếu nhỏ hơn target thì tìm thấy block; nếu không, mũi tên đỏ quay về: nonce + 1, thử lại.",
+    "figCaption": "Mỗi lần thử là {{k}} lần đọc ngẫu nhiên vào một bảng nhiều gigabyte. Thứ quyết định bạn chạy vòng lặp này nhanh đến đâu là băng thông bộ nhớ, không phải sức tính toán."
   },
   "table": {
     "title": "Bảng N ngày càng lớn",

@@ -6,7 +6,7 @@ import { useApi } from '../lib/useApi'
 import { p2pkAddress } from '../lib/ergo'
 import { num } from '../lib/format'
 import { articleNs } from '../lib/i18n'
-import { Async, Callout, Card, Field, Hash } from '../components/ui'
+import { Async, Callout, Card, Field, Figure, Hash } from '../components/ui'
 import en from './locales/en/Autolykos.json'
 import vi from './locales/vi/Autolykos.json'
 
@@ -112,6 +112,7 @@ export default function Autolykos() {
         <li>{T('idea.li3', { k: K })}</li>
         <li>{t('idea.li4')}</li>
       </ol>
+      <Figure src="/img/autolykos.webp" alt={t('idea.figAlt')} width={1360} height={383} caption={t('idea.figCaption', { k: K })} />
       <pre>
         <code>{t('idea.code')}</code>
       </pre>
