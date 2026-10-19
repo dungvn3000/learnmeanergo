@@ -167,6 +167,9 @@ export default function Nipopow() {
         <li>{T('verify.step3')}</li>
       </ol>
       <p>{T('verify.p2')}</p>
+      <Callout type="warn" title={t('verify.difficultyTitle')}>
+        {T('verify.difficulty', { difficulty: <Link to="/learn/difficulty" /> })}
+      </Callout>
       <Callout type="warn" title={t('verify.warnTitle')}>
         {t('verify.warn')}
       </Callout>
