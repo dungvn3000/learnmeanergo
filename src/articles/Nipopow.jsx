@@ -110,6 +110,9 @@ export default function Nipopow() {
         <li>{T('superblock.levelMu')}</li>
       </ul>
       <p>{T('superblock.p2')}</p>
+      <Callout type="note" title={t('superblock.powTitle')}>
+        {t('superblock.pow')}
+      </Callout>
       <Figure src="/img/nipopow.webp" alt={t('superblock.figAlt')} width={1360} height={468} caption={t('superblock.figCaption')} />
 
       <h2 id="interlink">{t('interlink.title')}</h2>
