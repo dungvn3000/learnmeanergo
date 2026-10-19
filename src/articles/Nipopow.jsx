@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Trans } from 'react-i18next'
-import { Layers, Link2, Scale, Zap } from 'lucide-react'
+import { ExternalLink, Layers, Link2, Scale, Zap } from 'lucide-react'
 import { useApi } from '../lib/useApi'
 import { bytes, num } from '../lib/format'
 import { articleNs } from '../lib/i18n'
@@ -82,7 +82,11 @@ function LiveProof() {
             </div>
             <ProofStrip heights={p.prefixHeights} tip={p.tip} />
             <p className="mt-3 text-sm text-stone-500">
-              <Trans t={t} i18nKey="live.caption" values={{ k: p.k, node: p.node.replace('https://', '') }} components={{ node: <span className="font-mono" /> }} />
+              <Trans t={t} i18nKey="live.caption" values={{ k: p.k, node: p.node.replace('https://', '') }} components={{ node: <span className="font-mono" /> }} />{' '}
+              <a href={`${p.node}/nipopow/proof/${M}/${K}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 font-medium text-ergo-600 hover:underline dark:text-ergo-400">
+                {t('live.raw')}
+                <ExternalLink className="size-3.5" />
+              </a>
             </p>
           </>
         )}

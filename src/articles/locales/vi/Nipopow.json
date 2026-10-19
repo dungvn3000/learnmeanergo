@@ -7,6 +7,7 @@
     "inProofSub": "header · ≈ {{size}}",
     "compression": "Nén",
     "levels": "Mức superblock",
+    "raw": "Xem JSON gốc",
     "caption": "Mỗi vạch cam là một header có mặt trong bằng chứng. Phần đầu chuỗi chỉ cần vài superblock rải rác; càng gần đỉnh, mẫu càng dày và {{k}} block cuối được lấy trọn. Dữ liệu từ node <node>{{node}}</node>."
   },
   "intro": "Không ai đứng ra xác nhận chuỗi Ergo nào là đúng: chuỗi có nhiều công nhất là chuỗi thật. Vì vậy, muốn tự kiểm tra rằng một giao dịch nằm trong chuỗi, câu cần trả lời là “có bao nhiêu công đứng sau header này?”, và cách “chuẩn” là tải toàn bộ block header — khoảng 1.9 triệu cái, mỗi cái ~220 byte — rồi kiểm tra proof-of-work của từng cái. Với điện thoại, hay với một hợp đồng thông minh trên blockchain <em>khác</em>, thế là quá nhiều. <b>NiPoPoW</b> (Non-Interactive Proofs of Proof-of-Work) là cách rút chuỗi header ấy xuống còn vài trăm cái mà vẫn giữ được mức tin cậy tương đương.",

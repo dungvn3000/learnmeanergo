@@ -7,6 +7,7 @@
     "inProofSub": "headers · ≈ {{size}}",
     "compression": "Compression",
     "levels": "Superblock levels",
+    "raw": "View raw JSON",
     "caption": "Each orange tick is a header included in the proof. The early chain needs only a few scattered superblocks; towards the tip the sampling gets denser, and the last {{k}} blocks are included in full. Data from node <node>{{node}}</node>."
   },
   "intro": "Nobody vouches for which Ergo chain is the right one: the chain with the most work is the real one. So to check for yourself that a transaction is in the chain, the question to answer is “how much work stands behind this header?”, and the “proper” way is to download every block header — about 1.9 million of them, ~220 bytes each — and verify each one's proof-of-work. For a phone, or for a smart contract on <em>another</em> blockchain, that is far too much. <b>NiPoPoWs</b> (Non-Interactive Proofs of Proof-of-Work) shrink that header chain down to a few hundred headers while keeping equivalent confidence.",
