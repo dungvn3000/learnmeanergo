@@ -76,7 +76,7 @@ export const ARTICLES = [
     summary: { vi: 'Target, nBits, hashrate và thuật toán điều chỉnh EIP-37.', en: 'Target, nBits, hashrate and the EIP-37 adjustment algorithm.' } },
   { slug: 'nipopow', section: 'technical', group: MINING, icon: 'Link2', file: 'Nipopow',
     title: { vi: 'NiPoPoW: bằng chứng chuỗi siêu gọn', en: 'NiPoPoWs: compact proofs of the chain' },
-    summary: { vi: 'Superblock, interlink và cách rút 1.8 triệu header xuống vài trăm mà vẫn tin được.', en: 'Superblocks, interlinks, and how 1.8 million headers shrink to a few hundred you can still trust.' } },
+    summary: { vi: 'Superblock, interlink và cách rút 1.9 triệu header xuống vài trăm mà vẫn tin được.', en: 'Superblocks, interlinks, and how 1.9 million headers shrink to a few hundred you can still trust.' } },
   { slug: 'emission', section: 'technical', group: MINING, icon: 'TrendingDown', file: 'Emission',
     title: { vi: 'Lịch phát hành & EIP-27', en: 'Emission schedule & EIP-27' },
     summary: { vi: '75 ERG → 3 ERG: đường cong phát hành và cơ chế tái phát hành.', en: '75 ERG → 3 ERG: the emission curve and the re-emission mechanism.' } },

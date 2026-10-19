@@ -39,7 +39,7 @@ Every page exists in English (default) and Vietnamese: append `?lang=vi` to any 
 
 - [Autolykos v2](https://learnmeanergo.com/learn/autolykos): The memory-hard PoW algorithm, and what pk, w, n and d mean.
 - [Difficulty & nBits](https://learnmeanergo.com/learn/difficulty): Target, nBits, hashrate and the EIP-37 adjustment algorithm.
-- [NiPoPoWs: compact proofs of the chain](https://learnmeanergo.com/learn/nipopow): Superblocks, interlinks, and how 1.8 million headers shrink to a few hundred you can still trust.
+- [NiPoPoWs: compact proofs of the chain](https://learnmeanergo.com/learn/nipopow): Superblocks, interlinks, and how 1.9 million headers shrink to a few hundred you can still trust.
 - [Emission schedule & EIP-27](https://learnmeanergo.com/learn/emission): 75 ERG → 3 ERG: the emission curve and the re-emission mechanism.
 - [Storage rent](https://learnmeanergo.com/learn/storage-rent): Why a box left untouched for 4 years gets charged — and why that is a good thing.
 

@@ -163,7 +163,7 @@ export default function Nipopow() {
       <p>{T('verify.p1')}</p>
       <ol>
         <li>{t('verify.step1')}</li>
-        <li>{t('verify.step2')}</li>
+        <li>{T('verify.step2')}</li>
         <li>{T('verify.step3')}</li>
       </ol>
       <p>{T('verify.p2')}</p>
