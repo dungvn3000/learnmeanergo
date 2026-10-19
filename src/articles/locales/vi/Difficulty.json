@@ -26,6 +26,7 @@
   "chart": {
     "title": "Độ khó theo ngày, 180 ngày gần nhất",
     "label": "Độ khó mạng Ergo 180 ngày",
+    "hashrate": "Hashrate ≈ {{value}} TH/s",
     "empty": "Chưa có dữ liệu biểu đồ."
   },
   "intro": "Nếu bỗng dưng có gấp đôi số GPU tham gia đào, block sẽ ra nhanh gấp đôi — trừ khi bài toán khó lên gấp đôi. <b>Độ khó (difficulty)</b> là núm vặn giúp Ergo giữ nhịp trung bình <b>một block mỗi 2 phút</b>, bất kể có bao nhiêu thợ đào.",

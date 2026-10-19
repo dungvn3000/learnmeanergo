@@ -123,8 +123,10 @@ function DifficultyChart() {
               tooltip={(p) => (
                 <>
                   <div className="text-stone-500">{new Date(p.x).toISOString().slice(0, 10)}</div>
-                  <div className="font-semibold tabular-nums text-stone-900 dark:text-white">{num(p.y)}</div>
-                  <div className="text-stone-500">≈ {(p.y / 120 / 1e12).toFixed(2)} TH/s</div>
+                  <div className="font-semibold tabular-nums text-stone-900 dark:text-white">
+                    {t('hashrate.difficulty')}: {num(p.y)}
+                  </div>
+                  <div className="text-stone-500">{t('chart.hashrate', { value: (p.y / 120 / 1e12).toFixed(2) })}</div>
                 </>
               )}
             />

@@ -26,6 +26,7 @@
   "chart": {
     "title": "Daily difficulty, last 180 days",
     "label": "Ergo network difficulty, 180 days",
+    "hashrate": "Hashrate ≈ {{value}} TH/s",
     "empty": "No chart data yet."
   },
   "intro": "If twice as many GPUs suddenly joined the network, blocks would come twice as fast — unless the puzzle became twice as hard. <b>Difficulty</b> is the dial that keeps Ergo ticking at an average of <b>one block every 2 minutes</b>, no matter how many miners there are.",
