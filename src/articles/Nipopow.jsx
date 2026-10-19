@@ -111,7 +111,7 @@ export default function Nipopow() {
       </ul>
       <p>{T('superblock.p2')}</p>
       <Callout type="note" title={t('superblock.powTitle')}>
-        {t('superblock.pow')}
+        {T('superblock.pow')}
       </Callout>
       <Figure src="/img/nipopow.webp" alt={t('superblock.figAlt')} width={1360} height={468} caption={t('superblock.figCaption')} />
 
