@@ -93,7 +93,7 @@
   },
   "reading": {
     "title": "Further reading",
-    "pdf": "<link>Ergo: A Resilient Platform For Contractual Money</link> — whitepaper v1.0, 14 May 2019 (PDF).",
-    "web": "<link>Web version of the whitepaper</link> on docs.ergoplatform.com."
+    "pdf": "<a>Ergo: A Resilient Platform For Contractual Money</a> — whitepaper v1.0, 14 May 2019 (PDF).",
+    "web": "<a>Web version of the whitepaper</a> on docs.ergoplatform.com."
   }
 }

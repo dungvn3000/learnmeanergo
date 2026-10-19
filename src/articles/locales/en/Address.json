@@ -61,8 +61,8 @@
   },
   "try": {
     "title": "Try it yourself",
-    "decoder": "<link>Address decoder</link> — paste any address to split it byte by byte.",
-    "pubkey": "<link>Public key → Address</link> — build a P2PK address yourself.",
-    "blake": "<link>Blake2b-256</link> — compute the checksum yourself."
+    "decoder": "<a>Address decoder</a> — paste any address to split it byte by byte.",
+    "pubkey": "<a>Public key → Address</a> — build a P2PK address yourself.",
+    "blake": "<a>Blake2b-256</a> — compute the checksum yourself."
   }
 }

@@ -42,7 +42,7 @@ export default function Manifesto() {
       <p>{T('intro')}</p>
       <Figure src="/img/manifesto.webp" alt={t('figure.alt')} width={1360} height={768} caption={t('figure.caption')} />
       <Callout type="note" title={t('about.title')}>
-        {T('about.text', undefined, { source: <a href={SOURCE} target="_blank" rel="noreferrer" /> })}
+        {T('about.text', undefined, { a: <a href={SOURCE} target="_blank" rel="noreferrer" /> })}
       </Callout>
 
       <h2 id="nguon-goc">{t('roots.title')}</h2>

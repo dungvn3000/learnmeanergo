@@ -227,8 +227,8 @@ export default function Whitepaper() {
 
       <h2 id="doc-them">{t('reading.title')}</h2>
       <ul>
-        <li>{T('reading.pdf', { link: <a href={PDF} target="_blank" rel="noreferrer" /> })}</li>
-        <li>{T('reading.web', { link: <a href={WEB} target="_blank" rel="noreferrer" /> })}</li>
+        <li>{T('reading.pdf', { a: <a href={PDF} target="_blank" rel="noreferrer" /> })}</li>
+        <li>{T('reading.web', { a: <a href={WEB} target="_blank" rel="noreferrer" /> })}</li>
       </ul>
     </>
   )

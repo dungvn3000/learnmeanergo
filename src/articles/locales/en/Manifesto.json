@@ -6,7 +6,7 @@
   },
   "about": {
     "title": "About this page",
-    "text": "This is our own summary and interpretation, not a copy. We recommend reading <source>the original</source>."
+    "text": "This is our own summary and interpretation, not a copy. We recommend reading <a>the original</a>."
   },
   "roots": {
     "title": "Back to the cypherpunk roots",

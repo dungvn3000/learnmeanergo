@@ -61,8 +61,8 @@
   },
   "try": {
     "title": "Tự thử",
-    "decoder": "<link>Giải mã địa chỉ</link> — dán địa chỉ bất kỳ để tách từng byte.",
-    "pubkey": "<link>Public key → Địa chỉ</link> — tự dựng một địa chỉ P2PK.",
-    "blake": "<link>Blake2b-256</link> — tự tính checksum."
+    "decoder": "<a>Giải mã địa chỉ</a> — dán địa chỉ bất kỳ để tách từng byte.",
+    "pubkey": "<a>Public key → Địa chỉ</a> — tự dựng một địa chỉ P2PK.",
+    "blake": "<a>Blake2b-256</a> — tự tính checksum."
   }
 }

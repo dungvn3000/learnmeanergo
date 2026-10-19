@@ -111,10 +111,10 @@
   },
   "next": {
     "title": "What's next",
-    "tx": "<link>Transactions</link> — how boxes are spent and created.",
-    "tokens": "<link>Tokens (EIP-4)</link> — R2 and the metadata registers.",
-    "ergotree": "<link>ErgoTree &amp; ErgoScript</link> — what's inside R1.",
-    "dav": "<link>Learning Ergo 101: eUTXO explained for human beings</link> — an external article explaining the eUTXO model from an app builder's point of view.",
-    "deco": "<link>DECO Education — Registers, Guard Scripts, ErgoScript</link> — a lesson from the “Into the Woods” course on registers, box limits and common guard scripts."
+    "tx": "<a>Transactions</a> — how boxes are spent and created.",
+    "tokens": "<a>Tokens (EIP-4)</a> — R2 and the metadata registers.",
+    "ergotree": "<a>ErgoTree &amp; ErgoScript</a> — what's inside R1.",
+    "dav": "<a>Learning Ergo 101: eUTXO explained for human beings</a> — an external article explaining the eUTXO model from an app builder's point of view.",
+    "deco": "<a>DECO Education — Registers, Guard Scripts, ErgoScript</a> — a lesson from the “Into the Woods” course on registers, box limits and common guard scripts."
   }
 }

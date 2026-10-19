@@ -178,9 +178,9 @@ export default function Difficulty() {
 
       <h2 id="xem-them">{t('seeAlso.title')}</h2>
       <ul>
-        <li>{T('seeAlso.autolykos', { link: <Link to="/learn/autolykos" /> })}</li>
-        <li>{T('seeAlso.block', { link: <Link to="/learn/block" /> })}</li>
-        <li>{T('seeAlso.emission', { link: <Link to="/learn/emission" /> })}</li>
+        <li>{T('seeAlso.autolykos', { a: <Link to="/learn/autolykos" /> })}</li>
+        <li>{T('seeAlso.block', { a: <Link to="/learn/block" /> })}</li>
+        <li>{T('seeAlso.emission', { a: <Link to="/learn/emission" /> })}</li>
       </ul>
     </>
   )

@@ -188,9 +188,9 @@ checksum = blake2b256( prefix ‖ content )[0..4]`}</code>
 
       <h2 id="tu-thu">{t('try.title')}</h2>
       <ul>
-        <li>{T('try.decoder', { link: <Link to="/tools/address-decoder" /> })}</li>
-        <li>{T('try.pubkey', { link: <Link to="/tools/pubkey-to-address" /> })}</li>
-        <li>{T('try.blake', { link: <Link to="/tools/blake2b" /> })}</li>
+        <li>{T('try.decoder', { a: <Link to="/tools/address-decoder" /> })}</li>
+        <li>{T('try.pubkey', { a: <Link to="/tools/pubkey-to-address" /> })}</li>
+        <li>{T('try.blake', { a: <Link to="/tools/blake2b" /> })}</li>
       </ul>
     </>
   )

@@ -93,7 +93,7 @@
   },
   "reading": {
     "title": "Đọc thêm",
-    "pdf": "<link>Ergo: A Resilient Platform For Contractual Money</link> — whitepaper v1.0, 14/05/2019 (PDF, tiếng Anh).",
-    "web": "<link>Bản web của whitepaper</link> trên docs.ergoplatform.com."
+    "pdf": "<a>Ergo: A Resilient Platform For Contractual Money</a> — whitepaper v1.0, 14/05/2019 (PDF, tiếng Anh).",
+    "web": "<a>Bản web của whitepaper</a> trên docs.ergoplatform.com."
   }
 }

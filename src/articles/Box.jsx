@@ -296,13 +296,13 @@ export default function Box() {
 
       <h2 id="xem-them">{t('next.title')}</h2>
       <ul>
-        <li>{T('next.tx', { link: <Link to="/learn/transaction" /> })}</li>
-        <li>{T('next.tokens', { link: <Link to="/learn/tokens" /> })}</li>
-        <li>{T('next.ergotree', { link: <Link to="/learn/ergotree" /> })}</li>
-        <li>{T('next.dav', { link: <a href="https://dav009.medium.com/learning-ergo-101-blockchain-paradigm-eutxo-c90b0274cf5e" target="_blank" rel="noreferrer" /> })}</li>
+        <li>{T('next.tx', { a: <Link to="/learn/transaction" /> })}</li>
+        <li>{T('next.tokens', { a: <Link to="/learn/tokens" /> })}</li>
+        <li>{T('next.ergotree', { a: <Link to="/learn/ergotree" /> })}</li>
+        <li>{T('next.dav', { a: <a href="https://dav009.medium.com/learning-ergo-101-blockchain-paradigm-eutxo-c90b0274cf5e" target="_blank" rel="noreferrer" /> })}</li>
         <li>
           {T('next.deco', {
-            link: <a href="https://deco-education.github.io/deco-docs/docs/into-the-woods/trail1-eutxo-n-nfts/registers-guardscripts-ergoscript" target="_blank" rel="noreferrer" />,
+            a: <a href="https://deco-education.github.io/deco-docs/docs/into-the-woods/trail1-eutxo-n-nfts/registers-guardscripts-ergoscript" target="_blank" rel="noreferrer" />,
           })}
         </li>
       </ul>

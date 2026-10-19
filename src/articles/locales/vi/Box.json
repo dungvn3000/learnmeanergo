@@ -111,10 +111,10 @@
   },
   "next": {
     "title": "Tiếp theo",
-    "tx": "<link>Giao dịch</link> — box được tiêu và tạo ra thế nào.",
-    "tokens": "<link>Token (EIP-4)</link> — R2 và các registers metadata.",
-    "ergotree": "<link>ErgoTree &amp; ErgoScript</link> — bên trong R1.",
-    "dav": "<link>Learning Ergo 101: eUTXO explained for human beings</link> — bài viết ngoài (tiếng Anh) giải thích mô hình eUTXO dưới góc nhìn người xây ứng dụng.",
-    "deco": "<link>DECO Education — Registers, Guard Scripts, ErgoScript</link> — bài học trong khoá “Into the Woods” (tiếng Anh) về registers, giới hạn của box và các dạng guard script."
+    "tx": "<a>Giao dịch</a> — box được tiêu và tạo ra thế nào.",
+    "tokens": "<a>Token (EIP-4)</a> — R2 và các registers metadata.",
+    "ergotree": "<a>ErgoTree &amp; ErgoScript</a> — bên trong R1.",
+    "dav": "<a>Learning Ergo 101: eUTXO explained for human beings</a> — bài viết ngoài (tiếng Anh) giải thích mô hình eUTXO dưới góc nhìn người xây ứng dụng.",
+    "deco": "<a>DECO Education — Registers, Guard Scripts, ErgoScript</a> — bài học trong khoá “Into the Woods” (tiếng Anh) về registers, giới hạn của box và các dạng guard script."
   }
 }

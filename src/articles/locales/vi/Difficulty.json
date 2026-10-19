@@ -55,8 +55,8 @@
   },
   "seeAlso": {
     "title": "Xem thêm",
-    "autolykos": "<link>Autolykos v2</link> — giá trị băm nào được đem so với target.",
-    "block": "<link>Block & header</link> — nBits nằm ở đâu trong header.",
-    "emission": "<link>Lịch phát hành</link> — phần thưởng mà thợ đào nhận được khi thắng."
+    "autolykos": "<a>Autolykos v2</a> — giá trị băm nào được đem so với target.",
+    "block": "<a>Block & header</a> — nBits nằm ở đâu trong header.",
+    "emission": "<a>Lịch phát hành</a> — phần thưởng mà thợ đào nhận được khi thắng."
   }
 }

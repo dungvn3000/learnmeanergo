@@ -55,8 +55,8 @@
   },
   "seeAlso": {
     "title": "See also",
-    "autolykos": "<link>Autolykos v2</link> — the hash that gets compared with the target.",
-    "block": "<link>Blocks & headers</link> — where nBits lives in the header.",
-    "emission": "<link>Emission schedule</link> — the reward a miner earns for winning."
+    "autolykos": "<a>Autolykos v2</a> — the hash that gets compared with the target.",
+    "block": "<a>Blocks & headers</a> — where nBits lives in the header.",
+    "emission": "<a>Emission schedule</a> — the reward a miner earns for winning."
   }
 }
